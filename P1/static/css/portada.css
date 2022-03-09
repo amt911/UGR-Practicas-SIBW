@@ -39,6 +39,8 @@ h1{
 
 .div-titulo-menu{
     /*width:75%;*/
+    display: grid;
+    grid-template-rows: repeat(2, 50%);
     height:auto;
 }
 
@@ -47,13 +49,10 @@ h1{
     border-color: black;
     border-radius: 10px;
     width: 100%;
-    height: 50%;        
 }
 
 .menu{
-    width: 100%;
-    height: 50%;  
-    color: blue;        
+    width: 100%;  
 }
 
 img{
@@ -117,6 +116,8 @@ ul{
     /*width: 25%;*/
     height: auto;  
     color:black; 
+    display: grid;
+    grid-template-rows: 50% 25% 25%;
 }
 
 .pie-copyright{
@@ -144,32 +145,30 @@ ul{
 
 .div-ubi{
     width:100%;
-    height: 50%;
     color:darkblue;
 }
 
 .div-foro{
     width:100%;
-    height: 25%;
     color: darkgreen;
 }
 
 .div-social{
     width:100%;
-    height: 25%;
     color:blue;
+    display: grid;
+    grid-template-rows: 60% 40%;
 }
 
 .div-social-texto{
     text-align: center;
     width:100%;
-    height: 60%;
 }
 
 .div-social-img{
     display: grid;
     grid-template-columns: repeat(4, 25%);
-    grid-auto-rows: 20%;
+    grid-auto-rows: 100%;
     width:100%;
     color:darkgreen;
 }
