@@ -3,6 +3,14 @@
     <head>
         <title>titulo de prueba</title>
         <link rel="stylesheet" href="static/css/portada.css">
+        <!--
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">
+        -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">
     </head>
 
     <body>
@@ -17,21 +25,21 @@
         <p class="p1">Parrafo de prueba</p>
         <p class="p2">Otro parrafo</p>
     -->
-
+<div class="div-principal">
     <div class="header">
         <div class="image">
             <img class="foto" src="static/image/patata 2.png">
         </div>
         <div class="div-titulo-menu">
             <div class="div-titulo">
-                <h1>e-tienda. Más que comercio</h1>
+                <h1>e-tienda</h1>
             </div>
     
             <div class="menu">
                 <ul>
-                    <li class="horizontal"><a href="https://www.google.es/">Menu 1</a></li>
-                    <li class="horizontal"><a href="https://www.google.es/">Menu 2</a></li>
-                    <li class="horizontal"><a href="https://www.google.es/">Menu 3</a></li>
+                    <li class="horizontal"><a href="https://www.google.es/"><span class="blanco">Menu 1</span></a></li>
+                    <li class="horizontal"><a href="https://www.google.es/"><span class="blanco">Menu 2</span></a></li>
+                    <li class="horizontal"><a href="https://www.google.es/"><span class="blanco">Menu 3</span></a></li>
                 </ul>
             </div>
         </div>
@@ -47,12 +55,13 @@
                 </div>
 
                 <div class="div-producto">
-                    Nvidia GeForce RTX 3090 FE 
+                    <span class="blanco">
+                        Nvidia GeForce RTX 3090 FE 
+                    </span>
                 </div>
-
                 <div class="div-precio">
                     3500€
-                </div>
+                </div>                
             </div>         
 
             <div class="box">
@@ -62,12 +71,13 @@
                     </a>
                 </div>
                 <div class="div-producto">
-                    Mando Xbox Elite Series 2
-                </div>
-
+                    <span class="blanco">
+                        Mando Xbox Elite Series 2
+                    </span>                    
+                </div>     
                 <div class="div-precio">
                     180€
-                </div>                
+                </div>           
             </div>
             
             <div class="box">
@@ -78,12 +88,13 @@
                 </div>
 
                 <div class="div-producto">
-                    Intel Core i9-12900K
-                </div>
-
+                    <span class="blanco">
+                        Intel Core i9-12900K
+                    </span>
+                </div>                
                 <div class="div-precio">
                     669,90€
-                </div>                
+                </div>
             </div>
             
             <div class="box">
@@ -93,13 +104,14 @@
                     </a>
                 </div>
                 <div class="div-producto">
-                    WD_Black PC SN750 NVMe SSD
-                </div>
-
+                    <span class="blanco">
+                        WD_Black PC SN750 NVMe
+                    </span>
+                </div>    
                 <div class="div-precio">
                     <span class="tachon">101,99€</span><br>
-                    <span class="oferta">89,99€</span>
-                </div>                
+                    <span class="oferta">89,99€</span>                    
+                </div>            
                                 
             </div>
             
@@ -111,13 +123,14 @@
                 </div>
 
                 <div class="div-producto">
-                    PlayStation 5 con Lector Blu-Ray
-                </div>
-                
-                <div class="div-precio">
-                    500€
+                    <span class="blanco">
+                        PlayStation 5 Blu-Ray
+                    </span>
                 </div>                
 
+                <div class="div-precio">
+                    500€
+                </div>
             </div>
             
             <div class="box">
@@ -128,12 +141,14 @@
                 </div>
 
                 <div class="div-producto">
-                    AMD Ryzen 7 5700G
+                    <span class="blanco">
+                        AMD Ryzen 7 5700G
+                    </span>
                 </div>
-
+                
                 <div class="div-precio">
                     350€
-                </div>                                
+                </div>                
             </div>
             
             <div class="box">
@@ -143,8 +158,10 @@
                     </a>
                 </div>
                 <div class="div-producto">
-                    Western Digital Blue HDD 1TB 3.5"
-                </div>
+                    <span class="blanco">
+                        Western Digital Blue HDD 1TB 3.5"
+                    </span>
+                </div>                
 
                 <div class="div-precio">
                     38,50€
@@ -159,8 +176,10 @@
                 </div>
 
                 <div class="div-producto">
-                    Nintendo Switch OLED Blanca
-                </div>
+                    <span class="blanco">
+                        Nintendo Switch OLED Blanca
+                    </span>
+                </div>                
 
                 <div class="div-precio">
                     350€
@@ -175,12 +194,13 @@
                 </div>
 
                 <div class="div-producto">
-                    Xbox Series X
-                </div>
-
+                    <span class="blanco">
+                        Xbox Series X
+                    </span>
+                </div>           
                 <div class="div-precio">
                     500€
-                </div>                
+                </div>                     
             </div>           
         </div>
 
@@ -200,7 +220,7 @@
                         Enlaces de interés
                     </div>
 
-                    <div>
+                    <div class="centrado">
                         <ul>
                             <li class="link-list"><a href="https://www.kernel.org/">Página oficial kernel Linux</a></li>
                             <li class="link-list"><a href="https://archlinux.org/">Página oficial de ArchLinux</a></li>
@@ -268,5 +288,6 @@
             <span class="copyright">© 2022 - Andrés Merlo Trujillo</span>
         </div>
     </div>
+</div>
     </body>
 </html>
