@@ -145,6 +145,8 @@ ul{
    background-color: #64b5f6;
    color:white;
    font-weight: 700;
+   border-bottom-left-radius: 2px;
+   border-bottom-right-radius: 2px;
 }
 
 .div-aux{
@@ -152,8 +154,11 @@ ul{
     height: auto;  
     color:black; 
     display: grid;
-    grid-template-rows: 50% 35% 15%;
+    grid-template-rows: 24% 24% 34% 14%;
     background-color: #00897b;
+    padding:3%;
+    gap: 1%;
+    /*border: solid 2px red;*/
 }
 
 .pie-copyright{
@@ -179,20 +184,6 @@ ul{
     /*No se pone text-align aqui ya que se debe hacer en el container*/
 }
 
-.div-foro{
-    width:100%;
-    color: darkgreen;
-    display: grid;
-    grid-template-rows: 10% 90%;
-}
-
-.div-social{
-    width:100%;
-    color:blue;
-    display: grid;
-    grid-template-rows: 50% 50%;
-}
-
 .div-social-texto{
     text-align: center;
     width:100%;
@@ -204,7 +195,7 @@ ul{
     grid-auto-rows: 100%;
     justify-content: center;
     align-items: center;
-    gap:3%;
+    gap:5%;
     width:100%;
     color:darkgreen;
 }
@@ -238,9 +229,46 @@ ul{
     padding: 3%;
 }
 
-.div-ubi-links{
+.div-ubi{
+    width: 100%;
     display: grid;
-    grid-template-rows: repeat(2, 50%);
+    grid-template-rows: 10% 90%;
+    background-color: #cddc39;
+    border-radius: 2px;
+    /*border: solid 2px red;*/
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.div-links{
+    /*border: solid 2px red;*/
+    width: 100%;
+    display: grid;
+    grid-template-rows: 10% 90%;
+    background-color: #cddc39;
+    border-radius: 2px;
+    /*border: solid 2px red;*/
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);    
+}
+
+.div-foro{
+    width:100%;
+    display: grid;
+    grid-template-rows: 10% 90%;
+    background-color: #cddc39;
+    border-radius: 2px;
+    /*border: solid 2px red;*/
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);    
+}
+
+.div-social{
+    width:100%;
+    color:blue;
+    display: grid;
+    grid-template-rows: 50% 50%;
+    background-color: #cddc39;
+    border-radius: 2px;
+    /*border: solid 2px red;*/
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);    
 }
 
 .div-ubi-titulo{
@@ -248,17 +276,14 @@ ul{
     text-align: center;
 }
 
-.div-ubi{
-    display: grid;
-    grid-template-rows: 10% 90%;
+
+.mapa{
+    padding:2%;
+    background-color: #c0ca33;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
 }
 
-.div-links{
-    color:blue;
-    width: 100%;
-    display: grid;
-    grid-template-rows: 10% 90%;
-}
 
 .titulo-links{
     align-self: center;
