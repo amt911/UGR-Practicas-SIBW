@@ -185,18 +185,15 @@ ul{
 .div-pie{
     width: 100%;
     height: auto;
-
+    display: grid;
+    grid-template-columns: repeat(4, 25%);
 }
 
 .div-copyright{
     width: 100%;
     height: auto;
-
-}
-
-.pie{
-    color: blueviolet;
-    /*No se pone text-align aqui ya que se debe hacer en el container*/
+    border-top: solid 2px #00897b;
+    font-weight: 700;
 }
 
 .div-social-texto{
