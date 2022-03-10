@@ -86,16 +86,16 @@ ul{
 
 .objetos{
     /*width: 75%;*/
-    height: auto;
     display: grid;    
     gap: 10px;
-    grid-template-columns: repeat(3, 210px);
-    grid-auto-rows: 210px;
+    grid-template-columns: repeat(3, 33%);
+    grid-auto-rows: 250px;
+    /*grid-auto-rows: 30%;*/
     /*grid-auto-rows sirve para evitar poner el mismo numero 3 veces*/
     text-align: center;
     justify-content: center;
     /*justify-content sirve para centrar todos los cuadros en el centro del div*/
-    padding: 15px;
+    padding: 3%;
 }
 
 .box{
@@ -129,7 +129,7 @@ ul{
     height: auto;  
     color:black; 
     display: grid;
-    grid-template-rows: 50% 25% 25%;
+    grid-template-rows: 50% 35% 15%;
 }
 
 .pie-copyright{
@@ -155,21 +155,18 @@ ul{
     /*No se pone text-align aqui ya que se debe hacer en el container*/
 }
 
-.div-ubi{
-    width:100%;
-    color:darkblue;
-}
-
 .div-foro{
     width:100%;
     color: darkgreen;
+    display: grid;
+    grid-template-rows: 10% 90%;
 }
 
 .div-social{
     width:100%;
     color:blue;
     display: grid;
-    grid-template-rows: 60% 40%;
+    grid-template-rows: 50% 50%;
 }
 
 .div-social-texto{
@@ -179,8 +176,11 @@ ul{
 
 .div-social-img{
     display: grid;
-    grid-template-columns: repeat(4, 25%);
+    grid-template-columns: repeat(4, 20%);
     grid-auto-rows: 100%;
+    justify-content: center;
+    align-items: center;
+    gap:3%;
     width:100%;
     color:darkgreen;
 }
@@ -197,4 +197,50 @@ ul{
 .oferta{
     color:green;
     /*poner en negrita*/
+}
+
+.foro-titulo{
+    align-self: center;
+    text-align: center;
+}
+
+.foro-entradas{
+    list-style-type:disc;
+    padding: 0%;
+    margin-left: 10%;
+}
+
+.foro-lista{
+    padding: 3%;
+}
+
+.div-ubi-links{
+    display: grid;
+    grid-template-rows: repeat(2, 50%);
+}
+
+.div-ubi-titulo{
+    align-self: center;
+    text-align: center;
+}
+
+.div-ubi{
+    display: grid;
+    grid-template-rows: 10% 90%;
+}
+
+.div-links{
+    color:blue;
+    width: 100%;
+    display: grid;
+    grid-template-rows: 10% 90%;
+}
+
+.titulo-links{
+    align-self: center;
+    text-align: center;
+}
+
+.link-list{
+    padding: 2%;
 }
