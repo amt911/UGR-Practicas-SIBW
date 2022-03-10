@@ -101,17 +101,29 @@ ul{
 .box{
     border-radius: 10px;
     background-color: aqua;
-    height: auto;
+    display: grid;
+    grid-template-rows: 60% 20% 20%;
+    
 }
 
 .div-imagen{
-    height: 80%;
+    color: black;
+    width:100%;
 }
-/*
+
 .div-producto{
-    height: auto;
+    /*Sirve para alinear verticalmente*/
+    align-self: center;
+    width: 100%;
+    color: black;
 }
-*/
+
+
+.div-precio{
+   /* align-self: center;*/
+    width: 100%;
+    color: black;
+}
 .div-aux{
     /*width: 25%;*/
     height: auto;  
@@ -175,4 +187,14 @@ ul{
 
 .social-img{
     color: pink;
+}
+
+.tachon{
+    text-decoration:line-through;
+    color: red;
+}
+
+.oferta{
+    color:green;
+    /*poner en negrita*/
 }
