@@ -210,6 +210,9 @@ ul{
     gap:5%;
     width:100%;
     color:darkgreen;
+    background-color: #c0ca33;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;    
 }
 
 .social-img{
@@ -232,9 +235,16 @@ ul{
 }
 
 .foro-entradas{
-    list-style-type: square;
+    list-style-type:decimal;
     padding: 0%;
-    margin-left: 10%;
+    margin-left: 10%;    
+}
+
+.div-entradas{
+    font-size: 90%;
+    background-color: #c0ca33;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
 }
 
 .foro-lista{
@@ -274,9 +284,8 @@ ul{
 
 .div-social{
     width:100%;
-    color:blue;
     display: grid;
-    grid-template-rows: 50% 50%;
+    grid-template-rows: 20% 80%;
     background-color: #cddc39;
     border-radius: 2px;
     /*border: solid 2px red;*/
@@ -303,7 +312,11 @@ ul{
 }
 
 .centrado{
-    align-self: center;
+    padding: 5%;
+    font-size: 90%;
+    background-color: #c0ca33;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
 }
 
 .link-list{
