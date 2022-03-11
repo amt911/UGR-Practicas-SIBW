@@ -2,6 +2,8 @@ body{
     /*background-color: beige;*/
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
+    -webkit-text-size-adjust: auto;
+    font-size: 1.5vh;
 }
 /*
 div{
@@ -33,7 +35,7 @@ h1{
     background-color: #009688;
     display: grid;
     grid-template-columns: 25% 75%;
-    grid-auto-rows: 150px;
+    grid-auto-rows: 15vh;
     width: 100%;
     /*border-bottom: solid 2px #00897b;*/
 }
@@ -46,7 +48,7 @@ h1{
 .div-principal{
     height:auto;
     border: 2px solid #00897b;  
-    border-radius: 2px;
+    border-radius: 0.2vh;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);  
     background-color: beige;
 }
@@ -66,7 +68,7 @@ h1{
 }
 
 .div-titulo{
-    border-radius: 2px;
+    border-radius: 0.2vh;
     width: 100%;
 }
 
@@ -76,8 +78,8 @@ h1{
     width: 35%; 
     height: auto; 
     display: grid;
-    grid-template-columns: repeat(3, 30%);
-    justify-content: center;
+    grid-template-columns: repeat(3, 6vh);/*repeat(3, 60px);*/
+    /*justify-content: center;*/
     align-content: center;
     gap: 3%;
     
@@ -86,7 +88,7 @@ h1{
 .menu{
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);    
     background-color: #cddc39;
-    border-radius: 2px;
+    border-radius: 0.2vh;/*2px;*/
     /*border: solid 2px red;*/
     text-align: center;
 
@@ -132,7 +134,6 @@ ul{
 .objetos{
     display: grid;    
     gap: 10px;
-    height:auto;
     grid-template-columns: repeat(3, 33%);
     grid-auto-rows: 32%;  /*grid-auto-rows sirve para evitar poner el mismo numero 3 veces*/
     
@@ -140,11 +141,11 @@ ul{
     justify-content: center;    /*justify-content sirve para centrar todos los cuadros en el centro del div*/
     padding: 3%;
     background-color: beige;
-    border-radius: 2px;
+    border-radius: 0.2vh;
 }
 
 .box{
-    border-radius: 2px;
+    border-radius: 0.2vh;
     background-color: #03A9F4;
     display: grid;
     grid-template-rows: 70% 15% 15%;
@@ -165,27 +166,25 @@ ul{
 }
 
 .div-precio{
-    border: solid 2px red;
-   background-color: #64b5f6;
-   height:auto;
-   color:black;
-   font-weight: 700;
-   border-bottom-left-radius: 2px;
-   border-bottom-right-radius: 2px;
+    /*border: solid 2px red;*/
+    background-color: #64b5f6;
+    color:black;
+    font-weight: 700;
+    border-bottom-left-radius: 0.2vh;
+    border-bottom-right-radius: 0.2vh;
 }
 
 .div-aux{
     /*width: 25%;*/
-    height: auto;  
     color:black; 
     display: grid;
     grid-template-rows: auto;/*24% 24% 34% 14%;*/
     grid-auto-columns: 100%;
     background-color: #00897b;
-    padding:5% 3% 15% 3%;
-    gap:1%;
+    padding:5% 3% 5% 3%;
+    gap:1vh;
     /*top right bottom left*/
-    border: solid 2px red;
+    /*border: solid 2px red;*/
 }
 
 .pie-copyright{
@@ -224,8 +223,8 @@ ul{
     width:100%;
     color:darkgreen;
     background-color: #c0ca33;
-    border-bottom-left-radius: 2px;
-    border-bottom-right-radius: 2px;    
+    border-bottom-left-radius: 0.2vh;
+    border-bottom-right-radius: 0.2vh;    
 }
 
 .social-img{
@@ -243,51 +242,51 @@ ul{
 }
 
 .div-foro{
-    width:100%;
     display: grid;
-    grid-template-rows: 10% 90%;
+    grid-template-rows: 2vh auto;
+    grid-auto-columns: 100%;
     background-color: #cddc39;
-    border-radius: 2px;
+    border-radius: 0.2vh;
     /*border: solid 2px red;*/
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);    
 }
 
 .foro-titulo{
-    border:solid 2px red;
+    /*border: solid 1px red;*/
     align-self: center;
     text-align: center;
 }
 
 .foro-entradas{
-    border:solid 2px red;
     list-style-type:decimal;
-    padding: 0%;
-    margin-left: 10%;  
     text-align: justify;  
 }
 
-.div-entradas{
-
-    border:solid 2px red;
-    font-size: 90%;
-    background-color: #c0ca33;
-    border-bottom-left-radius: 2px;
-    border-bottom-right-radius: 2px;
-    padding: 3%;
-}
 
 .foro-lista{
-    border:solid 2px red;
-    padding-top: 3%;
+    /*border:solid 2px red;*/
+    margin-top: 7%;
+    
 }
 
+.div-entradas{
+    /*border:solid 2px red;*/
+    font-size: 90%;
+    background-color: #c0ca33;
+    border-bottom-left-radius: 0.2vh;
+    border-bottom-right-radius: 0.2vh;
+    padding: 0% 0% 0% 8%;
+    /*top right bottom left*/
+}
+
+
+
 .div-ubi{
-    width: 100%;
     display: grid;
-    grid-template-rows: 10% 90%;
+    grid-template-rows: 2vh auto;
     grid-auto-columns: 100%;
     background-color: #cddc39;
-    border-radius: 2px;
+    border-radius: 0.2vh;
     /*border: solid 2px red;*/
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
@@ -295,22 +294,39 @@ ul{
 .div-links{
     /*border: solid 2px red;*/
     width: 100%;
-    height: auto;
+    height:auto;
     display: grid;
-    grid-template-rows: 10% 90%;
+    grid-template-rows: 2vh auto;
     grid-auto-columns: 100%;
     background-color: #cddc39;
-    border-radius: 2px;
-    /*border: solid 2px red;*/
+    border-radius: 0.2vh;
+    /*border: solid 2px blue;*/
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);    
 }
+
+.titulo-links{
+    /*border: solid 2px red;*/
+    align-self: center;
+    text-align: center;
+}
+
+.centrado{
+    height:auto;
+    /*border: solid 2px red;*/
+    padding: 5%;
+    font-size: 90%;
+    background-color: #c0ca33;
+    border-bottom-left-radius: 0.2vh;
+    border-bottom-right-radius: 0.2vh;
+}
+
 
 .div-social{
     width:100%;
     display: grid;
-    grid-template-rows: 20% 80%;
+    grid-template-rows: 2vh auto;
     background-color: #cddc39;
-    border-radius: 2px;
+    border-radius: 0.2vh;
     /*border: solid 2px red;*/
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);    
 }
@@ -323,20 +339,6 @@ ul{
 
 .mapa{
     padding:2%;
-    background-color: #c0ca33;
-    border-bottom-left-radius: 2px;
-    border-bottom-right-radius: 2px;
-}
-
-
-.titulo-links{
-    align-self: center;
-    text-align: center;
-}
-
-.centrado{
-    padding: 5%;
-    font-size: 90%;
     background-color: #c0ca33;
     border-bottom-left-radius: 2px;
     border-bottom-right-radius: 2px;
@@ -358,7 +360,7 @@ ul{
 }
 .card {
   background: #fff;
-  border-radius: 2px;
+  border-radius: 0.2vh;
   display: inline-block;
   height: 300px;
   margin: 1rem;
