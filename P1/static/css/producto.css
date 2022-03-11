@@ -116,6 +116,7 @@ ul{
 .contenido{
     display: grid;
     grid-template-columns: 75% 25%;
+    grid-auto-rows: auto;
     width: 100%;
     height: auto;
     background-color: #00897b;
@@ -169,7 +170,7 @@ ul{
     height: auto;  
     color:black; 
     display: grid;
-    grid-template-rows: 24% 24% 34% 14%;
+    grid-template-rows: auto;/*24% 24% 34% 14%;*/
     background-color: #00897b;
     padding:3%;
     gap: 1%;

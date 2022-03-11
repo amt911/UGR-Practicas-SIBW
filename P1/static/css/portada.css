@@ -120,6 +120,7 @@ ul{
 .contenido{
     display: grid;
     grid-template-columns: 75% 25%;
+    grid-auto-rows: auto;
     width: 100%;
     height: auto;
     background-color: #00897b;
@@ -131,7 +132,8 @@ ul{
     display: grid;    
     gap: 10px;
     grid-template-columns: repeat(3, 33%);
-    grid-auto-rows: 250px;  /*grid-auto-rows sirve para evitar poner el mismo numero 3 veces*/
+    grid-auto-rows: 32%;  /*grid-auto-rows sirve para evitar poner el mismo numero 3 veces*/
+    
     text-align: center;
     justify-content: center;    /*justify-content sirve para centrar todos los cuadros en el centro del div*/
     padding: 3%;
@@ -143,7 +145,8 @@ ul{
     border-radius: 2px;
     background-color: #03A9F4;
     display: grid;
-    grid-template-rows: 70% 15% auto;
+    grid-template-rows: 70% 15% 15%;
+    grid-auto-columns: 100%;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 
@@ -160,8 +163,9 @@ ul{
 }
 
 .div-precio{
-    /*border: solid 2px red;*/
+    border: solid 2px red;
    background-color: #64b5f6;
+   height:auto;
    color:black;
    font-weight: 700;
    border-bottom-left-radius: 2px;
@@ -173,7 +177,7 @@ ul{
     height: auto;  
     color:black; 
     display: grid;
-    grid-template-rows: 24% 24% 34% 14%;
+    grid-template-rows: auto;/*24% 24% 34% 14%;*/
     background-color: #00897b;
     padding:3%;
     gap: 1%;
@@ -233,12 +237,24 @@ ul{
     /*poner en negrita*/
 }
 
+.div-foro{
+    width:100%;
+    display: grid;
+    grid-template-rows: 10% 90%;
+    background-color: #cddc39;
+    border-radius: 2px;
+    /*border: solid 2px red;*/
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);    
+}
+
 .foro-titulo{
+    border:solid 2px red;
     align-self: center;
     text-align: center;
 }
 
 .foro-entradas{
+    border:solid 2px red;
     list-style-type:decimal;
     padding: 0%;
     margin-left: 10%;  
@@ -246,14 +262,18 @@ ul{
 }
 
 .div-entradas{
+
+    border:solid 2px red;
     font-size: 90%;
     background-color: #c0ca33;
     border-bottom-left-radius: 2px;
     border-bottom-right-radius: 2px;
+    padding: 3%;
 }
 
 .foro-lista{
-    padding: 3%;
+    border:solid 2px red;
+    padding-top: 3%;
 }
 
 .div-ubi{
@@ -269,16 +289,6 @@ ul{
 .div-links{
     /*border: solid 2px red;*/
     width: 100%;
-    display: grid;
-    grid-template-rows: 10% 90%;
-    background-color: #cddc39;
-    border-radius: 2px;
-    /*border: solid 2px red;*/
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);    
-}
-
-.div-foro{
-    width:100%;
     display: grid;
     grid-template-rows: 10% 90%;
     background-color: #cddc39;
