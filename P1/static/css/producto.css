@@ -38,10 +38,6 @@ h1{
     /*border-bottom: solid 2px #00897b;*/
 }
 
-.no-underline{
-    text-decoration: none;
-}
-
 
 .div-principal{
     border: 2px solid #00897b;  
@@ -253,7 +249,7 @@ ul{
 }
 
 .foro-lista{
-    padding: 3%;
+    padding: 1%;
 }
 
 .div-ubi{
