@@ -6,11 +6,11 @@ body {
     word-wrap: break-word;
     /*border: dashed 5px black;*/
 }
-/*
+
 div {
     border: solid 1px red;
 }
-*/
+
 
 
 img {
@@ -115,6 +115,7 @@ span{
 }
 
 .box:hover{
+    background-color: #cddc39;
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);    
 }
 
@@ -213,6 +214,35 @@ span{
 .no-underline {
     text-decoration: none;
 }
+
+
+
+
+
+/*Clases de producto, separar cuando se acabe*/
+.objeto{
+    display: grid;
+    grid-template-columns: 80% 20%;
+    grid-auto-rows: fit-content;
+}
+
+.info{
+    height:auto;
+}
+.div-imagen-varias{
+    display: grid;
+    grid-template-rows: 50% 50%;
+    grid-auto-columns: 100%;
+}
+
+.dos-imagenes{
+
+}
+
+
+
+
+
 
 /*
 .card-5 {
