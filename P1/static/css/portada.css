@@ -7,6 +7,8 @@ body{
     zoom:normal;
     overflow: auto;
     width: fit-content;
+    word-wrap:break-word;
+    border: dashed 5px black;
 }
 
 div{
@@ -55,6 +57,10 @@ h1{
     background-color: beige;
 }
 .image{
+    /*esto de abajo sirve para alinear la imagen en el centro*/
+    margin: 0 auto;
+    width: 150px;
+    height: 150px;
     border: solid 2px black;
     border-radius: 50%;
     background-color: beige;
@@ -64,7 +70,7 @@ h1{
 .div-titulo-menu{
     display: grid;
     grid-template-rows: 60% 40%;/*repeat(2, 50%);*/
-    grid-auto-columns: auto;
+    grid-auto-columns: 100%;
     /*border: solid 2px red;*/
 }
 
@@ -76,7 +82,7 @@ h1{
 .div-menu{
     border: solid 2px red;
     display: grid;
-    grid-template-columns: /*repeat(3, 6vh);*/repeat(3, 60px);
+    grid-template-columns: /*repeat(3, 7vh);*/repeat(3, 60px);
     /*justify-content: center;*/
     align-content: center;
     gap: 1rem;/*3%;*/
@@ -126,14 +132,13 @@ ul{
     height: auto;
     background-color: #00897b;
     border-bottom: solid 2px #00897b;
-
 }
 
 .objetos{
     display: grid;    
     gap: /*10px;*/1vh;
     grid-template-columns: repeat(3, 33%);
-    grid-auto-rows: 32%;  /*grid-auto-rows sirve para evitar poner el mismo numero 3 veces*/
+    grid-auto-rows: 250px;  /*grid-auto-rows sirve para evitar poner el mismo numero 3 veces*/
     
     text-align: center;
     justify-content: center;    /*justify-content sirve para centrar todos los cuadros en el centro del div*/
@@ -181,8 +186,6 @@ ul{
     background-color: #00897b;
     padding:5% 3% 5% 3%;
     gap:1vh;
-    /*top right bottom left*/
-    /*border: solid 2px red;*/
 }
 
 .pie-copyright{
@@ -209,24 +212,6 @@ ul{
     text-align: center;
     width:100%;
     height: auto;
-}
-
-.div-social-img{
-    display: grid;
-    grid-template-columns: repeat(4, 20%);
-    grid-auto-rows: auto;
-    justify-content: center;
-    align-items: center;
-    gap:5%;
-    width:100%;
-    color:darkgreen;
-    background-color: #c0ca33;
-    border-bottom-left-radius: 0.2vh;
-    border-bottom-right-radius: 0.2vh;    
-}
-
-.social-img{
-
 }
 
 .tachon{
@@ -256,15 +241,15 @@ ul{
 }
 
 .foro-entradas{
-    list-style-type:decimal;
+    /*word-wrap: break-word;*/
+    list-style-type:none;
     text-align: justify;  
 }
 
 
 .foro-lista{
     /*border:solid 2px red;*/
-    margin-top: 7%;
-    
+    margin-top: 7%;  
 }
 
 .div-entradas{
@@ -274,21 +259,52 @@ ul{
     border-bottom-left-radius: 0.2vh;
     border-bottom-right-radius: 0.2vh;
     padding: 0% 0% 0% 8%;
-    width: fit-content;
     /*top right bottom left*/
 }
 
 
 
-.div-ubi{
+.div-aux-box{
     display: grid;
     grid-template-rows: /*2vh*/ auto;
     grid-auto-columns: 100%;
     background-color: #cddc39;
     border-radius: 0.2vh;
+    width:auto;
     /*border: solid 2px red;*/
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
+
+.div-aux-titulo{
+    width:auto;
+    align-self: center;
+    text-align: center;
+}
+
+.div-aux-contenido{
+    padding:2%;
+    background-color: #c0ca33;
+    border-bottom-left-radius: 0.2vh;
+    border-bottom-right-radius: 0.2vh;
+}
+
+.foro{
+    padding-left:0%;
+    background-color: #c0ca33;
+    border-bottom-left-radius: 0.2vh;
+    border-bottom-right-radius: 0.2vh;    
+}
+
+
+
+
+
+
+
+
+
+
+
 
 .div-links{
     /*border: solid 2px red;*/
@@ -321,27 +337,16 @@ ul{
 
 
 .div-social{
-    width:100%;
     display: grid;
-    grid-template-rows: /*2vh*/ auto;
-    background-color: #cddc39;
-    border-radius: 0.2vh;
-    /*border: solid 2px red;*/
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);    
-}
-
-.div-ubi-titulo{
-    align-self: center;
-    text-align: center;
+    grid-template-columns: repeat(4, 20%);
+    grid-auto-rows: auto;
+    justify-content: center;
+    align-items: center;
+    gap:5%;
+    width:auto;
 }
 
 
-.mapa{
-    padding:2%;
-    background-color: #c0ca33;
-    border-bottom-left-radius: 2px;
-    border-bottom-right-radius: 2px;
-}
 
 .link-list{
     padding: 2%;

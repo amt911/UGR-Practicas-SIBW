@@ -2,7 +2,13 @@ body{
     /*background-color: beige;*/
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
-    
+    -webkit-text-size-adjust: auto;
+    /*font-size: 1.5vh;*/
+    zoom:normal;
+    overflow: auto;
+    width: fit-content;
+    word-wrap: break-word;
+    border: dashed 5px black;
 }
 /*
 div{
