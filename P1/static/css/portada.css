@@ -3,15 +3,18 @@ body{
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     -webkit-text-size-adjust: auto;
-    font-size: 1.5vh;
+    /*font-size: 1.5vh;*/
+    zoom:normal;
+    overflow: auto;
+    width: fit-content;
 }
-/*
+
 div{
     border: 1px;
     color: red;
     border-style:solid;
 }
-*/
+
 
 
 h1{
@@ -35,8 +38,8 @@ h1{
     background-color: #009688;
     display: grid;
     grid-template-columns: 25% 75%;
-    grid-auto-rows: 15vh;
-    width: 100%;
+    /*grid-auto-rows: 15vh;*/
+    /*width: auto;*/
     /*border-bottom: solid 2px #00897b;*/
 }
 
@@ -46,7 +49,6 @@ h1{
 
 
 .div-principal{
-    height:auto;
     border: 2px solid #00897b;  
     border-radius: 0.2vh;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);  
@@ -60,36 +62,32 @@ h1{
 }
 
 .div-titulo-menu{
-    width:100%;
     display: grid;
     grid-template-rows: 60% 40%;/*repeat(2, 50%);*/
-    height:100%;
+    grid-auto-columns: auto;
     /*border: solid 2px red;*/
 }
 
 .div-titulo{
     border-radius: 0.2vh;
-    width: 100%;
+    width: auto;
 }
 
 .div-menu{
-    /*border: solid 2px red;*/
-    
-    width: 35%; 
-    height: auto; 
+    border: solid 2px red;
     display: grid;
-    grid-template-columns: repeat(3, 6vh);/*repeat(3, 60px);*/
+    grid-template-columns: /*repeat(3, 6vh);*/repeat(3, 60px);
     /*justify-content: center;*/
     align-content: center;
-    gap: 3%;
+    gap: 1rem;/*3%;*/
     
 }
 
 .menu{
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);    
     background-color: #cddc39;
-    border-radius: 0.2vh;/*2px;*/
-    /*border: solid 2px red;*/
+    border-radius: 0.2vh;
+    border: solid 2px red;
     text-align: center;
 
 }
@@ -133,7 +131,7 @@ ul{
 
 .objetos{
     display: grid;    
-    gap: 10px;
+    gap: /*10px;*/1vh;
     grid-template-columns: repeat(3, 33%);
     grid-auto-rows: 32%;  /*grid-auto-rows sirve para evitar poner el mismo numero 3 veces*/
     
@@ -243,7 +241,7 @@ ul{
 
 .div-foro{
     display: grid;
-    grid-template-rows: 2vh auto;
+    grid-template-rows: /*2vh*/ auto;
     grid-auto-columns: 100%;
     background-color: #cddc39;
     border-radius: 0.2vh;
@@ -276,6 +274,7 @@ ul{
     border-bottom-left-radius: 0.2vh;
     border-bottom-right-radius: 0.2vh;
     padding: 0% 0% 0% 8%;
+    width: fit-content;
     /*top right bottom left*/
 }
 
@@ -283,7 +282,7 @@ ul{
 
 .div-ubi{
     display: grid;
-    grid-template-rows: 2vh auto;
+    grid-template-rows: /*2vh*/ auto;
     grid-auto-columns: 100%;
     background-color: #cddc39;
     border-radius: 0.2vh;
@@ -296,8 +295,8 @@ ul{
     width: 100%;
     height:auto;
     display: grid;
-    grid-template-rows: 2vh auto;
-    grid-auto-columns: 100%;
+    grid-template-rows: auto;
+    grid-auto-columns: auto;
     background-color: #cddc39;
     border-radius: 0.2vh;
     /*border: solid 2px blue;*/
@@ -324,7 +323,7 @@ ul{
 .div-social{
     width:100%;
     display: grid;
-    grid-template-rows: 2vh auto;
+    grid-template-rows: /*2vh*/ auto;
     background-color: #cddc39;
     border-radius: 0.2vh;
     /*border: solid 2px red;*/
