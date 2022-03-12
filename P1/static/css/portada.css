@@ -1,363 +1,219 @@
-body{
+body {
     /*background-color: beige;*/
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
-    -webkit-text-size-adjust: auto;
-    /*font-size: 1.5vh;*/
-    zoom:normal;
-    overflow: auto;
     width: fit-content;
-    word-wrap:break-word;
-    border: dashed 5px black;
+    word-wrap: break-word;
+    /*border: dashed 5px black;*/
 }
-
-div{
-    border: 1px;
-    color: red;
-    border-style:solid;
+/*
+div {
+    border: solid 1px red;
 }
+*/
 
 
-
-h1{
-    color:white;
-    text-align: center;
-    align-self: center;
-}
-
-.p1{
-    color:brown;
-}
-
-
-.p2{
-    color:yellowgreen;
-}
-.header{
-    /*text-align: center;*/
-    /*display: flex;*/
-    /*border: solid 2px red;*/
-    background-color: #009688;
-    display: grid;
-    grid-template-columns: 25% 75%;
-    /*grid-auto-rows: 15vh;*/
-    /*width: auto;*/
-    /*border-bottom: solid 2px #00897b;*/
-}
-
-.no-underline{
-    text-decoration: none;
-}
-
-
-.div-principal{
-    border: 2px solid #00897b;  
-    border-radius: 0.2vh;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);  
-    background-color: beige;
-}
-.image{
-    /*esto de abajo sirve para alinear la imagen en el centro*/
-    margin: 0 auto;
-    width: 150px;
-    height: 150px;
-    border: solid 2px black;
-    border-radius: 50%;
-    background-color: beige;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-}
-
-.div-titulo-menu{
-    display: grid;
-    grid-template-rows: 60% 40%;/*repeat(2, 50%);*/
-    grid-auto-columns: 100%;
-    /*border: solid 2px red;*/
-}
-
-.div-titulo{
-    border-radius: 0.2vh;
-    width: auto;
-}
-
-.div-menu{
-    border: solid 2px red;
-    display: grid;
-    grid-template-columns: /*repeat(3, 7vh);*/repeat(3, 60px);
-    /*justify-content: center;*/
-    align-content: center;
-    gap: 1rem;/*3%;*/
-    
-}
-
-.menu{
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);    
-    background-color: #cddc39;
-    border-radius: 0.2vh;
-    border: solid 2px red;
-    text-align: center;
-
-}
-
-.blanco{
-    color: black;
-}
-
-img{
-    width:100%;
-    height:100%;
+img {
+    width: 100%;
+    height: 100%;
     object-fit: contain;
 }
 
-.foto{
-    border-radius: 5%;
+h1 {
+    color: white;
+    text-align: center;
 }
 
-ul{
+ul {
     list-style-type: none;
     padding: 10px;
+    text-align: justify;
 }
 
-.horizontal{
-    display: inline;
-    margin-left:10px;
-    margin-right:10px;
+span{
+    color: black;
 }
 
 
-.contenido{
+/*clases usadas en divs*/
+.div-principal {
+    border: 2px solid #00897b;
+    border-radius: 0.2vh;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    background-color: beige;
+}
+
+.header {
+    background-color: #009688;
+    display: grid;
+    grid-template-columns: 25% 75%;   
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: beige;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+.div-titulo-menu {
+    display: grid;
+    grid-template-rows: 60% 40%;
+    grid-auto-columns: 100%;
+}
+
+.div-titulo {
+    border-radius: 0.2vh;
+}
+
+.div-menu {
+    display: grid;
+    grid-template-columns: repeat(3, 60px);
+    align-content: center;
+    gap: 1rem;
+}
+
+.menu {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    background-color: #cddc39;
+    border-radius: 0.2vh;
+    text-align: center;
+}
+
+.contenido {
     display: grid;
     grid-template-columns: 75% 25%;
-    grid-auto-rows: auto;
-    width: 100%;
-    height: auto;
+    
     background-color: #00897b;
     border-bottom: solid 2px #00897b;
 }
 
-.objetos{
-    display: grid;    
-    gap: /*10px;*/1vh;
+.objetos {
+    display: grid;
+    gap: 1vh;
     grid-template-columns: repeat(3, 33%);
-    grid-auto-rows: 250px;  /*grid-auto-rows sirve para evitar poner el mismo numero 3 veces*/
-    
+    grid-auto-rows: 270px;
+    /*grid-auto-rows sirve para evitar poner el mismo numero 3 veces*/
+
     text-align: center;
-    justify-content: center;    /*justify-content sirve para centrar todos los cuadros en el centro del div*/
+    justify-content: center;
+    /*justify-content sirve para centrar todos los cuadros en el centro del div*/
     padding: 3%;
     background-color: beige;
     border-radius: 0.2vh;
 }
 
-.box{
+.box {
     border-radius: 0.2vh;
     background-color: #03A9F4;
     display: grid;
-    grid-template-rows: 70% 15% 15%;
+    grid-template-rows: 65% 20% 15%;
     grid-auto-columns: 100%;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
 
-.div-imagen{
-    color: black;
-    width:100%;
+.box:hover{
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);    
 }
 
-.div-producto{
-    width: 100%;
-    color: black;
+.div-producto {
     background-color: #64b5f6;
-    /*border: solid 2px red;*/
 }
 
-.div-precio{
-    /*border: solid 2px red;*/
+.div-precio {
     background-color: #64b5f6;
-    color:black;
     font-weight: 700;
     border-bottom-left-radius: 0.2vh;
     border-bottom-right-radius: 0.2vh;
 }
 
-.div-aux{
-    /*width: 25%;*/
-    color:black; 
-    display: grid;
-    grid-template-rows: auto;/*24% 24% 34% 14%;*/
-    grid-auto-columns: 100%;
-    background-color: #00897b;
-    padding:5% 3% 5% 3%;
-    gap:1vh;
+.pie-copyright {
+    text-align: center;
 }
 
-.pie-copyright{
+.div-pie {
     width: 100%;
-    height: auto;
-    text-align: center;    
-}
-
-.div-pie{
-    width: 100%;
-    height: auto;
     display: grid;
     grid-template-columns: repeat(4, 25%);
 }
 
-.div-copyright{
+.div-copyright {
     width: 100%;
-    height: auto;
     border-top: solid 2px #00897b;
     font-weight: 700;
 }
 
-.div-social-texto{
-    text-align: center;
-    width:100%;
-    height: auto;
+.div-aux {
+    display: grid;
+    grid-template-rows: auto;
+    grid-auto-columns: 100%;
+    background-color: #00897b;
+    padding: 5% 3% 5% 3%;
+    gap: 1vh;
 }
 
-.tachon{
-    text-decoration:line-through;
+.div-aux-box {
+    display: grid;
+    grid-template-rows: auto;
+    grid-auto-columns: 100%;
+    background-color: #cddc39;
+    border-radius: 0.2vh;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+.div-aux-titulo {
+    align-self: center;
+    text-align: center;
+}
+
+.div-aux-contenido {
+    padding: 2%;
+    background-color: #c0ca33;
+    border-bottom-left-radius: 0.2vh;
+    border-bottom-right-radius: 0.2vh;
+}
+
+.foro {
+    padding-left: 0%;
+    background-color: #c0ca33;
+    border-bottom-left-radius: 0.2vh;
+    border-bottom-right-radius: 0.2vh;
+}
+
+.div-social {
+    display: grid;
+    grid-template-columns: repeat(4, 20%);
+    
+    justify-content: center;
+    align-items: center;
+    gap: 5%;
+    
+}
+/*clases usadas en ul*/
+/*clases usadas en li*/
+.foro-lista {
+    margin-top: 7%;
+}
+/*clases usadas en span*/
+.tachon {
+    text-decoration: line-through;
     color: red;
 }
 
-.oferta{
-    color:green;
-    /*poner en negrita*/
+.oferta {
+    color: green;
 }
 
-.div-foro{
-    display: grid;
-    grid-template-rows: /*2vh*/ auto;
-    grid-auto-columns: 100%;
-    background-color: #cddc39;
-    border-radius: 0.2vh;
-    /*border: solid 2px red;*/
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);    
+/*clases usadas en img*/
+
+
+/*otros*/
+.no-underline {
+    text-decoration: none;
 }
 
-.foro-titulo{
-    /*border: solid 1px red;*/
-    align-self: center;
-    text-align: center;
-}
-
-.foro-entradas{
-    /*word-wrap: break-word;*/
-    list-style-type:none;
-    text-align: justify;  
-}
-
-
-.foro-lista{
-    /*border:solid 2px red;*/
-    margin-top: 7%;  
-}
-
-.div-entradas{
-    /*border:solid 2px red;*/
-    font-size: 90%;
-    background-color: #c0ca33;
-    border-bottom-left-radius: 0.2vh;
-    border-bottom-right-radius: 0.2vh;
-    padding: 0% 0% 0% 8%;
-    /*top right bottom left*/
-}
-
-
-
-.div-aux-box{
-    display: grid;
-    grid-template-rows: /*2vh*/ auto;
-    grid-auto-columns: 100%;
-    background-color: #cddc39;
-    border-radius: 0.2vh;
-    width:auto;
-    /*border: solid 2px red;*/
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-}
-
-.div-aux-titulo{
-    width:auto;
-    align-self: center;
-    text-align: center;
-}
-
-.div-aux-contenido{
-    padding:2%;
-    background-color: #c0ca33;
-    border-bottom-left-radius: 0.2vh;
-    border-bottom-right-radius: 0.2vh;
-}
-
-.foro{
-    padding-left:0%;
-    background-color: #c0ca33;
-    border-bottom-left-radius: 0.2vh;
-    border-bottom-right-radius: 0.2vh;    
-}
-
-
-
-
-
-
-
-
-
-
-
-
-.div-links{
-    /*border: solid 2px red;*/
-    width: 100%;
-    height:auto;
-    display: grid;
-    grid-template-rows: auto;
-    grid-auto-columns: auto;
-    background-color: #cddc39;
-    border-radius: 0.2vh;
-    /*border: solid 2px blue;*/
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);    
-}
-
-.titulo-links{
-    /*border: solid 2px red;*/
-    align-self: center;
-    text-align: center;
-}
-
-.centrado{
-    height:auto;
-    /*border: solid 2px red;*/
-    padding: 5%;
-    font-size: 90%;
-    background-color: #c0ca33;
-    border-bottom-left-radius: 0.2vh;
-    border-bottom-right-radius: 0.2vh;
-}
-
-
-.div-social{
-    display: grid;
-    grid-template-columns: repeat(4, 20%);
-    grid-auto-rows: auto;
-    justify-content: center;
-    align-items: center;
-    gap:5%;
-    width:auto;
-}
-
-
-
-.link-list{
-    padding: 2%;
-    
-}
-
-.estrecho{
-    display: inline-block;
-    margin: 10%;
-    padding:10%;
-}
 /*
 .card-5 {
   box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
