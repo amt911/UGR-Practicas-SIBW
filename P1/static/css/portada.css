@@ -4,7 +4,7 @@ body {
     font-weight: 400;
     width: fit-content;
     word-wrap: break-word;
-    /*border: dashed 5px black;*/
+    border: dashed 5px black;
 }
 
 div {
@@ -41,12 +41,15 @@ span{
     border-radius: 0.2vh;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
     background-color: beige;
+    width:auto;
 }
 
 .header {
+    border-color: yellow;
     background-color: #009688;
     display: grid;
-    grid-template-columns: 25% 75%;   
+    grid-template-columns: 25% auto;  
+    width:auto;
 }
 
 .image {
@@ -60,7 +63,7 @@ span{
 .div-titulo-menu {
     display: grid;
     grid-template-rows: 60% 40%;
-    grid-auto-columns: 100%;
+    grid-auto-columns: auto;
 }
 
 .div-titulo {
@@ -69,9 +72,10 @@ span{
 
 .div-menu {
     display: grid;
-    grid-template-columns: repeat(3, 60px);
+    grid-template-columns: repeat(3, 64px);
     align-content: center;
-    gap: 1rem;
+    gap: 200px; /*1rem*/
+    width:auto;
 }
 
 .menu {
@@ -240,9 +244,10 @@ span{
 .info{
     background-color: #c0ca33;
     float:left;
-    width: 57%;
+    width: 55%;
     display: grid;
     grid-auto-rows: auto auto auto;
+    grid-auto-columns: 100%;
     margin-bottom:10px;
     border-radius: 0.2vh;
     box-shadow: 0 7px 7px rgba(0,0,0,0.3);
@@ -288,7 +293,6 @@ span{
     grid-template-columns: auto auto;
     grid-auto-rows: auto;
 }
-
 /*
 .card-5 {
   box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
