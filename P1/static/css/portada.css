@@ -75,10 +75,16 @@ span{
 }
 
 .menu {
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    /* offset-x offset-y blur-radius color*/
+    box-shadow: 0 1px 3px rgba(0,0,0,0.23);
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.25, 1);
     background-color: #cddc39;
     border-radius: 0.2vh;
     text-align: center;
+}
+
+.menu:hover{
+    box-shadow: 0 10px 7px rgba(0,0,0,0.4);
 }
 
 .contenido {
@@ -110,13 +116,13 @@ span{
     display: grid;
     grid-template-rows: 65% 20% 15%;
     grid-auto-columns: 100%;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.25, 1);
 }
 
 .box:hover{
     background-color: #cddc39;
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);    
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
 }
 
 .div-producto {
@@ -161,7 +167,7 @@ span{
     grid-auto-columns: 100%;
     background-color: #cddc39;
     border-radius: 0.2vh;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.5);
 }
 
 .div-aux-titulo {
@@ -212,6 +218,7 @@ span{
 
 /*otros*/
 .no-underline {
+    color: black;
     text-decoration: none;
 }
 
@@ -221,28 +228,66 @@ span{
 
 /*Clases de producto, separar cuando se acabe*/
 .objeto{
-    display: grid;
-    grid-template-columns: 80% 20%;
-    grid-auto-rows: fit-content;
+    grid-auto-rows: auto;
+    text-align: center;
+    justify-content: center;
+    /*justify-content sirve para centrar todos los cuadros en el centro del div*/
+    background-color: beige;
+    border-radius: 0.2vh;
+    padding: 1%;
 }
 
 .info{
-    height:auto;
-}
-.div-imagen-varias{
+    background-color: #c0ca33;
+    float:left;
+    width: 57%;
     display: grid;
-    grid-template-rows: 50% 50%;
+    grid-auto-rows: auto auto auto;
+    margin-bottom:10px;
+    border-radius: 0.2vh;
+    box-shadow: 0 7px 7px rgba(0,0,0,0.3);
+}
+
+.contenedor-imgs{
+    border-color: green;
+    float: right;
+    display: grid;
+    grid-template-rows: 50% 50% ;
     grid-auto-columns: 100%;
+    width: 35%;
+    gap: 3%;
+    padding: 3%;
+    height: auto;
 }
 
-.dos-imagenes{
-
+.img-producto{
+    background-color: white;
+    border-radius: 0.2vh;
+    box-shadow: 0 3px 7px rgba(0,0,0,0.3);
 }
 
+.justificado{
+    word-wrap: normal;
+    text-align: justify;
+}
 
+.nombre1{
+    background-color: #cddc39;
+    font-size: 150%;
+    font-weight: 700;
+}
 
+.nombre2{
+    font-weight: 700;
+}
 
+/*Para que las imagenes se queden en la derecha es necesario usar float:right*/
 
+.tabla{
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-auto-rows: auto;
+}
 
 /*
 .card-5 {
