@@ -72,13 +72,15 @@ span{
 .menu {
     /* offset-x offset-y blur-radius color*/
     box-shadow: 0 3px 3px rgba(0,0,0,0.23);
-    transition: all 0.3s cubic-bezier(0.25, 1, 0.25, 1);
+    transition: all 0.3s;
     background-color: #cddc39;
     border-radius: 0.2vh;
     text-align: center;
 }
 
 .menu:hover{
+    transform: scale(1.2);
+    
     box-shadow: 0 10px 7px rgba(0,0,0,0.4);
 }
 
@@ -112,10 +114,11 @@ span{
     grid-template-rows: 65% 20% 15%;
     grid-auto-columns: 100%;
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
-    transition: all 0.3s cubic-bezier(0.25, 1, 0.25, 1);
+    transition: all 0.3s;
 }
 
 .box:hover{
+    transform: scale(1.1);
     background-color: #cddc39;
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
 }
@@ -162,7 +165,7 @@ span{
     grid-auto-columns: 100%;
     background-color: #cddc39;
     border-radius: 0.2vh;
-    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 width="auto" height="auto"6px 6px rgba(0, 0, 0, 0.5);
 }
 
 .div-aux-titulo {
@@ -263,6 +266,10 @@ span{
     box-shadow: 0 3px 7px rgba(0,0,0,0.3);
 }
 
+.img-producto:hover{
+    transform: scale(1.09);
+}
+
 .justificado{
     word-wrap: normal;
     text-align: justify;
@@ -296,6 +303,18 @@ span{
 
 .entrada{
     border: solid 1px black;
+}
+
+.video-container{
+    display: grid;
+    grid-template-columns: minmax(auto, 600px);
+    grid-auto-rows: auto;
+    justify-content: center;
+}
+
+.video{
+    aspect-ratio: 16/9;
+    width:100%;
 }
 /*
 .card-5 {
