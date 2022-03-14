@@ -48,7 +48,7 @@ span{
     background-color: #009688;
     display: grid;
     grid-template-columns: 25% 75%;
-    grid-auto-rows: minmax(100%, 200px); 
+    grid-auto-rows: 200px;
 }
 
 .div-titulo-menu {
@@ -58,6 +58,7 @@ span{
 
 .div-titulo {
     border-radius: 0.2vh;
+    font-size: 150%;
 }
 
 .div-menu {
@@ -94,8 +95,8 @@ span{
 
 .objetos {
     display: grid;
-    gap: 1vh;
-    grid-template-columns: repeat(3, 33%);
+    gap: 2vh;
+    grid-template-columns: repeat(3, 32%);
     grid-auto-rows: 270px;
     /*grid-auto-rows sirve para evitar poner el mismo numero 3 veces*/
 
