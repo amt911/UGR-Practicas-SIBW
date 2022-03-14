@@ -1,16 +1,9 @@
 body {
-    /*background-color: beige;*/
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     width: fit-content;
     word-wrap: break-word;
-    /*border: dashed 5px black;*/
 }
-/*
-div {
-    border: solid 1px red;
-}
-*/
 
 
 img {
@@ -65,9 +58,8 @@ span{
     display: grid;
     /*minmax es muy util para obligar a que un elemento se quede dentro del div*/
     grid-template-columns: repeat(3, minmax(auto, 64px));
-
     align-content: center;
-    gap: 1rem ; /*1rem*/
+    gap: 1rem ;
 }
 
 .menu {
@@ -81,14 +73,12 @@ span{
 
 .menu:hover{
     transform: scale(1.2);
-    
     box-shadow: 0 10px 7px rgba(0,0,0,0.4);
 }
 
 .contenido {
     display: grid;
     grid-template-columns: 75% 25%;
-    
     background-color: #00897b;
     border-bottom: solid 2px #00897b;
 }
@@ -99,7 +89,6 @@ span{
     grid-template-columns: repeat(3, 32%);
     grid-auto-rows: 270px;
     /*grid-auto-rows sirve para evitar poner el mismo numero 3 veces*/
-
     text-align: center;
     justify-content: center;
     /*justify-content sirve para centrar todos los cuadros en el centro del div*/
@@ -319,20 +308,3 @@ span{
     aspect-ratio: 16/9;
     width:100%;
 }
-/*
-.card-5 {
-  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
-}
-.card {
-  background: #fff;
-  border-radius: 0.2vh;
-  display: inline-block;
-  height: 300px;
-  margin: 1rem;
-  position: relative;
-  width: 300px;
-}
-
-https://codepen.io/sdthornton/pen/wBZdXq
-https://saruwakakun.com/en/material-color
-*/
