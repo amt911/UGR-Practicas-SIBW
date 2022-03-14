@@ -1,9 +1,20 @@
+/*
+
+He borrado las clases que no se necesitan de este archivo por lo que se simplifica mucho.
+
+No se usan ya que se han eliminado elementos con display: none;
+*/
+
 body {
     font-weight: 400;
     width: fit-content;
     word-wrap: break-word;
 }
 
+a {
+    color: black;
+    text-decoration: none;
+}
 
 img {
     width: 100%;
@@ -15,25 +26,12 @@ h1 {
     text-align: center;
 }
 
-ul {
-    list-style-type: none;
-    padding: 10px;
-    text-align: justify;
-}
-/*
-span{
-    color: black;
-}
-*/
-
 
 /*clases usadas en divs*/
 .div-principal {
-    border-radius: 0.2vh;
     border: solid 2px black;
 }
 .header {
-    border-color: yellow;
     display: grid;
     grid-template-columns: 75% 25%;
     grid-auto-rows: 200px;
@@ -53,53 +51,16 @@ span{
 }
 
 .div-titulo {
-    border-radius: 0.2vh;
     font-size: 150%;
 }
 
 .div-menu {
     display: none;
-    /*minmax es muy util para obligar a que un elemento se quede dentro del div*/
-    grid-template-columns: repeat(3, minmax(auto, 64px));
-    align-content: center;
-    gap: 1rem ;
-}
-
-.menu {
-    border-radius: 0.2vh;
-    text-align: center;
 }
 
 .contenido {
     display: grid;
     grid-template-columns: 100%;
-}
-
-.objetos {
-    display: grid;
-    gap: 2vh;
-    grid-template-columns: repeat(3, 32%);
-    grid-auto-rows: 270px;
-    text-align: center;
-    justify-content: center;
-    padding: 3%;
-    border-radius: 0.2vh;
-}
-
-.box {
-    border-radius: 0.2vh;
-    display: grid;
-    grid-template-rows: 65% 20% 15%;
-    grid-auto-columns: 100%;
-}
-
-.div-producto {
-}
-
-.div-precio {
-    font-weight: 700;
-    border-bottom-left-radius: 0.2vh;
-    border-bottom-right-radius: 0.2vh;
 }
 
 .pie-copyright {
@@ -121,67 +82,6 @@ span{
 
 .div-aux {
     display: none;
-    grid-template-rows: auto;
-    grid-auto-columns: 100%;
-    padding: 5% 3% 5% 3%;
-    gap: 1vh;
-}
-
-.div-aux-box {
-    display: grid;
-    grid-template-rows: auto;
-    grid-auto-columns: 100%;
-    border-radius: 0.2vh;
-}
-
-.div-aux-titulo {
-    align-self: center;
-    text-align: center;
-}
-
-.div-aux-contenido {
-    padding: 2%;
-    border-bottom-left-radius: 0.2vh;
-    border-bottom-right-radius: 0.2vh;
-}
-
-.foro {
-    padding-left: 0%;
-    border-bottom-left-radius: 0.2vh;
-    border-bottom-right-radius: 0.2vh;
-}
-
-.div-social {
-    display: grid;
-    grid-template-columns: repeat(4, 20%);
-    
-    justify-content: center;
-    align-items: center;
-    gap: 5%;
-    
-}
-/*clases usadas en ul*/
-/*clases usadas en li*/
-.foro-lista {
-    margin-top: 7%;
-}
-/*clases usadas en span*/
-.tachon {
-    text-decoration: line-through;
-    color: red;
-}
-
-.oferta {
-    color: green;
-}
-
-/*clases usadas en img*/
-
-
-/*otros*/
-a {
-    color: black;
-    text-decoration: none;
 }
 
 
@@ -192,7 +92,6 @@ a {
     grid-auto-rows: auto;
     text-align: center;
     justify-content: center;
-    border-radius: 0.2vh;
     padding: 1%;
 }
 
@@ -203,7 +102,6 @@ a {
     grid-auto-rows: auto auto auto;
     grid-auto-columns: 100%;
     margin-bottom:10px;
-    border-radius: 0.2vh;
 }
 
 .contenedor-imgs{
@@ -218,7 +116,6 @@ a {
 }
 
 .img-producto{
-    border-radius: 0.2vh;
 }
 
 .justificado{
@@ -228,8 +125,6 @@ a {
 
 .nombre1{
     border: solid 1px black;
-    border-top-left-radius: 0.2vh;
-    border-top-right-radius: 0.2vh;
     font-size: 150%;
     font-weight: 700;
 }
@@ -241,8 +136,6 @@ a {
 
 .precio{
     border: solid 1px black;
-    border-bottom-left-radius: 0.2vh;
-    border-bottom-right-radius: 0.2vh;
 }
 
 /*Para que las imagenes se queden en la derecha es necesario usar float:right*/
@@ -260,14 +153,6 @@ a {
 
 .video-container{
     display: none;
-    grid-template-columns: minmax(auto, 600px);
-    grid-auto-rows: auto;
-    justify-content: center;
-}
-
-.video{
-    aspect-ratio: 16/9;
-    width:100%;
 }
 
 .video-texto{

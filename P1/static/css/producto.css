@@ -1,16 +1,9 @@
 body {
-    /*background-color: beige;*/
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     width: fit-content;
     word-wrap: break-word;
-    /*border: dashed 5px black;*/
 }
-/*
-div {
-    border: solid 1px red;
-}
-*/
 
 
 img {
@@ -65,7 +58,6 @@ span{
     display: grid;
     /*minmax es muy util para obligar a que un elemento se quede dentro del div*/
     grid-template-columns: repeat(3, minmax(auto, 64px));
-
     align-content: center;
     gap: 1rem ; /*1rem*/
 }
@@ -91,48 +83,6 @@ span{
     
     background-color: #00897b;
     border-bottom: solid 2px #00897b;
-}
-
-.objetos {
-    display: grid;
-    gap: 2vh;
-    grid-template-columns: repeat(3, 32%);
-    grid-auto-rows: 270px;
-    /*grid-auto-rows sirve para evitar poner el mismo numero 3 veces*/
-
-    text-align: center;
-    justify-content: center;
-    /*justify-content sirve para centrar todos los cuadros en el centro del div*/
-    padding: 3%;
-    background-color: beige;
-    border-radius: 0.2vh;
-}
-
-.box {
-    border-radius: 0.2vh;
-    background-color: #03A9F4;
-    display: grid;
-    grid-template-rows: 65% 20% 15%;
-    grid-auto-columns: 100%;
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
-    transition: all 0.3s;
-}
-
-.box:hover{
-    transform: scale(1.1);
-    background-color: #cddc39;
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
-}
-
-.div-producto {
-    background-color: #64b5f6;
-}
-
-.div-precio {
-    background-color: #64b5f6;
-    font-weight: 700;
-    border-bottom-left-radius: 0.2vh;
-    border-bottom-right-radius: 0.2vh;
 }
 
 .pie-copyright {
@@ -203,14 +153,6 @@ span{
     margin-top: 7%;
 }
 /*clases usadas en span*/
-.tachon {
-    text-decoration: line-through;
-    color: red;
-}
-
-.oferta {
-    color: green;
-}
 
 /*clases usadas en img*/
 
@@ -227,7 +169,6 @@ span{
 
 /*Clases de producto, separar cuando se acabe*/
 .objeto{
-    /*border: solid 3px red;*/
     grid-auto-rows: auto;
     text-align: center;
     justify-content: center;
@@ -250,7 +191,6 @@ span{
 }
 
 .contenedor-imgs{
-    /*border: solid 2px red;*/
     float: right;
     display: grid;
     grid-template-rows: repeat(2, 1fr);
@@ -319,20 +259,3 @@ span{
     aspect-ratio: 16/9;
     width:100%;
 }
-/*
-.card-5 {
-  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
-}
-.card {
-  background: #fff;
-  border-radius: 0.2vh;
-  display: inline-block;
-  height: 300px;
-  margin: 1rem;
-  position: relative;
-  width: 300px;
-}
-
-https://codepen.io/sdthornton/pen/wBZdXq
-https://saruwakakun.com/en/material-color
-*/
