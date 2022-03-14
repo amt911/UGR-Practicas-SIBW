@@ -166,7 +166,7 @@ span{
     grid-auto-columns: 100%;
     background-color: #cddc39;
     border-radius: 0.2vh;
-    box-shadow: 0 width="auto" height="auto"6px 6px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.5);
 }
 
 .div-aux-titulo {
