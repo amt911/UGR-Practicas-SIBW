@@ -1,16 +1,8 @@
 body {
-    /*background-color: beige;*/
-    font-family: 'Roboto', sans-serif;
     font-weight: 400;
     width: fit-content;
     word-wrap: break-word;
-    /*border: dashed 5px black;*/
 }
-/*
-div {
-    border: solid 1px red;
-}
-*/
 
 
 img {
@@ -20,7 +12,6 @@ img {
 }
 
 h1 {
-    color: white;
     text-align: center;
 }
 
@@ -29,31 +20,36 @@ ul {
     padding: 10px;
     text-align: justify;
 }
-
+/*
 span{
     color: black;
 }
+*/
 
 
 /*clases usadas en divs*/
 .div-principal {
-    border: 2px solid #00897b;
     border-radius: 0.2vh;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-    background-color: beige;
-
+    border: solid 2px black;
 }
 .header {
     border-color: yellow;
-    background-color: #009688;
     display: grid;
-    grid-template-columns: 25% 75%;
+    grid-template-columns: 75% 25%;
     grid-auto-rows: 200px;
+    border: solid 1px black;
 }
 
 .div-titulo-menu {
+    grid-column: 1;
+    grid-row: 1;
     display: grid;
     grid-template-rows: 60% 40%;
+}
+
+.image{
+    grid-column: 2;
+    grid-row: 1;
 }
 
 .div-titulo {
@@ -62,35 +58,21 @@ span{
 }
 
 .div-menu {
-    display: grid;
+    display: none;
     /*minmax es muy util para obligar a que un elemento se quede dentro del div*/
     grid-template-columns: repeat(3, minmax(auto, 64px));
-
     align-content: center;
-    gap: 1rem ; /*1rem*/
+    gap: 1rem ;
 }
 
 .menu {
-    /* offset-x offset-y blur-radius color*/
-    box-shadow: 0 3px 3px rgba(0,0,0,0.23);
-    transition: all 0.3s;
-    background-color: #cddc39;
     border-radius: 0.2vh;
     text-align: center;
 }
 
-.menu:hover{
-    transform: scale(1.2);
-    
-    box-shadow: 0 10px 7px rgba(0,0,0,0.4);
-}
-
 .contenido {
     display: grid;
-    grid-template-columns: 75% 25%;
-    
-    background-color: #00897b;
-    border-bottom: solid 2px #00897b;
+    grid-template-columns: 100%;
 }
 
 .objetos {
@@ -98,38 +80,23 @@ span{
     gap: 2vh;
     grid-template-columns: repeat(3, 32%);
     grid-auto-rows: 270px;
-    /*grid-auto-rows sirve para evitar poner el mismo numero 3 veces*/
-
     text-align: center;
     justify-content: center;
-    /*justify-content sirve para centrar todos los cuadros en el centro del div*/
     padding: 3%;
-    background-color: beige;
     border-radius: 0.2vh;
 }
 
 .box {
     border-radius: 0.2vh;
-    background-color: #03A9F4;
     display: grid;
     grid-template-rows: 65% 20% 15%;
     grid-auto-columns: 100%;
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
-    transition: all 0.3s;
-}
-
-.box:hover{
-    transform: scale(1.1);
-    background-color: #cddc39;
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
 }
 
 .div-producto {
-    background-color: #64b5f6;
 }
 
 .div-precio {
-    background-color: #64b5f6;
     font-weight: 700;
     border-bottom-left-radius: 0.2vh;
     border-bottom-right-radius: 0.2vh;
@@ -140,22 +107,22 @@ span{
 }
 
 .div-pie {
+    border: solid 1px black;
     width: 100%;
     display: grid;
     grid-template-columns: repeat(4, 25%);
 }
 
 .div-copyright {
+    border: solid 1px black;
     width: 100%;
-    border-top: solid 2px #00897b;
     font-weight: 700;
 }
 
 .div-aux {
-    display: grid;
+    display: none;
     grid-template-rows: auto;
     grid-auto-columns: 100%;
-    background-color: #00897b;
     padding: 5% 3% 5% 3%;
     gap: 1vh;
 }
@@ -164,9 +131,7 @@ span{
     display: grid;
     grid-template-rows: auto;
     grid-auto-columns: 100%;
-    background-color: #cddc39;
     border-radius: 0.2vh;
-    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.5);
 }
 
 .div-aux-titulo {
@@ -176,14 +141,12 @@ span{
 
 .div-aux-contenido {
     padding: 2%;
-    background-color: #c0ca33;
     border-bottom-left-radius: 0.2vh;
     border-bottom-right-radius: 0.2vh;
 }
 
 .foro {
     padding-left: 0%;
-    background-color: #c0ca33;
     border-bottom-left-radius: 0.2vh;
     border-bottom-right-radius: 0.2vh;
 }
@@ -216,7 +179,7 @@ span{
 
 
 /*otros*/
-.no-underline {
+a {
     color: black;
     text-decoration: none;
 }
@@ -224,21 +187,16 @@ span{
 
 
 
-
 /*Clases de producto, separar cuando se acabe*/
 .objeto{
-    /*border: solid 3px red;*/
     grid-auto-rows: auto;
     text-align: center;
     justify-content: center;
-    /*justify-content sirve para centrar todos los cuadros en el centro del div*/
-    background-color: beige;
     border-radius: 0.2vh;
     padding: 1%;
 }
 
 .info{
-    background-color: #c0ca33;
     float:left;
     width: 55%;
     display: grid;
@@ -246,11 +204,9 @@ span{
     grid-auto-columns: 100%;
     margin-bottom:10px;
     border-radius: 0.2vh;
-    box-shadow: 0 7px 7px rgba(0,0,0,0.3);
 }
 
 .contenedor-imgs{
-    /*border: solid 2px red;*/
     float: right;
     display: grid;
     grid-template-rows: repeat(2, 1fr);
@@ -262,15 +218,7 @@ span{
 }
 
 .img-producto{
-    background-color: white;
     border-radius: 0.2vh;
-    box-shadow: 0 3px 7px rgba(0,0,0,0.3);
-    transition: all 0.3s;
-}
-
-.img-producto:hover{
-    box-shadow: 0 8px 9px rgba(0, 0, 0, 0.3);
-    transform: scale(1.09);
 }
 
 .justificado{
@@ -279,18 +227,20 @@ span{
 }
 
 .nombre1{
+    border: solid 1px black;
     border-top-left-radius: 0.2vh;
     border-top-right-radius: 0.2vh;
-    background-color: #cddc39;
     font-size: 150%;
     font-weight: 700;
 }
 
 .nombre2{
+    border: solid 1px black;
     font-weight: 700;
 }
 
 .precio{
+    border: solid 1px black;
     border-bottom-left-radius: 0.2vh;
     border-bottom-right-radius: 0.2vh;
 }
@@ -309,7 +259,7 @@ span{
 }
 
 .video-container{
-    display: grid;
+    display: none;
     grid-template-columns: minmax(auto, 600px);
     grid-auto-rows: auto;
     justify-content: center;
@@ -319,20 +269,7 @@ span{
     aspect-ratio: 16/9;
     width:100%;
 }
-/*
-.card-5 {
-  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
-}
-.card {
-  background: #fff;
-  border-radius: 0.2vh;
-  display: inline-block;
-  height: 300px;
-  margin: 1rem;
-  position: relative;
-  width: 300px;
-}
 
-https://codepen.io/sdthornton/pen/wBZdXq
-https://saruwakakun.com/en/material-color
-*/
+.video-texto{
+    display: none;
+}
