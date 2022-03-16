@@ -9,6 +9,7 @@ body {
     font-weight: 400;
     width: fit-content;
     word-wrap: break-word;
+    border: solid 1px black;
 }
 
 address{
@@ -28,63 +29,59 @@ img {
 
 h1 {
     text-align: center;
+    font-size: 300%;
 }
 
 
 /*clases usadas en divs*/
-.div-principal {
-    border: solid 2px black;
-}
-.header {
+#cabecera {
     display: grid;
     grid-template-columns: 75% 25%;
     grid-auto-rows: 200px;
     border: solid 1px black;
 }
 
-.div-titulo-menu {
+#div-titulo-menu {
     grid-column: 1;
     grid-row: 1;
     display: grid;
     grid-template-rows: 60% 40%;
 }
 
-.image{
+#cabecera:first-child{
     grid-column: 2;
     grid-row: 1;
 }
 
-.div-titulo {
+#div-titulo {
     font-size: 150%;
 }
 
-.div-menu {
+#navegacion:last-child {
     display: none;
 }
 
-.contenido {
+#contenido {
     display: grid;
     grid-template-columns: 100%;
 }
 
-.pie-copyright {
+footer {
     text-align: center;
 }
 
-.div-pie {
+#div-pie {
     border: solid 1px black;
-    width: 100%;
     display: grid;
     grid-template-columns: repeat(4, 25%);
 }
 
-.div-copyright {
+#div-copyright {
     border: solid 1px black;
-    width: 100%;
     font-weight: 700;
 }
 
-.div-aux {
+aside {
     display: none;
 }
 
@@ -92,23 +89,30 @@ h1 {
 
 
 /*Clases de producto, separar cuando se acabe*/
-.objeto{
+main{
+    border: solid 1px black;
     grid-auto-rows: auto;
     text-align: center;
     justify-content: center;
     padding: 1%;
 }
 
-.info{
+#info{
     float:left;
     width: 55%;
     display: grid;
     grid-auto-rows: auto auto auto;
     grid-auto-columns: 100%;
     margin-bottom:10px;
+    border: solid 1px black;
 }
 
-.contenedor-imgs{
+/* Añadir aqui un borde para el segundo hijo*/
+#info section:nth-child(2){
+    border: solid 1px black;
+}
+
+#contenedor-imgs{
     float: right;
     display: grid;
     grid-template-rows: repeat(2, 1fr);
@@ -118,13 +122,13 @@ h1 {
     padding: 3%;
 }
 
-.justificado{
+#justificado{
     clear: left;
     word-wrap: normal;
     text-align: justify;
 }
 
-.nombre1{
+#titulo{
     border: solid 1px black;
     font-weight: 700;
 }
@@ -139,32 +143,24 @@ h3{
     margin: 0;
 }
 
-.nombre2{
-    border: solid 1px black;
-    font-weight: 700;
-}
-
-.precio{
+#precio{
     border: solid 1px black;
 }
 
 /*Para que las imagenes se queden en la derecha es necesario usar float:right*/
 
-.tabla{
+table, td, tr{
     border: solid 1px black;
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-auto-rows: auto;
+    border-collapse: collapse;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.entrada{
-    border: solid 1px black;
-}
-
-.video-container{
+#video-container{
     display: none;
 }
 
-.video-texto{
+#video-texto{
     display: none;
 }

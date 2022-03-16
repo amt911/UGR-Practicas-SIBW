@@ -3,7 +3,7 @@
     <head>
         <title> NVIDIA RTX 3090</title>
         <link rel="stylesheet" href="static/css/producto_imprimir.css">
-        <link rel="shortcut icon" href="static/image/patata 2.png">
+        <link rel="shortcut icon" href="static/image/logo.png">
 
         <!--Uso las fuentes de Google porque las que vienen por defecto no me gustan-->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,38 +12,38 @@
     </head>
 
     <body>
-        <div class="div-principal">
-            <div class="header">
-                <div class="image">
+            <header id="cabecera">
+                <div>
                     <img src="static/image/patata_logo.png">
                 </div>
-                <div class="div-titulo-menu">
-                    <div class="div-titulo">
+                <div id="div-titulo-menu">
+                    <div>
                         <h1>e-tienda</h1>
                     </div>
             
-                    <div class="div-menu">
+                    <nav id="navegacion">
                         <div class="menu"><a class="no-underline" href="portada.html">Inicio</a></div>
                         <div class="menu"><a  class="no-underline" href="producto_imprimir.html">Imprimir</a></div>
                         <div class="menu">Menú 3</div>
-                    </div>
+                    </nav>
                 </div>
-            </div>
+            </header>
 
-            <div class="contenido">
-                <div class="objeto">
-                    <div class="info">
-                        <div class="nombre1">
+            <div id="contenido">
+                <main>
+                    <article id="info">
+                        <section id="titulo">
                             <h2>NVIDIA GeForce RTX 3090 Founders Edition</h2>
-                        </div>
-                        <div class="nombre2">
+                        </section>
+                        <section>
                             <h3>NVIDIA</h3>
-                        </div>
-                        <div class="precio">
+                        </section>
+                        <section id="precio">
                             3500.- €
-                        </div>
-                    </div>
-                    <div class="contenedor-imgs">
+                        </section>
+                    </article>
+
+                    <div id="contenedor-imgs">
                         <div class="img-producto">
                             <img src="static/image/3090.png">
                         </div>
@@ -53,92 +53,110 @@
                         </div>                        
                     </div>
 
-                    <p class="justificado">
-                    La GeForce RTX™ 3090 es una gran GPU endiablada (BFGPU) con rendimiento de la clase TITAN. Con tecnología de Ampere, la arquitectura RTX de la segunda generación de NVIDIA, duplica el trazado de rayos y el rendimiento de IA con núcleos con trazado de rayos (RT) y núcleos Tensor mejorados y nuevos multiprocesadores de streaming mejorados. 
-                    <br><br>
-                    Además, presenta unos asombrosos 24 GB de memoria G6X, todo para ofrecer la experiencia de gaming definitiva.
-                    <br><br>
-                    Las unidades son muy limitadas debido a los problemas actuales del mundo, por lo que el precio ha subido mucho.
-                    <br><br>
-                    También hay que tener en cuenta que es una tarjeta gráfica muy larga por lo que es necesario medir el interior de la caja disponible antes de proceder a comprarla (sólo es una recomendación)
-                    <br><br>
-                    Por último se muestra una tabla con sus especificaciones completas:
-                </p>
+                    <p id="justificado">
+                        La GeForce RTX™ 3090 es una gran GPU endiablada (BFGPU) con rendimiento de la clase TITAN. Con tecnología de Ampere, la arquitectura RTX de la segunda generación de NVIDIA, duplica el trazado de rayos y el rendimiento de IA con núcleos con trazado de rayos (RT) y núcleos Tensor mejorados y nuevos multiprocesadores de streaming mejorados. 
+                        <br/><br/>
+                        Además, presenta unos asombrosos 24 GB de memoria G6X, todo para ofrecer la experiencia de gaming definitiva.
+                        <br/><br/>
+                        Las unidades son muy limitadas debido a los problemas actuales del mundo, por lo que el precio ha subido mucho.
+                        <br/><br/>
+                        También hay que tener en cuenta que es una tarjeta gráfica muy larga por lo que es necesario medir el interior de la caja disponible antes de proceder a comprarla (sólo es una recomendación)
+                        <br/><br/>
+                        Por último se muestra una tabla con sus especificaciones completas:
+
+                        <!--Hace falta añadir un poco mas de texto-->
+                    </p>
                 
-                <div class="tabla">
-                    <div class="entrada">
-                        Núcleos CUDA
-                    </div>
-                    <div class="entrada">
-                        10496
-                    </div>
-                    <div class="entrada">
-                        Frecuencia normal(GHz)
-                    </div>
-                    <div class="entrada">
-                        1.40
-                    </div>
-                    <div class="entrada">
-                        Frecuencia acelerada (GHz)
-                    </div>
-                    <div class="entrada">
-                        1.70
-                    </div>
-                    <div class="entrada">
-                        Tipo de memoria
-                    </div>
-                    <div class="entrada">
-                        GDDR6X
-                    </div>
-                    <div class="entrada">
-                        Cantidad de memoria
-                    </div>
-                    <div class="entrada">
-                        24GB
-                    </div>
-                    <div class="entrada">
-                        Ancho de interfaz de memoria
-                    </div>
-                    <div class="entrada">
-                        384-bit
-                    </div>
-                </div>
-                <br>
-                Enlace a la página oficial de NVIDIA: <a href="https://www.nvidia.com/es-es/geforce/graphics-cards/30-series/rtx-3090/">link</a>
+                    <table>
+                        <tr>
+                            <td>
+                                Núcleos CUDA
+                            </td>
 
-                <br><br>
-                <span class="video-texto">Vídeo relacionado:</span>
-                
-                <br>
-                <div class="video-container">
-                    <div>
-                    <iframe class="video" src="https://www.youtube.com/embed/BCcN8kCD90A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>                
+                            <td>
+                                10496                            
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                Frecuencia normal(GHz)
+                            </td>
+                            <td>
+                                1.40
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                Frecuencia acelerada (GHz)
+                            </td>
+                            <td>
+                                1.70
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                Tipo de memoria
+                            </td>
+                            <td>
+                                GDDR6X
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                Cantidad de memoria
+                            </td>
+                            <td>
+                                24GB
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                Ancho de interfaz de memoria
+                            </td>
+                            <td>
+                                384-bit
+                            </td>
+                        </tr>
+                    </table>
+                    <br/>
+                    Enlace a la página oficial de NVIDIA: <a href="https://www.nvidia.com/es-es/geforce/graphics-cards/30-series/rtx-3090/">link</a>
+                    <br/><br/>
+
+                    <span id="video-texto">Vídeo relacionado:</span>
+                    <br/>
+
+                    <div id="video-container">
+                        <div>
+                            <iframe id="video" src="https://www.youtube.com/embed/BCcN8kCD90A" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>                
+                        </div>
                     </div>
-                </div>
+                </main>
 
-                </div>
-
-
-                <div class="div-aux">
-                    <div class="div-aux-box">
-                        <div class="div-aux-titulo">
-                            <span>Dónde estamos:</span>
+                <aside>
+                    <section class="nota-container">
+                        <div class="nota-titulo">
+                            Dónde estamos:
                         </div>
 
-                        <div class="div-aux-contenido">
-                            <img src="static/image/ubi.png">
+                        <div class="nota-contenido">
+                            <img src="static/image/ubi.png"/>
                         </div>
-                    </div>
+                    </section>
                     
-                    <div class="div-aux-box">
-                        <div class="div-aux-titulo">
+                    <section class="nota-container">
+                        <div class="nota-titulo">
                             Enlaces de interés
                         </div>
 
-                        <div class="div-aux-contenido">
-                            <a href="https://www.kernel.org/">Página oficial kernel Linux</a><br><br>
-                            <a href="https://archlinux.org/">Página oficial de ArchLinux</a><br><br>
-                            <a href="https://btrfs.wiki.kernel.org/">Wiki de btrfs</a><br><br>
+                        <div class="nota-contenido">
+                            <a href="https://www.kernel.org/">Página oficial kernel Linux</a><br/><br/>
+                            <a href="https://archlinux.org/">Página oficial de ArchLinux</a><br/><br/>
+                            <a href="https://btrfs.wiki.kernel.org/">Wiki de btrfs</a><br/><br/>
                             <a href="https://www.winehq.org/">Página oficial de WINE</a>
                             <!--
                             <a href="https://www.winehq.org/">Página oficial de WINE</a>
@@ -188,69 +206,67 @@
                             <a href="https://www.winehq.org/">Página oficial de WINE</a>                    
                             -->
                         </div>
-                    </div>
+                    </section>
 
-                    <div class="div-aux-box">
-                        <div class="div-aux-titulo">
+                    <section class="nota-container">
+                        <div class="nota-titulo">
                             Foro
                         </div>
 
-                        <div class="foro">
+                        <div class="nota-contenido">
                             <ul>
-                                <li class="foro-lista">- ¿Debería esperar a que las GPUs bajen de precio?</li>
-                                <li class="foro-lista">- ¿Es mejor GNU/Linux o Windows?</li>
-                                <li class="foro-lista">- ¿Esta página es fiable para comprar?</li>
-                                <li class="foro-lista">- ¿La fabricación de CPUs mediante chiplets es el futuro?</li>
+                                <li>- ¿Debería esperar a que las GPUs bajen de precio?</li>
+                                <li>- ¿Es mejor GNU/Linux o Windows?</li>
+                                <li>- ¿Esta página es fiable para comprar?</li>
+                                <li>- ¿La fabricación de CPUs mediante chiplets es el futuro?</li>
                             </ul>
                         </div>
+                    </section>
 
-                    </div>            
-                    <div class="div-aux-box">
-                        <div class="div-aux-titulo">
+                    <section class="nota-container">
+                        <div class="nota-titulo">
                             Nuestras redes sociales:
                         </div>
 
-                        <!--A partir de aqui esta el problema-->
-                        <div class="div-aux-contenido div-social">
-                            <div class="social-img">
+                        <div id="div-social" class="nota-contenido">
+                            <div>
                                 <a href="https://www.reddit.com/">
-                                    <img src="static/image/reddit.png">
+                                    <img src="static/image/reddit.png"/>
                                 </a>
                             </div>
 
-                            <div class="social-img">
+                            <div>
                                 <a href="https://es-es.facebook.com/">
-                                    <img src="static/image/facebook.png">
+                                    <img src="static/image/facebook.png"/>
                                 </a>
                             </div>
                             
-                            <div class="social-img">
+                            <div>
                                 <a href="https://twitter.com/">
-                                    <img src="static/image/twitter.png">
+                                    <img src="static/image/twitter.png"/>
                                 </a>                        
                             </div>
                             
-                            <div class="social-img">
+                            <div>
                                 <a href="https://www.instagram.com/">
-                                    <img src="static/image/insta.png">
+                                    <img src="static/image/insta.png"/>
                                 </a>
                             </div>                    
                         </div>
-                    </div>
-                </div>        
+                    </section>
+                </aside>        
             </div>
 
-            <div class="pie-copyright">
-                <div class="div-pie">
+            <footer>
+                <div id="div-pie">
                     <div>Ayuda</div>
                     <div>Privacidad</div>
                     <div>Términos</div>
                     <div>Sugerencias</div>
                 </div>
-                <div class="div-copyright">
+                <div id="div-copyright">
                     <address>© 2022 - Andrés Merlo Trujillo</address>
                 </div>
-            </div>
-        </div>
+            </footer>
     </body>
 </html>
