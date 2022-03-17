@@ -73,7 +73,7 @@ footer {
 #div-pie {
     border: solid 1px black;
     display: grid;
-    grid-template-columns: repeat(4, 25%);
+    grid-template-columns: repeat(5, 20%);
 }
 
 #div-copyright {
@@ -163,4 +163,13 @@ table, td, tr{
 
 #video-texto{
     display: none;
+}
+
+.img-producto{
+    display: grid;
+    grid-template-rows: 80% 20%;
+}
+
+.centrado-vertical{
+    align-self: center;
 }

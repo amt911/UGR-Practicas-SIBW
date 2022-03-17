@@ -87,7 +87,7 @@ footer {
 
 #div-pie {
     display: grid;
-    grid-template-columns: repeat(4, 25%);
+    grid-template-columns: repeat(5, 20%);
 }
 
 #div-copyright {
@@ -208,6 +208,13 @@ main{
     border-radius: 0.5vh;
     box-shadow: 0 3px 7px rgba(0,0,0,0.3);
     transition: all 0.3s;
+
+    display: grid;
+    grid-template-rows: 80% 20%;
+}
+
+.centrado-vertical{
+    align-self: center;
 }
 
 .img-producto:hover{

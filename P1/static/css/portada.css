@@ -122,7 +122,7 @@ footer {
 
 #div-pie {
     display: grid;
-    grid-template-columns: repeat(4, 25%);
+    grid-template-columns: repeat(5, 20%);
 }
 
 #div-copyright {
@@ -162,7 +162,7 @@ aside {
 
 #div-social {
     display: grid;
-    grid-template-columns: repeat(4, 20%);
+    grid-template-columns: repeat(3, 26%);
     justify-content: center;
     align-items: center;
     gap: 5%;
