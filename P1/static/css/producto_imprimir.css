@@ -57,13 +57,13 @@ h1 {
     font-size: 150%;
 }
 
-#navegacion:last-child {
+#navegacion {
     display: none;
 }
 
 #contenido {
     display: grid;
-    grid-template-columns: 100%;
+    /*grid-template-columns: 100%;*/
 }
 
 footer {
@@ -91,9 +91,9 @@ aside {
 /*Clases de producto, separar cuando se acabe*/
 main{
     border: solid 1px black;
-    grid-auto-rows: auto;
+    /*grid-auto-rows: auto;*/
     text-align: center;
-    justify-content: center;
+    /*justify-content: center;*/
     padding: 1%;
 }
 
@@ -102,7 +102,7 @@ main{
     width: 55%;
     display: grid;
     grid-auto-rows: auto auto auto;
-    grid-auto-columns: 100%;
+    /*grid-auto-columns: 100%;*/
     margin-bottom:10px;
     border: solid 1px black;
 }
@@ -112,6 +112,7 @@ main{
     border: solid 1px black;
 }
 
+/*Para que las imagenes se queden en la derecha es necesario usar float:right*/
 #contenedor-imgs{
     float: right;
     display: grid;
@@ -130,7 +131,6 @@ main{
 
 #titulo{
     border: solid 1px black;
-    font-weight: 700;
 }
 
 h2{
@@ -147,12 +147,11 @@ h3{
     border: solid 1px black;
 }
 
-/*Para que las imagenes se queden en la derecha es necesario usar float:right*/
-
 table, td, tr{
     border: solid 1px black;
-    border-collapse: collapse;
-    align-items: center;
+    border-collapse: collapse; /*Para que se junten los bordes*/
+
+    /*Estos dos comandos son para centrar la tabla*/
     margin-left: auto;
     margin-right: auto;
 }

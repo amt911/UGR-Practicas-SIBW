@@ -1,10 +1,7 @@
 body {
     font-family: 'Roboto', sans-serif;
-    font-weight: 400;
     width: fit-content;
     word-wrap: break-word;
-
-
     border: 2px solid #00897b;
     border-radius: 0.5vh;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);    
@@ -16,8 +13,26 @@ img {
     object-fit: contain;
 }
 
+li {
+    margin-bottom: 7%;
+}
+
 address{
-    font-style: normal;
+    font-style: normal; /*Para quitar la cursiva*/
+}
+
+footer {
+    text-align: center;
+}
+
+
+aside {
+    display: grid;
+    grid-template-rows: auto;
+    grid-auto-columns: 100%;
+    background-color: #00897b;
+    padding: 5% 3% 5% 3%;
+    gap: 1vh;
 }
 
 h1 {
@@ -33,7 +48,6 @@ ul {
 }
 
 #cabecera {
-    border-color: yellow;
     background-color: #009688;
     display: grid;
     grid-template-columns: 25% 75%;
@@ -79,7 +93,7 @@ ul {
 main {
     display: grid;
     gap: 2vh;
-    grid-template-columns: repeat(3, 32%);
+    grid-template-columns: repeat(3, minmax(auto, 32%)); /*Obliga a que los articulos no se salgan del main*/
     grid-auto-rows: 270px;
     /*grid-auto-rows sirve para evitar poner el mismo numero 3 veces*/
     text-align: center;
@@ -116,10 +130,6 @@ main {
     border-bottom-right-radius: 0.5vh;
 }
 
-footer {
-    text-align: center;
-}
-
 #div-pie {
     display: grid;
     grid-template-columns: repeat(5, 20%);
@@ -128,15 +138,6 @@ footer {
 #div-copyright {
     border-top: solid 2px #00897b;
     font-weight: 700;
-}
-
-aside {
-    display: grid;
-    grid-template-rows: auto;
-    grid-auto-columns: 100%;
-    background-color: #00897b;
-    padding: 5% 3% 5% 3%;
-    gap: 1vh;
 }
 
 .nota-container {
@@ -167,25 +168,16 @@ aside {
     align-items: center;
     gap: 5%;
 }
-/*clases usadas en ul*/
-/*clases usadas en li*/
-li {
-    margin-bottom: 7%;
-}
-/*clases usadas en span*/
-.tachon {
+
+#tachon {
     text-decoration: line-through;
     color: red;
 }
 
-.oferta {
+#oferta {
     color: green;
 }
 
-/*clases usadas en img*/
-
-
-/*otros*/
 .no-underline {
     color: black;
     text-decoration: none;

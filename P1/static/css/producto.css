@@ -1,22 +1,37 @@
 body {
     font-family: 'Roboto', sans-serif;
-    font-weight: 400;
     width: fit-content;
     word-wrap: break-word;
-
     border: 2px solid #00897b;
     border-radius: 0.5vh;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);    
-}
-
-address{
-    font-style: normal;
 }
 
 img {
     width: 100%;
     height: 100%;
     object-fit: contain;
+}
+
+li {
+    margin-top: 7%;
+}
+
+address{
+    font-style: normal;
+}
+
+footer {
+    text-align: center;
+}
+
+aside {
+    display: grid;
+    grid-template-rows: auto;
+    grid-auto-columns: 100%;
+    background-color: #00897b;
+    padding: 5% 3% 5% 3%;
+    gap: 1vh;
 }
 
 h1 {
@@ -32,17 +47,10 @@ ul {
 }
 
 #cabecera {
-    border-color: yellow;
     background-color: #009688;
     display: grid;
     grid-template-columns: 25% 75%;
     grid-auto-rows: 200px;
-}
-
-
-/*clases usadas en divs*/
-.div-principal {
-
 }
 
 #div-titulo-menu {
@@ -55,7 +63,7 @@ ul {
     /*minmax es muy util para obligar a que un elemento se quede dentro del div*/
     grid-template-columns: repeat(3, minmax(auto, 64px));
     align-content: center;
-    gap: 1rem ; /*1rem*/
+    gap: 1rem ;
 }
 
 .menu {
@@ -69,20 +77,14 @@ ul {
 
 .menu:hover{
     transform: scale(1.2);
-    
     box-shadow: 0 10px 7px rgba(0,0,0,0.4);
 }
 
 #contenido {
     display: grid;
     grid-template-columns: 75% 25%;
-    
     background-color: #00897b;
     border-bottom: solid 2px #00897b;
-}
-
-footer {
-    text-align: center;
 }
 
 #div-pie {
@@ -93,15 +95,6 @@ footer {
 #div-copyright {
     border-top: solid 2px #00897b;
     font-weight: 700;
-}
-
-aside {
-    display: grid;
-    grid-template-rows: auto;
-    grid-auto-columns: 100%;
-    background-color: #00897b;
-    padding: 5% 3% 5% 3%;
-    gap: 1vh;
 }
 
 .nota-container {
@@ -136,9 +129,7 @@ aside {
 }
 /*clases usadas en ul*/
 /*clases usadas en li*/
-li {
-    margin-top: 7%;
-}
+
 /*clases usadas en span*/
 
 /*clases usadas en img*/
@@ -156,10 +147,8 @@ li {
 
 /*Clases de producto, separar cuando se acabe*/
 main{
-    grid-auto-rows: auto;
     text-align: center;
-    justify-content: center;
-    /*justify-content sirve para centrar todos los cuadros en el centro del div*/
+
     background-color: beige;
     border-radius: 0.5vh;
     padding: 1%;
@@ -171,7 +160,7 @@ main{
     width: 55%;
     display: grid;
     grid-auto-rows: auto auto auto;
-    grid-auto-columns: 100%;
+    /*grid-auto-columns: 100%;*/
     margin-bottom:10px;
     border-radius: 0.5vh;
     box-shadow: 0 7px 7px rgba(0,0,0,0.3);
@@ -181,18 +170,19 @@ main{
     border-top-left-radius: 0.5vh;
     border-top-right-radius: 0.5vh;
     background-color: #cddc39;
-    /*font-weight: 700;*/
 }
 
 .negrita{
     font-weight: 700;
 }
 
+
 #precio{
     border-bottom-left-radius: 0.5vh;
     border-bottom-right-radius: 0.5vh;
 }
 
+/*Para que las imagenes se queden en la derecha es necesario usar float:right*/
 #contenedor-imgs{
     float: right;
     display: grid;
@@ -208,18 +198,17 @@ main{
     border-radius: 0.5vh;
     box-shadow: 0 3px 7px rgba(0,0,0,0.3);
     transition: all 0.3s;
-
     display: grid;
     grid-template-rows: 80% 20%;
-}
-
-.centrado-vertical{
-    align-self: center;
 }
 
 .img-producto:hover{
     box-shadow: 0 8px 9px rgba(0, 0, 0, 0.3);
     transform: scale(1.09);
+}
+
+.centrado-vertical{
+    align-self: center;
 }
 
 #justificado{
@@ -238,14 +227,11 @@ h3{
     margin: 0;
 }
 
-
-
-/*Para que las imagenes se queden en la derecha es necesario usar float:right*/
-
 table, td, tr{
     border: solid 1px black;
-    border-collapse: collapse;
-    align-items: center;
+    border-collapse: collapse; /*Para que se junten los bordes*/
+
+    /*Estos dos comandos son para centrar la tabla*/
     margin-left: auto;
     margin-right: auto;
 }
@@ -257,12 +243,12 @@ table, td, tr{
 #video-container{
     display: grid;
     grid-template-columns: minmax(auto, 600px);
-    grid-auto-rows: auto;
+    /*grid-auto-rows: auto;*/
     justify-content: center;
 }
 
 #video{
     border: 0;
     aspect-ratio: 16/9;
-    width:100%;
+    width:100%;     /*Obligatorio para que el video se estire hasta llegar a 600px (se mantiene la relacion de aspecto)*/
 }
