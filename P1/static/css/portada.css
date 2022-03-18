@@ -1,146 +1,166 @@
+/*Reglas generales para el body*/
 body {
-    font-family: 'Roboto', sans-serif;
-    width: fit-content;
-    word-wrap: break-word;
-    border: 2px solid #00897b;
-    border-radius: 0.5vh;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);    
+    font-family: 'Roboto', sans-serif;  /*Fuente*/
+    width: fit-content; /*Esto permite que cuando se haga más zoom se pueda hacer scroll lateral*/
+    word-wrap: break-word; /*Permite partir las palabras para que quepan*/
+    border: 2px solid #00897b;  /*Borde de la página*/
+    border-radius: 0.5vh;   /*Para que las esquinas estén redondeadas*/
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23); /*Sombra por debajo*/
 }
 
+/*Regla general para todas las imagenes*/
 img {
+    /*Las dos primeras reglas son necesarias para que la ultima funcione*/
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: contain;    /*Para que la imagen no se salga del div*/
 }
 
+/*Reglas generales para los li*/
 li {
-    margin-bottom: 7%;
-    padding-bottom: 10px;
-    border-bottom: solid 2px black;    
+    margin-bottom: 7%;  /*Margen por debajo para que las entradas no se junten*/
+    padding-bottom: 10px; /*Sirve para dejar espacio por debajo para la linea negra que se pinta*/
+    border-bottom: solid 2px black; /*Linea negra para dividir las entradas*/
 }
 
+/*Reglas generales para address*/
 address{
     font-style: normal; /*Para quitar la cursiva*/
 }
 
+/*Reglas generales para footer*/
 footer {
-    text-align: center;
+    text-align: center; /*Permite centrar el texto*/
 }
 
-
+/*Reglas generales para aside*/
 aside {
-    display: grid;
-    grid-template-rows: auto;
-    grid-auto-columns: 100%;
-    background-color: #00897b;
-    padding: 5% 3% 5% 3%;
-    gap: 1vh;
+    display: grid;  /*Se usan grids*/
+    grid-template-rows: auto;   /*Las filas se ajustan automaticamente*/
+    grid-auto-columns: 100%;    /*El ancho se ajusta al 100%*/
+    padding: 5% 3% 5% 3%;   /*Padding en todos los lados*/
+    gap: 1vh;   /*Distancia entre cajas*/
 }
 
+/*Reglas generales para h1*/
 h1 {
-    color: white;
-    text-align: center;
-    font-size: 300%;
+    color: white;   /*El texto es blanco*/
+    text-align: center; /*Para alinearlo en el centro*/
+    font-size: 300%;    /*El tamaño del texto*/
 }
 
+/*Reglas para ul*/
 ul {
-    margin-top:0;
-    list-style-type: none;
-    padding: 5px;
-    text-align: justify;
+    margin-top:0;   /*No se deja margen para que se pegue arriba*/
+    list-style-type: none;  /*Se quita el simbolo de la izquierda*/
+    padding: 5px;   /*Se aplica padding para que no se ajuste demasiado al div*/
+    text-align: justify;    /*Se justifica el texto*/
 }
 
+/*Reglas para la cabecera*/
 #cabecera {
-    background-color: #009688;
-    display: grid;
-    grid-template-columns: 25% 75%;
-    grid-auto-rows: 200px;
+    background-color: #009688;  /*Color de fondo*/
+    display: grid;  /*Se usan grids*/
+    grid-template-columns: 25% 75%; /*La disposicion de las columnas*/
+    grid-auto-rows: 200px;  /*El tamano de las filas*/
 }
 
 
-/*clases usadas en divs*/
+/*Reglas para el container del titulo y menu*/
 #div-titulo-menu {
-    display: grid;
-    grid-template-rows: 60% 40%;
+    display: grid;  /*Se usan grids*/
+    grid-template-rows: 60% 40%;    /*La disposicion de las filas*/
 }
 
+/*Reglas usadas para el container del menu*/
 #navegacion {
-    display: grid;
+    display: grid;  /*Se usan grids*/
     /*minmax es muy util para obligar a que un elemento se quede dentro del div*/
+    /*Tambien es muy util usar repeat para no tener que escribir lo mismo varias veces*/
     grid-template-columns: repeat(3, minmax(auto, 64px));
-    align-content: center;
-    gap: 1rem ;
+    align-content: center; /*Para que el contenido se alinee verticalmente*/
+    gap: 1rem ; /*Distancia entre las opciones del menu*/
 }
 
+/*Opciones para cada entrada del menu*/
 .menu {
-    /* offset-x offset-y blur-radius color*/
-    box-shadow: 0 3px 3px rgba(0,0,0,0.23);
-    transition: all 0.3s;
-    background-color: #cddc39;
-    border-radius: 0.5vh;
-    text-align: center;
+    box-shadow: 0 3px 3px rgba(0,0,0,0.23); /* box-shadow: offset-x offset-y blur-radius color*/
+    transition: all 0.3s;   /*La animacion que se ejecuta*/
+    background-color: #cddc39;  /*El color de fondo*/
+    border-radius: 0.5vh;   /*Bordes redondeados*/
+    text-align: center; /*Alineacion horizontal del texto*/
 }
 
+/*Regla que se ejecuta cuando se pasa el cursor por encima*/
 .menu:hover{
-    transform: scale(1.2);
-    box-shadow: 0 10px 7px rgba(0,0,0,0.4);
+    transform: scale(1.2);  /*Se agranda la opcion del menu*/
+    box-shadow: 0 10px 7px rgba(0,0,0,0.4); /*Se baja un poco la sombra y se hace mas fuerte*/
 }
 
+/*Reglas para el contenedor de main y el aside*/
 #contenido {
-    display: grid;
-    grid-template-columns: 75% 25%;
-    background-color: #00897b;
-    border-bottom: solid 2px #00897b;
+    display: grid;  /*Se usan grids*/
+    grid-template-columns: 75% 25%; /*La disposicion de columnas*/
+    background-color: #00897b;  /*Color de fondo*/
+    border-bottom: solid 2px #00897b;   /*Se le pone un border debajo para separarlo del pie*/
 }
 
+/*Seccion del main con los objetos*/
 main {
-    display: grid;
-    gap: 2vh;
+    display: grid;  /*Se usan grids para los articulos*/
+    gap: 2vh;   /*Se les deja entre las celdas un espacio*/
     grid-template-columns: repeat(3, minmax(auto, 32%)); /*Obliga a que los articulos no se salgan del main*/
-    grid-auto-rows: 270px;
-    /*grid-auto-rows sirve para evitar poner el mismo numero 3 veces*/
-    text-align: center;
-    justify-content: center;
-    /*justify-content sirve para centrar todos los cuadros en el centro del div*/
-    padding: 3%;
-    background-color: beige;
-    border-radius: 0.5vh;
+    grid-auto-rows: 270px; /*Sirve para evitar poner el mismo numero 3 veces para las filas existentes*/
+    text-align: center; /*Para alinear el texto horizontalmente*/
+    justify-content: center; /*Sirve para centrar todos los cuadros en el centro del div*/
+    padding: 3%;    /*Sirve para dejar espacio en los 4 lados entre el main y los articulos*/
+    background-color: beige; /*Color de fondo del main, no de los articulos*/
+    border-radius: 0.5vh; /*Para que los bordes sean redondeados*/
 }
 
+/*Reglas para los contenedores de los propios articulos*/
 .box {
-    border-radius: 0.5vh;
-    background-color: #03A9F4;
-    display: grid;
-    grid-template-rows: 65% 20% 15%;
-    grid-auto-columns: 100%;
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
-    transition: all 0.3s;
+    border-radius: 0.5vh;   /*Para que los bordes sean redondeados*/
+    background-color: #03A9F4;  /*Color de fondo*/
+    display: grid;  /*Se usan grids*/
+    grid-template-rows: 65% 20% 15%;    /*Disposicion de las distintas partes que componen el articulo*/
+    grid-auto-columns: 100%;    /*Se obliga a que el ancho ocupe todo el div*/
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5); /*Sombra del articulo*/
+    transition: all 0.3s; /*Animacion del articulo*/
 }
 
+/*Reglas que se activan cuando se pasa el cursor por encima*/
 .box:hover{
-    transform: scale(1.1);
-    background-color: #cddc39;
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
+    transform: scale(1.1);  /*Se escala el div del articulo*/
+    background-color: #cddc39; /*El color de fondo se cambia*/
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5); /*Se pone la sombra un poco mas fuerte y debajo*/
 }
 
+
+/*Reglas que se usan para la parte de texto de los articulos*/
 .fondo-azul-claro {
-    background-color: #64b5f6;
+    background-color: #64b5f6;  /*Color de fondo*/
 }
 
+/*Regla para el div del precio de los articulos*/
 .div-precio {
-    font-weight: 700;
+    font-weight: 700;   /*Se pone en negrita*/
+
+    /*Estas dos reglas son para redondear los bordes solo en la parte de abajo*/
     border-bottom-left-radius: 0.5vh;
     border-bottom-right-radius: 0.5vh;
 }
 
+/*Reglas para la parte de enlaces en el pie de pagina*/
 #div-pie {
-    display: grid;
-    grid-template-columns: repeat(5, 20%);
+    display: grid;  /*Se usan grids*/
+    grid-template-columns: repeat(5, 20%); /*Se hacen 5 columnas*/
 }
 
+/*Reglas para la parte de informacion sobre el autor y de copyright (que no tiene ninguno)*/
 #div-copyright {
-    border-top: solid 2px #00897b;
-    font-weight: 700;
+    border-top: solid 2px #00897b;  /*Se pone el borde de encima para separar las secciones*/
+    font-weight: 700;   /*Se pone la fuente en negrita*/
 }
 
 .nota-container {
@@ -174,7 +194,7 @@ main {
 
 #tachon {
     text-decoration: line-through;
-    color: red;
+    color: #733635;
 }
 
 #oferta {
