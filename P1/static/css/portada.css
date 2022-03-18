@@ -163,6 +163,7 @@ main {
     font-weight: 700;   /*Se pone la fuente en negrita*/
 }
 
+/*Reglas para las distintas notas de la seccion auxiliar*/
 .nota-container {
     display: grid;
     grid-template-rows: auto;
