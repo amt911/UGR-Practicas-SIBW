@@ -53,10 +53,6 @@ h1 {
     grid-row: 1;
 }
 
-#div-titulo {
-    font-size: 150%;
-}
-
 #navegacion {
     display: none;
 }

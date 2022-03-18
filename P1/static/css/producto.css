@@ -14,7 +14,9 @@ img {
 }
 
 li {
-    margin-top: 7%;
+    margin-bottom: 7%;
+    padding-bottom: 10px;
+    border-bottom: solid 2px black;
 }
 
 address{
@@ -41,8 +43,9 @@ h1 {
 }
 
 ul {
+    margin-top:0;
     list-style-type: none;
-    padding: 10px;
+    padding: 5px;
     text-align: justify;
 }
 
@@ -172,10 +175,6 @@ main{
     background-color: #cddc39;
 }
 
-.negrita{
-    font-weight: 700;
-}
-
 
 #precio{
     border-bottom-left-radius: 0.5vh;
@@ -234,10 +233,6 @@ table, td, tr{
     /*Estos dos comandos son para centrar la tabla*/
     margin-left: auto;
     margin-right: auto;
-}
-
-.entrada{
-    border: solid 1px black;
 }
 
 #video-container{

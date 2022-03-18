@@ -15,6 +15,8 @@ img {
 
 li {
     margin-bottom: 7%;
+    padding-bottom: 10px;
+    border-bottom: solid 2px black;    
 }
 
 address{
@@ -42,8 +44,9 @@ h1 {
 }
 
 ul {
+    margin-top:0;
     list-style-type: none;
-    padding: 10px;
+    padding: 5px;
     text-align: justify;
 }
 
