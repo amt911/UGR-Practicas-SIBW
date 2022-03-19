@@ -146,9 +146,9 @@ ul {
 /*Reglas para la parte de los botones de las redes sociales y el boton de imprimir*/
 #div-social {
     display: grid;  /*Se usan grids*/
-    grid-template-columns: repeat(4, 20%);  /*Se crean cuatro bloques horizontales*/
-    justify-content: center;    /*Se centra verticalmente la celda*/
-    align-items: center;    /*Se centran los bloques horizontalmente*/
+    grid-template-columns: repeat(3, 26%);  /*Se crean tres bloques horizontales*/
+    justify-content: center;    /*Se centra horizontalmente la celda*/
+    align-items: center;    /*Se centran los bloques verticalmente*/
     gap: 5%;    /*Se deja un margen entre bloques*/
 }
 
@@ -279,4 +279,30 @@ table, td, tr{
 
 #div-social > *:hover{
     transform: scale(1.3);  /*Se hacen ligeramente mas grandes*/
+}
+
+/*Reglas para los botones que llevan a las redes sociales de NVIDIA*/
+#nvidia-rrss-container{
+    display: grid;
+    grid-template-columns: repeat(3, minmax(auto, 60px));
+    gap: 25px;
+    justify-content: center;
+    width: fit-content;
+    margin: 0 auto;         /*Para que se centre en el main*/
+    padding: 2px;
+}
+
+/*Esta regla permite una transicion a la animacion mas suave*/
+#nvidia-rrss-container > *{
+    transition: all 0.3s;
+}
+
+/*Reglas que se aplican a todos los hijos del container con las rrss de NVIDIA*/
+#nvidia-rrss-container > *:hover{
+    transform: scale(1.25);
+}
+
+/*Regla para poner las fuentes en negrita*/
+.negrita{
+    font-weight: 700;
 }

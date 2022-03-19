@@ -191,3 +191,13 @@ table, td, tr{
 .centrado-vertical{
     align-self: center;
 }
+
+/*Reglas para los botones que llevan a las redes sociales de NVIDIA*/
+#nvidia-rrss-container{
+    display: none;
+}
+
+/*Regla para poner las fuentes en negrita (en este caso las oculta)*/
+.negrita{
+    display: none;
+}
