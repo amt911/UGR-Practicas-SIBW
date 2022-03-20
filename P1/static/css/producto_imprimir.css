@@ -208,3 +208,11 @@ table, td, tr{
     color: black;   /*Fuente en color negro*/
     text-decoration: none;  /*Se le quita el subrayado*/
 }
+
+/*Regla para el boton de comprar*/
+#boton-comprar{
+    border: solid 1px black;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    font-weight: 700;
+}

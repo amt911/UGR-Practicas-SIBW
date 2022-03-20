@@ -173,8 +173,7 @@ main{
     float:left; /*Se pone para que se pegue a la izquierda*/
     width: 55%; /*Se le pone un ancho concreto (relativo)*/
     display: grid;  /*Se usan grids*/
-    grid-template-rows: auto auto auto; /*Se dispone en tres filas*/
-    /*grid-auto-columns: 100%;*/
+    grid-template-rows: repeat(4, auto); /*Se dispone en tres filas*/
     margin-bottom:10px; /*Se pone un poco de margen abajo para el texto*/
     border-radius: 0.5vh;   /*Se redondean las esquinas*/
     box-shadow: 0 7px 7px rgba(0,0,0,0.3); /*Se le pone una sombra*/
@@ -304,4 +303,19 @@ table, td, tr{
 /*Regla para poner las fuentes en negrita*/
 .negrita{
     font-weight: 700;
+}
+
+/*Regla para el boton de comprar*/
+#boton-comprar{
+    padding-top: 3px;
+    padding-bottom: 3px;
+    font-weight: 700;
+    color: white;
+    border-radius: 0.5vh;
+    background-color: green;
+    transition: all 0.3s;
+}
+
+#boton-comprar:hover{
+    transform: scale(1.05);
 }
