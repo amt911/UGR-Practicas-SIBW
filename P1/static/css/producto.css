@@ -36,7 +36,7 @@ footer {
 /*Reglas generales para aside*/
 aside {
     display: grid;  /*Se usan grids*/
-    grid-template-rows: auto;   /*Las filas se ajustan automaticamente*/
+    grid-template-rows: repeat(4, max-content);   /*Las filas se ajustan al tamaño de las notas*/
     grid-auto-columns: 100%;    /*El ancho se ajusta al 100%*/
     padding: 5% 3% 5% 3%;   /*Padding en todos los lados*/
     gap: 1vh;   /*Distancia entre cajas*/
@@ -129,7 +129,6 @@ ul {
 
 /*Regla para el titulo de la nota*/
 .nota-titulo {
-    align-self: center; /*Alineacion vertical del div en el centro*/
     text-align: center; /*Alineacion del texto horizontal en el centro*/
 }
 

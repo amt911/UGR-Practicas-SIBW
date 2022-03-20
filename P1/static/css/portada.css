@@ -36,7 +36,7 @@ footer {
 /*Reglas generales para aside*/
 aside {
     display: grid;  /*Se usan grids*/
-    grid-template-rows: auto;   /*Las filas se ajustan automaticamente*/
+    grid-template-rows: repeat(4, max-content);   /*Las filas se ajustan al tamaño de las notas*/
     grid-auto-columns: 100%;    /*El ancho se ajusta al 100%*/
     padding: 5% 3% 5% 3%;   /*Padding en todos los lados*/
     gap: 1vh;   /*Distancia entre cajas*/
@@ -109,10 +109,11 @@ ul {
 main {
     display: grid;  /*Se usan grids para los articulos*/
     gap: 2vh;   /*Se les deja entre las celdas un espacio*/
-    grid-template-columns: repeat(3, minmax(auto, 32%)); /*Obliga a que los articulos no se salgan del main*/
-    grid-auto-rows: 270px; /*Sirve para evitar poner el mismo numero 3 veces para las filas existentes*/
+    grid-template-columns: repeat(3, 1fr); /*Obliga a que los articulos no se salgan del main*/
+    grid-auto-rows: 370px; /*Sirve para evitar poner el mismo numero 3 veces para las filas existentes*/
     text-align: center; /*Para alinear el texto horizontalmente*/
-    justify-content: center; /*Sirve para centrar todos los cuadros en el centro del div*/
+    align-content: center;  /*Para alinear el contenido verticalmente*/
+    justify-content: center;    /*Para alinear el contenido horizontalmente*/
     padding: 3%;    /*Sirve para dejar espacio en los 4 lados entre el main y los articulos*/
     background-color: beige; /*Color de fondo del main, no de los articulos*/
     border-radius: 0.5vh; /*Para que los bordes sean redondeados*/
@@ -175,7 +176,6 @@ main {
 
 /*Regla para el titulo de la nota*/
 .nota-titulo {
-    align-self: center; /*Alineacion vertical del div en el centro*/
     text-align: center; /*Alineacion del texto horizontal en el centro*/
 }
 
