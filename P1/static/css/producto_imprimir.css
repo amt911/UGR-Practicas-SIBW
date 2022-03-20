@@ -6,6 +6,7 @@ No se usan ya que se han eliminado elementos con display: none;
 */
 /*Reglas generales para el body*/
 body {
+    font-family: 'Times New Roman', Times, serif;
     width: fit-content; /*Para que el body se ajuste al contenido*/
     word-wrap: break-word;  /*Para partir las palabras*/
     border: solid 1px black;    /*Borde*/

@@ -77,7 +77,7 @@ ul {
     display: grid;  /*Se usan grids*/
     /*minmax es muy util para obligar a que un elemento se quede dentro del div*/
     /*Tambien es muy util usar repeat para no tener que escribir lo mismo varias veces*/
-    grid-template-columns: repeat(3, minmax(auto, 64px));
+    grid-template-columns: repeat(3, minmax(auto, 68px));
     align-content: center; /*Para que el contenido se alinee verticalmente*/
     gap: 1rem ; /*Distancia entre las opciones del menu*/
 }
