@@ -134,7 +134,7 @@ main{
 }
 
 /*Regla que se usa para el texto de la descripcion del producto.*/
-#justificado{
+.justificado{
     clear: left;    /*Necesario para que el texto no aparezca entre el titulo del producto y las imagenes*/
     word-wrap: normal;  /*Se le quita el romper las palabras por estetica*/
     text-align: justify;    /*Se justifica el texto*/
