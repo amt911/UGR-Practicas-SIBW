@@ -202,3 +202,9 @@ table, td, tr{
 .negrita{
     display: none;
 }
+
+/*Reglas que se le ponen a las referencias a enlaces externos para que se queden en negro y sin subrayado*/
+.no-underline {
+    color: black;   /*Fuente en color negro*/
+    text-decoration: none;  /*Se le quita el subrayado*/
+}
