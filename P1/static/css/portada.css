@@ -131,7 +131,7 @@ main {
 
 /*Reglas que se activan cuando se pasa el cursor por encima*/
 .box:hover{
-    transform: scale(1.1);  /*Se escala el div del articulo*/
+    transform: scale(1.05);  /*Se escala el div del articulo*/
     background-color: #cddc39; /*El color de fondo se cambia*/
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5); /*Se pone la sombra un poco mas fuerte y debajo*/
 }
