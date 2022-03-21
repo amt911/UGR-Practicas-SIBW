@@ -319,3 +319,13 @@ table, td, tr{
 #boton-comprar:hover{
     transform: scale(1.05);
 }
+
+
+#desplegable{
+    border: solid 1px red;
+    width: 100px;
+    position: relative;
+    top: 40px;
+    left: 40px;
+    z-index: 1;
+}
