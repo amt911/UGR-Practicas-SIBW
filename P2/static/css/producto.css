@@ -323,8 +323,24 @@ table, td, tr{
 
 #desplegable{
     border: solid 1px red;
-    width: 100px;
-    position: absolute;
+    width: fit-content;
+    position: fixed;
+    height: 100%;
     top: 0;
     left: 0;
+
+    display: flex;
+}
+
+#comentarios{
+    width: 100px;
+    border: solid 1px black;
+}
+
+#menu-boton{
+    height: fit-content;
+    align-self: center;
+    transform: rotate(-90deg);
+    border: solid 1px black;
+    
 }
