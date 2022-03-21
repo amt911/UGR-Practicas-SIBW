@@ -1,0 +1,321 @@
+/*Reglas generales para el body*/
+body {
+    font-family: 'Roboto', sans-serif;  /*Fuente*/
+    width: fit-content; /*Esto permite que cuando se haga más zoom se pueda hacer scroll lateral*/
+    word-wrap: break-word; /*Permite partir las palabras para que quepan*/
+    border: 2px solid #00897b;  /*Borde de la página*/
+    border-radius: 0.5vh;   /*Para que las esquinas estén redondeadas*/
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23); /*Sombra por debajo*/
+}
+
+/*Regla general para todas las imagenes*/
+img {
+    /*Las dos primeras reglas son necesarias para que la ultima funcione*/
+    width: 100%;
+    height: 100%;
+    object-fit: contain;    /*Para que la imagen no se salga del div*/
+}
+
+/*Reglas generales para los li*/
+li {
+    margin-bottom: 7%;  /*Margen por debajo para que las entradas no se junten*/
+    padding-bottom: 10px; /*Sirve para dejar espacio por debajo para la linea negra que se pinta*/
+    border-bottom: solid 2px black; /*Linea negra para dividir las entradas*/
+}
+
+/*Reglas generales para address*/
+address{
+    font-style: normal; /*Para quitar la cursiva*/
+}
+
+/*Reglas generales para footer*/
+footer {
+    text-align: center; /*Permite centrar el texto*/
+}
+
+/*Reglas generales para aside*/
+aside {
+    display: grid;  /*Se usan grids*/
+    grid-template-rows: repeat(4, max-content);   /*Las filas se ajustan al tamaño de las notas*/
+    grid-auto-columns: 100%;    /*El ancho se ajusta al 100%*/
+    padding: 5% 3% 5% 3%;   /*Padding en todos los lados*/
+    gap: 1vh;   /*Distancia entre cajas*/
+}
+
+
+/*Reglas generales para h1*/
+h1 {
+    color: white;   /*El texto es blanco*/
+    text-align: center; /*Para alinearlo en el centro*/
+    font-size: 300%;    /*El tamaño del texto*/
+}
+
+/*Reglas para ul*/
+ul {
+    margin-top:0;   /*No se deja margen para que se pegue arriba*/
+    list-style-type: none;  /*Se quita el simbolo de la izquierda*/
+    padding: 5px;   /*Se aplica padding para que no se ajuste demasiado al div*/
+    text-align: justify;    /*Se justifica el texto*/
+}
+
+/*Reglas para la cabecera*/
+#cabecera {
+    background-color: #009688;  /*Color de fondo*/
+    display: grid;  /*Se usan grids*/
+    grid-template-columns: 25% 75%; /*La disposicion de las columnas*/
+    grid-auto-rows: 200px;  /*El tamano de las filas*/
+}
+
+/*Reglas para el container del titulo y menu*/
+#div-titulo-menu {
+    display: grid;  /*Se usan grids*/
+    grid-template-rows: 60% 40%;    /*La disposicion de las filas*/
+}
+
+/*Reglas usadas para el container del menu*/
+#navegacion {
+    display: grid;  /*Se usan grids*/
+    /*minmax es muy util para obligar a que un elemento se quede dentro del div*/
+    /*Tambien es muy util usar repeat para no tener que escribir lo mismo varias veces*/
+    grid-template-columns: repeat(3, minmax(auto, 68px));
+    align-content: center; /*Para que el contenido se alinee verticalmente*/
+    gap: 1rem ; /*Distancia entre las opciones del menu*/
+}
+
+/*Opciones para cada entrada del menu*/
+.menu {
+    box-shadow: 0 3px 3px rgba(0,0,0,0.23); /* box-shadow: offset-x offset-y blur-radius color*/
+    transition: all 0.3s;   /*La animacion que se ejecuta*/
+    background-color: #cddc39;  /*El color de fondo*/
+    border-radius: 0.5vh;   /*Bordes redondeados*/
+    text-align: center; /*Alineacion horizontal del texto*/
+}
+
+/*Regla que se ejecuta cuando se pasa el cursor por encima*/
+.menu:hover{
+    transform: scale(1.2);  /*Se agranda la opcion del menu*/
+    box-shadow: 0 10px 7px rgba(0,0,0,0.4); /*Se baja un poco la sombra y se hace mas fuerte*/
+}
+
+/*Reglas para el contenedor de main y el aside*/
+#contenido {
+    display: grid;  /*Se usan grids*/
+    grid-template-columns: 75% 25%; /*La disposicion de columnas*/
+    background-color: #00897b;  /*Color de fondo*/
+    border-bottom: solid 2px #00897b;   /*Se le pone un border debajo para separarlo del pie*/
+}
+
+/*Reglas para la parte de enlaces en el pie de pagina*/
+#div-pie {
+    display: grid;  /*Se usan grids*/
+    grid-template-columns: repeat(5, 20%); /*Se hacen 5 columnas*/
+}
+
+/*Reglas para la parte de informacion sobre el autor y de copyright (que no tiene ninguno)*/
+#div-copyright {
+    border-top: solid 2px #00897b;  /*Se pone el borde de encima para separar las secciones*/
+    font-weight: 700;   /*Se pone la fuente en negrita*/
+}
+
+/*Reglas para las distintas notas de la seccion auxiliar*/
+.nota-container {
+    display: grid;  /*Se usan grids*/
+    grid-template-rows: auto;   /*El alto de las filas se ajusta automaticamente*/
+    grid-auto-columns: 100%;    /*Sirve para ajustar el ancho a la nota (puede darse el caso de que se salga*/
+    background-color: #cddc39; /*Color de fondo*/
+    border-radius: 0.5vh;   /*Para que los bordes esten redondeados*/
+    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.5);   /*Sombra de la nota*/
+}
+
+/*Regla para el titulo de la nota*/
+.nota-titulo {
+    text-align: center; /*Alineacion del texto horizontal en el centro*/
+}
+
+/*Reglas para el contenido de las notas*/
+.nota-contenido {
+    padding: 2%;    /*Se deja un padding para que el texto no llegue al borde*/
+    background-color: #c0ca33;  /*Color de fondo*/
+
+    /*Estas dos reglas son para que los bordes de abajo esten redondeados*/
+    border-bottom-left-radius: 0.5vh;
+    border-bottom-right-radius: 0.5vh;
+}
+
+/*Reglas para la parte de los botones de las redes sociales y el boton de imprimir*/
+#div-social {
+    display: grid;  /*Se usan grids*/
+    grid-template-columns: repeat(3, 26%);  /*Se crean tres bloques horizontales*/
+    justify-content: center;    /*Se centra horizontalmente la celda*/
+    align-items: center;    /*Se centran los bloques verticalmente*/
+    gap: 5%;    /*Se deja un margen entre bloques*/
+}
+
+
+/*Reglas que se le ponen a las referencias a enlaces externos para que se queden en negro y sin subrayado*/
+.no-underline {
+    color: black;   /*Fuente en color negro*/
+    text-decoration: none;  /*Se le quita el subrayado*/
+}
+
+
+/*Reglas para el recuadro principal donde se muestra el objeto*/
+main{
+    text-align: center; /*Se alinea el texto en el centro*/
+    background-color: beige;    /*Se pone el fondo a beige*/
+    border-radius: 0.5vh;   /*Se ponen los fondos redondeados*/
+    padding: 1%;    /*Se pone un poco de padding para que el contenido no este pegado*/
+}
+
+/*Contenedor donde se recoge la informacion del producto*/
+#info{
+    background-color: #c0ca33;  /*Se pone un color de fondo*/
+    float:left; /*Se pone para que se pegue a la izquierda*/
+    width: 55%; /*Se le pone un ancho concreto (relativo)*/
+    display: grid;  /*Se usan grids*/
+    grid-template-rows: repeat(4, auto); /*Se dispone en tres filas*/
+    margin-bottom:10px; /*Se pone un poco de margen abajo para el texto*/
+    border-radius: 0.5vh;   /*Se redondean las esquinas*/
+    box-shadow: 0 7px 7px rgba(0,0,0,0.3); /*Se le pone una sombra*/
+}
+
+/*Reglas para el contenedor del titulo*/
+#titulo{
+    /*Estas dos reglas sirven para redondear las esquinas de arriba*/
+    border-top-left-radius: 0.5vh;
+    border-top-right-radius: 0.5vh;
+    background-color: #cddc39;  /*Color de fondo*/
+}
+
+/*Reglas para el contenedor del precio*/
+#precio{
+    /*Estas dos reglas sirven para redondear las esquinas inferiores*/
+    border-bottom-left-radius: 0.5vh;
+    border-bottom-right-radius: 0.5vh;
+}
+
+/*Reglas para el contenedor de imagenes*/
+#contenedor-imgs{
+    float: right;   /*Para que se pegue a la derecha*/
+    display: grid;  /*Se usan grids*/
+    grid-template-rows: repeat(2, 1fr); /*Se le dan a las filas el mismo espacio (por eso las unidades fr)*/
+    width: 35%; /*Se pone el contenedor a un 35% del ancho del main*/
+    max-width: 200px;   /*Se pone el maximo a 200px para que no se desborde del main ni se descuadre*/
+    gap: 3%;    /*Se le pone un poco de distancia entre imagenes*/
+    padding: 3%;    /*Se le pone dentro padding para que no esten pegados al div*/
+}
+
+/*Regla para el div que contiene la imagen en si y el pie de foto*/
+.img-producto{
+    background-color: white;    /*Fondo blanco*/
+    border-radius: 0.5vh;   /*Esquinas redondeadas*/
+    box-shadow: 0 3px 7px rgba(0,0,0,0.3);  /*Sombras*/
+    transition: all 0.3s;   /*Animacion*/
+    display: grid;  /*Se usan grids*/
+    grid-template-rows: auto auto;  /*Se disponen de dos filas, una para la imagen y otra para el pie*/
+}
+
+/*Regla que se activa cuando se pasa por encima el cursor*/
+.img-producto:hover{
+    box-shadow: 0 8px 9px rgba(0, 0, 0, 0.3);   /*Sombras*/
+    transform: scale(1.09); /*Se escala un poco la imagen*/
+}
+
+/*Reglas para centrar verticalmente un div*/
+.centrado-vertical{
+    align-self: center;
+}
+
+/*Regla que se usa para el texto de la descripcion del producto.*/
+.justificado{
+    clear: left;    /*Necesario para que el texto no aparezca entre el titulo del producto y las imagenes*/
+    word-wrap: normal;  /*Se le quita el romper las palabras por estetica*/
+    text-align: justify;    /*Se justifica el texto*/
+}
+
+/*Regla que se aplica a todos los h2*/
+h2{
+    font-size: 140%;
+    margin: 0;
+}
+
+/*Regla que se aplica a todos los h3*/
+h3{
+    font-size: 100%;
+    margin: 0;
+}
+
+/*Regla que se aplica a todas las tablas, td y tr*/
+table, td, tr{
+    border: solid 1px black;    /*Bordes negros*/
+    border-collapse: collapse; /*Para que se junten los bordes*/
+    
+    /*Estos dos comandos son para centrar la tabla*/
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*Contenedor donde se pone otro con el video (es por cuestion de evitar overflow)*/
+#video-container{
+    display: grid;
+    grid-template-columns: minmax(auto, 600px);
+    /*grid-auto-rows: auto;*/
+    justify-content: center;
+}
+
+/*Contenedor con el video*/
+#video{
+    border: 0;
+    aspect-ratio: 16/9; /*Sirve para mantener la relacion de aspecto con independencia del tamaño*/
+    width:100%;     /*Obligatorio para que el video se estire hasta llegar a 600px (se mantiene la relacion de aspecto)*/
+}
+
+/*Regla que se aplica a todos los divs hijos (no tienen identificador)*/
+#div-social > *{
+    transition: all 0.3s;   /*Animacion*/
+}
+
+#div-social > *:hover{
+    transform: scale(1.3);  /*Se hacen ligeramente mas grandes*/
+}
+
+/*Reglas para los botones que llevan a las redes sociales de NVIDIA*/
+#nvidia-rrss-container{
+    display: grid;
+    grid-template-columns: repeat(4, minmax(auto, 60px));
+    gap: 25px;
+    justify-content: center;
+    width: fit-content;
+    margin: 0 auto;         /*Para que se centre en el main*/
+    padding: 2px;
+}
+
+/*Esta regla permite una transicion a la animacion mas suave*/
+#nvidia-rrss-container > *{
+    transition: all 0.3s;
+}
+
+/*Reglas que se aplican a todos los hijos del container con las rrss de NVIDIA*/
+#nvidia-rrss-container > *:hover{
+    transform: scale(1.25);
+}
+
+/*Regla para poner las fuentes en negrita*/
+.negrita{
+    font-weight: 700;
+}
+
+/*Regla para el boton de comprar*/
+#boton-comprar{
+    padding-top: 3px;
+    padding-bottom: 3px;
+    font-weight: 700;
+    color: white;
+    border-radius: 0.5vh;
+    background-color: green;
+    transition: all 0.3s;
+}
+
+#boton-comprar:hover{
+    transform: scale(1.05);
+}

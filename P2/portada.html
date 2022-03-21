@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>e-tienda. Más que comercio</title> <!--Título que aparece en la pestaña de la página-->
+    <link rel="stylesheet" href="static/css/portada.css"> <!--Se enlaza al directorio css-->
+    <link rel="shortcut icon" href="static/image/patata_logo.png"> <!--Logotipo que aparece en la pestaña-->
+
+    <!--Uso las fuentes de Google-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header id="cabecera">  <!--Cabecera de la página donde se encuentra el logo, nombre y menú-->
+        <div>
+            <a href="portada.html"> <!--Logotipo que si se pulsa enlaza al inicio-->
+                <img src="static/image/patata_logo.png" alt="Logo"/>  <!--Logotipo-->
+            </a>
+        </div>
+        <div id="div-titulo-menu">  <!--Seccion que contiene el titulo de la pagina y el menu-->
+            <div>
+                <h1>e-tienda</h1>   <!--Titulo de la pagina-->
+            </div>
+
+            <nav id="navegacion">   <!--Seccion de navegacion con los menus-->
+                <div class="menu"><a class="no-underline" href="portada.html">Inicio</a></div>
+                <div class="menu"><a class="no-underline" href="portada.html">FAQ</a></div>
+                <div class="menu"><a class="no-underline" href="portada.html">Login</a></div>
+            </nav>
+        </div>
+    </header>
+
+    <div id="contenido">    <!--Seccion que incluye el main (objetos) y el aside (auxiliar)-->
+        <main>
+            <!--Cada article representa un objeto (en total 9), contiene 3 secciones con la imagen, nombre y precio-->
+            <!--Articulo 1-->
+            <article class="box">
+                <section>
+                    <!--Se enlaza a la pagina producto-->
+                    <a href="producto.html">  
+                        <img src="static/image/3090.png" alt="RTX 3090"/>
+                    </a>
+                </section>
+
+                <section class="fondo-azul-claro">
+                    <!--Le he quitado al texto el subrayado y el fondo azul de los enlaces-->
+                    <a class="no-underline" href="producto.html">
+                        Nvidia GeForce RTX 3090
+                    </a>
+                </section>
+
+                <section class="div-precio fondo-azul-claro">
+                    <a class="no-underline" href="producto.html">
+                        2200€
+                    </a>
+                </section>
+            </article>
+            
+            <!--Articulo 2-->
+            <article class="box">
+                <section>
+                    <a href="producto.html">
+                        <img src="static/image/controller.png" alt="Mando XBOX Elite 2"/>
+                    </a>
+                </section>
+                <section class="fondo-azul-claro">
+                    <a class="no-underline" href="producto.html">                    
+                        Mando Xbox Elite Series 2
+                    </a>
+                </section>
+                <section class="div-precio fondo-azul-claro">
+                    <a class="no-underline" href="producto.html">                                        
+                        180€
+                    </a>
+                </section>
+            </article>
+
+            <!--Articulo 3-->
+            <article class="box">
+                <section>
+                    <a href="producto.html">
+                        <img src="static/image/intel_cpu.png" alt="Intel CPU 12th gen"/>
+                    </a>
+                </section>
+
+                <section class="fondo-azul-claro">
+                    <a class="no-underline" href="producto.html">                                        
+                        Intel Core i9-12900K
+                    </a>
+                </section>
+
+                <section class="div-precio fondo-azul-claro">
+                    <a class="no-underline" href="producto.html">
+                        669,90€
+                    </a>                    
+                </section>
+            </article>
+
+            <!--Articulo 4-->
+            <article class="box">
+                <section>
+                    <a href="producto.html">
+                        <img src="static/image/NVME.png" alt="WD NVME"/>
+                    </a>
+                </section>
+
+                <section class="fondo-azul-claro">
+                    <a class="no-underline" href="producto.html">
+                        WD_Black PC SN750 NVMe
+                    </a>
+                </section>
+                <!--En esta seccion he supuesto un descuento del articulo-->
+                <section class="div-precio fondo-azul-claro">
+                    <a class="no-underline" href="producto.html">
+                        <span id="tachon">101,99€</span><br />
+                        <span id="oferta">89,99€</span>
+                    </a>
+                </section>
+            </article>
+
+            <!--Articulo 5-->
+            <article class="box">
+                <section>
+                    <a href="producto.html">
+                        <img src="static/image/PS5.png" alt="PS5"/>
+                    </a>
+                </section>
+
+                <section class="fondo-azul-claro">
+                    <a class="no-underline" href="producto.html">
+                        PlayStation 5 Blu-Ray
+                    </a>
+                </section>
+
+                <section class="div-precio fondo-azul-claro">
+                    <a class="no-underline" href="producto.html">
+                        500€
+                    </a>
+                </section>
+            </article>
+
+            <!--Articulo 6-->
+            <article class="box">
+                <section>
+                    <a href="producto.html">
+                        <img src="static/image/AMD_CPU.png" alt="AMD CPU"/>
+                    </a>
+                </section>
+
+                <section class="fondo-azul-claro">
+                    <a class="no-underline" href="producto.html">
+                        AMD Ryzen 7 5700G
+                    </a>
+                </section>
+
+                <section class="div-precio fondo-azul-claro">
+                    <a class="no-underline" href="producto.html">
+                        350€
+                    </a>
+                </section>
+            </article>
+
+            <!--Articulo 7-->
+            <article class="box">
+                <section>
+                    <a href="producto.html">
+                        <img src="static/image/HDD.png" alt="WD HDD"/>
+                    </a>
+                </section>
+
+                <section class="fondo-azul-claro">
+                    <a class="no-underline" href="producto.html">
+                        Western Digital Blue HDD 1TB 3.5"
+                    </a>
+                </section>
+
+                <section class="div-precio fondo-azul-claro">
+                    <a class="no-underline" href="producto.html">
+                        38,50€
+                    </a>
+                </section>
+            </article>
+
+            <!--Articulo 8-->
+            <article class="box">
+                <section>
+                    <a href="producto.html">
+                        <img src="static/image/nintendo_swich_oled_white_1.png" alt="Switch OLED"/>
+                    </a>
+                </section>
+
+                <section class="fondo-azul-claro">
+                    <a class="no-underline" href="producto.html">
+                        Nintendo Switch OLED Blanca
+                    </a>
+                </section>
+
+                <section class="div-precio fondo-azul-claro">
+                    <a class="no-underline" href="producto.html">
+                        350€
+                    </a>
+                </section>
+            </article>
+
+            <!--Articulo 9-->
+            <article class="box">
+                <section>
+                    <a href="producto.html">
+                        <img src="static/image/Series_X.png" alt="XBOX Series X"/>
+                    </a>
+                </section>
+
+                <section class="fondo-azul-claro">
+                    <a class="no-underline" href="producto.html">
+                        Xbox Series X
+                    </a>
+                </section>
+
+                <section class="div-precio fondo-azul-claro">
+                    <a class="no-underline" href="producto.html">
+                        500€
+                    </a>
+                </section>
+            </article>
+        </main>
+        <aside> <!--Seccion auxiliar con diverso contenido-->
+            
+            <!--Cada seccion se considera una nota con un titulo y un contenido-->
+            <section class="nota-container">
+                <!--Titulo-->
+                <div class="nota-titulo">
+                    Nuestras redes sociales:
+                </div>
+
+                <!--Contenido, este contiene enlaces y fotos a redes sociales-->
+                <div id="div-social" class="nota-contenido">
+                    <div>
+                        <a href="https://www.reddit.com/">
+                            <img src="static/image/reddit.png" alt="Reddit Logo"/>
+                        </a>
+                    </div>
+
+                    <div>
+                        <a href="https://es-es.facebook.com/">
+                            <img src="static/image/facebook.png" alt="FaceBook Logo"/>
+                        </a>
+                    </div>
+
+                    <div>
+                        <a href="https://twitter.com/">
+                            <img src="static/image/twitter.png" alt="Twitter Logo"/>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!--Otra nota-->
+            <section class="nota-container">
+                <div class="nota-titulo">
+                    Enlaces de interés
+                </div>
+
+                <!--Esta nota contiene enlaces a distintos sitios-->
+                <div class="nota-contenido">
+                    <a href="https://www.nvidia.com/">Página oficial de NVIDIA</a><br /><br />
+                    <a href="https://www.nintendo.es/">Página oficial de Nintendo</a><br /><br />
+                    <a href="https://www.xbox.com/">Página oficial de XBOX</a><br /><br />
+                    <a href="https://www.amd.com/">Página oficial de AMD</a><br /><br />
+                    <a href="https://www.intel.es/">Página oficial de Intel</a>
+                </div>
+            </section>
+
+            <!--Otra nota-->
+            <section class="nota-container">
+                <div class="nota-titulo">
+                    Foro
+                </div>
+
+                <!--Esta nota contiene entradas de un foro-->
+                <div class="nota-contenido">
+                    <ul>
+                        <li>¿Debería esperar a que las GPUs bajen de precio?</li>
+                        <li>¿Es mejor Linux o Windows?</li>
+                        <li>¿Esta página es fiable para comprar?</li>
+                        <li>¿La fabricación de CPUs mediante chiplets es el futuro?</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!--Esta nota contiene la ubicacion (ficticia) de la tienda-->
+            <section class="nota-container">
+                <div class="nota-titulo">
+                    Dónde estamos:
+                </div>
+
+                <div class="nota-contenido">
+                    <img src="static/image/ubi.png" alt="Ubicacion tienda"/>
+                </div>
+            </section>
+        </aside>
+    </div>
+
+    <footer>    <!--Esta seccion contiene el pie de pagina-->
+        <div id="div-pie">
+            <div><a class="no-underline" href="portada.html">Contacto</a></div>
+            <div><a class="no-underline" href="portada.html">Privacidad</a></div>
+            <div><a class="no-underline" href="portada.html">Términos</a></div>
+            <div><a class="no-underline" href="portada.html">Sugerencias</a></div>
+            <div><a class="no-underline" href="portada.html">Política de cookies</a></div>
+        </div>
+        <div id="div-copyright">
+            <address>© 2022 - Andrés Merlo Trujillo</address>
+        </div>
+    </footer>
+</body>
+
+</html>
