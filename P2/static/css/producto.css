@@ -332,16 +332,18 @@ table, td, tr{
 
     display: flex;
 
+    z-index: 10;
     /*max-height: 100%;*/
 }
 
-#comentarios{
+#comentarios-submit-container{
     /*width: 65vw;*/
     width: 0;
     max-width: 500px;
     border: solid 1px black;
     display: grid;
     grid-template-rows: auto;
+    grid-auto-columns: minmax(0, 1fr);
     gap: 3px;
     overflow: hidden;
     transition: 0.5s;
@@ -367,7 +369,7 @@ table, td, tr{
     background-color: #eaead2;
     display: grid;
     grid-template-rows: auto;
-    grid-auto-columns: 1fr;/*minmax(0, 1fr);*/
+    grid-auto-columns: 100%;/*minmax(0, 1fr);*/
 }
 
 h4{
@@ -378,4 +380,35 @@ h4{
 
 .contenido-comentario{
     background-color: white;
+}
+
+#submit-comentario{
+    padding: 2%;
+    background-color: beige;
+}
+
+.fecha{
+    text-align: center;
+}
+
+input{
+    display: block;
+    margin-bottom: 5px;
+}
+
+.ancho{
+    width: 60%;
+}
+
+#comentario-nuevo{
+    width: 80%;
+    height: 80px;
+}
+
+#comentarios{
+    border: solid 2px green;
+    display: grid;
+    grid-template-rows: auto;
+    grid-auto-columns: 100%;
+    gap: 3px;
 }
