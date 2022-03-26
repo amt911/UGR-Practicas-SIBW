@@ -354,7 +354,7 @@ table, td, tr{
 }
 
 #boton-comentario{
-    width: 60px;
+    width: min(60px, 20vw);
     background-color: transparent;
     border: 0;
 }
