@@ -19,34 +19,65 @@ function expandirComentarios(){
 
 botonComentarios.addEventListener("click", expandirComentarios);
 
+//Version family-friendly
+//var palabrotas=["palabrota", "palabro", "imbecil", "terrible", "caca", "patada", "blanco", "pruebame"]
 
+//Version realista
+var palabrotas=["payas", "put", "marran", "cojon", "poll", "imbecil", "gilipollas", "cabron"]
 
-//Ahora viene la parte de meter el comentario :(
+var barraComentarioNuevo=document.getElementById("comentario-nuevo");
+barraComentarioNuevo.addEventListener("keypress", comprobarPalabrotas)
 
-//var comentarios=document.getElementById("comentarios")
+function comprobarPalabrotas(){
+    var texto=document.getElementById("comentario-nuevo");
+
+    palabrotas.forEach(
+        (aux)=>{
+            
+            texto.value=texto.value.replace(new RegExp(aux, "ig"), "*".repeat(aux.length))
+        }
+    )
+    //alert(texto)
+    //texto.replace()
+}
+
+function comprobarEmail(email){
+    if(email!="" && email.search(/^([0-9a-z]+(\.)?)+@{1}([0-9a-z]+\.)+[0-9a-z]+$/i)!=-1)
+        return true
+
+    else
+        return false
+}
+
 
 function subirComentario(){
     var nombre=document.getElementById("nombre")
     var email=document.getElementById("email")
-    //var comentario=document.getElementById("comentario-nuevo")
-    var comentarios=document.getElementsByClassName("comentario-container")
-    var fecha=new Date();
+    var comentario=document.getElementById("comentario-nuevo")
+    var comentariosContainer=document.getElementById("comentarios")
+    var fecha=new Date()
 
-    alert(comentarios.length)
-
-    //ARREGLAR ESTO QUE CREO QUE ESTA MAL
-    comentarios[0].insertAdjacentHTML("afterbegin", 
-    "<div class=\"comentario-container\">"+
-        "<div class=\"nombre-comentario\">"+
-            "<h4>"+nombre.value+"</h4>"+
-        "</div>"+
-        "<div class=\"fecha\">"+
-            fecha.getDay()+"-"+fecha.getMonth()+"-"+fecha.getFullYear()+" "+fecha.getHours()+":"+fecha.getMinutes()+
-        "</div>"+
-        "<div class=\"contenido-comentario\">"+
-            nombre.value+
-        "</div>"+
-    "</div>")
+    if(nombre.value!="" && comprobarEmail(email.value) && comentario!=""){
+        //Se inserta el nuevo comentario justo debajo del contenedor con todos los comentarios haciendo que sea el primero de todos
+        comentariosContainer.insertAdjacentHTML("afterbegin", 
+        "<div class=\"comentario-container\">"+
+            "<div class=\"nombre-comentario\">"+
+                "<h4>"+nombre.value+"</h4>"+
+            "</div>"+
+            "<div class=\"comentario-email\">"+
+            email.value+
+            "</div>"+
+            "<div class=\"fecha\">"+
+                fecha.getDay()+"-"+fecha.getMonth()+"-"+fecha.getFullYear()+" "+fecha.getHours()+":"+fecha.getMinutes()+
+            "</div>"+
+            "<div class=\"contenido-comentario\">"+
+                comentario.value+
+            "</div>"+
+        "</div>")
+    }
+    else{
+        alert("Uno o varios campos están vacíos o son inválidos")
+    }
 }
 
 
