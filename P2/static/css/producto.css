@@ -323,38 +323,33 @@ table, td, tr{
 
 
 #desplegable{
-    border: solid 1px red;
-    /*position: fixed;*/
+    /*border: solid 1px red;*/
     position:fixed;
     height: 100%;
     top: 0;
-    left: 0;
-
+    left: calc(-1 * min(700px, 65vw));
     display: flex;
-
     z-index: 10;
-    /*max-height: 100%;*/
+    transition: 0.5s;
 }
 
 #comentarios-submit-container{
-    /*width: 65vw;*/
-    width: 0;
-    max-width: 500px;
-    border: solid 1px black;
+    width: min(700px, 65vw);
+    /*border: solid 1px black;*/
     display: grid;
-    grid-template-rows: auto;
-    grid-auto-columns: minmax(0, 1fr);
-    gap: 3px;
-    overflow: hidden;
-    transition: 0.5s;
-    background-color: transparent;
-    overflow-y: auto;
+    grid-auto-rows: max-content;
+    grid-auto-columns: 100%;
+    gap: 0.7vh;
+    overflow: hidden auto;
+    /*background-color: rgba(255, 255, 255, 0.5);*/
+    background-color: beige;
+    border-radius: 0.5vh;
+    box-shadow: 0;
 }
 
 
 #menu-boton{
-    /*transform: rotate(-90deg);*/
-    border: solid 1px orange;
+    /*border: solid 1px orange;*/
     align-self: center;
 }
 
@@ -365,11 +360,14 @@ table, td, tr{
 }
 
 .comentario-container{
-    border: solid 2px red;
-    background-color: #eaead2;
+    border-radius: 0.5vh;
+    border: solid 1px black;    
+    margin: 10px;
+    background-color: #d9ead2;
     display: grid;
-    grid-template-rows: auto;
-    grid-auto-columns: 100%;/*minmax(0, 1fr);*/
+    grid-template-rows: repeat(4, fit-content);
+    grid-auto-columns: 100%;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
 }
 
 h4{
@@ -379,7 +377,11 @@ h4{
 }
 
 .contenido-comentario{
+    padding: 20px;
+    text-align: justify;
     background-color: white;
+    border-bottom-left-radius: 0.5vh;
+    border-bottom-right-radius: 0.5vh;
 }
 
 #submit-comentario{
@@ -389,6 +391,7 @@ h4{
 
 .fecha{
     text-align: center;
+    margin-bottom: 20px;
 }
 
 input{
@@ -404,14 +407,6 @@ input{
     width: 90%;
     height: 100px;
     resize: none;
-}
-
-#comentarios{
-    border: solid 2px green;
-    display: grid;
-    grid-template-rows: auto;
-    grid-auto-columns: 100%;
-    gap: 3px;
 }
 
 .comentario-email{
