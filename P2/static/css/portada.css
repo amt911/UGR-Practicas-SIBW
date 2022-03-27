@@ -105,18 +105,21 @@ ul {
     border-bottom: solid 2px #00897b;   /*Se le pone un border debajo para separarlo del pie*/
 }
 
+main{
+    text-align: center; /*Para alinear el texto horizontalmente*/
+    background-color: beige; /*Color de fondo del main, no de los articulos*/    
+    border-radius: 0.5vh; /*Para que los bordes sean redondeados*/    
+}
+
 /*Seccion del main con los objetos*/
-main {
+.main-portada {
     display: grid;  /*Se usan grids para los articulos*/
     gap: 2vh;   /*Se les deja entre las celdas un espacio*/
     grid-template-columns: repeat(3, 1fr); /*Obliga a que los articulos no se salgan del main*/
     grid-auto-rows: 370px; /*Sirve para evitar poner el mismo numero 3 veces para las filas existentes*/
-    text-align: center; /*Para alinear el texto horizontalmente*/
     align-content: center;  /*Para alinear el contenido verticalmente*/
     justify-content: center;    /*Para alinear el contenido horizontalmente*/
     padding: 3%;    /*Sirve para dejar espacio en los 4 lados entre el main y los articulos*/
-    background-color: beige; /*Color de fondo del main, no de los articulos*/
-    border-radius: 0.5vh; /*Para que los bordes sean redondeados*/
 }
 
 /*Reglas para los contenedores de los propios articulos*/
