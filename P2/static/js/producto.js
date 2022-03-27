@@ -133,10 +133,10 @@ function subirComentario(){
 function comprobarPalabrotas(){
     var texto=document.getElementById("comentario-nuevo");
     //Version family-friendly
-    //var palabrotas=["palabrota", "palabro", "imbecil", "terrible", "caca", "patada", "blanco", "pruebame"]
+    //var palabrotas=["palabrota", "imbecil", "terrible", "caca", "patada", "blanco", "pruebame", "fiesta", "malo", "corcholis"]
 
     //Version realista
-    var palabrotas=["palabrota", "imbecil", "terrible", "caca", "patada", "blanco", "pruebame", "fiesta", "malo", "corcholis"]
+    var palabrotas=["caca", "cerdo", "payaso", "puta", "marrano", "cojon", "polla", "imbecil", "gilipollas", "cabron"]
 
     palabrotas.forEach(
         (aux)=>{       
