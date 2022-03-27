@@ -3,6 +3,7 @@ var botonComentarios=document.getElementById("boton-comentario");
 var zonaTextoNuevoComentario=document.getElementById("comentario-nuevo");
 var abrir=true
 var botonSubmit=document.getElementById("submit")
+var seccionSoloComentarios=document.getElementById("desplegable");
 
 //Funciones
 //Funcion que comprueba mediante expresiones regulares si el formato del email es correcto y si no esta vacio
@@ -78,7 +79,8 @@ function obtenerFechaActual(){
 //Funcion que se llama desde un evento para expandir la seccion de comentarios
 function expandirComentarios(){
     var desplegableComentarios=document.getElementById("comentarios-submit-container");
-    var seccionSoloComentarios=document.getElementById("desplegable");
+
+    seccionSoloComentarios.style.transition="0.5s"  //Se activa la animacion (hay que poner esto debido a que la animacion salta si se cambia el zoom)
 
     if(abrir){
         seccionSoloComentarios.style.left="0"
@@ -147,3 +149,6 @@ function comprobarPalabrotas(){
 botonSubmit.addEventListener("click", subirComentario);
 botonComentarios.addEventListener("click", expandirComentarios);
 zonaTextoNuevoComentario.addEventListener("keypress", comprobarPalabrotas)
+seccionSoloComentarios.addEventListener("transitionend", ()=>{
+    seccionSoloComentarios.style.transition="0s";
+})

@@ -330,7 +330,7 @@ table, td, tr{
     left: calc(-1 * min(700px, 65vw));
     display: flex;
     z-index: 10;
-    transition: 0.5s;
+    /*transition: 0.5s;*/
 }
 
 #comentarios-submit-container{
