@@ -8,7 +8,7 @@ var seccionSoloComentarios=document.getElementById("desplegable");
 //Funciones
 //Funcion que comprueba mediante expresiones regulares si el formato del email es correcto y si no esta vacio
 function comprobarEmail(email){
-    if(email!="" && email.search(/^([0-9a-z]+(\.)?)+@{1}([0-9a-z]+\.)+[0-9a-z]+$/i)!=-1)
+    if(email!="" && email.search(/^([0-9a-z\.\_]+)+@{1}([0-9a-z]+\.)+[0-9a-z]+$/i)!=-1)
         return true
 
     else
