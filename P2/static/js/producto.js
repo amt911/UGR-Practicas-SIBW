@@ -76,10 +76,20 @@ function obtenerFechaActual(){
 function subirOpacidad(elemento){
     var contador=0
     var incremento=0.02;
+    var contadorTam=0.8;
+    var incrementoTam=0.005;
+
     var interval=setInterval(()=>{
-        if(contador<1){
-            contador+=incremento
-            elemento.style.opacity=contador
+        if(contador<1 || contadorTam<1){
+            if(contador<1){
+                contador+=incremento
+                elemento.style.opacity=contador
+            }
+            
+            if(contadorTam<1){
+                contadorTam+=incrementoTam
+                elemento.style.transform="scale("+contadorTam+")"
+            }
         }
         else{
             clearInterval(interval)
@@ -133,7 +143,8 @@ function subirComentario(){
                             "<div class=\"contenido-comentario\">"+
                                 comentarioNuevo.value+
                             "</div>";
-                            
+
+        template.style.transform="scale(0.8)"
         template.style.opacity="0"
         document.getElementById("comentarios-submit-container").insertBefore(template, comentarios[0])
         subirOpacidad(template)
