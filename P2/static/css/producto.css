@@ -171,7 +171,7 @@ table, td, tr{
     /*background-color: rgba(255, 255, 255, 0.5);*/
     background-color: beige;
     border-radius: 0.5vh;
-    box-shadow: 0;
+    /*box-shadow: 0;*/
 }
 
 
@@ -192,7 +192,7 @@ table, td, tr{
     margin: 10px;
     background-color: #d9ead2;
     display: grid;
-    grid-template-rows: repeat(4, fit-content);
+    grid-template-rows: repeat(4, auto);
     grid-auto-columns: 100%;
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
 }

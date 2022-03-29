@@ -73,7 +73,20 @@ function obtenerFechaActual(){
     return fecha.getDate()+" de "+mesString+" del "+fecha.getFullYear()+", "+fecha.getHours()+":"+fecha.getMinutes()
 }
 
+function subirOpacidad(elemento){
+    var contador=0
+    var incremento=0.02;
+    var interval=setInterval(()=>{
+        if(contador<1){
+            contador+=incremento
+            elemento.style.opacity=contador
+        }
+        else{
+            clearInterval(interval)
+        }
 
+    }, 24)
+}
 
 //Funciones que se llaman desde eventos
 //Funcion que se llama desde un evento para expandir la seccion de comentarios
@@ -99,27 +112,31 @@ function subirComentario(){
     var nombre=document.getElementById("nombre")
     var email=document.getElementById("email")
     var comentarioNuevo=document.getElementById("comentario-nuevo")
-    var zonaAInsertar=document.getElementById("submit-comentario")
+    var comentarios=document.getElementsByClassName("comentario-container")
+    var template=comentarios[0].cloneNode(true)
+
 
     if(nombre.value!="" && comprobarEmail(email.value) && comentarioNuevo.value!=""){
         //Se inserta el nuevo comentario justo debajo del final de la caja para crear uno.
         //Aunque tambien se puede hacer cogiendo todos los comentarios y poniendolo antes de todos en el array
-
-        zonaAInsertar.insertAdjacentHTML("afterend", 
-        "<div class=\"comentario-container\">"+
-            "<div class=\"nombre-comentario\">"+
-                "<h4>"+nombre.value+"</h4>"+
-            "</div>"+
-            "<div class=\"comentario-email\">"+
-            email.value+
-            "</div>"+
-            "<div class=\"fecha\">"+
-            obtenerFechaActual()+
-            "</div>"+
-            "<div class=\"contenido-comentario\">"+
-                comentarioNuevo.value+
-            "</div>"+
-        "</div>")
+        comprobarPalabrotas();
+        //IMPORTANTE: InnerHTML sirve para modificar solo lo de dentro del div en este caso, outerHTML es para todo el DOM
+        template.innerHTML="<div class=\"nombre-comentario\">"+
+                                "<h4>"+nombre.value+"</h4>"+
+                            "</div>"+
+                            "<div class=\"comentario-email\">"+
+                                email.value+
+                            "</div>"+
+                            "<div class=\"fecha\">"+
+                                obtenerFechaActual()+
+                            "</div>"+
+                            "<div class=\"contenido-comentario\">"+
+                                comentarioNuevo.value+
+                            "</div>";
+                            
+        template.style.opacity="0"
+        document.getElementById("comentarios-submit-container").insertBefore(template, comentarios[0])
+        subirOpacidad(template)
 
         nombre.value=email.value=comentarioNuevo.value=""
 
