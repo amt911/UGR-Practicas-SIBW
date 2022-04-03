@@ -7,9 +7,14 @@ No se usan ya que se han eliminado elementos con display: none;
 /*Reglas generales para el body*/
 body {
     font-family: 'Times New Roman', Times, serif;
+    width: fit-content; /*Para que el body se ajuste al contenido*/
+    word-wrap: break-word;  /*Para partir las palabras*/
     border: solid 1px black;    /*Borde*/
-    border-radius: 0;
-    box-shadow: 0 0 0 #000000;
+}
+
+/*Regla para todos los address*/
+address{
+    font-style: normal; /*Se le quita la cursiva*/
 }
 
 /*Regla para todos los a*/
@@ -18,15 +23,25 @@ a {
     text-decoration: none;  /*Sin subrayado*/
 }
 
+/*Regla para todas las imagenes*/
+img {
+    /*Estas dos primeras reglas son necesarias para que la ultima funcione*/
+    width: 100%;
+    height: 100%;
+    object-fit: contain;    /*Para evitar overflow en la imagen*/
+}
+
 /*Regla para todos los h1*/
 h1 {
-    color: black;
+    text-align: center;
+    font-size: 300%;
 }
 
 /*Reglas para la cabecera de la pagina*/
 #cabecera {
-    background-color: white;
+    display: grid;
     grid-template-columns: 75% 25%; /*Se pide cambiar el logo de sitio, lo voy a poner a la derecha, por lo que cambio los porcentajes*/
+    grid-auto-rows: 200px;
     border: solid 1px black;
 }
 
@@ -35,6 +50,8 @@ h1 {
     /*Se le dice que se ponga en la posicion [1,1]*/
     grid-column: 1;
     grid-row: 1;
+    display: grid;
+    grid-template-rows: 60% 40%;
 }
 
 /*Reglas para el logo (no tiene identificador por lo que usa first_child*/
@@ -52,20 +69,26 @@ h1 {
 /*Regla para el div con el main y el aside*/
 #contenido {
     display: grid;
-    grid-template-columns: 100%;
-    background-color: white;
-    border-bottom: 0;
+    /*grid-template-columns: 100%;*/
+}
+
+/*Reglas para todos los footers*/
+footer {
+    text-align: center;
 }
 
 /*Reglas para la primera parte del pie de pagina*/
 #div-pie {
     border: solid 1px black;
+    display: grid;
+    grid-template-columns: repeat(5, 20%);
 }
 
 
 /*Reglas para la parte del footer con la informacion de copyright (que no tiene ninguno)*/
 #div-copyright {
     border: solid 1px black;
+    font-weight: 700;
 }
 
 
@@ -77,13 +100,10 @@ aside {
 /*Reglas para el recuadro principal donde se muestra el objeto*/
 main{
     border: solid 1px black;
-    background-color: white;
-    border-radius: 0;
-}
-
-/*Reglas para el recuadro principal donde se muestra el objeto*/
-.main-producto{
-    padding: 1%;    /*Se pone un poco de padding para que el contenido no este pegado*/
+    /*grid-auto-rows: auto;*/
+    text-align: center;
+    /*justify-content: center;*/
+    padding: 1%;
 }
 
 /*Contenedor donde se recoge la informacion del producto*/
