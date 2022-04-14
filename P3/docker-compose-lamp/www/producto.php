@@ -1,25 +1,26 @@
 <?php
     // Inicializamos el motor de plantillas
     require_once "/usr/local/lib/php/vendor/autoload.php";
+    include("modelo.php");
+
     $loader = new \Twig\Loader\FilesystemLoader('templates');
-    $twig = new \Twig\Environment($loader);/*, [
-    'cache' => '/directorioCache',
-    ]);*/
-    // Averiguo que la página que se quiere mostrar es la del producto 12,
-    // porque hemos accedido desde http://localhost/?producto=12
-    // Busco en la base de datos la información del producto y lo
-    // almaceno en las variables $productoNombre, $productoMarca, $productoFoto...
+    $twig = new \Twig\Environment($loader);
+
+    $mysqli=conectarDB();
+
+    $res=getProducto(1, $mysqli);
+
     echo $twig->render('producto.twig', [
-        "Titulo" => "NVIDIA RTX 3090",
+        "Titulo" => $res["Titulo pagina"],
         "Opcion1" => "Inicio",
         "Opcion2" => "Imprimir",
         "Opcion3" => "Login",
-        "NombreProducto" => "NVIDIA GeForce RTX 3090 Founders Edition",
-        "Fabricante" => "NVIDIA",
-        "Precio" => "2200.-",
-        "img1" => "3090.png",
-        "img2" => "3090_2.png",
-        "img1Comentario" => "Frontal",
-        "img2Comentario" => "Vista General",
+        "NombreProducto" => $res["Nombre"],
+        "Fabricante" => $res["Fabricante"],
+        "Precio" => $res["Precio"],
+        "img1" => $res["img1"],
+        "img2" => $res["img2"],
+        "img1Comentario" => $res["img1 Comentario"],
+        "img2Comentario" => $res["img2 Comentario"],
     ]);
 ?>
