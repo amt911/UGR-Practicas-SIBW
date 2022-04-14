@@ -45,7 +45,7 @@ function getAllProducts($mysqli){
     $res=$mysqli->query("SELECT * FROM Productos");
 
     //if($res->num_rows > 0){
-    $row=$res->fetch_assoc();
+    $row=$res->fetch_all(MYSQLI_ASSOC);
     //}
 
     return $row;    

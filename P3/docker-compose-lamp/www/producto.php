@@ -8,7 +8,7 @@
 
     $mysqli=conectarDB();
 
-    $varBORRAR=9;
+    $varBORRAR=1;
 
     $fabricaRes=getFabrica($varBORRAR, $mysqli);
 
