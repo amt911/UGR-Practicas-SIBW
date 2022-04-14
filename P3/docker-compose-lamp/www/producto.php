@@ -20,7 +20,7 @@
         "NombreProducto" => $res["Nombre"],
         "Fabricante" => $res["Fabricante"],
         "Precio" => $res["Precio"],
-        "Ddescripcion" => $res["Descripción"],
+        "Descripcion" => $res["Descripción"],
         "img1" => $res["img1"],
         "img2" => $res["img2"],
         "img1Comentario" => $res["img1 Comentario"],
