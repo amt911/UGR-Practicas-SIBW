@@ -1,0 +1,131 @@
+{% extends "plantilla.twig" %}
+
+{% block archivosAdicionales %}
+<link rel="stylesheet" href="static/css/producto.css"> <!--Se enlaza al directorio css-->
+{% endblock %}
+
+{% block desplegables %}
+    <div id="desplegable">
+        <div id="comentarios-submit-container">
+            <div id="submit-comentario">
+                <h4>Escribir comentario</h4>
+                <form>
+                    <label>Nombre:
+                        <input type="text" class="ancho" id="nombre" placeholder="Nombre Apellidos">
+                    </label>
+
+                    <label>Correo: 
+                        <input type="email" class="ancho" id="email" placeholder="ejemplo@ejemplo.org">
+                    </label>
+
+                    <label>Comentario: 
+                        <textarea id="comentario-nuevo" placeholder="Introduzca el comentario"></textarea>
+                    </label>
+                    
+                    <button type="button" id="submit">Submit</button>
+                    <!--<input type="submit" id="submit">-->
+                </form>
+            </div>
+
+            <div class="comentario-container">
+                <div class="nombre-comentario">
+                    <h4>Antonio Robles</h4>
+                </div>
+                <div class="comentario-email">
+                    example@fakemail.com
+                </div>
+                <div class="fecha">
+                    12 de mayo del 2021, 13:37
+                </div>
+                <div class="contenido-comentario">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam erat metus, pellentesque non libero ac, aliquam auctor odio. Pellentesque eu efficitur est. Donec facilisis tellus ac tellus fermentum, tempor tempor nulla posuere. Duis a arcu non orci suscipit eleifend. Maecenas malesuada sem et leo iaculis dapibus. Duis arcu erat, tempor vitae fermentum ac, convallis vel mauris. Sed lacinia quam nec rhoncus tempus.                    
+                </div>
+            </div>
+            <div class="comentario-container">
+                <div class="nombre-comentario">
+                    <h4>Juan Hidalgo</h4>
+                </div>
+                <div class="comentario-email">
+                    ejemplo@fakemail2.com
+                </div>                    
+                <div class="fecha">
+                    6 de abril del 2020, 10:22
+                </div>
+                <div class="contenido-comentario">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam erat metus, pellentesque non libero ac, aliquam auctor odio. Pellentesque eu efficitur est. Donec facilisis tellus ac tellus fermentum, tempor tempor nulla posuere. Duis a arcu non orci suscipit eleifend. Maecenas malesuada sem et leo iaculis dapibus. Duis arcu erat, tempor vitae fermentum ac, convallis vel mauris. Sed lacinia quam nec rhoncus tempus.                    
+                </div>
+            </div>
+        </div>
+        <div id="menu-boton">
+            <form>
+                <button type="button" id="boton-comentario"><img class="foto opaco-on-hover" src="static/image/comment.png"/></button>
+            </form>
+        </div>
+    </div> 
+{% endblock %}
+
+{% block main %}
+<div class="main-producto"> <!--En esta seccion se incluye la informacion relacionada con el producto-->
+    
+    <!--En esta seccion se encuentra la informacion del producto (titulo, fabricante, precio)-->
+    <article id="info">
+        <section id="titulo"> <!--Nombre del producto-->
+            <h2>{{ NombreProducto }}</h2>
+        </section>
+        <section> <!--Fabricante del producto-->
+            <h3>{{ Fabricante }}</h3>
+        </section>
+        <section id="precio"> <!--Precio del producto-->
+            {{ Precio }} €
+        </section>
+
+        <section id="boton-comprar">
+            Comprar
+        </section>
+    </article>
+
+    <!--Esta seccion contiene un contenedor con dos imagenes del prodcuto y en cada una un pie de foto-->
+    <div id="contenedor-imgs">
+        <div class="img-producto"> <!--Primera imagen-->
+            <div>
+                <img src="static/image/{{ img1 }}"/>
+            </div>
+            <div class="centrado-vertical"> <!--Texto al pie de pagina-->
+                {{ img1Comentario }}
+            </div>
+        </div>
+
+        <div class="img-producto"> <!--Segunda imagen-->
+            <div>
+                <img src="static/image/{{ img2 }}"/>
+            </div>
+            <div class="centrado-vertical"> <!--Texto al pie de pagina-->
+                {{ img2Comentario }}
+            </div>
+        </div>
+    </div>
+
+    {% block descripcion %}    
+    <p class="justificado"> <!--Contiene una breve descripcion del articulo, ademas de estar justificado el texto-->
+        La GeForce RTX™ 3090
+    </p>
+    {% endblock %}
+
+    <p class="negrita">Redes sociales de {{ Fabricante }}</p>
+    <div id="producto-rrss-container">
+        {% block RRSS %}        
+        {% endblock %}
+
+        <div>
+            <a href="producto_imprimir.html">
+                <img src="static/image/print.png" alt="Imprimir pagina"/>
+            </a>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+{% block archivosJS %}
+<script src="static/js/producto.js"></script>
+{% endblock %}

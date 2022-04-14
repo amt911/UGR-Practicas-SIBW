@@ -6,7 +6,8 @@
         {{ Titulo }}
     </title> <!--Título que aparece en la pestaña de la página-->
     <link rel="stylesheet" href="static/css/portada.css"> <!--Se enlaza al directorio css-->
-    {{ archivosAdicionales }}
+    {% block archivosAdicionales %}
+    {% endblock %}
     <link rel="shortcut icon" href="static/image/patata_logo.png"> <!--Logotipo que aparece en la pestaña-->
 
     <!--Uso las fuentes de Google-->
@@ -38,8 +39,10 @@
     </header>
 
     <div id="contenido">    <!--Seccion que incluye el main (objetos) y el aside (auxiliar)-->
-        {% block main %}
-        {% endblock %}
+        <main>
+            {% block main %}
+            {% endblock %}
+        </main>
 
         <aside> <!--Seccion auxiliar con diverso contenido-->
             
@@ -133,3 +136,5 @@
 </body>
 
 </html>
+{% block archivosJS %}
+{% endblock %}

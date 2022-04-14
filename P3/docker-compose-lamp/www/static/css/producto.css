@@ -107,7 +107,7 @@ table, td, tr{
 }
 
 /*Reglas para los botones que llevan a las redes sociales de NVIDIA*/
-#nvidia-rrss-container{
+#producto-rrss-container{
     display: grid;
     grid-template-columns: repeat(4, minmax(auto, 60px));
     gap: 25px;
@@ -118,12 +118,12 @@ table, td, tr{
 }
 
 /*Esta regla permite una transicion a la animacion mas suave*/
-#nvidia-rrss-container > *{
+#producto-rrss-container > *{
     transition: all 0.3s;
 }
 
 /*Reglas que se aplican a todos los hijos del container con las rrss de NVIDIA*/
-#nvidia-rrss-container > *:hover{
+#producto-rrss-container > *:hover{
     transform: scale(1.25);
 }
 
