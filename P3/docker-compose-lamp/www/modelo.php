@@ -11,7 +11,17 @@ function conectarDB(){
 }
 //Hace falta dejarlo mejor para evitar inyeccion
 function getProducto($id, $mysqli){
-    $res=$mysqli->query("SELECT * FROM Productos WHERE ID=". $id);
+    $res=$mysqli->query("SELECT * FROM Productos WHERE ID=$id");
+
+    //if($res->num_rows > 0){
+    $row=$res->fetch_assoc();
+    //}
+
+    return $row;
+}
+
+function getFabricante($id, $mysqli){
+    $res=$mysqli->query("SELECT * FROM Fabricante WHERE Nombre='$id'");
 
     //if($res->num_rows > 0){
     $row=$res->fetch_assoc();

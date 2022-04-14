@@ -110,10 +110,70 @@
     </p>
     {% endblock %}
 
+    {% if Tabla is defined %}
+    <table>
+        {% for i in Tabla|split('\n') %}
+            {% if i|length > 0 %}            
+                <tr>
+                {% for j in i|split('|') %}
+                    <td>
+                        {{ j }}
+                    </td>
+                {% endfor %}
+                </tr>
+            {% endif %}
+        {% endfor %}
+    </table>    
+    {% endif %}
+    
+
+
+
+    {% if  PaginaOficial is defined %}    
+    <p>
+        Enlace a la página oficial de {{ Fabricante }}: <a href="{{ PaginaOficial }}">link</a>
+    </p>
+    {% endif %}
+    
+
+    {% if Video is defined %}
+    <p class="negrita">Vídeo relacionado:</p>
+
+    <div id="video-container"> <!--Container donde se inserta un video (lo hago asi por temas de escalado)-->
+        <div>
+            <iframe id="video" src="{{ Video }}" title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+        </div>
+    </div>
+    {% endif %}
+    
+
     <p class="negrita">Redes sociales de {{ Fabricante }}</p>
     <div id="producto-rrss-container">
-        {% block RRSS %}        
-        {% endblock %}
+    {% if Facebook is defined %}
+    <div>
+        <a href="https://www.facebook.com/{{ Facebook }}/">
+            <img src="static/image/facebook.png" alt="{{ Fabricante }} FaceBook Cuenta"/>
+        </a>
+    </div>
+    {% endif %}
+    
+    {% if Twitter is defined %}    
+    <div>
+        <a href="https://twitter.com/{{ Twitter }}">
+            <img src="static/image/twitter.png" alt="{{ Fabricante }} Twitter Cuenta"/>
+        </a>
+    </div>            
+    {% endif %}
+    
+    {% if YouTube is defined %}
+    <div>
+        <a href="https://www.youtube.com/c/{{ YouTube }}">
+            <img src="static/image/youtube.png" alt="{{ Fabricante }} YouTube Cuenta"/>
+        </a>
+    </div>
+    {% endif %}
 
         <div>
             <a href="producto_imprimir.html">
