@@ -1,100 +1,19 @@
 {% extends "plantilla-producto.twig" %}
 
 
-{% block descripcion %}    
-            <p class="justificado"> <!--Contiene una breve descripcion del articulo, ademas de estar justificado el texto-->
-                La GeForce RTX™ 3090 es una gran GPU endiablada (BFGPU) con rendimiento de la clase TITAN. Con
-                tecnología de Ampere, la arquitectura RTX de la segunda generación de NVIDIA, duplica el trazado de
-                rayos y el rendimiento de IA con núcleos con trazado de rayos (RT) y núcleos Tensor mejorados y nuevos
-                multiprocesadores de streaming mejorados. Además, presenta unos asombrosos 24 GB de memoria G6X, todo para ofrecer la experiencia de gaming
-                definitiva.
-            </p>
+{% block descripcion %} 
+{% if Ddescripcion is defined %}
+{% for aux in Ddescripcion|split('\n') %}
+    <p class="justificado">
+        {{aux}}
+    </p>
+{% endfor %}   
 
-            <p class="justificado">
-                Las unidades son muy limitadas debido a los problemas actuales del mundo, por lo que el precio ha subido
-                mucho. Además sólo se puede comprar una por usuario y en caso de detectar cualquier uso de bots o scripts para automatizar la compra masiva se le baneará del sitio web.
-            </p>
+{% else %}
+    error
 
-            <p class="justificado">
-                Nota: Hay que tener en cuenta que es una tarjeta gráfica muy larga por lo que es necesario medir el
-                interior de la caja disponible antes de proceder a comprarla (sólo es una recomendación).
-            </p>
+{% endif %}
 
-            <p class="justificado">
-                Nota 2: Esta tarjeta es la versión LHR (Low Hash Rate) por lo que tiene bloqueada la mitad de la potencia para minar criptomonedas. Si la va a usar para minar, esta no es su tarjeta.
-            </p>
-
-
-            <table> <!--Tabla con las especificaciones del producto-->
-                <tr> <!--Fila de la tabla y dentro contiene dos columnas-->
-                    <td>
-                        Núcleos CUDA
-                    </td>
-
-                    <td>
-                        10496
-                    </td>
-                </tr>
-
-                <tr> <!--Fila de la tabla y dentro contiene dos columnas-->
-                    <td>
-                        Frecuencia normal(GHz)
-                    </td>
-                    <td>
-                        1.40
-                    </td>
-                </tr>
-
-                <tr> <!--Fila de la tabla y dentro contiene dos columnas-->
-                    <td>
-                        Frecuencia acelerada (GHz)
-                    </td>
-                    <td>
-                        1.70
-                    </td>
-                </tr>
-
-                <tr> <!--Fila de la tabla y dentro contiene dos columnas-->
-                    <td>
-                        Tipo de memoria
-                    </td>
-                    <td>
-                        GDDR6X
-                    </td>
-                </tr>
-
-                <tr> <!--Fila de la tabla y dentro contiene dos columnas-->
-                    <td>
-                        Cantidad de memoria
-                    </td>
-                    <td>
-                        24GB
-                    </td>
-                </tr>
-
-                <tr> <!--Fila de la tabla y dentro contiene dos columnas-->
-                    <td>
-                        Ancho de interfaz de memoria
-                    </td>
-                    <td>
-                        384-bit
-                    </td>
-                </tr>
-            </table>
-
-            <p>
-                Enlace a la página oficial de NVIDIA: <a href="https://www.nvidia.com/es-es/geforce/graphics-cards/30-series/rtx-3090/">link</a>
-            </p>
-
-            <p class="negrita">Vídeo relacionado:</p>
-
-            <div id="video-container"> <!--Container donde se inserta un video (lo hago asi por temas de escalado)-->
-                <div>
-                    <iframe id="video" src="https://www.youtube.com/embed/BCcN8kCD90A" title="YouTube video player"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
-                </div>
-            </div>
 {% endblock %}
 
 {% block RRSS %}
