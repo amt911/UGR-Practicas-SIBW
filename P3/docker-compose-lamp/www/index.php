@@ -9,5 +9,10 @@
     // porque hemos accedido desde http://localhost/?producto=12
     // Busco en la base de datos la información del producto y lo
     // almaceno en las variables $productoNombre, $productoMarca, $productoFoto...
-    echo $twig->render('producto.html', []);
+    echo $twig->render('portada.twig', [
+        "Titulo" => "e-tienda. Más que comercio",
+        "Opcion1" => "Inicio",
+        "Opcion2" => "FAQ",
+        "Opcion3" => "Login"
+    ]);
 ?>
