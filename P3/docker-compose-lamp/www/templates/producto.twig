@@ -105,7 +105,7 @@
         </div>
     </div>
 
-    {% if Descripcion is defined %}
+    {% if Descripcion is not null %}
     {% for aux in Descripcion|split('\n') %}
         <p class="justificado">
             {{aux}}
@@ -113,7 +113,7 @@
     {% endfor %}   
     {% endif %}
 
-    {% if Tabla is defined %}
+    {% if Tabla is not null %}
     <table>
         {% for i in Tabla|split('\n') %}
             {% if i|length > 0 %}            
@@ -132,14 +132,14 @@
 
 
 
-    {% if  PaginaOficial is defined %}    
+    {% if  PaginaOficial is not null %}    
     <p>
         Enlace a la página oficial de {{ Fabricante }}: <a href="{{ PaginaOficial }}">link</a>
     </p>
     {% endif %}
     
 
-    {% if Video is defined %}
+    {% if Video is not null %}
     <p class="negrita">Vídeo relacionado:</p>
 
     <div id="video-container"> <!--Container donde se inserta un video (lo hago asi por temas de escalado)-->
@@ -154,7 +154,7 @@
 
     <p class="negrita">Redes sociales de {{ Fabricante }}</p>
     <div id="producto-rrss-container">
-    {% if Facebook is defined %}
+    {% if Facebook is not null %}
     <div>
         <a href="https://www.facebook.com/{{ Facebook }}/">
             <img src="static/image/facebook.png" alt="{{ Fabricante }} FaceBook Cuenta"/>
@@ -162,7 +162,7 @@
     </div>
     {% endif %}
     
-    {% if Twitter is defined %}    
+    {% if Twitter is not null %}    
     <div>
         <a href="https://twitter.com/{{ Twitter }}">
             <img src="static/image/twitter.png" alt="{{ Fabricante }} Twitter Cuenta"/>
@@ -170,7 +170,7 @@
     </div>            
     {% endif %}
     
-    {% if YouTube is defined %}
+    {% if YouTube is not null %}
     <div>
         <a href="https://www.youtube.com/c/{{ YouTube }}">
             <img src="static/image/youtube.png" alt="{{ Fabricante }} YouTube Cuenta"/>
