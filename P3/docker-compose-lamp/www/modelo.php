@@ -20,6 +20,17 @@ function getProducto($id, $mysqli){
     return $row;
 }
 
+
+function getFabrica($id, $mysqli){
+    $res=$mysqli->query("SELECT * FROM Fabrica WHERE ID='$id'");
+
+    //if($res->num_rows > 0){
+    $row=$res->fetch_assoc();
+    //}
+
+    return $row;    
+}
+
 function getFabricante($id, $mysqli){
     $res=$mysqli->query("SELECT * FROM Fabricante WHERE Nombre='$id'");
 
@@ -28,6 +39,16 @@ function getFabricante($id, $mysqli){
     //}
 
     return $row;
+}
+
+function getAllProducts($mysqli){
+    $res=$mysqli->query("SELECT * FROM Productos");
+
+    //if($res->num_rows > 0){
+    $row=$res->fetch_assoc();
+    //}
+
+    return $row;    
 }
 
 ?>

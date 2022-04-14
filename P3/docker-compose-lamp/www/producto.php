@@ -8,9 +8,16 @@
 
     $mysqli=conectarDB();
 
-    $res=getProducto(1, $mysqli);
+    $varBORRAR=9;
 
-    $fabricanteRes=getFabricante("NVIDIA", $mysqli);
+    $fabricaRes=getFabrica($varBORRAR, $mysqli);
+
+    $res=getProducto($varBORRAR, $mysqli);
+    $fabricanteRes=getFabricante($fabricaRes["Nombre"], $mysqli);
+
+    $productos=getAllProducts($mysqli);
+    //Hace falta meter un getFabrica para obtener la tabla intermedia
+
 
     echo $twig->render('producto.twig', [
         "Titulo" => $res["Titulo pagina"],
@@ -18,7 +25,7 @@
         "Opcion2" => "Imprimir",
         "Opcion3" => "Login",
         "NombreProducto" => $res["Nombre"],
-        "Fabricante" => $res["Fabricante"],
+        "Fabricante" => $fabricanteRes["Nombre"],
         "Precio" => $res["Precio"],
         "Descripcion" => $res["Descripción"],
         "img1" => $res["img1"],
@@ -30,6 +37,7 @@
         "Twitter" => $fabricanteRes["Twitter"],
         "YouTube" => $fabricanteRes["YouTube"],
         "Facebook" => $fabricanteRes["Facebook"],
-        "Tabla" => $res["Tabla"]
+        "Tabla" => $res["Tabla"],
+        "Productos" => $productos
     ]);
 ?>
