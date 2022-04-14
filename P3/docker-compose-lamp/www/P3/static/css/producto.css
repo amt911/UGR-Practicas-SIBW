@@ -1,0 +1,256 @@
+/*Reglas para el recuadro principal donde se muestra el objeto*/
+.main-producto{
+    padding: 1%;    /*Se pone un poco de padding para que el contenido no este pegado*/
+}
+
+/*Contenedor donde se recoge la informacion del producto*/
+#info{
+    background-color: #c0ca33;  /*Se pone un color de fondo*/
+    float:left; /*Se pone para que se pegue a la izquierda*/
+    width: 55%; /*Se le pone un ancho concreto (relativo)*/
+    display: grid;  /*Se usan grids*/
+    grid-template-rows: repeat(4, auto); /*Se dispone en tres filas*/
+    margin-bottom:10px; /*Se pone un poco de margen abajo para el texto*/
+    border-radius: 0.5vh;   /*Se redondean las esquinas*/
+    box-shadow: 0 7px 7px rgba(0,0,0,0.3); /*Se le pone una sombra*/
+}
+
+/*Reglas para el contenedor del titulo*/
+#titulo{
+    /*Estas dos reglas sirven para redondear las esquinas de arriba*/
+    border-top-left-radius: 0.5vh;
+    border-top-right-radius: 0.5vh;
+    background-color: #cddc39;  /*Color de fondo*/
+}
+
+/*Reglas para el contenedor del precio*/
+#precio{
+    /*Estas dos reglas sirven para redondear las esquinas inferiores*/
+    border-bottom-left-radius: 0.5vh;
+    border-bottom-right-radius: 0.5vh;
+}
+
+/*Reglas para el contenedor de imagenes*/
+#contenedor-imgs{
+    float: right;   /*Para que se pegue a la derecha*/
+    display: grid;  /*Se usan grids*/
+    grid-template-rows: repeat(2, 1fr); /*Se le dan a las filas el mismo espacio (por eso las unidades fr)*/
+    width: 35%; /*Se pone el contenedor a un 35% del ancho del main*/
+    max-width: 200px;   /*Se pone el maximo a 200px para que no se desborde del main ni se descuadre*/
+    gap: 3%;    /*Se le pone un poco de distancia entre imagenes*/
+    padding: 3%;    /*Se le pone dentro padding para que no esten pegados al div*/
+}
+
+/*Regla para el div que contiene la imagen en si y el pie de foto*/
+.img-producto{
+    background-color: white;    /*Fondo blanco*/
+    border-radius: 0.5vh;   /*Esquinas redondeadas*/
+    box-shadow: 0 3px 7px rgba(0,0,0,0.3);  /*Sombras*/
+    transition: all 0.3s;   /*Animacion*/
+    display: grid;  /*Se usan grids*/
+    grid-template-rows: auto auto;  /*Se disponen de dos filas, una para la imagen y otra para el pie*/
+}
+
+/*Regla que se activa cuando se pasa por encima el cursor*/
+.img-producto:hover{
+    box-shadow: 0 8px 9px rgba(0, 0, 0, 0.3);   /*Sombras*/
+    transform: scale(1.09); /*Se escala un poco la imagen*/
+}
+
+/*Reglas para centrar verticalmente un div*/
+.centrado-vertical{
+    align-self: center;
+}
+
+/*Regla que se usa para el texto de la descripcion del producto.*/
+.justificado{
+    clear: left;    /*Necesario para que el texto no aparezca entre el titulo del producto y las imagenes*/
+    word-wrap: normal;  /*Se le quita el romper las palabras por estetica*/
+    text-align: justify;    /*Se justifica el texto*/
+}
+
+/*Regla que se aplica a todos los h2*/
+h2{
+    font-size: 140%;
+    margin: 0;
+}
+
+/*Regla que se aplica a todos los h3*/
+h3{
+    font-size: 100%;
+    margin: 0;
+}
+
+/*Regla que se aplica a todas las tablas, td y tr*/
+table, td, tr{
+    border: solid 1px black;    /*Bordes negros*/
+    border-collapse: collapse; /*Para que se junten los bordes*/
+    
+    /*Estos dos comandos son para centrar la tabla*/
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*Contenedor donde se pone otro con el video (es por cuestion de evitar overflow)*/
+#video-container{
+    display: grid;
+    grid-template-columns: minmax(auto, 600px);
+    /*grid-auto-rows: auto;*/
+    justify-content: center;
+}
+
+/*Contenedor con el video*/
+#video{
+    border: 0;
+    aspect-ratio: 16/9; /*Sirve para mantener la relacion de aspecto con independencia del tamaño*/
+    width:100%;     /*Obligatorio para que el video se estire hasta llegar a 600px (se mantiene la relacion de aspecto)*/
+}
+
+/*Reglas para los botones que llevan a las redes sociales de NVIDIA*/
+#nvidia-rrss-container{
+    display: grid;
+    grid-template-columns: repeat(4, minmax(auto, 60px));
+    gap: 25px;
+    justify-content: center;
+    width: fit-content;
+    margin: 0 auto;         /*Para que se centre en el main*/
+    padding: 2px;
+}
+
+/*Esta regla permite una transicion a la animacion mas suave*/
+#nvidia-rrss-container > *{
+    transition: all 0.3s;
+}
+
+/*Reglas que se aplican a todos los hijos del container con las rrss de NVIDIA*/
+#nvidia-rrss-container > *:hover{
+    transform: scale(1.25);
+}
+
+/*Regla para poner las fuentes en negrita*/
+.negrita{
+    font-weight: 700;
+}
+
+/*Regla para el boton de comprar*/
+#boton-comprar{
+    padding-top: 3px;
+    padding-bottom: 3px;
+    font-weight: 700;
+    color: white;
+    border-radius: 0.5vh;
+    background-color: green;
+    transition: all 0.3s;
+}
+
+#boton-comprar:hover{
+    transform: scale(1.05);
+}
+
+
+/*Clases e IDs de la P2*/
+#desplegable{
+    /*border: solid 1px red;*/
+    position:fixed;
+    height: 100%;
+    top: 0;
+    left: calc(-1 * min(700px, 65vw));
+    display: flex;
+    z-index: 10;
+    /*transition: 0.5s;*/
+}
+
+#comentarios-submit-container{
+    width: min(700px, 65vw);
+    /*border: solid 1px black;*/
+    display: grid;
+    grid-auto-rows: max-content;
+    grid-auto-columns: 100%;
+    gap: 0.7vh;
+    overflow: hidden auto;
+    /*background-color: rgba(255, 255, 255, 0.5);*/
+    background-color: beige;
+    border-radius: 0.5vh;
+    /*box-shadow: 0;*/
+}
+
+
+#menu-boton{
+    /*border: solid 1px orange;*/
+    align-self: center;
+}
+
+#boton-comentario{
+    width: min(60px, 20vw);
+    background-color: transparent;
+    border: 0;
+}
+
+.comentario-container{
+    border-radius: 0.5vh;
+    border: solid 1px black;    
+    margin: 10px;
+    background-color: #d9ead2;
+    display: grid;
+    grid-template-rows: repeat(4, auto);
+    grid-auto-columns: 100%;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+}
+
+h4{
+    text-align: center;
+    font-size: 120%;
+    margin: 2%;
+}
+
+.contenido-comentario{
+    padding: 20px;
+    text-align: justify;
+    background-color: white;
+    border-bottom-left-radius: 0.5vh;
+    border-bottom-right-radius: 0.5vh;
+}
+
+#submit-comentario{
+    padding: 2%;
+    background-color: beige;
+}
+
+.fecha{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+input{
+    display: block;
+    margin-bottom: 5px;
+}
+
+
+button{
+    cursor: pointer;
+}
+
+.ancho{
+    width: 60%;
+}
+
+#comentario-nuevo{
+    width: 90%;
+    height: 100px;
+    resize: none;
+}
+
+.comentario-email{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.opaco-on-hover{
+    opacity: 0.7;
+    transition: 0.2s;
+}
+
+.opaco-on-hover:hover{
+    opacity: 1;
+}
