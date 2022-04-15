@@ -5,8 +5,8 @@
     <title>
         {{ Titulo }}
     </title> <!--Título que aparece en la pestaña de la página-->
-    <link rel="stylesheet" href="static/css/portada.css"> <!--Se enlaza al directorio css-->
     {% block archivosAdicionales %}
+    <link rel="stylesheet" href="static/css/portada.css"> <!--Se enlaza al directorio css-->
     {% endblock %}
     <link rel="shortcut icon" href="static/image/patata_logo.png"> <!--Logotipo que aparece en la pestaña-->
 
@@ -21,7 +21,7 @@
     {% endblock %}
     <header id="cabecera">  <!--Cabecera de la página donde se encuentra el logo, nombre y menú-->
         <div>
-            <a href="portada.html"> <!--Logotipo que si se pulsa enlaza al inicio-->
+            <a href="index.php"> <!--Logotipo que si se pulsa enlaza al inicio-->
                 <img src="static/image/patata_logo.png" alt="Logo"/>  <!--Logotipo-->
             </a>
         </div>
@@ -31,9 +31,9 @@
             </div>
 
             <nav id="navegacion">   <!--Seccion de navegacion con los menus-->
-                <div class="menu"><a class="no-underline" href="portada.html">{{ Opcion1 }}</a></div>
-                <div class="menu"><a class="no-underline" href="portada.html">{{ Opcion2 }}</a></div>
-                <div class="menu"><a class="no-underline" href="portada.html">{{ Opcion3 }}</a></div>
+                <div class="menu"><a class="no-underline" href="index.php">{{ Opcion1 }}</a></div>
+                <div class="menu"><a class="no-underline" href="index.php">{{ Opcion2 }}</a></div>
+                <div class="menu"><a class="no-underline" href="index.php">{{ Opcion3 }}</a></div>
             </nav>
         </div>
     </header>
@@ -123,11 +123,11 @@
 
     <footer>    <!--Esta seccion contiene el pie de pagina-->
         <div id="div-pie">
-            <div><a class="no-underline" href="portada.html">Contacto</a></div>
-            <div><a class="no-underline" href="portada.html">Privacidad</a></div>
-            <div><a class="no-underline" href="portada.html">Términos</a></div>
-            <div><a class="no-underline" href="portada.html">Sugerencias</a></div>
-            <div><a class="no-underline" href="portada.html">Política de cookies</a></div>
+            <div><a class="no-underline" href="index.php">Contacto</a></div>
+            <div><a class="no-underline" href="index.php">Privacidad</a></div>
+            <div><a class="no-underline" href="index.php">Términos</a></div>
+            <div><a class="no-underline" href="index.php">Sugerencias</a></div>
+            <div><a class="no-underline" href="index.php">Política de cookies</a></div>
         </div>
         <div id="div-copyright">
             <address>© 2022 - Andrés Merlo Trujillo</address>

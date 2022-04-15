@@ -194,7 +194,7 @@ table, td, tr{
 }
 
 /*Reglas para los botones que llevan a las redes sociales de NVIDIA*/
-#nvidia-rrss-container{
+#producto-rrss-container{
     display: none;
 }
 
@@ -215,4 +215,8 @@ table, td, tr{
     padding-top: 3px;
     padding-bottom: 3px;
     font-weight: 700;
+}
+
+#desplegable{
+    display: none;
 }

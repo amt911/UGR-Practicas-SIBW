@@ -51,4 +51,15 @@ function getAllProducts($mysqli){
     return $row;    
 }
 
+
+function getNumFilasProducto($mysqli){
+    $query=$mysqli->query("SELECT COUNT(*) FROM Productos");
+
+    //if($res->num_rows > 0){
+    $res=$query->fetch_assoc();
+    //}
+
+    return $res["COUNT(*)"];
+}
+
 ?>

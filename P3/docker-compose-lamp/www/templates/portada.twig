@@ -5,19 +5,19 @@
         {% for aux in Productos %}
             <article class="box">
                 <section>
-                    <a href="producto.html">
+                    <a href="producto.php?p={{ aux["ID"] }}">
                         <img src="static/image/{{ aux["img1"] }}"/>
                     </a>
                 </section>
 
                 <section class="fondo-azul-claro">
-                    <a class="no-underline" href="producto.html">                                        
+                    <a class="no-underline" href="producto.php?p={{ aux["ID"] }}">                                        
                         {{ aux["Nombre"] }}
                     </a>
                 </section>
 
                 <section class="div-precio fondo-azul-claro">
-                    <a class="no-underline" href="producto.html">
+                    <a class="no-underline" href="producto.php?p={{ aux["ID"] }}">
                         {{ aux["Precio"]|number_format(2, ",", "") }}€
                     </a>                    
                 </section>
