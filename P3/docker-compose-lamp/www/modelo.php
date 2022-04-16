@@ -62,4 +62,12 @@ function getNumFilasProducto($mysqli){
     return $res["COUNT(*)"];
 }
 
+function getComentarios($mysqli, $id){
+    $query=$mysqli->query("SELECT * FROM Comentario,Tiene WHERE ID_Producto=1 AND ID=$id;");
+
+    $res=$query->fetch_all(MYSQLI_ASSOC);
+
+    return $res;
+}
+
 ?>

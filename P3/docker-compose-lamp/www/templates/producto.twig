@@ -28,6 +28,7 @@
                 </form>
             </div>
 
+            {% if Comentarios is not null %}            
             <div class="comentario-container">
                 <div class="nombre-comentario">
                     <h4>Antonio Robles</h4>
@@ -42,20 +43,11 @@
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam erat metus, pellentesque non libero ac, aliquam auctor odio. Pellentesque eu efficitur est. Donec facilisis tellus ac tellus fermentum, tempor tempor nulla posuere. Duis a arcu non orci suscipit eleifend. Maecenas malesuada sem et leo iaculis dapibus. Duis arcu erat, tempor vitae fermentum ac, convallis vel mauris. Sed lacinia quam nec rhoncus tempus.                    
                 </div>
             </div>
-            <div class="comentario-container">
-                <div class="nombre-comentario">
-                    <h4>Juan Hidalgo</h4>
-                </div>
-                <div class="comentario-email">
-                    ejemplo@fakemail2.com
-                </div>                    
-                <div class="fecha">
-                    6 de abril del 2020, 10:22
-                </div>
-                <div class="contenido-comentario">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam erat metus, pellentesque non libero ac, aliquam auctor odio. Pellentesque eu efficitur est. Donec facilisis tellus ac tellus fermentum, tempor tempor nulla posuere. Duis a arcu non orci suscipit eleifend. Maecenas malesuada sem et leo iaculis dapibus. Duis arcu erat, tempor vitae fermentum ac, convallis vel mauris. Sed lacinia quam nec rhoncus tempus.                    
-                </div>
-            </div>
+
+            {% else %}
+                <p class="centrado">¡Sé el primero en comentar!</p>
+            {% endif %}
+            
         </div>
         <div id="menu-boton">
             <form>
