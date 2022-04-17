@@ -164,7 +164,7 @@ function comprobarPalabrotas(){
     //var palabrotas=["palabrota", "imbecil", "terrible", "caca", "patada", "blanco", "pruebame", "fiesta", "malo", "corcholis"]
 
     //Version realista
-    var palabrotas=["caca", "cerdo", "payaso", "puta", "marrano", "cojon", "polla", "imbecil", "gilipollas", "cabron"]
+    //var palabrotas=["caca", "cerdo", "payaso", "puta", "marrano", "cojon", "polla", "imbecil", "gilipollas", "cabron"]
 
     palabrotas.forEach(
         (aux)=>{       

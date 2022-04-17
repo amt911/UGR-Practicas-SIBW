@@ -17,7 +17,7 @@
     $fabricaRes=getFabrica($id, $mysqli);
     $res=getProducto($id, $mysqli);
     $fabricanteRes=getFabricante($fabricaRes["Nombre"], $mysqli);
-
+    $comentarios=getAllComments($mysqli, $id);
     //Hace falta meter un getFabrica para obtener la tabla intermedia
 
     if(isset($_GET["imprimir"]) and $_GET["imprimir"]==1)
@@ -34,10 +34,8 @@
         "Fabricante" => $fabricanteRes["Nombre"],
         "Precio" => $res["Precio"],
         "Descripcion" => $res["Descripción"],
-        "img1" => $res["img1"],
-        "img2" => $res["img2"],
-        "img1Comentario" => $res["img1 Comentario"],
-        "img2Comentario" => $res["img2 Comentario"],
+        "Images" => $res["Imagenes"],
+        //"imgComentarios" => array_combine($res["Imagenes"], $res["Comentarios"],
         "PaginaOficial" => $fabricanteRes["Pagina oficial"],
         "Video" => $res["Video"],
         "Twitter" => $fabricanteRes["Twitter"],
@@ -45,6 +43,7 @@
         "Facebook" => $fabricanteRes["Facebook"],
         "Tabla" => $res["Tabla"],
         "ID" => $id,
-        "Imprimir" => $_GET["imprimir"]
+        "Imprimir" => $_GET["imprimir"],
+        "Comentarios" => $comentarios,
     ]);
 ?>

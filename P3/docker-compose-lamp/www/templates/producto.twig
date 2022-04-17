@@ -29,20 +29,23 @@
             </div>
 
             {% if Comentarios is not null %}            
-            <div class="comentario-container">
-                <div class="nombre-comentario">
-                    <h4>Antonio Robles</h4>
+
+            {% for aux in Comentarios %}
+                <div class="comentario-container">
+                    <div class="nombre-comentario">
+                        <h4>{{ aux["Nombre"] }}</h4>
+                    </div>
+                    <div class="comentario-email">
+                        {{ aux["Correo"] }}
+                    </div>
+                    <div class="fecha">
+                        {{ aux["Fecha"] }}<!--12 de mayo del 2021, 13:37-->
+                    </div>
+                    <div class="contenido-comentario">
+                        {{ aux["Texto"] }}
+                    </div>
                 </div>
-                <div class="comentario-email">
-                    example@fakemail.com
-                </div>
-                <div class="fecha">
-                    12 de mayo del 2021, 13:37
-                </div>
-                <div class="contenido-comentario">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam erat metus, pellentesque non libero ac, aliquam auctor odio. Pellentesque eu efficitur est. Donec facilisis tellus ac tellus fermentum, tempor tempor nulla posuere. Duis a arcu non orci suscipit eleifend. Maecenas malesuada sem et leo iaculis dapibus. Duis arcu erat, tempor vitae fermentum ac, convallis vel mauris. Sed lacinia quam nec rhoncus tempus.                    
-                </div>
-            </div>
+            {% endfor %}
 
             {% else %}
                 <p class="centrado">¡Sé el primero en comentar!</p>
@@ -77,25 +80,23 @@
         </section>
     </article>
 
-    <!--Esta seccion contiene un contenedor con dos imagenes del prodcuto y en cada una un pie de foto-->
     <div id="contenedor-imgs">
-        <div class="img-producto"> <!--Primera imagen-->
-            <div>
-                <img src="static/image/{{ img1 }}"/>
-            </div>
-            <div class="centrado-vertical"> <!--Texto al pie de pagina-->
-                {{ img1Comentario }}
-            </div>
-        </div>
+        {% if Images is not null %}
+            {% for aux in Images|split('\n') %}
+                {% if loop.index0 is even %}
+                <div class="img-producto">
+                    <div>
+                        <img src="static/image/{{ aux }}"/>
+                    </div>                  
 
-        <div class="img-producto"> <!--Segunda imagen-->
-            <div>
-                <img src="static/image/{{ img2 }}"/>
-            </div>
-            <div class="centrado-vertical"> <!--Texto al pie de pagina-->
-                {{ img2Comentario }}
-            </div>
-        </div>
+                {% else %}
+                    <div class="centrado-vertical"> <!--Texto al pie de pagina-->
+                        {{ aux }}
+                    </div>                          
+                </div>
+                {% endif %}                             
+            {% endfor %}
+        {% endif %}
     </div>
 
     {% if Descripcion is not null %}

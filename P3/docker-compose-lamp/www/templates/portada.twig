@@ -6,7 +6,7 @@
             <article class="box">
                 <section>
                     <a href="producto.php?p={{ aux["ID"] }}">
-                        <img src="static/image/{{ aux["img1"] }}"/>
+                        <img src="static/image/{{ (aux["Imagenes"]|split('\n'))[0] }}"/>
                     </a>
                 </section>
 

@@ -42,8 +42,7 @@ function getFabricante($id, $mysqli){
 }
 
 function getAllProducts($mysqli){
-    $res=$mysqli->query("SELECT * FROM Productos");
-
+    $res=$mysqli->query("SELECT * FROM Productos;");
     //if($res->num_rows > 0){
     $row=$res->fetch_all(MYSQLI_ASSOC);
     //}
@@ -51,6 +50,13 @@ function getAllProducts($mysqli){
     return $row;    
 }
 
+function getAllComments($mysqli, $idProducto){
+    $query=$mysqli->query("SELECT * FROM Tiene,Comentario WHERE ID=ID_Comentario AND ID_Producto=$idProducto;");
+
+    $res=$query->fetch_all(MYSQLI_ASSOC);
+
+    return $res;
+}
 
 function getNumFilasProducto($mysqli){
     $query=$mysqli->query("SELECT COUNT(*) FROM Productos");
