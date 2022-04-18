@@ -34,27 +34,36 @@
 #contenedor-imgs{
     float: right;   /*Para que se pegue a la derecha*/
     display: grid;  /*Se usan grids*/
-    grid-template-rows: repeat(2, 1fr); /*Se le dan a las filas el mismo espacio (por eso las unidades fr)*/
-    width: 35%; /*Se pone el contenedor a un 35% del ancho del main*/
-    max-width: 200px;   /*Se pone el maximo a 200px para que no se desborde del main ni se descuadre*/
+    grid-template-rows: 1fr; /*Se le dan a las filas el mismo espacio (por eso las unidades fr)*/
+    width: 32%; /*Se pone el contenedor a un 35% del ancho del main*/
+    max-width: 250px;   /*Se pone el maximo a 200px para que no se desborde del main ni se descuadre*/
     gap: 3%;    /*Se le pone un poco de distancia entre imagenes*/
-    padding: 3%;    /*Se le pone dentro padding para que no esten pegados al div*/
+    padding: 4%;
+    position: relative;
+    background-color: white;
+    border-radius: 0.5vh;   /*Esquinas redondeadas*/
+    box-shadow: 0 3px 7px rgba(0,0,0,0.3);  /*Sombras*/    
+    margin-left: 10px;
 }
 
 /*Regla para el div que contiene la imagen en si y el pie de foto*/
 .img-producto{
-    background-color: white;    /*Fondo blanco*/
-    border-radius: 0.5vh;   /*Esquinas redondeadas*/
-    box-shadow: 0 3px 7px rgba(0,0,0,0.3);  /*Sombras*/
-    transition: all 0.3s;   /*Animacion*/
-    display: grid;  /*Se usan grids*/
-    grid-template-rows: auto auto;  /*Se disponen de dos filas, una para la imagen y otra para el pie*/
+    display: none;  /*Se usan grids*/
+    grid-template-rows: auto;  /*Se disponen de dos filas, una para la imagen y otra para el pie*/
+    grid-auto-columns: minmax(0, 1fr);
+    aspect-ratio: 1 / 1;
+    border: solid 1px red;
 }
 
-/*Regla que se activa cuando se pasa por encima el cursor*/
-.img-producto:hover{
-    box-shadow: 0 8px 9px rgba(0, 0, 0, 0.3);   /*Sombras*/
-    transform: scale(1.09); /*Se escala un poco la imagen*/
+.img-producto > div:first-child{
+    align-self: center;
+}
+
+
+.img-producto > div:nth-child(2){
+    word-wrap: break-word;
+    align-self: center;
+    border: solid 1px red;
 }
 
 /*Reglas para centrar verticalmente un div*/
@@ -257,4 +266,33 @@ button{
 
 .centrado{
     text-align: center;
+}
+
+#anterior, #siguiente{
+    user-select: none;
+    cursor: pointer;
+    position: absolute;
+    display: flex;
+    font-size: 50px;
+    transition: all 0.3s;
+    height: 100%;
+    align-items: center;
+}
+
+#anterior{
+    border-bottom-left-radius: 0.5vh;
+    border-top-left-radius: 0.5vh;
+}
+
+#siguiente{
+    border-bottom-right-radius: 0.5vh;
+    border-top-right-radius: 0.5vh;
+}
+
+#anterior:hover, #siguiente:hover{
+    background-color: rgba(166, 166, 166, 0.5);
+}
+
+#siguiente{
+    right: 0%;
 }

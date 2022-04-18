@@ -4,6 +4,13 @@ var zonaTextoNuevoComentario=document.getElementById("comentario-nuevo");
 var abrir=true
 var botonSubmit=document.getElementById("submit")
 var seccionSoloComentarios=document.getElementById("desplegable");
+var carruselAnterior=document.getElementById("anterior");
+var carruselSiguiente=document.getElementById("siguiente");
+var imagenes=document.getElementsByClassName("img-producto");
+
+
+//???MEJORABLE
+imagenes[0].style.display="grid";
 
 //Funciones
 //Funcion que comprueba mediante expresiones regulares si el formato del email es correcto y si no esta vacio
@@ -157,6 +164,62 @@ function subirComentario(){
     }
 }
 
+
+
+var intervaloImagen;
+function animacionImagen(izquierda){
+    clearInterval(intervaloImagen);
+
+    /*
+    if(!izquierda){
+        if(contador-1<0)
+            imagenes[imagenes.length-1].style.opacity=1;
+        else
+        imagenes[contador-1].style.opacity=1;
+    }
+    else
+        imagenes[(contador+1)%imagenes.length].style.opacity=1;
+*/
+    var contadorAnimacion=0;
+    var incremento=0.02;
+
+    intervaloImagen=setInterval(()=>{
+        if(contadorAnimacion<1){
+            contadorAnimacion+=incremento;
+            imagenes[contador].style.opacity=contadorAnimacion;
+        }
+        else{
+            clearInterval(intervaloImagen)
+        }
+
+    }, 24)
+}
+
+var contador=0;
+function accionarCarruselDerecha(){
+    imagenes[contador].style.display="none";
+    contador=(contador+1)%imagenes.length;
+
+    imagenes[contador].style.opacity="0";
+    imagenes[contador].style.display="grid";
+
+    animacionImagen(false);
+}
+
+function accionarCarruselIzquierda(){
+    imagenes[contador].style.display="none";
+
+    if(contador==0)
+        contador=imagenes.length-1;
+    else
+        contador--;
+
+    imagenes[contador].style.opacity="0";
+    imagenes[contador].style.display="grid";
+
+    animacionImagen(true);
+}
+
 //Funcion que comprueba palabrotas de un array de strings
 function comprobarPalabrotas(){
     var texto=document.getElementById("comentario-nuevo");
@@ -180,3 +243,5 @@ zonaTextoNuevoComentario.addEventListener("keypress", comprobarPalabrotas)
 seccionSoloComentarios.addEventListener("transitionend", ()=>{
     seccionSoloComentarios.style.transition="0s";
 })
+carruselAnterior.addEventListener("click", accionarCarruselIzquierda);
+carruselSiguiente.addEventListener("click", accionarCarruselDerecha);

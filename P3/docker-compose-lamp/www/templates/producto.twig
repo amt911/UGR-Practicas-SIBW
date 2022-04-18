@@ -80,25 +80,25 @@
         </section>
     </article>
 
-    <div id="contenedor-imgs">
-        {% if Images != false %}
+    {% if Images != false %}
+        <div id="contenedor-imgs">
             {% for img,comment in Images %}
-                {% set res = comment %}
-                {% if comment == '*' %}
-                    {% set res = '' %}
-                {% endif %}   
-
                 <div class="img-producto">
                     <div>
                         <img src="static/image/{{ img }}"/>
                     </div>
-                    <div class="centrado-vertical"> <!--Texto al pie de pagina-->
-                        {{ res }}
-                    </div>                          
+
+                    {% if comment != "*" %}
+                        <div class="centrado-vertical"> <!--Texto al pie de pagina-->
+                            {{ comment }}
+                        </div>                          
+                    {% endif %}                       
                 </div>            
             {% endfor %}
-        {% endif %}
-    </div>
+        <a id="anterior">&#10096</a>
+        <a id="siguiente">&#10097</a>
+        </div>
+    {% endif %}
 
     {% if Descripcion is not null %}
         {% for aux in Descripcion|split('\n') %}

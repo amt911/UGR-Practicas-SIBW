@@ -30,7 +30,20 @@
 
     //echo json_encode($palabrotas);
 
-    echo $res["Comentarios"];
+    //echo $res["Comentarios"];
+
+    function get_imagenes_comentarios($i, $c){
+        $res=false;
+        $array_i=preg_split("/\R/", $i);
+        $array_c=preg_split("/\R/", $c);
+
+        if(count($array_c)==count($array_i)){
+            $res=array_combine($array_i, $array_c);
+        }
+
+        return $res;
+    }
+
     echo $twig->render($pagina, [
         "Titulo" => $res["Titulo pagina"],
         "Opcion1" => "Inicio",
@@ -40,7 +53,7 @@
         "Fabricante" => $fabricanteRes["Nombre"],
         "Precio" => $res["Precio"],
         "Descripcion" => $res["Descripción"],
-        "Images" => array_combine(preg_split("/\R/", $res["Imagenes"]), preg_split("/\R/", $res["Comentarios"])),
+        "Images" => get_imagenes_comentarios($res["Imagenes"], $res["Comentarios"]),
         //"imgComentarios" => array_combine($res["Imagenes"], $res["Comentarios"],
         "PaginaOficial" => $fabricanteRes["Pagina oficial"],
         "Video" => $res["Video"],
