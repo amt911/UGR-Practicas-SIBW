@@ -25,6 +25,12 @@
     else
     $pagina="producto.twig";
     
+
+    $palabrotas=getPalabrotas($mysqli);
+
+    //echo json_encode($palabrotas);
+
+    echo $res["Comentarios"];
     echo $twig->render($pagina, [
         "Titulo" => $res["Titulo pagina"],
         "Opcion1" => "Inicio",
@@ -34,7 +40,7 @@
         "Fabricante" => $fabricanteRes["Nombre"],
         "Precio" => $res["Precio"],
         "Descripcion" => $res["Descripción"],
-        "Images" => $res["Imagenes"],
+        "Images" => array_combine(preg_split("/\R/", $res["Imagenes"]), preg_split("/\R/", $res["Comentarios"])),
         //"imgComentarios" => array_combine($res["Imagenes"], $res["Comentarios"],
         "PaginaOficial" => $fabricanteRes["Pagina oficial"],
         "Video" => $res["Video"],

@@ -81,20 +81,21 @@
     </article>
 
     <div id="contenedor-imgs">
-        {% if Images is not null %}
-            {% for aux in Images|split('\n') %}
-                {% if loop.index0 is even %}
+        {% if Images != false %}
+            {% for img,comment in Images %}
+                {% set res = comment %}
+                {% if comment == '*' %}
+                    {% set res = '' %}
+                {% endif %}   
+
                 <div class="img-producto">
                     <div>
-                        <img src="static/image/{{ aux }}"/>
-                    </div>                  
-
-                {% else %}
+                        <img src="static/image/{{ img }}"/>
+                    </div>
                     <div class="centrado-vertical"> <!--Texto al pie de pagina-->
-                        {{ aux }}
+                        {{ res }}
                     </div>                          
-                </div>
-                {% endif %}                             
+                </div>            
             {% endfor %}
         {% endif %}
     </div>

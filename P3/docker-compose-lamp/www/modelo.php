@@ -76,4 +76,20 @@ function getComentarios($mysqli, $id){
     return $res;
 }
 
+function getPalabrotas($mysqli){
+    $query=$mysqli->query("SELECT * FROM Palabrota;");
+
+    $resultado=$query->fetch_all();
+
+    $salida=array();
+
+    foreach ($resultado as $i) {
+        foreach($i as $j){
+            $salida[]=$j;
+        }
+    }
+
+    return $salida;
+}
+
 ?>
