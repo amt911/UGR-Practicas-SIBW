@@ -9,8 +9,9 @@ var carruselSiguiente=document.getElementById("siguiente");
 var imagenes=document.getElementsByClassName("img-producto");
 
 
-//???MEJORABLE
+//???MEJORABLE PREGUNTAR AL PROFESOR
 imagenes[0].style.display="grid";
+cargarPalabrotas();
 
 //Funciones
 //Funcion que comprueba mediante expresiones regulares si el formato del email es correcto y si no esta vacio
@@ -167,19 +168,9 @@ function subirComentario(){
 
 
 var intervaloImagen;
-function animacionImagen(izquierda){
+function animacionImagen(){
     clearInterval(intervaloImagen);
 
-    /*
-    if(!izquierda){
-        if(contador-1<0)
-            imagenes[imagenes.length-1].style.opacity=1;
-        else
-        imagenes[contador-1].style.opacity=1;
-    }
-    else
-        imagenes[(contador+1)%imagenes.length].style.opacity=1;
-*/
     var contadorAnimacion=0;
     var incremento=0.02;
 
@@ -220,14 +211,25 @@ function accionarCarruselIzquierda(){
     animacionImagen(true);
 }
 
+
+//COMPROBAR QUE PUEDE ESTAR MAL, PREGUNTAR AL PROFESOR
+//https://www.w3schools.com/js/js_ajax_http.asp
+var palabrotas=[];
+function cargarPalabrotas(){
+    alert("He entrado")
+    const peticion = new XMLHttpRequest();
+    peticion.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          palabrotas=JSON.parse(this.responseText);
+      }
+    };
+    peticion.open("GET", "palabrotas.php");
+    peticion.send();    
+}
+
 //Funcion que comprueba palabrotas de un array de strings
 function comprobarPalabrotas(){
     var texto=document.getElementById("comentario-nuevo");
-    //Version family-friendly
-    //var palabrotas=["palabrota", "imbecil", "terrible", "caca", "patada", "blanco", "pruebame", "fiesta", "malo", "corcholis"]
-
-    //Version realista
-    //var palabrotas=["caca", "cerdo", "payaso", "puta", "marrano", "cojon", "polla", "imbecil", "gilipollas", "cabron"]
 
     palabrotas.forEach(
         (aux)=>{       

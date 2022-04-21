@@ -81,23 +81,44 @@
     </article>
 
     {% if Images != false %}
-        <div id="contenedor-imgs">
-            {% for img,comment in Images %}
-                <div class="img-producto">
-                    <div>
-                        <img src="static/image/{{ img }}"/>
-                    </div>
+            <div id="contenedor-imgs">
+            {% if Imprimir == 1 %}            
+                {% set contador = 0 %}
+                {% for img,comment in Images %}
+                    {% if contador < 2 %}
+                        <div class="img-producto">
+                            <div>
+                                <img src="static/image/{{ img }}"/>
+                            </div>
 
-                    {% if comment != "*" %}
-                        <div class="centrado-vertical"> <!--Texto al pie de pagina-->
-                            {{ comment }}
-                        </div>                          
-                    {% endif %}                       
-                </div>            
-            {% endfor %}
-        <a id="anterior">&#10096</a>
-        <a id="siguiente">&#10097</a>
-        </div>
+                            {% if comment != "*" %}
+                                <div class="centrado-vertical"> <!--Texto al pie de pagina-->
+                                    {{ comment }}
+                                </div>                          
+                            {% endif %}                       
+                        </div>            
+                    {% endif %}
+                    
+                    {% set contador = contador + 1 %}
+                {% endfor %}
+            {% else %}
+                {% for img,comment in Images %}
+                    <div class="img-producto">
+                        <div>
+                            <img src="static/image/{{ img }}"/>
+                        </div>
+
+                        {% if comment != "*" %}
+                            <div class="centrado-vertical"> <!--Texto al pie de pagina-->
+                                {{ comment }}
+                            </div>                          
+                        {% endif %}                       
+                    </div>            
+                {% endfor %}
+            <a id="anterior">&#10096</a>
+            <a id="siguiente">&#10097</a>
+            {% endif %}
+            </div>
     {% endif %}
 
     {% if Descripcion is not null %}

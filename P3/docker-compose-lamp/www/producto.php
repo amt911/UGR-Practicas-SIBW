@@ -6,18 +6,19 @@
     $loader = new \Twig\Loader\FilesystemLoader('templates');
     $twig = new \Twig\Environment($loader);
 
-    $mysqli=conectarDB();
+    //$mysqli=conectarDB();
+    $con=new Modelo();
 
-    $numFilas=getNumFilasProducto($mysqli);
+    $numFilas=$con->getNumFilasProducto();
     $id=1;
 
     if(isset($_GET["p"]) and $_GET["p"]<=$numFilas)
         $id=$_GET["p"];
 
-    $fabricaRes=getFabrica($id, $mysqli);
-    $res=getProducto($id, $mysqli);
-    $fabricanteRes=getFabricante($fabricaRes["Nombre"], $mysqli);
-    $comentarios=getAllComments($mysqli, $id);
+    $fabricaRes=$con->getFabrica($id);
+    $res=$con->getProducto($id);
+    $fabricanteRes=$con->getFabricante($fabricaRes["Nombre"]);
+    $comentarios=$con->getAllComments($id);
     //Hace falta meter un getFabrica para obtener la tabla intermedia
 
     if(isset($_GET["imprimir"]) and $_GET["imprimir"]==1)
@@ -26,7 +27,7 @@
     $pagina="producto.twig";
     
 
-    $palabrotas=getPalabrotas($mysqli);
+    $palabrotas=$con->getPalabrotas();
 
     //echo json_encode($palabrotas);
 
@@ -45,6 +46,7 @@
     }
 
     echo $twig->render($pagina, [
+        "Imprimir" => $_GET["imprimir"],
         "Titulo" => $res["Titulo pagina"],
         "Opcion1" => "Inicio",
         "Opcion2" => "Imprimir",

@@ -35,10 +35,9 @@
     float: right;   /*Para que se pegue a la derecha*/
     display: grid;  /*Se usan grids*/
     grid-template-rows: 1fr; /*Se le dan a las filas el mismo espacio (por eso las unidades fr)*/
-    width: 32%; /*Se pone el contenedor a un 35% del ancho del main*/
+    width: 32%; 
     max-width: 250px;   /*Se pone el maximo a 200px para que no se desborde del main ni se descuadre*/
-    gap: 3%;    /*Se le pone un poco de distancia entre imagenes*/
-    padding: 4%;
+    padding: 1% 4% 1% 4%;
     position: relative;
     background-color: white;
     border-radius: 0.5vh;   /*Esquinas redondeadas*/
@@ -62,7 +61,7 @@
 
 .img-producto > div:nth-child(2){
     word-wrap: break-word;
-    align-self: center;
+    align-self:flex-end;
     border: solid 1px red;
 }
 

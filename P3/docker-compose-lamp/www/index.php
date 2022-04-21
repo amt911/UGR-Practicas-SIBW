@@ -6,9 +6,9 @@
     $loader = new \Twig\Loader\FilesystemLoader('templates');
     $twig = new \Twig\Environment($loader);
 
-    $mysqli=conectarDB();
+    $con=new Modelo();
 
-    $res=getAllProducts($mysqli);
+    $res=$con->getAllProducts();
 
     echo $twig->render('portada.twig', [
         "Titulo" => "e-tienda. Más que comercio",
