@@ -191,10 +191,13 @@ function accionarCarruselDerecha(){
     imagenes[contador].style.display="none";
     contador=(contador+1)%imagenes.length;
 
-    imagenes[contador].style.opacity="0";
     imagenes[contador].style.display="grid";
-
-    animacionImagen(false);
+    
+    //Se realiza una animacion solo si hay mas de una imagen
+    if(imagenes.length>1){
+        imagenes[contador].style.opacity="0";
+        animacionImagen(false);
+    }
 }
 
 function accionarCarruselIzquierda(){
@@ -205,10 +208,13 @@ function accionarCarruselIzquierda(){
     else
         contador--;
 
-    imagenes[contador].style.opacity="0";
     imagenes[contador].style.display="grid";
 
-    animacionImagen(true);
+    //Se realiza una animacion solo si hay mas de una imagen
+    if(imagenes.length>1){
+        imagenes[contador].style.opacity="0";
+        animacionImagen(false);
+    }
 }
 
 
@@ -216,7 +222,7 @@ function accionarCarruselIzquierda(){
 //https://www.w3schools.com/js/js_ajax_http.asp
 var palabrotas=[];
 function cargarPalabrotas(){
-    alert("He entrado")
+    //alert("He entrado")
     const peticion = new XMLHttpRequest();
     peticion.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {

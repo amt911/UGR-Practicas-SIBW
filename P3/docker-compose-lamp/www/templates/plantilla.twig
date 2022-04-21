@@ -31,9 +31,12 @@
             </div>
 
             <nav id="navegacion">   <!--Seccion de navegacion con los menus-->
-                <div class="menu"><a class="no-underline" href="index.php">{{ Opcion1 }}</a></div>
-                <div class="menu"><a class="no-underline" href="index.php">{{ Opcion2 }}</a></div>
-                <div class="menu"><a class="no-underline" href="index.php">{{ Opcion3 }}</a></div>
+                {% if Menu is not null %}
+                    {% for titulo,link in Menu %}
+                        <div class="menu"><a class="no-underline" href="{{ link }}">{{ titulo }}</a></div>
+                    {% endfor %}
+                {% endif %}
+                <div class="menu">Modo oscuro</div>
             </nav>
         </div>
     </header>

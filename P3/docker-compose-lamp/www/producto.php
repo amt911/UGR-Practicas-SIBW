@@ -3,60 +3,49 @@
     require_once "/usr/local/lib/php/vendor/autoload.php";
     include("modelo.php");
 
-    $loader = new \Twig\Loader\FilesystemLoader('templates');
-    $twig = new \Twig\Environment($loader);
-
-    //$mysqli=conectarDB();
+    //Conecto con la base de datos y obtengo el numero de productos para obtener su id
     $con=new Modelo();
-
     $numFilas=$con->getNumFilasProducto();
+
+    //Supongo que si el usuario introduce un identificador invalido se redirige al primero
     $id=1;
 
     if(isset($_GET["p"]) and $_GET["p"]<=$numFilas)
         $id=$_GET["p"];
 
+
+    //Para lanzar la version imprimible o no
+    if(isset($_GET["imprimir"]) and $_GET["imprimir"]==1)
+        $pagina="producto_imprimir.twig";
+    else
+        $pagina="producto.twig";
+
+
+    //Parte de hacer las queries
     $fabricaRes=$con->getFabrica($id);
     $res=$con->getProducto($id);
     $fabricanteRes=$con->getFabricante($fabricaRes["Nombre"]);
     $comentarios=$con->getAllComments($id);
-    //Hace falta meter un getFabrica para obtener la tabla intermedia
-
-    if(isset($_GET["imprimir"]) and $_GET["imprimir"]==1)
-        $pagina="producto_imprimir.twig";
-    else
-    $pagina="producto.twig";
-    
-
     $palabrotas=$con->getPalabrotas();
+    
+    //Los botones del menu con sus respectivas paginas
+    $menu=array("Inicio"=>"index.php",
+                "Imprimir"=>"producto.php?p=$id&imprimir=1",
+                "Login"=>"producto.php?p=$id");
 
-    //echo json_encode($palabrotas);
 
-    //echo $res["Comentarios"];
-
-    function get_imagenes_comentarios($i, $c){
-        $res=false;
-        $array_i=preg_split("/\R/", $i);
-        $array_c=preg_split("/\R/", $c);
-
-        if(count($array_c)==count($array_i)){
-            $res=array_combine($array_i, $array_c);
-        }
-
-        return $res;
-    }
+    $loader = new \Twig\Loader\FilesystemLoader('templates');
+    $twig = new \Twig\Environment($loader);
 
     echo $twig->render($pagina, [
         "Imprimir" => $_GET["imprimir"],
         "Titulo" => $res["Titulo pagina"],
-        "Opcion1" => "Inicio",
-        "Opcion2" => "Imprimir",
-        "Opcion3" => "Login",
+        "Menu" => $menu,
         "NombreProducto" => $res["Nombre"],
         "Fabricante" => $fabricanteRes["Nombre"],
         "Precio" => $res["Precio"],
         "Descripcion" => $res["Descripción"],
-        "Images" => get_imagenes_comentarios($res["Imagenes"], $res["Comentarios"]),
-        //"imgComentarios" => array_combine($res["Imagenes"], $res["Comentarios"],
+        "Images" => $con->get_imagenes_comentarios($id),
         "PaginaOficial" => $fabricanteRes["Pagina oficial"],
         "Video" => $res["Video"],
         "Twitter" => $fabricanteRes["Twitter"],
