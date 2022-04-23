@@ -189,10 +189,11 @@ function animacionImagen(indice){
 var contador=0;
 function accionarCarruselDerecha(){
     imagenes[contador].style.display="none";
+    vistasPrevias[contador].style.border="";
     contador=(contador+1)%imagenes.length;
 
     imagenes[contador].style.display="grid";
-    
+    vistasPrevias[contador].style.border="solid 2px black";
     //Se realiza una animacion solo si hay mas de una imagen
     if(imagenes.length>1){
         imagenes[contador].style.opacity="0";
@@ -202,13 +203,14 @@ function accionarCarruselDerecha(){
 
 function accionarCarruselIzquierda(){
     imagenes[contador].style.display="none";
-
+    vistasPrevias[contador].style.border="";
     if(contador==0)
         contador=imagenes.length-1;
     else
         contador--;
 
     imagenes[contador].style.display="grid";
+    vistasPrevias[contador].style.border="solid 2px black";
 
     //Se realiza una animacion solo si hay mas de una imagen
     if(imagenes.length>1){
