@@ -90,7 +90,7 @@ class Modelo{
         $res=$prepare->get_result();
     
         if($query->num_rows > 0)
-            $res=$query->fetch_all(MYSQLI_ASSOC);
+            $res=$query->fetch_all();
 
         return $res;
     }
@@ -116,7 +116,7 @@ class Modelo{
         $res=$prepare->get_result();
     
         if($query->num_rows > 0)
-            $res=$query->fetch_all(MYSQLI_ASSOC);
+            $res=$query->fetch_all();
     
         return $res;
     }
@@ -154,5 +154,20 @@ class Modelo{
 
         return $res;
     }    
+
+    function get_imagenes($id){  
+        $res=false;
+
+        $prepare=$this->$mysqli->prepare("SELECT * FROM Contiene NATURAL JOIN Imagenes WHERE ID=?;");
+        $prepare->bind_param("i", $id);
+        $prepare->execute();
+
+        $query=$prepare->get_result();
+    
+        if($query->num_rows > 0)
+            $res=$query->fetch_all(MYSQLI_ASSOC);
+    
+        return $res;        
+    }
 }
 ?>

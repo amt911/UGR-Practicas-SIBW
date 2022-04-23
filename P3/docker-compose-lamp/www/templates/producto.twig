@@ -54,7 +54,7 @@
         </div>
         <div id="menu-boton">
             <form>
-                <button type="button" id="boton-comentario"><img class="foto opaco-on-hover" src="static/image/comment.png"/></button>
+                <button type="button" id="boton-comentario"><img class="foto opaco-on-hover" src="static/images/comment.png"/></button>
             </form>
         </div>
     </div> 
@@ -82,42 +82,23 @@
 
     {% if Images != false %}
             <div id="contenedor-imgs">
-            {% if Imprimir == 1 %}            
-                {% set contador = 0 %}
-                {% for img,comment in Images %}
-                    {% if contador < 2 %}
+                {% for aux in Images %}
+                    {#% for imagen in aux %#}
                         <div class="img-producto">
                             <div>
-                                <img src="static/image/{{ img }}"/>
+                                <img src="static/images/{{ aux["Ruta Imagen"] }}"/>
                             </div>
 
-                            {% if comment != "*" %}
+                            {% if aux["Descripcion"] != "" %}
                                 <div class="centrado-vertical"> <!--Texto al pie de pagina-->
-                                    {{ comment }}
+                                    {{ aux["Descripcion"] }}
                                 </div>                          
-                            {% endif %}                       
-                        </div>            
-                    {% endif %}
-                    
-                    {% set contador = contador + 1 %}
-                {% endfor %}
-            {% else %}
-                {% for img,comment in Images %}
-                    <div class="img-producto">
-                        <div>
-                            <img src="static/image/{{ img }}"/>
+                            {% endif %}
                         </div>
-
-                        {% if comment != "*" %}
-                            <div class="centrado-vertical"> <!--Texto al pie de pagina-->
-                                {{ comment }}
-                            </div>                          
-                        {% endif %}                       
-                    </div>            
+                    {#% endfor %#}
                 {% endfor %}
             <div id="anterior">&#10096</div>
             <div id="siguiente">&#10097</div>
-            {% endif %}
             </div>
     {% endif %}
 
@@ -173,7 +154,7 @@
         {% if Facebook is not null %}
         <div>
             <a href="https://www.facebook.com/{{ Facebook }}/">
-                <img src="static/image/facebook.png" alt="{{ Fabricante }} FaceBook Cuenta"/>
+                <img src="static/images/facebook.png" alt="{{ Fabricante }} FaceBook Cuenta"/>
             </a>
         </div>
         {% endif %}
@@ -181,7 +162,7 @@
         {% if Twitter is not null %}    
         <div>
             <a href="https://twitter.com/{{ Twitter }}">
-                <img src="static/image/twitter.png" alt="{{ Fabricante }} Twitter Cuenta"/>
+                <img src="static/images/twitter.png" alt="{{ Fabricante }} Twitter Cuenta"/>
             </a>
         </div>            
         {% endif %}
@@ -189,14 +170,14 @@
         {% if YouTube is not null %}
         <div>
             <a href="https://www.youtube.com/c/{{ YouTube }}">
-                <img src="static/image/youtube.png" alt="{{ Fabricante }} YouTube Cuenta"/>
+                <img src="static/images/youtube.png" alt="{{ Fabricante }} YouTube Cuenta"/>
             </a>
         </div>
         {% endif %}
 
             <div>
                 <a href="producto.php?p={{ ID }}&imprimir=1">
-                    <img src="static/image/print.png" alt="Imprimir pagina"/>
+                    <img src="static/images/print.png" alt="Imprimir pagina"/>
                 </a>
             </div>
         </div>

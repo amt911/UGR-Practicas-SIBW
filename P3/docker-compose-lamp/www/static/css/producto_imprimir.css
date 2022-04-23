@@ -220,3 +220,7 @@ table, td, tr{
 #desplegable{
     display: none;
 }
+
+#anterior, #siguiente{
+    display: none;
+}

@@ -13,20 +13,21 @@
     if(isset($_GET["p"]) and $_GET["p"]<=$numFilas)
         $id=$_GET["p"];
 
-
-    //Para lanzar la version imprimible o no
-    if(isset($_GET["imprimir"]) and $_GET["imprimir"]==1)
-        $pagina="producto_imprimir.twig";
-    else
-        $pagina="producto.twig";
-
-
     //Parte de hacer las queries
     $fabricaRes=$con->getFabrica($id);
     $res=$con->getProducto($id);
     $fabricanteRes=$con->getFabricante($fabricaRes["Nombre"]);
     $comentarios=$con->getAllComments($id);
     $palabrotas=$con->getPalabrotas();
+    $imagenes=$con->get_imagenes($id);
+
+    //Para lanzar la version imprimible o no
+    if(isset($_GET["imprimir"]) and $_GET["imprimir"]==1){
+        $pagina="producto_imprimir.twig";
+        $imagenes=array_slice($imagenes, 0, 2);
+    }
+    else
+        $pagina="producto.twig";
     
     //Los botones del menu con sus respectivas paginas
     $menu=array("Inicio"=>"index.php",
@@ -45,7 +46,7 @@
         "Fabricante" => $fabricanteRes["Nombre"],
         "Precio" => $res["Precio"],
         "Descripcion" => $res["Descripción"],
-        "Images" => $con->get_imagenes_comentarios($id),
+        "Images" => $imagenes,//$con->get_imagenes_comentarios($id),
         "PaginaOficial" => $fabricanteRes["Pagina oficial"],
         "Video" => $res["Video"],
         "Twitter" => $fabricanteRes["Twitter"],
