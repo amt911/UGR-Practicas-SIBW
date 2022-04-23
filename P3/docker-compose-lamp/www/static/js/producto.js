@@ -168,7 +168,7 @@ function subirComentario(){
 
 
 var intervaloImagen;
-function animacionImagen(){
+function animacionImagen(indice){
     clearInterval(intervaloImagen);
 
     var contadorAnimacion=0;
@@ -177,7 +177,7 @@ function animacionImagen(){
     intervaloImagen=setInterval(()=>{
         if(contadorAnimacion<1){
             contadorAnimacion+=incremento;
-            imagenes[contador].style.opacity=contadorAnimacion;
+            imagenes[indice].style.opacity=contadorAnimacion;
         }
         else{
             clearInterval(intervaloImagen)
@@ -196,7 +196,7 @@ function accionarCarruselDerecha(){
     //Se realiza una animacion solo si hay mas de una imagen
     if(imagenes.length>1){
         imagenes[contador].style.opacity="0";
-        animacionImagen(false);
+        animacionImagen(contador);
     }
 }
 
@@ -213,7 +213,7 @@ function accionarCarruselIzquierda(){
     //Se realiza una animacion solo si hay mas de una imagen
     if(imagenes.length>1){
         imagenes[contador].style.opacity="0";
-        animacionImagen(false);
+        animacionImagen(contador);
     }
 }
 
@@ -253,3 +253,26 @@ seccionSoloComentarios.addEventListener("transitionend", ()=>{
 })
 carruselAnterior.addEventListener("click", accionarCarruselIzquierda);
 carruselSiguiente.addEventListener("click", accionarCarruselDerecha);
+
+var vistasPrevias=document.getElementsByClassName("img-previa");
+vistasPrevias[0].style.border="solid 2px black"
+
+function bajarOpacidadTodo(){
+    for(let i=0; i<imagenes.length; i++)
+        imagenes[i].style.opacity="0";
+}
+
+//Preguntar por que funciona esto con let y no con var
+for(let i=0; i<vistasPrevias.length; i++){
+    vistasPrevias[i].addEventListener("click", ()=>{
+        if(contador!=i){
+            vistasPrevias[contador].style.border="";
+            imagenes[contador].style.display="none";
+            contador=i;
+            vistasPrevias[i].style.border="solid 2px black";
+            bajarOpacidadTodo();
+            imagenes[i].style.display="grid";
+            animacionImagen(i);
+        }
+    })
+}

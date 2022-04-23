@@ -31,18 +31,12 @@
 }
 
 /*Reglas para el contenedor de imagenes*/
-#contenedor-imgs{
-    float: right;   /*Para que se pegue a la derecha*/
+#carrusel-imgs{
     display: grid;  /*Se usan grids*/
     grid-template-rows: 1fr; /*Se le dan a las filas el mismo espacio (por eso las unidades fr)*/
-    width: 32%; 
-    max-width: 250px;   /*Se pone el maximo a 200px para que no se desborde del main ni se descuadre*/
     padding: 1% 4% 1% 4%;
     position: relative;
-    background-color: white;
-    border-radius: 0.5vh;   /*Esquinas redondeadas*/
-    box-shadow: 0 3px 7px rgba(0,0,0,0.3);  /*Sombras*/    
-    margin-left: 10px;
+    height: 270px;
 }
 
 /*Regla para el div que contiene la imagen en si y el pie de foto*/
@@ -50,6 +44,9 @@
     display: none;  /*Se usan grids*/
     grid-template-rows: auto;  /*Se disponen de dos filas, una para la imagen y otra para el pie*/
     grid-auto-columns: minmax(0, 1fr);
+    width: 90%;
+
+    justify-self: center;
     aspect-ratio: 1 / 1;
 }
 
@@ -91,10 +88,15 @@ h3{
 table, td, tr{
     border: solid 1px black;    /*Bordes negros*/
     border-collapse: collapse; /*Para que se junten los bordes*/
-    
+    background-color: white;
+  
     /*Estos dos comandos son para centrar la tabla*/
     margin-left: auto;
     margin-right: auto;
+}
+
+table{
+    box-shadow: 0 3px 7px rgba(0,0,0,0.3);  /*Sombras*/  
 }
 
 /*Contenedor donde se pone otro con el video (es por cuestion de evitar overflow)*/
@@ -292,4 +294,34 @@ button{
 
 #siguiente{
     right: 0%;
+}
+
+#contenedor-imgs{
+    float: right;   /*Para que se pegue a la derecha*/
+    width: 40%; 
+    max-width: 300px;
+    background-color: white;
+    border-radius: 0.5vh;
+    box-shadow: 0 3px 7px rgba(0,0,0,0.3);  /*Sombras*/    
+    margin-left: 10px;
+}
+
+#vista-previa{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-auto-rows: 1fr;
+    gap: 1%;
+    padding: 3%;
+}
+
+.img-previa{
+    align-items: center;
+    display: flex;
+    /*border: solid 1px red;*/
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.img-previa:hover{
+    background-color: rgba(166, 166, 166, 0.5);
 }

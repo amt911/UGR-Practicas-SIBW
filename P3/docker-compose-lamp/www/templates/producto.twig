@@ -82,8 +82,8 @@
 
     {% if Images != false %}
             <div id="contenedor-imgs">
-                {% for aux in Images %}
-                    {#% for imagen in aux %#}
+                <div id="carrusel-imgs">
+                    {% for aux in Images %}
                         <div class="img-producto">
                             <div>
                                 <img src="static/images/{{ aux["Ruta Imagen"] }}"/>
@@ -95,10 +95,20 @@
                                 </div>                          
                             {% endif %}
                         </div>
-                    {#% endfor %#}
-                {% endfor %}
-            <div id="anterior">&#10096</div>
-            <div id="siguiente">&#10097</div>
+                    {% endfor %}
+                    <div id="anterior">&#10096</div>
+                    <div id="siguiente">&#10097</div>
+                </div>
+
+                <div id="vista-previa">
+                    {% for aux in Images %}
+                        <div class="img-previa">
+                            <div>
+                                <img src="static/images/{{ aux["Ruta Imagen"] }}"/>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
     {% endif %}
 

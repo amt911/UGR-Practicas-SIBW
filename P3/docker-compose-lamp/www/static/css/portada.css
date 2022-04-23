@@ -1,10 +1,10 @@
 /*Reglas generales para el body*/
 body {
-    font-family: 'Roboto', sans-serif;  /*Fuente*/
+    font-family: 'Roboto', sans-serif;
     width: fit-content; /*Esto permite que cuando se haga más zoom se pueda hacer scroll lateral*/
-    word-wrap: break-word; /*Permite partir las palabras para que quepan*/
-    border: 2px solid #00897b;  /*Borde de la página*/
-    border-radius: 0.5vh;   /*Para que las esquinas estén redondeadas*/
+    word-wrap: break-word;
+    border: 2px solid #00897b;
+    border-radius: 0.5vh;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23); /*Sombra por debajo*/
 }
 
@@ -18,49 +18,49 @@ img {
 
 /*Reglas generales para los li*/
 li {
-    margin-bottom: 7%;  /*Margen por debajo para que las entradas no se junten*/
-    padding-bottom: 10px; /*Sirve para dejar espacio por debajo para la linea negra que se pinta*/
-    border-bottom: solid 2px black; /*Linea negra para dividir las entradas*/
+    margin-bottom: 7%;
+    padding-bottom: 10px;
+    border-bottom: solid 2px black;
 }
 
 /*Reglas generales para address*/
 address{
-    font-style: normal; /*Para quitar la cursiva*/
+    font-style: normal;
 }
 
 /*Reglas generales para footer*/
 footer {
-    text-align: center; /*Permite centrar el texto*/
+    text-align: center;
 }
 
 /*Reglas generales para aside*/
 aside {
-    display: grid;  /*Se usan grids*/
+    display: grid;
     grid-template-rows: repeat(4, max-content);   /*Las filas se ajustan al tamaño de las notas*/
-    grid-auto-columns: 100%;    /*El ancho se ajusta al 100%*/
+    grid-auto-columns: 100%;
     padding: 5% 3% 5% 3%;   /*Padding en todos los lados*/
-    gap: 1vh;   /*Distancia entre cajas*/
+    gap: 1vh;
 }
 
 /*Reglas generales para h1*/
 h1 {
-    color: white;   /*El texto es blanco*/
-    text-align: center; /*Para alinearlo en el centro*/
-    font-size: 300%;    /*El tamaño del texto*/
+    color: white;
+    text-align: center;
+    font-size: 300%;
 }
 
 /*Reglas para ul*/
 ul {
     margin-top:0;   /*No se deja margen para que se pegue arriba*/
     list-style-type: none;  /*Se quita el simbolo de la izquierda*/
-    padding: 5px;   /*Se aplica padding para que no se ajuste demasiado al div*/
+    padding: 5px;
     text-align: justify;    /*Se justifica el texto*/
 }
 
 /*Reglas para la cabecera*/
 #cabecera {
-    background-color: #009688;  /*Color de fondo*/
-    display: grid;  /*Se usan grids*/
+    background-color: #009688;
+    display: grid;
     grid-template-columns: 25% 75%; /*La disposicion de las columnas*/
     grid-auto-rows: 200px;  /*El tamano de las filas*/
 }
@@ -68,16 +68,16 @@ ul {
 
 /*Reglas para el container del titulo y menu*/
 #div-titulo-menu {
-    display: grid;  /*Se usan grids*/
+    display: grid;
     grid-template-rows: 60% 40%;    /*La disposicion de las filas*/
 }
 
 /*Reglas usadas para el container del menu*/
 #navegacion {
-    display: grid;  /*Se usan grids*/
+    display: grid;
     /*minmax es muy util para obligar a que un elemento se quede dentro del div*/
     /*Tambien es muy util usar repeat para no tener que escribir lo mismo varias veces*/
-    grid-template-columns: repeat(3, minmax(auto, 68px));
+    grid-template-columns: repeat(5, minmax(auto, 68px));
     align-content: center; /*Para que el contenido se alinee verticalmente*/
     gap: 1rem ; /*Distancia entre las opciones del menu*/
 }
@@ -89,6 +89,9 @@ ul {
     background-color: #cddc39;  /*El color de fondo*/
     border-radius: 0.5vh;   /*Bordes redondeados*/
     text-align: center; /*Alineacion horizontal del texto*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /*Regla que se ejecuta cuando se pasa el cursor por encima*/
@@ -113,8 +116,8 @@ main{
 
 /*Seccion del main con los objetos*/
 .main-portada {
-    display: grid;  /*Se usan grids para los articulos*/
-    gap: 2vh;   /*Se les deja entre las celdas un espacio*/
+    display: grid;
+    gap: 2vh;
     grid-template-columns: repeat(3, 1fr); /*Obliga a que los articulos no se salgan del main*/
     grid-auto-rows: 370px; /*Sirve para evitar poner el mismo numero 3 veces para las filas existentes*/
     align-content: center;  /*Para alinear el contenido verticalmente*/
