@@ -13,6 +13,145 @@ var imagenes=document.getElementsByClassName("img-producto");
 imagenes[0].style.display="grid";
 cargarPalabrotas();
 
+var esDark=false;
+function toggleDarkMode(){
+    //alert("modo oscuro")
+    var botones=document.getElementsByClassName("menu");
+    
+    var header=document.getElementById("cabecera");
+
+    var main=document.getElementsByTagName("main");
+
+    var body=document.getElementsByTagName("body");
+    //var underline=document.getElementsByClassName("no-underline");
+    var contenido=document.getElementById("contenido");
+    var notaContainer=document.getElementsByClassName("nota-container");
+
+    var notaContenido=document.getElementsByClassName("nota-contenido");
+    
+    
+    //Variables especiales de producto
+    var imprimirLogo=document.getElementById("imprimir-logo");
+    var info=document.getElementById("info");
+    var titulo=document.getElementById("titulo");
+    var botonComprar=document.getElementById("boton-comprar");
+    var table=document.getElementsByTagName("table");
+    var td=document.getElementsByTagName("td");
+    var tr=document.getElementsByTagName("tr");
+    var a=document.getElementsByTagName("a");
+
+    //alert("main: "+main);
+    if(!esDark){
+        esDark=true;
+        //Modo oscuro
+
+        Array.from(botones).forEach((aux)=>{
+            aux.style.backgroundColor="#2196f3";
+        });
+
+        header.style.backgroundColor="#1f1f1f";
+
+        main[0].style.backgroundColor="#111111";
+
+        body[0].style.color="white";
+
+        //Array.from(underline).forEach((aux)=>{
+        //    aux.style.color="white";
+        //})
+
+        contenido.style.backgroundColor="#111111";
+        contenido.style.borderBottom="solid 2px white";
+
+        Array.from(notaContainer).forEach((aux)=>{
+            aux.style.backgroundColor="#2196f3"
+        })
+
+
+        Array.from(notaContenido).forEach((aux)=>{
+            aux.style.backgroundColor="#0d47a1"
+        })        
+
+
+        //PARTES ESPECIALES PARA PRODUCTO
+        imprimirLogo.style.filter="invert(100%)";
+        info.style.backgroundColor="#0d47a1";
+        titulo.style.backgroundColor="#2196f3";
+        botonComprar.style.backgroundColor="#008040";
+
+
+        Array.from(table).forEach((aux)=>{
+            aux.style.border="solid 1px white";
+        })
+
+        Array.from(td).forEach((aux)=>{
+            aux.style.border="solid 1px white";
+        })        
+
+        Array.from(tr).forEach((aux)=>{
+            aux.style.border="solid 1px white";
+        })   
+        
+        Array.from(a).forEach((aux)=>{
+            aux.style.color="white";
+        })           
+    }
+    else{
+        esDark=false;
+        //Modo claro
+        Array.from(botones).forEach((aux)=>{
+            aux.style.backgroundColor="#cddc39"
+        });
+
+        header.style.backgroundColor="#009688";   
+
+        main[0].style.backgroundColor="beige";     
+
+        body[0].style.color="black";        
+
+        //Array.from(underline).forEach((aux)=>{
+        //    aux.style.color="black";
+        //})        
+
+        contenido.style.backgroundColor="#00897b";
+        contenido.style.borderBottom="solid 2px #00897b";  
+
+        Array.from(notaContainer).forEach((aux)=>{
+            aux.style.backgroundColor="#cddc39"
+        })     
+        
+        Array.from(notaContenido).forEach((aux)=>{
+            aux.style.backgroundColor="#c0ca33"
+        })         
+
+
+        //PARTES ESPECIALES PARA PRODUCTO
+        imprimirLogo.style.filter="";        
+        info.style.backgroundColor="#c0ca33";
+        titulo.style.backgroundColor="#cddc39";
+        botonComprar.style.backgroundColor="green";
+
+        Array.from(table).forEach((aux)=>{
+            aux.style.border="solid 1px black";
+        })
+
+        Array.from(td).forEach((aux)=>{
+            aux.style.border="solid 1px black";
+        })        
+
+        Array.from(tr).forEach((aux)=>{
+            aux.style.border="solid 1px black";
+        })           
+        
+        Array.from(a).forEach((aux)=>{
+            aux.style.color="black";
+        })                   
+    }
+}
+
+var botonDark=document.getElementById("modo-oscuro");
+botonDark.addEventListener("click", toggleDarkMode);
+
+
 //Funciones
 //Funcion que comprueba mediante expresiones regulares si el formato del email es correcto y si no esta vacio
 function comprobarEmail(email){

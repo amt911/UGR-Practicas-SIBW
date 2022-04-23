@@ -66,6 +66,7 @@
 /*Reglas para centrar verticalmente un div*/
 .centrado-vertical{
     align-self: center;
+    color: black;
 }
 
 /*Regla que se usa para el texto de la descripcion del producto.*/
@@ -91,8 +92,6 @@ h3{
 table, td, tr{
     border: solid 1px black;    /*Bordes negros*/
     border-collapse: collapse; /*Para que se junten los bordes*/
-    background-color: white;
-  
     /*Estos dos comandos son para centrar la tabla*/
     margin-left: auto;
     margin-right: auto;
@@ -272,6 +271,7 @@ button{
 }
 
 #anterior, #siguiente{
+    color: black;
     user-select: none;
     cursor: pointer;
     position: absolute;

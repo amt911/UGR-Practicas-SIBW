@@ -231,3 +231,7 @@ main{
 #div-social > *:hover{
     transform: scale(1.3);  /*Se hacen ligeramente mas grandes*/
 }
+
+#modo-oscuro{
+    cursor: pointer;
+}
