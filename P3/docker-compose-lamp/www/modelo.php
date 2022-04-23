@@ -159,7 +159,7 @@ class Modelo{
     function get_imagenes($id){  
         $res=false;
 
-        $prepare=$this->$mysqli->prepare("SELECT * FROM Contiene NATURAL JOIN Imagenes WHERE ID=?;");
+        $prepare=$this->$mysqli->prepare("SELECT * FROM Imagenes WHERE ID_Producto=?;");
         $prepare->bind_param("i", $id);
         $prepare->execute();
 
