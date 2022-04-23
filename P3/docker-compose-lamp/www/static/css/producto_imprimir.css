@@ -129,8 +129,12 @@ main{
     grid-template-rows: repeat(2, 1fr); /*Se le dan a las filas el mismo espacio (por eso las unidades fr)*/
     width: 35%; /*Se pone el contenedor a un 35% del ancho del main*/
     max-width: 200px;   /*Se pone el maximo a 200px para que no se desborde del main ni se descuadre*/
-    gap: 3%;    /*Se le pone un poco de distancia entre imagenes*/
-    padding: 3%;    /*Se le pone dentro padding para que no esten pegados al div*/
+    padding: 3%;
+}
+
+#carrusel-imgs{
+    gap: 30px;
+    padding: 0%;
 }
 
 /*Regla que se usa para el texto de la descripcion del producto.*/
@@ -222,5 +226,9 @@ table, td, tr{
 }
 
 #anterior, #siguiente{
+    display: none;
+}
+
+#vista-previa{
     display: none;
 }

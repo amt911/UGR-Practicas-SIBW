@@ -28,7 +28,7 @@
                 </form>
             </div>
 
-            {% if Comentarios is not null %}            
+            {% if Comentarios != false %}            
 
             {% for aux in Comentarios %}
                 <div class="comentario-container">
@@ -80,37 +80,36 @@
         </section>
     </article>
 
-    {% if Images != false %}
-            <div id="contenedor-imgs">
-                <div id="carrusel-imgs">
-                    {% for aux in Images %}
-                        <div class="img-producto">
-                            <div>
-                                <img src="static/images/{{ aux["Ruta Imagen"] }}"/>
-                            </div>
 
-                            {% if aux["Descripcion"] != "" %}
-                                <div class="centrado-vertical"> <!--Texto al pie de pagina-->
-                                    {{ aux["Descripcion"] }}
-                                </div>                          
-                            {% endif %}
+        <div id="contenedor-imgs">
+            <div id="carrusel-imgs">
+                {% for aux in Images %}
+                    <div class="img-producto">
+                        <div>
+                            <img src="static/images/{{ aux["Ruta Imagen"] }}"/>
                         </div>
-                    {% endfor %}
-                    <div id="anterior">&#10096</div>
-                    <div id="siguiente">&#10097</div>
-                </div>
 
-                <div id="vista-previa">
-                    {% for aux in Images %}
-                        <div class="img-previa">
-                            <div>
-                                <img src="static/images/{{ aux["Ruta Imagen"] }}"/>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
+                        {% if aux["Descripcion"] != "" %}
+                            <div class="centrado-vertical"> <!--Texto al pie de pagina-->
+                                {{ aux["Descripcion"] }}
+                            </div>                          
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                <div id="anterior">&#10096</div>
+                <div id="siguiente">&#10097</div>
             </div>
-    {% endif %}
+
+            <div id="vista-previa">
+                {% for aux in Images %}
+                    <div class="img-previa">
+                        <div>
+                            <img src="static/images/{{ aux["Ruta Imagen"] }}"/>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
 
     {% if Descripcion is not null %}
         {% for aux in Descripcion|split('\n') %}

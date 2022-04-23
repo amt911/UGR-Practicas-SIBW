@@ -278,3 +278,9 @@ for(let i=0; i<vistasPrevias.length; i++){
         }
     })
 }
+
+
+var botonComprar=document.getElementById("boton-comprar");
+
+
+botonComprar.addEventListener("click", ()=>alert("Gracias por su compra"));

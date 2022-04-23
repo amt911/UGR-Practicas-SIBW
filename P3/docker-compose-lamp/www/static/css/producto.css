@@ -37,6 +37,9 @@
     padding: 1% 4% 1% 4%;
     position: relative;
     height: 270px;
+    background-color: white;
+    border-radius: 0.5vh;
+    box-shadow: 0 3px 7px rgba(0,0,0,0.3);  /*Sombras*/        
 }
 
 /*Regla para el div que contiene la imagen en si y el pie de foto*/
@@ -149,6 +152,7 @@ table{
     border-radius: 0.5vh;
     background-color: green;
     transition: all 0.3s;
+    cursor: pointer;
 }
 
 #boton-comprar:hover{
@@ -300,10 +304,12 @@ button{
     float: right;   /*Para que se pegue a la derecha*/
     width: 40%; 
     max-width: 300px;
-    background-color: white;
-    border-radius: 0.5vh;
-    box-shadow: 0 3px 7px rgba(0,0,0,0.3);  /*Sombras*/    
+    /*background-color: white;
+    border-radius: 0.5vh;*/
     margin-left: 10px;
+    display: grid;
+    gap: 10px;
+    border-radius: 0.5vh;
 }
 
 #vista-previa{
@@ -312,6 +318,9 @@ button{
     grid-auto-rows: 1fr;
     gap: 1%;
     padding: 3%;
+    background-color: white;
+    border-radius: 0.5vh;
+    box-shadow: 0 3px 7px rgba(0,0,0,0.3);  /*Sombras*/    
 }
 
 .img-previa{

@@ -83,14 +83,15 @@ class Modelo{
     function getAllComments($idProducto){
         $res=false;
 
-        $prepare=$this->$mysqli->prepare("SELECT * FROM Tiene,Comentario WHERE ID=ID_Comentario AND ID_Producto=?;");
+        $spanish=$this->$mysqli->query("SET lc_time_names='es_ES';");
+        $prepare=$this->$mysqli->prepare("SELECT Nombre,DATE_FORMAT(Fecha, '%d de %M del %Y, %k:%i') AS Fecha,Texto,Correo FROM Tiene,Comentario WHERE ID=ID_Comentario AND ID_Producto=?;");
         $prepare->bind_param("i", $idProducto);
         $prepare->execute();
 
         $res=$prepare->get_result();
     
         if($query->num_rows > 0)
-            $res=$query->fetch_all();
+            $res=$query->fetch_all(MYSQLI_ASSOC);
 
         return $res;
     }
@@ -116,7 +117,7 @@ class Modelo{
         $res=$prepare->get_result();
     
         if($query->num_rows > 0)
-            $res=$query->fetch_all();
+            $res=$query->fetch_all(MYSQLI_ASSOC);
     
         return $res;
     }
@@ -127,7 +128,7 @@ class Modelo{
         $query=$this->$mysqli->query("SELECT * FROM Palabrota;");
     
         if($query->num_rows > 0){
-            $resultado=$query->fetch_all();
+            $resultado=$query->fetch_all(MYSQLI_ASSOC);
         
             $salida=array();
         

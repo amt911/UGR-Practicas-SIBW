@@ -21,9 +21,17 @@
     $palabrotas=$con->getPalabrotas();
     $imagenes=$con->get_imagenes($id);
 
+    //Si no ha encontrado ninguna imagen se pone un placeholder
+    //Esto es necesario para que funcione la pagina ya que
+    //Utiliza eventos en esa parte de html
+    if($imagenes==false){
+        $imagenes=array(array("Ruta Imagen"=>"placeholder.png", "Descripcion"=>"placeholder"));
+    }
+
     //Para lanzar la version imprimible o no
     if(isset($_GET["imprimir"]) and $_GET["imprimir"]==1){
         $pagina="producto_imprimir.twig";
+        
         $imagenes=array_slice($imagenes, 0, 2);
     }
     else
