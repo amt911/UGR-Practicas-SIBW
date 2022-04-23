@@ -125,16 +125,14 @@ main{
 /*Reglas para el contenedor de imagenes*/
 #contenedor-imgs{
     float: right;   /*Para que se pegue a la derecha*/
-    display: grid;  /*Se usan grids*/
-    grid-template-rows: repeat(2, 1fr); /*Se le dan a las filas el mismo espacio (por eso las unidades fr)*/
     width: 35%; /*Se pone el contenedor a un 35% del ancho del main*/
     max-width: 200px;   /*Se pone el maximo a 200px para que no se desborde del main ni se descuadre*/
     padding: 3%;
 }
 
 #carrusel-imgs{
+    display: grid;
     gap: 30px;
-    padding: 0%;
 }
 
 /*Regla que se usa para el texto de la descripcion del producto.*/
@@ -188,8 +186,8 @@ table, td, tr{
 /*Regla para el div que contiene la imagen en si y el pie de foto*/
 .img-producto{
     display: grid;
-    grid-template-rows: 80% 20%;
-    border:solid 1px black;
+    grid-template-rows: fit-content;
+    border: solid 1px black;
 }
 
 /*Reglas para centrar verticalmente un div*/

@@ -83,7 +83,7 @@ class Modelo{
     function getAllComments($idProducto){
         $res=false;
 
-        $spanish=$this->$mysqli->query("SET lc_time_names='es_ES';");
+        $this->$mysqli->query("SET lc_time_names='es_ES';");
         $prepare=$this->$mysqli->prepare("SELECT Nombre,DATE_FORMAT(Fecha, '%d de %M del %Y, %k:%i') AS Fecha,Texto,Correo FROM Tiene,Comentario WHERE ID=ID_Comentario AND ID_Producto=?;");
         $prepare->bind_param("i", $idProducto);
         $prepare->execute();
