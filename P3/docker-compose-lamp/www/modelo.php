@@ -88,8 +88,8 @@ class Modelo{
         $prepare->bind_param("i", $idProducto);
         $prepare->execute();
 
-        $res=$prepare->get_result();
-    
+        $query=$prepare->get_result(); 
+
         if($query->num_rows > 0)
             $res=$query->fetch_all(MYSQLI_ASSOC);
 
