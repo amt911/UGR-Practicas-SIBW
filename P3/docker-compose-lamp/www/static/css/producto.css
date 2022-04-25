@@ -121,7 +121,7 @@ table{
 /*Reglas para los botones que llevan a las redes sociales de NVIDIA*/
 #producto-rrss-container{
     display: grid;
-    grid-template-columns: repeat(4, minmax(auto, 60px));
+    grid-template-columns: repeat(5, minmax(auto, 60px));
     gap: 25px;
     justify-content: center;
     width: fit-content;

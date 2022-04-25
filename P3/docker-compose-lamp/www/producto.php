@@ -56,7 +56,7 @@
         "Descripcion" => $res["Descripción"],
         "Images" => $imagenes,//$con->get_imagenes_comentarios($id),
         "PaginaOficial" => $fabricanteRes["Pagina oficial"],
-        "Video" => $res["Video"],
+        //"Video" => $res["Video"],
         "Twitter" => $fabricanteRes["Twitter"],
         "YouTube" => $fabricanteRes["YouTube"],
         "Facebook" => $fabricanteRes["Facebook"],

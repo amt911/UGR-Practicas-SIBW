@@ -111,55 +111,19 @@
             </div>
         </div>
 
-    {% if Descripcion is not null %}
-        {% for aux in Descripcion|split('\n') %}
-            <p class="justificado">
-                {{aux}}
-            </p>
-        {% endfor %}   
-    {% endif %}
-
-    {% if Tabla is not null %}
-        <table>
-            {% for i in Tabla|split('\n') %}
-                {% if i|length > 0 %}            
-                    <tr>
-                    {% for j in i|split('|') %}
-                        <td>
-                            {{ j }}
-                        </td>
-                    {% endfor %}
-                    </tr>
-                {% endif %}
-            {% endfor %}
-        </table>    
-    {% endif %}
-    
-
-
-
-    {% if  PaginaOficial is not null %}    
-        <p>
-            Enlace a la página oficial de {{ Fabricante }}: <a href="{{ PaginaOficial }}">link</a>
-        </p>
-    {% endif %}
+    {{ Descripcion|raw }}
     
     {% block InformacionExtra %}
-        {% if Video is not null %}
-        <p class="negrita">Vídeo relacionado:</p>
-
-        <div id="video-container"> <!--Container donde se inserta un video (lo hago asi por temas de escalado)-->
-            <div>
-                <iframe id="video" src="{{ Video }}" title="YouTube video player"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen></iframe>
-            </div>
-        </div>
-        {% endif %}
-        
-
         <p class="negrita">Redes sociales de {{ Fabricante }}</p>
         <div id="producto-rrss-container">
+        {% if PaginaOficial is not null %}
+        <div>
+            <a href="{{ PaginaOficial }}/">
+                <img src="static/images/internet.png" alt="{{ Fabricante }} Pagina Oficial"/>
+            </a>
+        </div>
+        {% endif %}
+
         {% if Facebook is not null %}
         <div>
             <a href="https://www.facebook.com/{{ Facebook }}/">

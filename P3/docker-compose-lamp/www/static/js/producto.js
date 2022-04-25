@@ -166,7 +166,7 @@ function toggleDarkMode(){
         })           
         
         Array.from(a).forEach((aux)=>{
-            aux.style.color="black";
+            aux.style.color="";
         })                   
 
         comentariosSubmitContainer.style.backgroundColor="beige";        
@@ -392,7 +392,6 @@ function accionarCarruselIzquierda(){
 }
 
 
-//COMPROBAR QUE PUEDE ESTAR MAL, PREGUNTAR AL PROFESOR
 //https://www.w3schools.com/js/js_ajax_http.asp
 var palabrotas=[];
 function cargarPalabrotas(){
