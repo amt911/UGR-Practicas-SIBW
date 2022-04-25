@@ -15,15 +15,10 @@ cargarPalabrotas();
 
 var esDark=false;
 function toggleDarkMode(){
-    //alert("modo oscuro")
     var botones=document.getElementsByClassName("menu");
-    
     var header=document.getElementById("cabecera");
-
     var main=document.getElementsByTagName("main");
-
     var body=document.getElementsByTagName("body");
-    //var underline=document.getElementsByClassName("no-underline");
     var contenido=document.getElementById("contenido");
     var notaContainer=document.getElementsByClassName("nota-container");
     var notaContenido=document.getElementsByClassName("nota-contenido");
@@ -64,7 +59,7 @@ function toggleDarkMode(){
         //    aux.style.color="white";
         //})
 
-        contenido.style.backgroundColor="#111111";
+        contenido.style.backgroundColor="#303030";
         contenido.style.borderBottom="solid 2px white";
 
         Array.from(notaContainer).forEach((aux)=>{

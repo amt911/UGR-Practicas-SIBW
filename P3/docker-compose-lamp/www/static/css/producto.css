@@ -51,6 +51,8 @@
 
     justify-self: center;
     aspect-ratio: 1 / 1;
+    border: solid 1px red;
+    height: max-content;
 }
 
 .img-producto > div:first-child{
@@ -169,6 +171,7 @@ table{
     display: flex;
     z-index: 10;
     /*transition: 0.5s;*/
+    pointer-events: none; /*Para poder marcar el texto de debajo del div*/
 }
 
 #comentarios-submit-container{
@@ -183,12 +186,14 @@ table{
     background-color: beige;
     border-radius: 0.5vh;
     /*box-shadow: 0;*/
+    pointer-events: all;
 }
 
 
 #menu-boton{
     /*border: solid 1px orange;*/
     align-self: center;
+    pointer-events: all;
 }
 
 #boton-comentario{
