@@ -119,7 +119,7 @@
         {% if PaginaOficial is not null %}
         <div>
             <a href="{{ PaginaOficial }}/">
-                <img src="static/images/internet.png" alt="{{ Fabricante }} Pagina Oficial"/>
+                <img id="pagina-oficial-logo" src="static/images/internet.png" alt="{{ Fabricante }} Pagina Oficial"/>
             </a>
         </div>
         {% endif %}
@@ -159,5 +159,5 @@
 
 
 {% block archivosJS %}
-<script src="static/js/producto.js"></script>
+<script src="static/js/producto.js" type="module"></script>
 {% endblock %}

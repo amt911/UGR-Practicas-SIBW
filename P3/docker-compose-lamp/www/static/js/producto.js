@@ -1,3 +1,5 @@
+import { toggleDarkModePlantilla } from "./modoOscuro.js";
+
 //Variables globales
 var botonComentarios=document.getElementById("boton-comentario");
 var zonaTextoNuevoComentario=document.getElementById("comentario-nuevo");
@@ -15,21 +17,10 @@ cargarPalabrotas();
 
 var esDark=false;
 function toggleDarkMode(){
-    var botones=document.getElementsByClassName("menu");
-    var header=document.getElementById("cabecera");
-    var main=document.getElementsByTagName("main");
-    var body=document.getElementsByTagName("body");
-    var contenido=document.getElementById("contenido");
-    var notaContainer=document.getElementsByClassName("nota-container");
-    var notaContenido=document.getElementsByClassName("nota-contenido");
-    
-    var a=document.getElementsByTagName("a");
-    var li=document.getElementsByTagName("li");
-    var html=document.getElementsByTagName("html");    
-    var divCopyright=document.getElementById("div-copyright");
 
 
     //Variables especiales de producto
+    var webLogo=document.getElementById("pagina-oficial-logo");
     var imprimirLogo=document.getElementById("imprimir-logo");
     var info=document.getElementById("info");
     var titulo=document.getElementById("titulo");
@@ -45,40 +36,8 @@ function toggleDarkMode(){
         esDark=true;
         //Modo oscuro
 
-        Array.from(botones).forEach((aux)=>{
-            aux.style.backgroundColor="#2196f3";
-        });
-
-        header.style.backgroundColor="#1f1f1f";
-
-        main[0].style.backgroundColor="#111111";
-
-        body[0].style.color="white";
-        body[0].style.border="2px solid white";
-        //Array.from(underline).forEach((aux)=>{
-        //    aux.style.color="white";
-        //})
-
-        contenido.style.backgroundColor="#303030";
-        contenido.style.borderBottom="solid 2px white";
-
-        Array.from(notaContainer).forEach((aux)=>{
-            aux.style.backgroundColor="#2196f3"
-        })
-
-
-        Array.from(notaContenido).forEach((aux)=>{
-            aux.style.backgroundColor="#0d47a1"
-        })        
-
-        Array.from(li).forEach((aux)=>{
-            aux.style.borderBottom="solid 2px white";
-        })
-
-        html[0].style.backgroundColor="black";
-        divCopyright.style.borderTop="solid 2px white";
-
         //PARTES ESPECIALES PARA PRODUCTO
+        webLogo.style.filter="invert(100%)";
         imprimirLogo.style.filter="invert(100%)";
         info.style.backgroundColor="#0d47a1";
         titulo.style.backgroundColor="#2196f3";
@@ -95,11 +54,7 @@ function toggleDarkMode(){
 
         Array.from(tr).forEach((aux)=>{
             aux.style.border="solid 1px white";
-        })   
-        
-        Array.from(a).forEach((aux)=>{
-            aux.style.color="white";
-        })           
+        })             
 
         comentariosSubmitContainer.style.backgroundColor="#1f1f1f";        
 
@@ -110,75 +65,43 @@ function toggleDarkMode(){
         Array.from(contenidoComentario).forEach((aux)=>{
             aux.style.backgroundColor="#111111";
         })        
-        
+     
     }
     else{
         esDark=false;
         //Modo claro
-        Array.from(botones).forEach((aux)=>{
-            aux.style.backgroundColor="#cddc39"
-        });
-
-        header.style.backgroundColor="#009688";   
-
-        main[0].style.backgroundColor="beige";     
-
-        body[0].style.color="black";        
-        body[0].style.border="2px solid #00897b";
-        //Array.from(underline).forEach((aux)=>{
-        //    aux.style.color="black";
-        //})        
-
-        contenido.style.backgroundColor="#00897b";
-        contenido.style.borderBottom="solid 2px #00897b";  
-
-        Array.from(notaContainer).forEach((aux)=>{
-            aux.style.backgroundColor="#cddc39"
-        })     
-        
-        Array.from(notaContenido).forEach((aux)=>{
-            aux.style.backgroundColor="#c0ca33"
-        })         
-
-        Array.from(li).forEach((aux)=>{
-            aux.style.borderBottom="solid 2px black";
-        })        
-
-        html[0].style.backgroundColor="";
-        divCopyright.style.borderTop="solid 2px #00897b";
 
         //PARTES ESPECIALES PARA PRODUCTO
+        webLogo.style.filter="";   
         imprimirLogo.style.filter="";        
-        info.style.backgroundColor="#c0ca33";
-        titulo.style.backgroundColor="#cddc39";
-        botonComprar.style.backgroundColor="green";
+        info.style.backgroundColor="";
+        titulo.style.backgroundColor="";
+        botonComprar.style.backgroundColor="";
 
         Array.from(table).forEach((aux)=>{
-            aux.style.border="solid 1px black";
+            aux.style.border="";
         })
 
         Array.from(td).forEach((aux)=>{
-            aux.style.border="solid 1px black";
+            aux.style.border="";
         })        
 
         Array.from(tr).forEach((aux)=>{
-            aux.style.border="solid 1px black";
-        })           
-        
-        Array.from(a).forEach((aux)=>{
-            aux.style.color="";
-        })                   
+            aux.style.border="";
+        })                             
 
-        comentariosSubmitContainer.style.backgroundColor="beige";        
+        comentariosSubmitContainer.style.backgroundColor="";        
 
         Array.from(comentariosContainer).forEach((aux)=>{
-            aux.style.backgroundColor="#d9ead2";
+            aux.style.backgroundColor="";
         })   
         
         Array.from(contenidoComentario).forEach((aux)=>{
-            aux.style.backgroundColor="white";
+            aux.style.backgroundColor="";
         })                
     }
+
+    toggleDarkModePlantilla(esDark);
 }
 
 var botonDark=document.getElementById("modo-oscuro");
