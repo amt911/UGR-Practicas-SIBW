@@ -45,18 +45,17 @@
 /*Regla para el div que contiene la imagen en si y el pie de foto*/
 .img-producto{
     display: none;  /*Se usan grids*/
-    grid-template-rows: auto;  /*Se disponen de dos filas, una para la imagen y otra para el pie*/
+    grid-template-rows: minmax(0, 1fr) auto;  /*Se disponen de dos filas, una para la imagen y otra para el pie*/
     grid-auto-columns: minmax(0, 1fr);
     width: 90%;
-
+    height: 270px;
     justify-self: center;
-    aspect-ratio: 1 / 1;
-    border: solid 1px red;
-    height: max-content;
 }
 
 .img-producto > div:first-child{
+    justify-self: center;
     align-self: center;
+    height: 100%;
 }
 
 
@@ -67,6 +66,7 @@
 
 /*Reglas para centrar verticalmente un div*/
 .centrado-vertical{
+    border-top: solid 2px black;
     align-self: center;
     color: black;
 }
