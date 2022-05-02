@@ -109,15 +109,17 @@ class Modelo{
         return $res;
     }
     
-    function getNumFilasProducto(){
+    private function getNumFilasProducto(){
         $res=false;
         
         $query=$this->mysqli->query("SELECT COUNT(*) FROM Productos");
     
-        if($query->num_rows > 0)
+        if($query->num_rows > 0){
             $res=$query->fetch_assoc();
+            $res=$res["COUNT(*)"];
+        }
     
-        return $res["COUNT(*)"];
+        return $res;
     }
     
     function getComentarios($id){
@@ -207,6 +209,23 @@ class Modelo{
     
         if($query->num_rows > 0)
             $res=$query->fetch_all(MYSQLI_ASSOC);
+
+        return $res;
+    }
+
+    function existeProducto($id){
+        $res=false;
+
+        $prepare=$this->mysqli->prepare("SELECT COUNT(*) FROM Productos WHERE ID=?");
+        $prepare->bind_param("i", $id);
+        $prepare->execute();
+
+        $query=$prepare->get_result();
+    
+        if($query->num_rows > 0){
+            $res=$query->fetch_assoc();
+            $res=$res["COUNT(*)"];
+        }
 
         return $res;
     }

@@ -141,6 +141,7 @@ table{
 
 /*Regla para poner las fuentes en negrita*/
 .negrita{
+    clear: left;
     font-weight: 700;
 }
 

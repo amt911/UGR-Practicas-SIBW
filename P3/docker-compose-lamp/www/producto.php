@@ -5,13 +5,13 @@
 
     //Conecto con la base de datos y obtengo el numero de productos para obtener su id
     $con=new Modelo();
-    $numFilas=$con->getNumFilasProducto();
     //Mas bien poner existeproductoid
 
     //Supongo que si el usuario introduce un identificador invalido se redirige al primero
     $id=1;
 
-    if(isset($_GET["p"]) and $_GET["p"]<=$numFilas and $_GET["p"]>0)
+    //if(isset($_GET["p"]) and $_GET["p"]<=$numFilas and $_GET["p"]>0)
+    if(isset($_GET["p"]) and $con->existeProducto($_GET["p"]))
         $id=$_GET["p"];
 
     //Parte de hacer las queries
