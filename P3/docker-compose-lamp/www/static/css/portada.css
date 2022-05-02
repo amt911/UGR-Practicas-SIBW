@@ -235,3 +235,50 @@ main{
 #modo-oscuro{
     cursor: pointer;
 }
+
+#indice-paginas-numeros{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.5vh;
+    padding: 0.5vh 0.5vh;
+    position: relative;
+}
+
+#indice-paginas > div:first-child,
+#indice-paginas > div:last-child{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: x-large;
+    font-weight: 900;
+
+    box-shadow: 0 3px 3px rgb(0 0 0 / 23%);
+
+    border-radius: 1vh;
+    transition: all 0.3s;
+
+    background-color: aqua;
+}
+
+#indice-paginas > div:first-child:hover,
+#indice-paginas > div:last-child:hover{
+    box-shadow: 0 10px 7px rgba(0,0,0,0.4);
+    transform: scale(1.1);
+}
+
+#indice-paginas{
+    display: grid;
+    grid-template-columns: 10% 1fr 10%;
+}
+
+#indice-paginas-numeros > div{
+    justify-self: center;
+    width: 50%;
+    background-color: white;
+    border-radius: 0.5vh;
+    transition: all 0.3s;
+}
+
+#indice-paginas-numeros > div:hover{
+    transform: scale(1.1);
+}
