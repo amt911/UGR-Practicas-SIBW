@@ -11,7 +11,6 @@ var carruselSiguiente=document.getElementById("siguiente");
 var imagenes=document.getElementsByClassName("img-producto");
 
 
-//???MEJORABLE PREGUNTAR AL PROFESOR
 imagenes[0].style.display="grid";
 cargarPalabrotas();
 
@@ -59,7 +58,7 @@ function toggleDarkMode(){
         comentariosSubmitContainer.style.backgroundColor="#1f1f1f";        
 
         Array.from(comentariosContainer).forEach((aux)=>{
-            aux.style.backgroundColor="#33691e";
+            aux.style.backgroundColor="#4b830d";
         })        
 
         Array.from(contenidoComentario).forEach((aux)=>{
@@ -226,10 +225,16 @@ function subirComentario(){
     var email=document.getElementById("email")
     var comentarioNuevo=document.getElementById("comentario-nuevo")
     var comentarios=document.getElementsByClassName("comentario-container")
-    var template=comentarios[0].cloneNode(true)
-
+    var submit=document.getElementById("submit-comentario");
 
     if(nombre.value!="" && comprobarEmail(email.value) && comentarioNuevo.value!=""){
+        if(comentarios.length==0){
+            document.getElementById("sin-comentarios").remove();
+        }
+
+
+        var template=document.createElement("div");
+        template.setAttribute("class", "comentario-container");
         //Se inserta el nuevo comentario justo debajo del final de la caja para crear uno.
         //Aunque tambien se puede hacer cogiendo todos los comentarios y poniendolo antes de todos en el array
         comprobarPalabrotas();
@@ -249,7 +254,7 @@ function subirComentario(){
 
         template.style.transform="scale(0.8)"
         template.style.opacity="0"
-        document.getElementById("comentarios-submit-container").insertBefore(template, comentarios[0])
+        document.getElementById("comentarios-submit-container").insertBefore(template, submit.nextSibling)
         subirOpacidad(template)
 
         nombre.value=email.value=comentarioNuevo.value=""
