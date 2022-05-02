@@ -11,13 +11,13 @@
                 </section>
 
                 <section class="fondo-azul-claro">
-                    <a class="no-underline" href="producto.php?p={{ aux["ID"] }}">                                        
+                    <a class="no-underline zona-click" href="producto.php?p={{ aux["ID"] }}">                                        
                         {{ aux["Nombre"] }}
                     </a>
                 </section>
 
                 <section class="div-precio fondo-azul-claro">
-                    <a class="no-underline" href="producto.php?p={{ aux["ID"] }}">
+                    <a class="no-underline zona-click" href="producto.php?p={{ aux["ID"] }}">
                         {{ aux["Precio"]|number_format(2, ",", "") }}€
                     </a>                    
                 </section>
@@ -26,14 +26,17 @@
         </div>
 
         <div id="indice-paginas">
-            <div>&#10096</div>
-            <div id="indice-paginas-numeros">
-                <div>1</div>
-                <div>2</div>
-                <div>3</div>
-
+            <div>
+                <a class="no-underline zona-click" href="index.php?pagina={{Anterior}}">&#10096</a>
             </div>
-            <div>&#10097</div>
+            <div id="indice-paginas-numeros">
+                {% for i in MinPagina..MaxPagina %}
+                    <div><a class="no-underline zona-click" href="index.php?pagina={{ i }}">{{ i }}</a></div>
+                {% endfor %}
+            </div>
+            <div>
+                <a class="no-underline zona-click" href="index.php?pagina={{Siguiente}}">&#10097</a>
+            </div>
         </div>
 
 
