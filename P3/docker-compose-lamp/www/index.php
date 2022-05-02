@@ -12,6 +12,7 @@
     $totalPaginas=$con->getNumPaginas();
     $pagina=1;
 
+    //IMPORTANTE DESCOMENTAR ESO PARA QUE NO SE SALGA DEL RANGO
     if(isset($_GET["pagina"])){// and $_GET["pagina"]>0 and $_GET["pagina"]<=$totalPaginas){
         $pagina=$_GET["pagina"];
     }

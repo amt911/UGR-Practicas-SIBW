@@ -6,11 +6,12 @@
     //Conecto con la base de datos y obtengo el numero de productos para obtener su id
     $con=new Modelo();
     $numFilas=$con->getNumFilasProducto();
+    //Mas bien poner existeproductoid
 
     //Supongo que si el usuario introduce un identificador invalido se redirige al primero
     $id=1;
 
-    if(isset($_GET["p"]) and $_GET["p"]<=$numFilas)
+    if(isset($_GET["p"]) and $_GET["p"]<=$numFilas and $_GET["p"]>0)
         $id=$_GET["p"];
 
     //Parte de hacer las queries
@@ -54,9 +55,8 @@
         "Fabricante" => $fabricanteRes["Nombre"],
         "Precio" => $res["Precio"],
         "Descripcion" => $res["Descripción"],
-        "Images" => $imagenes,//$con->get_imagenes_comentarios($id),
+        "Images" => $imagenes,
         "PaginaOficial" => $fabricanteRes["Pagina oficial"],
-        //"Video" => $res["Video"],
         "Twitter" => $fabricanteRes["Twitter"],
         "YouTube" => $fabricanteRes["YouTube"],
         "Facebook" => $fabricanteRes["Facebook"],
