@@ -27,10 +27,9 @@ SET time_zone = "+00:00";
 -- Table structure for table `Comentario`
 --
 
-CREATE DATABASE SIBW;
-
 CREATE USER 'usuario'@'%' IDENTIFIED BY 'usuario';
 GRANT SELECT,INSERT ON SIBW.* TO 'usuario'@'%';
+GRANT USAGE ON SIBW.* TO 'docker'@'%';
 
 CREATE TABLE `Comentario` (
   `Nombre` varchar(200) NOT NULL,
