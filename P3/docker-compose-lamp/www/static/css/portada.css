@@ -316,5 +316,9 @@ main > *{
 }
 
 .amarillo{
-    background-color: #c0ca33 !important;
+    background-color: #cddc39 !important;
+}
+
+.amarillo a{
+    color: black !important;
 }

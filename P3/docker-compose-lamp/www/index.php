@@ -10,10 +10,10 @@
                 "Login" => "index.php");
 
     $totalPaginas=$con->getNumPaginas();
+    //$totalPaginas=5;
     $pagina=1;
 
-    //IMPORTANTE DESCOMENTAR ESO PARA QUE NO SE SALGA DEL RANGO
-    if(isset($_GET["pagina"])){// and $_GET["pagina"]>0 and $_GET["pagina"]<=$totalPaginas){
+    if(isset($_GET["pagina"]) and $_GET["pagina"]>0 and $_GET["pagina"]<=$totalPaginas){
         $pagina=$_GET["pagina"];
     }
 
@@ -38,16 +38,22 @@
     if($siguiente>$totalPaginas)
         $siguiente=$pagina;
 
-
+    //Supongo que el minimo es 1 y el maximo 5
     $max_pagina=5;
     $min_pagina=1;
 
+    //Si la pagina en la que se encuentra es mayor, o se encuentra a uno menos del 5, se entra
     if($pagina>=$max_pagina or ($pagina+1)==$max_pagina){
+        //Se calcula la diferencia para llegar a pagina y se le añade a ambos
         $aux=$pagina-$max_pagina;
 
         $min_pagina+=(2+$aux);
         $max_pagina+=(2+$aux);
     }
+
+    //Si la pagina ha sobrepasado al maximo permitido
+    if($max_pagina>$totalPaginas)
+        $max_pagina=$totalPaginas;
 
     $loader = new \Twig\Loader\FilesystemLoader('templates');
     $twig = new \Twig\Environment($loader);
