@@ -42,3 +42,9 @@ PENSAR COMO ARREGLAR EL CLEAR RIGHT
 
 MODELO: MAS BIEN PONER EN EL _GET EXISTEPRODUCTOID PARA COMPROBARLO
 DESCOMENTAR LA PARTE DE INDEX.PHP
+
+
+https://www.digitalocean.com/community/tutorials/how-to-rewrite-urls-with-mod_rewrite-for-apache-on-ubuntu-16-04
+rewriteengine on apache2 htaccess
+
+ARREGLAR INDICE CUANDO SE EMPEQUEÑECE

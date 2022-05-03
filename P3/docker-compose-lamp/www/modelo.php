@@ -14,7 +14,7 @@ class Modelo{
     }
 
     private function conectarDB(){
-        $this->mysqli=new mysqli("mysql", "usuario", "usuario", "docker");
+        $this->mysqli=new mysqli("mysql", "usuario", "usuario", "SIBW");
     
         if($this->mysqli->connect_errno){
             echo("Fallo al conectar: ". $this->mysqli->connect_error);
@@ -194,7 +194,7 @@ class Modelo{
 
         if($a==1){
             $min=1;
-            $max=9;
+            $max=$this->MAX_PAGE;
         }
         else{
             $min=($a-1)*10;

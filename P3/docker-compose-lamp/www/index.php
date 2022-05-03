@@ -58,6 +58,7 @@
         "MinPagina" => $min_pagina,//$min_pagina,
         "MaxPagina" => $max_pagina,//$max_pagina, //300,
         "Anterior" => $anterior,
-        "Siguiente" => $siguiente
+        "Siguiente" => $siguiente,
+        "Actual" => $pagina
     ]);
 ?>
