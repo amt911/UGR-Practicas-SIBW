@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql:3306
--- Generation Time: May 03, 2022 at 10:49 AM
+-- Generation Time: May 04, 2022 at 09:29 AM
 -- Server version: 8.0.28
 -- PHP Version: 8.0.15
 
@@ -23,12 +23,12 @@ SET time_zone = "+00:00";
 
 -- --------------------------------------------------------
 
+CREATE USER 'usuario'@'%' IDENTIFIED BY 'usuario';
+GRANT SELECT,INSERT ON SIBW.* TO 'usuario'@'%';
+
 --
 -- Table structure for table `Comentario`
 --
-
-CREATE USER 'usuario'@'%' IDENTIFIED BY 'usuario';
-GRANT SELECT,INSERT ON SIBW.* TO 'usuario'@'%';
 
 CREATE TABLE `Comentario` (
   `Nombre` varchar(200) NOT NULL,
@@ -65,12 +65,18 @@ INSERT INTO `Fabrica` (`Nombre`, `ID`) VALUES
 ('AMD', 5),
 ('Intel', 9),
 ('Nintendo', 7),
+('Nintendo', 15),
 ('NVIDIA', 1),
 ('Sony Computer Entertainment', 4),
+('Sony Computer Entertainment', 10),
+('Sony Computer Entertainment', 11),
+('Sony Computer Entertainment', 16),
 ('Western Digital', 3),
 ('Western Digital', 6),
 ('XBOX', 2),
-('XBOX', 8);
+('XBOX', 8),
+('XBOX', 12),
+('XBOX', 13);
 
 -- --------------------------------------------------------
 
@@ -134,7 +140,27 @@ INSERT INTO `Imagenes` (`ID_Producto`, `Ruta Imagen`, `Descripcion`) VALUES
 (6, 'HDD.png', ''),
 (7, 'nintendo_switch_oled_white_1.png', 'Caja de la consola'),
 (8, 'Series_X.png', 'Consola y mando en vista isométrica'),
-(9, 'intel_cpu.png', 'Caja del procesador Intel');
+(9, 'intel_cpu.png', 'Caja del procesador Intel'),
+(10, 'slim1.png', 'Consola y mando'),
+(10, 'slim2.png', 'Caja de la consola'),
+(10, 'slim3.png', 'Vista frontal'),
+(10, 'slim4.png', 'Posisición en vertical'),
+(11, 'pro1.png', 'Caja de la consola'),
+(11, 'pro2.png', 'Posición en vertical'),
+(11, 'pro3.png', 'Posición en horizontal'),
+(12, 'ones1.png', 'Consola y mando'),
+(12, 'ones2.png', 'Frontal de la consola'),
+(12, 'ones3.png', 'Caja de la consola'),
+(13, 'x1.png', 'Consola y mando'),
+(13, 'x2.png', 'Frontal'),
+(13, 'x3.png', ''),
+(15, 'switch1.png', 'Consola con los joycons'),
+(15, 'switch2.png', 'Se puede conectar a la TV'),
+(15, 'switch3.png', 'También se pueden desacoplar los joycons'),
+(15, 'switch4.png', 'Caja de la consola'),
+(16, 'ps5mando1.png', 'Frontal'),
+(16, 'ps5mando2.png', 'Lateral'),
+(16, 'ps5mando3.png', 'Caja');
 
 -- --------------------------------------------------------
 
@@ -190,17 +216,17 @@ INSERT INTO `Productos` (`ID`, `Precio`, `Nombre`, `Descripción`, `Titulo pagin
 (7, 350, 'Nintendo Switch OLED Blanca', '<p class=\"justificado\">\r\nLa consola Nintendo Switch (modelo OLED) incluye una pantalla OLED de 7 pulgadas con colores intensos y alto contraste. También cuenta con un soporte ancho ajustable para el modo sobremesa, una nueva base con puerto LAN por cable que permite jugar en línea con una conexión a internet más estable, 64 GB de memoria interna y altavoces integrados con audio optimizado para disfrutar de un sonido más nítido en los modos portátil y sobremesa. Además, Nintendo Switch (modelo OLED) permite jugar en el televisor y compartir los mandos Joy-Con extraíbles para divertirse como nunca en partidas multijugador.\r\n</p>', 'Nintendo Switch OLED'),
 (8, 500, 'Xbox Series X', '<p class=\"justificado\">\r\nPresentamos Xbox Series X, la Xbox más rápida y potente de la historia. Juega a miles de títulos de cuatro generaciones de consolas: todos los juegos tienen el mejor aspecto y se juegan mejor en Xbox Series X. En el corazón de Series X se incluye Xbox Velocity Architecture, que combina un disco SSD personalizado con software integrado para ofrecer un juego agilizado más rápido y tiempos de descarga significativamente reducidos. Muévete sin problemas entre varios juegos en un instante con Reanudado rápido. Explora nuevos mundos detallados y disfruta de la acción como nunca antes con los incomparables 12 teraflops de potencia de procesamiento de gráficos en bruto. Disfruta de juegos 4K a hasta 120 fotogramas por segundo, sonido espacial 3D avanzado y mucho más. Comienza con una biblioteca instantánea de más de 100 juegos de alta calidad, incluidos títulos totalmente nuevos de Xbox Game Studios, como Halo Infinite, el día de su lanzamiento, con Xbox Game Pass Ultimate (la suscripción se vende por separado).*\r\n</p>', 'XBOX Series X'),
 (9, 669.9, 'Intel Core i9-12900K', '<p class=\"justificado\">\r\nProcesador de escritorio desbloqueado Intel® Core ™ i9-12900K de 12.ª generación. Con tecnología Intel® Turbo Boost Max 3.0 y compatibilidad con PCIe Gen 5.0 y 4.0, compatibilidad con DDR5 y DDR4, los procesadores de escritorio Intel® Core ™ desbloqueados de 12.a generación están optimizados para jugadores entusiastas y creadores serios y ayudan a ofrecer overclocking de alto rendimiento para un impulso adicional. Solución térmica NO incluida en la caja. Compatible con placas base basadas en chipset de la serie 600. 125W.\r\n</p>', 'Intel Core i9-12900K'),
-(10, 12, 'placeholder 1', 'asdasdasd', 'asdasdasd'),
-(11, 12, '', '', ''),
-(12, 123, '123', '123', '123'),
-(13, 123, '123', '123', '123'),
-(14, 123, '123', '123', '123'),
-(15, 123, '123', '123', '123'),
-(16, 123, '123', '123', '123'),
-(17, 123, '123', '123', '123'),
-(18, 123, '123', '123', '123'),
-(19, 123, '123', '123', '123'),
-(20, 123, '123', '123', '123'),
+(10, 395.57, 'PlayStation 4 Slim', '<p class=\"justificado\">\r\n¡Conoce la nueva PS4 modelo SLIM, disfruta de una PS4 más estilizada y compacta con la misma potencia de juego!\r\n</p>\r\n<p class=\"justificado\">\r\n<strong>Disfruta de una PS4 más estilizada y compacta con la misma potencia de juego.</strong>\r\nComo novedad principal tiene un tamaño y peso reducidos. Un 30% más pequeña que la PS4 original y un peso de tan solo 2,1 kg.\r\n</p>\r\n<p class=\"justificado\">\r\n<strong>Mejoras en el apartado WiFi.</strong>\r\nAhora PS4 SLIM soporta WiFi 5Ghz ofreciendo mayor calidad de conexión, mejorando así tu experiencia online tanto en partidas como en contenidos multimedia streaming.\r\n</p>\r\n<p class=\"justificado\">\r\n<strong>Gráficos HDR.</strong>\r\nLa consola más vendida del mundo, ahora con un nuevo aspecto y también con asombrosos gráficos HDR. Disfruta de colores increíblemente vivos y brillantes.\r\n</p>\r\n<p class=\"justificado\">\r\n<strong>Ahorro energético</strong>\r\nMayor eficiencia energética ayudando a su vez a que se caliente mucho menos.\r\n</p>\r\n<p class=\"justificado\">\r\n<strong>Control sin igual.</strong>\r\nEl mando inalámbrico DUALSHOCK 4 se ha actualizado con un nuevo aspecto y diseño, incluida una barra luminosa más visible y colorida para que tengas un control aún mayor del juego en tus manos.\r\n</p>', 'PS4 Slim'),
+(11, 450, 'PlayStation 4 Pro', '<p class=\"justificado\">\r\nPlayStation 4 Pro llega a la familia de consolas de sobremesa de Sony para llevar todo su potencial a otro nivel. Esta versión vitaminada de la actual consola de nueva generación proporciona innnovación en gráficos de alta tecnología, mejorando el catálogo de juegos actual con la última tecnología de imagen a través de la resolución 4K y High Dymanic Range (HDR) en televisores compatibles. Los juegos que ya se veían extraordinariamente bien en PS4, se verán aún más ricos y detallados gracias a la GPU más poderosa y la CPU más rápida que PlayStation 4 Pro alberga en su interior.\r\n</p>\r\n<p class=\"justificado\">\r\nDisfruta de las mejoras de rendimiento que PlayStation 4 Pro ofrece en múltiples juegos ya compatibles como Battlefield 1, Call of Duty: Infinite Warfare, Titanfall 2, Dishonored 2, Rise of the Tomb Raider y Uncharted 4; consigue una experiencia incluso más inversiva en títulos de PlayStation VR como Driveclub VR o Battlezone; y continúa aprovechando la potencia técnica de tu PlayStation 4 Pro en próximos lanzamientos como Watch Dogs 2, Final Fantasy XV, The Last Guardian, Gran Turismo Sport y Horizon Zero Dawn.\r\n</p>\r\n<p class=\"justificado\">\r\n<strong>Características:</strong>\r\n</p>\r\n\r\n<p class=\"justificado\">\r\n<strong>GRÁFICOS ESPECTACULARES.</strong> Si dispones de un televisor 4K podrás disfrutar de una experiencia visual de mayor calidad, alcanzado una resolución 4K (mediante renderizado de imagen o reescalado), así como una más rápida y estable frecuencia de frames. Si dispones de un televisor HD podrás disfrutar de una jugabilidad mejorada en títulos de PS4 alcanzando una resolución de 1080p con una frecuencia de frames mayor y más estable.\r\n</p>\r\n<p class=\"justificado\">\r\n<strong>MÁXIMO RENDIMIENTO.</strong> El doble de potencia (comparado con el modelo anterior) con una increíble combinación de calidad visual y ejecución en una consola.\r\n</p>\r\n<p class=\"justificado\">\r\n<strong>JUGABILIDAD MEJORADA.</strong> La frecuencia de frames ha sido mejorada en los juegos compatibles, siendo más rápida para permitir una imagen super nítida y unos gráficos más fluidos en pantalla.\r\n</p>\r\n<p class=\"justificado\">\r\n<strong>TECNOLOGÍA DE ALTO RANGO DINÁMICO (HDR).</strong> Imágenes más realistas, sorprendentemente vívidas y más cercanas a la resolución del ojo humano real en los televisores compatibles con HDR.\r\n</p>\r\n<p class=\"justificado\">\r\n<strong>SHARE AND PLAY Y REMOTE PLAY MEJORADOS. </strong>Comparte o ejecuta en streaming tus juegos con una resolución mínima de 1080p y 60fps estables.\r\n</p>\r\n<p class=\"justificado\">\r\n<strong>MÁS CONEXIONES.</strong> Velocidad de 2.4GHz/5GHz modo de Wi-Fi seleccionable y salida HDMI 2.0.\r\n</p>\r\n<p class=\"justificado\">\r\n<strong>DOS CONSOLAS, UNA FAMILIA PS4. </strong>Conéctate con tus amigos entre consolas PlayStation 4 Pro y PlayStation 4 y engánchate a la mayor comunidad de jugadores online con PlayStation Plus.\r\n</p>\r\n\r\n<table>\r\n  <tr>\r\n    <td>Dimensiones: </td>\r\n    <td>295 x 327 x 55 mm</td>\r\n  </tr>\r\n  <tr>\r\n    <td>Peso: </td>\r\n    <td>3,3kg</td>\r\n  </tr>\r\n  <tr>\r\n    <td>Modelo: </td>\r\n    <td>CUH-7002B</td>\r\n  </tr>\r\n  <tr>\r\n    <td>CPU: </td>\r\n    <td>AMD Jaguar x86-64, 8-core</td>\r\n  </tr>\r\n  <tr>\r\n    <td>GPU: </td>\r\n    <td>AMD Radeon, 4.20 TFLOP</td>\r\n  </tr>\r\n  <tr>\r\n    <td>RAM: </td>\r\n    <td>8GB + 1GB de RAM convencional DRAM</td>\r\n  </tr>\r\n</table>', 'PS4 Pro'),
+(12, 248.96, 'XBOX ONE S', '248.96', 'XBOX ONE S'),
+(13, 415, 'XBOX ONE X', '123', 'XBOX ONE X'),
+(14, 123, 'AMD Radeon RX6900XT', '123', 'RX6900XT'),
+(15, 300, 'Nintendo Switch V2', '123', 'Switch'),
+(16, 64.95, 'Mando DualSense PlayStation 5', '123', 'Mando PS5'),
+(17, 123, 'Mando DualShock 4 PlayStation 4', '123', '123'),
+(18, 123, 'Mando Xbox Elite', '123', '123'),
+(19, 123, 'AMD Ryzen 9 5900X', '123', '123'),
+(20, 123, 'Mando Xbox One/Series', '123', '123'),
 (21, 123, '123', '123', '123');
 
 -- --------------------------------------------------------
