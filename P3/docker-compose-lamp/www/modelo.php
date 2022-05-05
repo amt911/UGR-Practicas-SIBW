@@ -187,22 +187,17 @@ class Modelo{
     }
 
     function getProductsPage($a){
-        if($a<0 or $a>$this->getNumPaginas())
+        if($a<=0 or $a>$this->getNumPaginas())
             $a=1;
         
         $res=false;
 
-        if($a==1){
-            $min=1;
-            $max=$this->MAX_PAGE;
-        }
-        else{
-            $min=($a-1)*10;
-            $max=$min+8;
-        }
+        $min=($a-1)*9;
+        //$max=$min+8;
 
-        $prepare=$this->mysqli->prepare("SELECT * FROM Productos WHERE ID BETWEEN ? AND ?");
-        $prepare->bind_param("ii", $min, $max);
+        //$prepare=$this->mysqli->prepare("SELECT * FROM Productos WHERE ID BETWEEN ? AND ?");
+        $prepare=$this->mysqli->prepare("SELECT * FROM Productos ORDER BY ID LIMIT ?, ?");
+        $prepare->bind_param("ii", $min, $this->MAX_PAGE);
         $prepare->execute();
 
         $query=$prepare->get_result();

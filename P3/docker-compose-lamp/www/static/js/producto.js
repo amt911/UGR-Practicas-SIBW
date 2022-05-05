@@ -36,7 +36,9 @@ function toggleDarkMode(){
         //Modo oscuro
 
         //PARTES ESPECIALES PARA PRODUCTO
-        webLogo.style.filter="invert(100%)";
+        if(webLogo!=null)
+            webLogo.style.filter="invert(100%)";
+        
         imprimirLogo.style.filter="invert(100%)";
         info.style.backgroundColor="#0d47a1";
         titulo.style.backgroundColor="#2196f3";
@@ -71,7 +73,9 @@ function toggleDarkMode(){
         //Modo claro
 
         //PARTES ESPECIALES PARA PRODUCTO
-        webLogo.style.filter="";   
+        if(webLogo!=null)        
+            webLogo.style.filter="";   
+            
         imprimirLogo.style.filter="";        
         info.style.backgroundColor="";
         titulo.style.backgroundColor="";
