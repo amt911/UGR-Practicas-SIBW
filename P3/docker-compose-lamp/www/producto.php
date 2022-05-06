@@ -10,14 +10,12 @@
     //Supongo que si el usuario introduce un identificador invalido se redirige al primero
     $id=1;
 
-    //if(isset($_GET["p"]) and $_GET["p"]<=$numFilas and $_GET["p"]>0)
     if(isset($_GET["p"]) and $con->existeProducto($_GET["p"]))
         $id=$_GET["p"];
 
     //Parte de hacer las queries
-    $fabricaRes=$con->getFabrica($id);
     $res=$con->getProducto($id);
-    $fabricanteRes=$con->getFabricante($fabricaRes["Nombre"]);
+    $fabricanteRes=$con->getFabricante($res["Nombre_Fabricante"]);
     $comentarios=$con->getAllComments($id);
     $palabrotas=$con->getPalabrotas();
     $imagenes=$con->get_imagenes($id);

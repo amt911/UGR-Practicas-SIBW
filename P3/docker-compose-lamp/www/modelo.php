@@ -26,7 +26,7 @@ class Modelo{
     function getProducto($id){
         $row=false;
 
-        $prepare=$this->mysqli->prepare("SELECT * FROM Productos WHERE ID=?");
+        $prepare=$this->mysqli->prepare("SELECT * FROM ProductosFabrica WHERE ID=?");
         $prepare->bind_param("i", $id);
         $prepare->execute();
 
@@ -97,7 +97,7 @@ class Modelo{
         $res=false;
 
         $this->mysqli->query("SET lc_time_names='es_ES';");
-        $prepare=$this->mysqli->prepare("SELECT Nombre,DATE_FORMAT(Fecha, '%d de %M del %Y, %k:%i') AS Fecha,Texto,Correo FROM Tiene,Comentario WHERE ID=ID_Comentario AND ID_Producto=?;");
+        $prepare=$this->mysqli->prepare("SELECT Nombre,DATE_FORMAT(Fecha, '%d de %M del %Y, %k:%i') AS Fecha,Texto,Correo FROM ComentarioTiene WHERE ID_Producto=?;");
         $prepare->bind_param("i", $idProducto);
         $prepare->execute();
 
@@ -112,7 +112,7 @@ class Modelo{
     private function getNumFilasProducto(){
         $res=false;
         
-        $query=$this->mysqli->query("SELECT COUNT(*) FROM Productos");
+        $query=$this->mysqli->query("SELECT COUNT(*) FROM ProductosFabrica");
     
         if($query->num_rows > 0){
             $res=$query->fetch_assoc();
@@ -196,7 +196,7 @@ class Modelo{
         //$max=$min+8;
 
         //$prepare=$this->mysqli->prepare("SELECT * FROM Productos WHERE ID BETWEEN ? AND ?");
-        $prepare=$this->mysqli->prepare("SELECT * FROM Productos ORDER BY ID LIMIT ?, ?");
+        $prepare=$this->mysqli->prepare("SELECT * FROM ProductosFabrica ORDER BY ID LIMIT ?, ?");
         $prepare->bind_param("ii", $min, $this->MAX_PAGE);
         $prepare->execute();
 
@@ -211,7 +211,7 @@ class Modelo{
     function existeProducto($id){
         $res=false;
 
-        $prepare=$this->mysqli->prepare("SELECT COUNT(*) FROM Productos WHERE ID=?");
+        $prepare=$this->mysqli->prepare("SELECT COUNT(*) FROM ProductosFabrica WHERE ID=?");
         $prepare->bind_param("i", $id);
         $prepare->execute();
 
