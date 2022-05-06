@@ -174,12 +174,12 @@ table, td, tr{
 }
 
 /*Contenedor donde se pone otro con el video (es por cuestion de evitar overflow)*/
-#video-container{
+.video-container{
     display: none;
 }
 
 /*Reglas generales para la parte que pone video relacionado*/
-#video-texto{
+.video-texto{
     display: none;  /*Se dehabilita el texto*/
 }
 
@@ -193,16 +193,6 @@ table, td, tr{
 /*Reglas para centrar verticalmente un div*/
 .centrado-vertical{
     align-self: center;
-}
-
-/*Reglas para los botones que llevan a las redes sociales de NVIDIA*/
-#producto-rrss-container{
-    display: none;
-}
-
-/*Regla para poner las fuentes en negrita (en este caso las oculta)*/
-.negrita{
-    display: none;
 }
 
 /*Reglas que se le ponen a las referencias a enlaces externos para que se queden en negro y sin subrayado*/
@@ -229,4 +219,24 @@ table, td, tr{
 
 #vista-previa{
     display: none;
+}
+
+.main-producto > p,
+.main-producto ul{
+    clear: left;    /*Necesario para que el texto no aparezca entre el titulo del producto y las imagenes*/
+    word-wrap: normal;  /*Se le quita el romper las palabras por estetica*/
+    text-align: justify;    /*Se justifica el texto*/    
+}
+
+.main-producto li{
+    margin-bottom: 10px;
+}
+
+
+#producto-social{
+    display: none;
+}
+
+.center{
+    text-align: center !important;
 }

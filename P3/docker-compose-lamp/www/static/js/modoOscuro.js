@@ -8,7 +8,7 @@ export function toggleDarkModePlantilla(esOscuro){
     var notaContenido=document.getElementsByClassName("nota-contenido");
     
     var a=document.getElementsByTagName("a");
-    var li=document.getElementsByTagName("li");
+    var li=document.getElementsByClassName("nota-li");
     var html=document.getElementsByTagName("html");    
     var divCopyright=document.getElementById("div-copyright");    
 

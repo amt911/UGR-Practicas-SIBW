@@ -72,7 +72,7 @@
             <h3>{{ Fabricante }}</h3>
         </section>
         <section id="precio"> <!--Precio del producto-->
-            {{ Precio }} €
+            {{ Precio|number_format(2, ",", "") }} €
         </section>
 
         <section id="boton-comprar">
@@ -114,6 +114,7 @@
     {{ Descripcion|raw }}
     
     {% block InformacionExtra %}
+        <div id="producto-social">
         <p class="negrita">Redes sociales de {{ Fabricante }}</p>
         <div id="producto-rrss-container">
         {% if PaginaOficial is not null %}
@@ -154,6 +155,7 @@
                 </a>
             </div>
         </div>
+    </div>
     {% endblock %}
 {% endblock %}
 

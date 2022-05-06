@@ -7,7 +7,7 @@
 #info{
     background-color: #c0ca33;  /*Se pone un color de fondo*/
     float:left; /*Se pone para que se pegue a la izquierda*/
-    width: 55%; /*Se le pone un ancho concreto (relativo)*/
+    width: 50%; /*Se le pone un ancho concreto (relativo)*/
     display: grid;  /*Se usan grids*/
     grid-template-rows: repeat(4, auto); /*Se dispone en tres filas*/
     margin-bottom:10px; /*Se pone un poco de margen abajo para el texto*/
@@ -104,15 +104,17 @@ table{
 }
 
 /*Contenedor donde se pone otro con el video (es por cuestion de evitar overflow)*/
-#video-container{
+.video-container{
     display: grid;
     grid-template-columns: minmax(auto, 600px);
     /*grid-auto-rows: auto;*/
     justify-content: center;
+
+    margin-top: 20px;
 }
 
 /*Contenedor con el video*/
-#video{
+.video{
     border: 0;
     aspect-ratio: 16/9; /*Sirve para mantener la relacion de aspecto con independencia del tamaño*/
     width:100%;     /*Obligatorio para que el video se estire hasta llegar a 600px (se mantiene la relacion de aspecto)*/
@@ -339,4 +341,20 @@ button{
 
 .img-previa:hover{
     background-color: rgba(166, 166, 166, 0.5);
+}
+
+/*Reglas para que el que inserte los productos no tenga que poner clases*/
+.main-producto > p,
+.main-producto ul{
+    clear: left;    /*Necesario para que el texto no aparezca entre el titulo del producto y las imagenes*/
+    word-wrap: normal;  /*Se le quita el romper las palabras por estetica*/
+    text-align: justify;    /*Se justifica el texto*/    
+}
+
+.main-producto li{
+    margin-bottom: 10px;
+}
+
+.center{
+    text-align: center !important;
 }
