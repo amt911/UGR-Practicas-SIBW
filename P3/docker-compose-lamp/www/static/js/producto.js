@@ -32,6 +32,7 @@ function toggleDarkMode(){
     var contenidoComentario=document.getElementsByClassName("contenido-comentario");
     //alert("main: "+main);
     if(!esDark){
+        botonDark.innerText="Modo claro"
         esDark=true;
         //Modo oscuro
 
@@ -69,6 +70,7 @@ function toggleDarkMode(){
      
     }
     else{
+        botonDark.innerText="Modo oscuro"
         esDark=false;
         //Modo claro
 
@@ -258,6 +260,17 @@ function subirComentario(){
 
         template.style.transform="scale(0.8)"
         template.style.opacity="0"
+
+        if(esDark){
+            template.style.backgroundColor="#4b830d";
+
+            let contenidoComentario=template.getElementsByClassName("contenido-comentario");
+
+            Array.from(contenidoComentario).forEach((aux)=>{
+                aux.style.backgroundColor="#111111";
+            })               
+        }
+
         document.getElementById("comentarios-submit-container").insertBefore(template, submit.nextSibling)
         subirOpacidad(template)
 

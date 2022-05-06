@@ -9,6 +9,7 @@ function toggleDarkMode(){
     var numeros=document.getElementById("indice-paginas-numeros").getElementsByTagName("div");
 
     if(!esOscuro){
+        botonDark.innerText="Modo claro"
         esOscuro=true;
         
         Array.from(boxes).forEach((aux)=>{
@@ -28,6 +29,7 @@ function toggleDarkMode(){
         });        
     }
     else{
+        botonDark.innerText="Modo oscuro"
         esOscuro=false;
 
         Array.from(boxes).forEach((aux)=>{
