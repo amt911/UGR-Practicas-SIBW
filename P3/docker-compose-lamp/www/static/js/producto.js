@@ -1,35 +1,18 @@
-import { toggleDarkModePlantilla } from "./modoOscuro.js";
-
-//Variables globales
-var botonComentarios=document.getElementById("boton-comentario");
-var zonaTextoNuevoComentario=document.getElementById("comentario-nuevo");
-var abrir=true
-var botonSubmit=document.getElementById("submit")
-var seccionSoloComentarios=document.getElementById("desplegable");
-var carruselAnterior=document.getElementById("anterior");
-var carruselSiguiente=document.getElementById("siguiente");
-var imagenes=document.getElementsByClassName("img-producto");
-
-
-imagenes[0].style.display="grid";
-cargarPalabrotas();
-
-var esDark=false;
 function toggleDarkMode(){
 
 
     //Variables especiales de producto
-    var webLogo=document.getElementById("pagina-oficial-logo");
-    var imprimirLogo=document.getElementById("imprimir-logo");
-    var info=document.getElementById("info");
-    var titulo=document.getElementById("titulo");
-    var botonComprar=document.getElementById("boton-comprar");
-    var table=document.getElementsByTagName("table");
-    var td=document.getElementsByTagName("td");
-    var tr=document.getElementsByTagName("tr");
-    var comentariosSubmitContainer=document.getElementById("comentarios-submit-container");
-    var comentariosContainer=document.getElementsByClassName("comentario-container");
-    var contenidoComentario=document.getElementsByClassName("contenido-comentario");
+    let webLogo=document.getElementById("pagina-oficial-logo");
+    let imprimirLogo=document.getElementById("imprimir-logo");
+    let info=document.getElementById("info");
+    let titulo=document.getElementById("titulo");
+    let botonComprar=document.getElementById("boton-comprar");
+    let table=document.getElementsByTagName("table");
+    let td=document.getElementsByTagName("td");
+    let tr=document.getElementsByTagName("tr");
+    let comentariosSubmitContainer=document.getElementById("comentarios-submit-container");
+    let comentariosContainer=document.getElementsByClassName("comentario-container");
+    let contenidoComentario=document.getElementsByClassName("contenido-comentario");
     //alert("main: "+main);
     if(!esDark){
         botonDark.innerText="Modo claro"
@@ -109,7 +92,7 @@ function toggleDarkMode(){
     toggleDarkModePlantilla(esDark);
 }
 
-var botonDark=document.getElementById("modo-oscuro");
+let botonDark=document.getElementById("modo-oscuro");
 botonDark.addEventListener("click", toggleDarkMode);
 
 
@@ -125,8 +108,8 @@ function comprobarEmail(email){
 
 //Funcion que devuelve la fecha actual en formato mas bonito
 function obtenerFechaActual(){
-    var fecha=new Date()
-    var mesString;
+    let fecha=new Date()
+    let mesString;
 
     switch(fecha.getMonth()){
         case 0:
@@ -182,12 +165,12 @@ function obtenerFechaActual(){
 }
 
 function subirOpacidad(elemento){
-    var contador=0
-    var incremento=0.02;
-    var contadorTam=0.8;
-    var incrementoTam=0.005;
+    let contador=0
+    let incremento=0.02;
+    let contadorTam=0.8;
+    let incrementoTam=0.005;
 
-    var interval=setInterval(()=>{
+    let interval=setInterval(()=>{
         if(contador<1 || contadorTam<1){
             if(contador<1){
                 contador+=incremento
@@ -205,11 +188,11 @@ function subirOpacidad(elemento){
 
     }, 24)
 }
-
+//-------------------------------------------------------------------------------------------------------------
 //Funciones que se llaman desde eventos
 //Funcion que se llama desde un evento para expandir la seccion de comentarios
 function expandirComentarios(){
-    var desplegableComentarios=document.getElementById("comentarios-submit-container");
+    let desplegableComentarios=document.getElementById("comentarios-submit-container");
 
     seccionSoloComentarios.style.transition="0.5s"  //Se activa la animacion (hay que poner esto debido a que la animacion salta si se cambia el zoom)
 
@@ -227,11 +210,11 @@ function expandirComentarios(){
 
 //Funcion que sirve para añadir un nuevo comentario
 function subirComentario(){
-    var nombre=document.getElementById("nombre")
-    var email=document.getElementById("email")
-    var comentarioNuevo=document.getElementById("comentario-nuevo")
-    var comentarios=document.getElementsByClassName("comentario-container")
-    var submit=document.getElementById("submit-comentario");
+    let nombre=document.getElementById("nombre")
+    let email=document.getElementById("email")
+    let comentarioNuevo=document.getElementById("comentario-nuevo")
+    let comentarios=document.getElementsByClassName("comentario-container")
+    let submit=document.getElementById("submit-comentario");
 
     if(nombre.value!="" && comprobarEmail(email.value) && comentarioNuevo.value!=""){
         if(comentarios.length==0){
@@ -239,7 +222,7 @@ function subirComentario(){
         }
 
 
-        var template=document.createElement("div");
+        let template=document.createElement("div");
         template.setAttribute("class", "comentario-container");
         //Se inserta el nuevo comentario justo debajo del final de la caja para crear uno.
         //Aunque tambien se puede hacer cogiendo todos los comentarios y poniendolo antes de todos en el array
@@ -284,12 +267,12 @@ function subirComentario(){
 
 
 
-var intervaloImagen;
+let intervaloImagen;
 function animacionImagen(indice){
     clearInterval(intervaloImagen);
 
-    var contadorAnimacion=0;
-    var incremento=0.02;
+    let contadorAnimacion=0;
+    let incremento=0.02;
 
     intervaloImagen=setInterval(()=>{
         if(contadorAnimacion<1){
@@ -303,7 +286,7 @@ function animacionImagen(indice){
     }, 24)
 }
 
-var contador=0;
+let contador=0;
 function accionarCarruselDerecha(){
     imagenes[contador].style.display="none";
     vistasPrevias[contador].style.border="";
@@ -338,7 +321,7 @@ function accionarCarruselIzquierda(){
 
 
 //https://www.w3schools.com/js/js_ajax_http.asp
-var palabrotas=[];
+let palabrotas=[];
 function cargarPalabrotas(){
     //alert("He entrado")
     const peticion = new XMLHttpRequest();
@@ -353,7 +336,7 @@ function cargarPalabrotas(){
 
 //Funcion que comprueba palabrotas de un array de strings
 function comprobarPalabrotas(){
-    var texto=document.getElementById("comentario-nuevo");
+    let texto=document.getElementById("comentario-nuevo");
 
     palabrotas.forEach(
         (aux)=>{       
@@ -361,6 +344,30 @@ function comprobarPalabrotas(){
         }
     )
 }
+
+function bajarOpacidadTodo(){
+    for(let i=0; i<imagenes.length; i++)
+        imagenes[i].style.opacity="0";
+}
+
+
+//-------------------------------------------------------------------------------------------------------------
+//ZONA "MAIN"
+//Variables globales
+let botonComentarios=document.getElementById("boton-comentario");
+let zonaTextoNuevoComentario=document.getElementById("comentario-nuevo");
+let abrir=true
+let botonSubmit=document.getElementById("submit")
+let seccionSoloComentarios=document.getElementById("desplegable");
+let carruselAnterior=document.getElementById("anterior");
+let carruselSiguiente=document.getElementById("siguiente");
+let imagenes=document.getElementsByClassName("img-producto");
+
+
+imagenes[0].style.display="grid";
+cargarPalabrotas();
+
+let esDark=false;
 
 //Declaracion de eventos
 botonSubmit.addEventListener("click", subirComentario);
@@ -372,15 +379,10 @@ seccionSoloComentarios.addEventListener("transitionend", ()=>{
 carruselAnterior.addEventListener("click", accionarCarruselIzquierda);
 carruselSiguiente.addEventListener("click", accionarCarruselDerecha);
 
-var vistasPrevias=document.getElementsByClassName("img-previa");
+let vistasPrevias=document.getElementsByClassName("img-previa");
 vistasPrevias[0].style.border="solid 2px black"
 
-function bajarOpacidadTodo(){
-    for(let i=0; i<imagenes.length; i++)
-        imagenes[i].style.opacity="0";
-}
-
-//Preguntar por que funciona esto con let y no con var
+//Esto sirve para que la galeria de imagenes funcione
 for(let i=0; i<vistasPrevias.length; i++){
     vistasPrevias[i].addEventListener("click", ()=>{
         if(contador!=i){
@@ -395,8 +397,5 @@ for(let i=0; i<vistasPrevias.length; i++){
     })
 }
 
-
-var botonComprar=document.getElementById("boton-comprar");
-
-
+let botonComprar=document.getElementById("boton-comprar");
 botonComprar.addEventListener("click", ()=>alert("Gracias por su compra"));

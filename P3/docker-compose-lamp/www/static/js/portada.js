@@ -1,12 +1,12 @@
-import { toggleDarkModePlantilla } from "./modoOscuro.js";
+//import { toggleDarkModePlantilla } from "./modoOscuro.js";
 
 
-var esOscuro=false;
+let esOscuro=false;
 function toggleDarkMode(){
-    var boxes=document.getElementsByClassName("box");
-    var tags=document.getElementsByClassName("fondo-azul-claro");
-    var botonesPagina=document.getElementsByClassName("botones-pagina");
-    var numeros=document.getElementById("indice-paginas-numeros").getElementsByTagName("div");
+    let boxes=document.getElementsByClassName("box");
+    let tags=document.getElementsByClassName("fondo-azul-claro");
+    let botonesPagina=document.getElementsByClassName("botones-pagina");
+    let numeros=document.getElementById("indice-paginas-numeros").getElementsByTagName("div");
 
     if(!esOscuro){
         botonDark.innerText="Modo claro"
@@ -51,5 +51,9 @@ function toggleDarkMode(){
 
     toggleDarkModePlantilla(esOscuro);
 }
-var botonDark=document.getElementById("modo-oscuro");
+
+
+
+//ZONA "MAIN"
+let botonDark=document.getElementById("modo-oscuro");
 botonDark.addEventListener("click", toggleDarkMode);

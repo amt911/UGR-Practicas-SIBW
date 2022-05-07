@@ -1,16 +1,16 @@
-export function toggleDarkModePlantilla(esOscuro){
-    var botones=document.getElementsByClassName("menu");
-    var header=document.getElementById("cabecera");
-    var main=document.getElementsByTagName("main");
-    var body=document.getElementsByTagName("body");
-    var contenido=document.getElementById("contenido");
-    var notaContainer=document.getElementsByClassName("nota-container");
-    var notaContenido=document.getElementsByClassName("nota-contenido");
+function toggleDarkModePlantilla(esOscuro){
+    let botones=document.getElementsByClassName("menu");
+    let header=document.getElementById("cabecera");
+    let main=document.getElementsByTagName("main");
+    let body=document.getElementsByTagName("body");
+    let contenido=document.getElementById("contenido");
+    let notaContainer=document.getElementsByClassName("nota-container");
+    let notaContenido=document.getElementsByClassName("nota-contenido");
     
-    var a=document.getElementsByTagName("a");
-    var li=document.getElementsByClassName("nota-li");
-    var html=document.getElementsByTagName("html");    
-    var divCopyright=document.getElementById("div-copyright");    
+    let a=document.getElementsByTagName("a");
+    let li=document.getElementsByClassName("nota-li");
+    let html=document.getElementsByTagName("html");    
+    let divCopyright=document.getElementById("div-copyright");    
 
     if(esOscuro){
         Array.from(botones).forEach((aux)=>{
