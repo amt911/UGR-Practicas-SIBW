@@ -1,6 +1,4 @@
 function toggleDarkMode(){
-
-
     //Variables especiales de producto
     let webLogo=document.getElementById("pagina-oficial-logo");
     let imprimirLogo=document.getElementById("imprimir-logo");
@@ -17,100 +15,42 @@ function toggleDarkMode(){
     if(!esDark){
         botonDark.innerText="Modo claro"
         esDark=true;
-        //Modo oscuro
-
-        //PARTES ESPECIALES PARA PRODUCTO
-        if(webLogo!=null)
-            webLogo.classList.toggle("dark");
-            //webLogo.style.filter="invert(100%)";
-        
-        //imprimirLogo.style.filter="invert(100%)";
-        imprimirLogo.classList.toggle("dark");
-        //info.style.backgroundColor="#0d47a1";
-        info.classList.toggle("dark");
-        //titulo.style.backgroundColor="#2196f3";
-        titulo.classList.toggle("dark");
-        //botonComprar.style.backgroundColor="#008040";
-        botonComprar.classList.toggle("dark");
-
-
-        Array.from(table).forEach((aux)=>{
-            //aux.style.border="solid 1px white";
-            aux.classList.toggle("dark");
-        })
-
-        Array.from(td).forEach((aux)=>{
-            //aux.style.border="solid 1px white";
-            aux.classList.toggle("dark");
-        })        
-
-        Array.from(tr).forEach((aux)=>{
-            //aux.style.border="solid 1px white";
-            aux.classList.toggle("dark");
-        })             
-
-        //comentariosSubmitContainer.style.backgroundColor="#1f1f1f";        
-        comentariosSubmitContainer.classList.toggle("dark");
-
-        Array.from(comentariosContainer).forEach((aux)=>{
-            //aux.style.backgroundColor="#4b830d";
-            aux.classList.toggle("dark");
-        })        
-
-        Array.from(contenidoComentario).forEach((aux)=>{
-            //aux.style.backgroundColor="#111111";
-            aux.classList.toggle("dark");
-        })        
-     
     }
     else{
         botonDark.innerText="Modo oscuro"
         esDark=false;
-        //Modo claro
+    }    
 
-        //PARTES ESPECIALES PARA PRODUCTO
-        if(webLogo!=null)        
-            webLogo.classList.toggle("dark");
-            //webLogo.style.filter="";   
-            
-        //imprimirLogo.style.filter=""; 
-        imprimirLogo.classList.toggle("dark");       
-        //info.style.backgroundColor="";
-        info.classList.toggle("dark");       
-        //titulo.style.backgroundColor="";
-        titulo.classList.toggle("dark");
+    //Modo oscuro
+    if(webLogo!=null)
+        webLogo.classList.toggle("dark");
+    
+    imprimirLogo.classList.toggle("dark");
+    info.classList.toggle("dark");
+    titulo.classList.toggle("dark");
+    botonComprar.classList.toggle("dark");
 
-        //botonComprar.style.backgroundColor="";
-        botonComprar.classList.toggle("dark");
+    Array.from(table).forEach((aux)=>{
+        aux.classList.toggle("dark");
+    })
 
-        Array.from(table).forEach((aux)=>{
-            //aux.style.border="";
-            aux.classList.toggle("dark");
-        })
+    Array.from(td).forEach((aux)=>{
+        aux.classList.toggle("dark");
+    })        
 
-        Array.from(td).forEach((aux)=>{
-            //aux.style.border="";
-            aux.classList.toggle("dark");
-        })        
+    Array.from(tr).forEach((aux)=>{
+        aux.classList.toggle("dark");
+    })             
 
-        Array.from(tr).forEach((aux)=>{
-            //aux.style.border="";
-            aux.classList.toggle("dark");
-        })                             
+    comentariosSubmitContainer.classList.toggle("dark");
 
-        //comentariosSubmitContainer.style.backgroundColor="";        
-        comentariosSubmitContainer.classList.toggle("dark");
+    Array.from(comentariosContainer).forEach((aux)=>{
+        aux.classList.toggle("dark");
+    })        
 
-        Array.from(comentariosContainer).forEach((aux)=>{
-            //aux.style.backgroundColor="";
-            aux.classList.toggle("dark");
-        })   
-        
-        Array.from(contenidoComentario).forEach((aux)=>{
-            //aux.style.backgroundColor="";
-            aux.classList.toggle("dark");
-        })                
-    }
+    Array.from(contenidoComentario).forEach((aux)=>{
+        aux.classList.toggle("dark");
+    })             
 
     toggleDarkModePlantilla(esDark);
 }
