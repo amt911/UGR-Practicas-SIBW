@@ -355,20 +355,11 @@ button{
     text-align: center !important;
 }
 
-
+/*En firefox se veia mal, esto es un arreglo*/
 form > label,
 #submit{
     display: block;
 }
-/*
-body.dark{
-    border: solid 10px pink;
-}
-
-div.dark{
-    border: solid 2px blue;
-}
-*/
 
 /*CLASES ESPECIALES PARA EL MODO OSCURO*/
 table.dark,

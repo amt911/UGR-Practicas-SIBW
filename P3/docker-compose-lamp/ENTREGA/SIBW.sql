@@ -27,10 +27,10 @@ CREATE USER 'usuario'@'%' IDENTIFIED BY 'usuario';
 GRANT SELECT,INSERT ON SIBW.* TO 'usuario'@'%';
 
 --
--- Table structure for table `ComentarioTiene`
+-- Table structure for table `Comentario`
 --
 
-CREATE TABLE `ComentarioTiene` (
+CREATE TABLE `Comentario` (
   `Nombre` varchar(200) NOT NULL,
   `ID` int NOT NULL,
   `Fecha` datetime NOT NULL,
@@ -40,10 +40,10 @@ CREATE TABLE `ComentarioTiene` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `ComentarioTiene`
+-- Dumping data for table `Comentario`
 --
 
-INSERT INTO `ComentarioTiene` (`Nombre`, `ID`, `Fecha`, `Texto`, `Correo`, `ID_Producto`) VALUES
+INSERT INTO `Comentario` (`Nombre`, `ID`, `Fecha`, `Texto`, `Correo`, `ID_Producto`) VALUES
 ('Antonio Robles', 1, '2021-05-12 12:41:00', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam erat metus, pellentesque non libero ac, aliquam auctor odio. Pellentesque eu efficitur est. Donec facilisis tellus ac tellus fermentum, tempor tempor nulla posuere. Duis a arcu non orci suscipit eleifend. Maecenas malesuada sem et leo iaculis dapibus. Duis arcu erat, tempor vitae fermentum ac, convallis vel mauris. Sed lacinia quam nec rhoncus tempus.\r\n', 'example@fakemail.com', 1),
 ('Juan Hidalgo', 2, '2020-04-06 13:37:00', 'orem ipsum dolor sit amet, consectetur adipiscing elit. Etiam erat metus, pellentesque non libero ac, aliquam auctor odio. Pellentesque eu efficitur est. Donec facilisis tellus ac tellus fermentum, tempor tempor nulla posuere. Duis a arcu non orci suscipit eleifend. Maecenas malesuada sem et leo iaculis dapibus. Duis arcu erat, tempor vitae fermentum ac, convallis vel mauris. Sed lacinia quam nec rhoncus tempus.', 'ejemplo@fakemail2.com', 1);
 
@@ -173,10 +173,10 @@ INSERT INTO `Palabrota` (`palabra`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ProductosFabrica`
+-- Table structure for table `Productos`
 --
 
-CREATE TABLE `ProductosFabrica` (
+CREATE TABLE `Productos` (
   `ID` int NOT NULL,
   `Precio` double NOT NULL,
   `Nombre` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
@@ -186,10 +186,10 @@ CREATE TABLE `ProductosFabrica` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `ProductosFabrica`
+-- Dumping data for table `Productos`
 --
 
-INSERT INTO `ProductosFabrica` (`ID`, `Precio`, `Nombre`, `Descripción`, `Titulo pagina`, `Nombre_Fabricante`) VALUES
+INSERT INTO `Productos` (`ID`, `Precio`, `Nombre`, `Descripción`, `Titulo pagina`, `Nombre_Fabricante`) VALUES
 (1, 2200, 'NVIDIA GeForce RTX 3090 Founders Edition', '<p> <!--Contiene una breve descripcion del articulo, ademas de estar justificado el texto-->\r\n    La GeForce RTX™ 3090 es una gran GPU endiablada (BFGPU) con rendimiento de la clase TITAN. Con\r\n    tecnología de Ampere, la arquitectura RTX de la segunda generación de NVIDIA, duplica el trazado de\r\n    rayos y el rendimiento de IA con núcleos con trazado de rayos (RT) y núcleos Tensor mejorados y nuevos\r\n    multiprocesadores de streaming mejorados. Además, presenta unos asombrosos 24 GB de memoria G6X, todo para ofrecer la experiencia de gaming\r\n    definitiva.\r\n</p>\r\n\r\n<p>\r\n    Las unidades son muy limitadas debido a los problemas actuales del mundo, por lo que el precio ha subido\r\n    mucho. Además sólo se puede comprar una por usuario y en caso de detectar cualquier uso de bots o scripts para automatizar la compra masiva se le baneará del sitio web.\r\n</p>\r\n\r\n<p>\r\n    Nota: Hay que tener en cuenta que es una tarjeta gráfica muy larga por lo que es necesario medir el\r\n    interior de la caja disponible antes de proceder a comprarla (sólo es una recomendación).\r\n</p>\r\n\r\n<p>\r\n    Nota 2: Esta tarjeta es la versión LHR (Low Hash Rate) por lo que tiene bloqueada la mitad de la potencia para minar criptomonedas. Si la va a usar para minar, esta no es su tarjeta.\r\n</p>\r\n\r\n\r\n<table> <!--Tabla con las especificaciones del producto-->\r\n    <tr> <!--Fila de la tabla y dentro contiene dos columnas-->\r\n        <td>\r\n            Núcleos CUDA\r\n        </td>\r\n\r\n        <td>\r\n            10496\r\n        </td>\r\n    </tr>\r\n\r\n    <tr> <!--Fila de la tabla y dentro contiene dos columnas-->\r\n        <td>\r\n            Frecuencia normal(GHz)\r\n        </td>\r\n        <td>\r\n            1.40\r\n        </td>\r\n    </tr>\r\n\r\n    <tr> <!--Fila de la tabla y dentro contiene dos columnas-->\r\n        <td>\r\n            Frecuencia acelerada (GHz)\r\n        </td>\r\n        <td>\r\n            1.70\r\n        </td>\r\n    </tr>\r\n\r\n    <tr> <!--Fila de la tabla y dentro contiene dos columnas-->\r\n        <td>\r\n            Tipo de memoria\r\n        </td>\r\n        <td>\r\n            GDDR6X\r\n        </td>\r\n    </tr>\r\n\r\n    <tr> <!--Fila de la tabla y dentro contiene dos columnas-->\r\n        <td>\r\n            Cantidad de memoria\r\n        </td>\r\n        <td>\r\n            24GB\r\n        </td>\r\n    </tr>\r\n\r\n    <tr> <!--Fila de la tabla y dentro contiene dos columnas-->\r\n        <td>\r\n            Ancho de interfaz de memoria\r\n        </td>\r\n        <td>\r\n            384-bit\r\n        </td>\r\n    </tr>\r\n</table>\r\n\r\n\r\n<div class=\"video-container\">\r\n<div><strong>Vídeo relacionado</strong></div>\r\n    <div>\r\n        <iframe class=\"video\" src=\"https://www.youtube.com/embed/BCcN8kCD90A\" title=\"YouTube video player\"\r\n            allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\"\r\n            allowfullscreen></iframe>\r\n    </div>\r\n</div>', 'NVIDIA RTX 3090', 'NVIDIA'),
 (2, 180, 'Mando Xbox Elite Series 2', '<p>El mando Xbox Elite Series 2 se adapta al tamaño de tu mano y a tu estilo de juego con configuraciones que pueden mejorar la precisión, la velocidad y el alcance mediante gatillos de distintas formas y tamaños. Puedes intercambiar los joysticks de metal y crucetas para lograr un control y ergonomía personalizados. Incorpora cuatro ranuras para palancas intercambiables que puedes conectar o quitar sin ninguna herramienta.</p>\r\n\r\n<p>\r\nDiseñado para satisfacer las necesidades de los jugadores competitivos de la actualidad, el nuevo Mando inalámbrico Xbox Elite Series 2 cuenta con más de 30 nuevas formas para jugar como un profesional.\r\n</p>\r\n\r\n<p>\r\nUtiliza opciones de configuración exclusivas, como la asignación de botones a comandos de voz como \"grabar eso\" o \"hacer una captura de pantalla\". Asigna un botón para que actúe como la tecla Mayús para habilitar entradas alternativas de cada uno de los otros botones.\r\n</p>', 'Mando Elite 2', 'XBOX'),
 (3, 89.99, 'WD_Black PC SN750 NVMe', '<p>\r\nWD_BLACK™ SN750 NVMe™ SSD ofrece un rendimiento espectacular a los aficionados a los juegos y el hardware que estén pensando en montar o mejorar un ordenador. WD_BLACK™ SN750 NVMe™ SSD está disponible en capacidades de hasta 4 TB y compite con algunos de los mejores discos del mercado para ofrecer una ventaja a los jugadores.\r\n</p>\r\n\r\n<p>\r\n<strong>El Rendimiento Es Importante:</strong> Tanto si quiere mejorar la velocidad general de su sistema como los tiempos de carga de juegos y niveles, elija la opción más rápida: el disco WD_BLACK™ reduce el tiempo de espera para que pueda volver a la acción y jugar con ventaja.\r\n</p>\r\n\r\n<p>\r\n<strong>Espacio Para Juegos:</strong> El núcleo del disco WD_BLACK™ es su revolucionaria tecnología NAND. Al ofrecer el doble de densidad de almacenamiento que la generación anterior, la tecnología NAND 3D permite superar las limitaciones de almacenamiento y mostrar la enorme innovación que esto representa. El resultado es una capacidad ampliada en un disco de una sola cara que ocupa aproximadamente lo mismo que un paquete de chicles y que aun así ofrece suficiente espacio para archivos grandes y videojuegos.\r\n</p>\r\n\r\n<table>\r\n<tr>\r\n<td>\r\nCapacidad\r\n</td>\r\n<td>\r\n250 GB\r\n</td>\r\n</tr>\r\n\r\n<tr>\r\n<td>\r\nConexión\r\n</td>\r\n<td>\r\nPCIe\r\n</td>\r\n</tr>\r\n\r\n<tr>\r\n<td>\r\nConector\r\n</td>\r\n<td>\r\nM.2\r\n</td>\r\n</tr>\r\n\r\n<tr>\r\n<td>\r\nDimensiones (largo, ancho y alto)\r\n</td>\r\n<td>\r\n80mm x 24.2mm x 8.1mm\r\n</td>\r\n</tr>\r\n\r\n<tr>\r\n<td>\r\nRendimiento de lectura secuencial\r\n</td>\r\n<td>\r\n3100MB/s\r\n</td>\r\n</tr>\r\n<tr>\r\n<td>\r\nRendimiento de escritura secuencial\r\n</td>\r\n<td>\r\n1600MB/s\r\n</td>\r\n</tr>\r\n</table>', 'WD Black NVME', 'Western Digital'),
@@ -215,9 +215,9 @@ INSERT INTO `ProductosFabrica` (`ID`, `Precio`, `Nombre`, `Descripción`, `Titul
 --
 
 --
--- Indexes for table `ComentarioTiene`
+-- Indexes for table `Comentario`
 --
-ALTER TABLE `ComentarioTiene`
+ALTER TABLE `Comentario`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `ID_Producto` (`ID_Producto`);
 
@@ -241,9 +241,9 @@ ALTER TABLE `Palabrota`
   ADD PRIMARY KEY (`palabra`);
 
 --
--- Indexes for table `ProductosFabrica`
+-- Indexes for table `Productos`
 --
-ALTER TABLE `ProductosFabrica`
+ALTER TABLE `Productos`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `Nombre_Fabricante` (`Nombre_Fabricante`);
 
@@ -252,15 +252,15 @@ ALTER TABLE `ProductosFabrica`
 --
 
 --
--- AUTO_INCREMENT for table `ComentarioTiene`
+-- AUTO_INCREMENT for table `Comentario`
 --
-ALTER TABLE `ComentarioTiene`
+ALTER TABLE `Comentario`
   MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `ProductosFabrica`
+-- AUTO_INCREMENT for table `Productos`
 --
-ALTER TABLE `ProductosFabrica`
+ALTER TABLE `Productos`
   MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
@@ -268,21 +268,21 @@ ALTER TABLE `ProductosFabrica`
 --
 
 --
--- Constraints for table `ComentarioTiene`
+-- Constraints for table `Comentario`
 --
-ALTER TABLE `ComentarioTiene`
-  ADD CONSTRAINT `ComentarioTiene_ibfk_1` FOREIGN KEY (`ID_Producto`) REFERENCES `ProductosFabrica` (`ID`);
+ALTER TABLE `Comentario`
+  ADD CONSTRAINT `ComentarioTiene_ibfk_1` FOREIGN KEY (`ID_Producto`) REFERENCES `Productos` (`ID`);
 
 --
 -- Constraints for table `Imagenes`
 --
 ALTER TABLE `Imagenes`
-  ADD CONSTRAINT `Imagenes_ibfk_1` FOREIGN KEY (`ID_Producto`) REFERENCES `ProductosFabrica` (`ID`);
+  ADD CONSTRAINT `Imagenes_ibfk_1` FOREIGN KEY (`ID_Producto`) REFERENCES `Productos` (`ID`);
 
 --
--- Constraints for table `ProductosFabrica`
+-- Constraints for table `Productos`
 --
-ALTER TABLE `ProductosFabrica`
+ALTER TABLE `Productos`
   ADD CONSTRAINT `ProductosFabrica_ibfk_1` FOREIGN KEY (`Nombre_Fabricante`) REFERENCES `Fabricante` (`Nombre`);
 COMMIT;
 
