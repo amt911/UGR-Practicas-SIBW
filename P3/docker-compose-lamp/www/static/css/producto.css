@@ -5,6 +5,7 @@
 
 /*Contenedor donde se recoge la informacion del producto*/
 #info{
+    /*word-break: break-word;*/
     background-color: #c0ca33;
     float:left; /*Se pone para que se pegue a la izquierda*/
     width: 50%;
@@ -13,6 +14,8 @@
     margin-bottom:10px;
     border-radius: 0.5vh;
     box-shadow: 0 7px 7px rgba(0,0,0,0.3); /*Se le pone una sombra*/
+    
+    /*grid-auto-columns: 100%;*/
 }
 
 /*Reglas para el contenedor del titulo*/
@@ -21,6 +24,7 @@
     border-top-left-radius: 0.5vh;
     border-top-right-radius: 0.5vh;
     background-color: #cddc39;  /*Color de fondo*/
+    min-width: 0;
 }
 
 /*Reglas para el contenedor del precio*/
