@@ -301,3 +301,63 @@ main{
 .amarillo a{
     color: black !important;
 }
+
+/*OPCIONES PARA EL MODO OSCURO EN PORTADA*/
+.menu.dark{
+    background-color: #2196f3;
+}
+
+#cabecera.dark{
+    background-color: #1f1f1f;
+}
+
+main.dark{
+    background-color: #111111;
+}
+
+body.dark{
+    color: white;
+    border: 2px solid white;
+}
+
+#contenido.dark{
+    background-color: #303030;
+    border-bottom: solid 2px white;
+}
+
+.nota-container.dark{
+    background-color: #2196f3;
+}
+
+.nota-contenido.dark{
+    background-color: #0d47a1;
+}
+
+.nota-li.dark{
+    border-bottom: solid 2px white;
+}
+
+html.dark{
+    background-color: black;
+}
+
+#div-copyright.dark{
+    border-top: solid 2px white;
+}
+
+a.dark{
+    color: white;
+}
+
+.box.dark{
+    background-color:#007ac1;
+}
+
+.fondo-azul-claro.dark,
+#indice-paginas-numeros > div.dark{
+    background-color: #002f6c;
+}
+
+.botones-pagina.dark{
+    background-color: #731000;
+}

@@ -356,3 +356,48 @@ form > label,
 #submit{
     display: block;
 }
+/*
+body.dark{
+    border: solid 10px pink;
+}
+
+div.dark{
+    border: solid 2px blue;
+}
+*/
+
+/*CLASES ESPECIALES PARA EL MODO OSCURO*/
+table.dark,
+td.dark,
+tr.dark{
+    border: solid 1px white;
+}
+
+.comentario-container.dark{
+    background-color: #4b830d;
+}
+
+.contenido-comentario.dark{
+    background-color: #111111;
+}
+
+#pagina-oficial-logo.dark,
+#imprimir-logo.dark{
+    filter: invert(100%);
+}
+
+#info.dark{
+    background-color: #0d47a1;
+}
+
+#titulo.dark{
+    background-color: #2196f3;
+}
+
+#boton-comprar.dark{
+    background-color: #008040;
+}
+
+#comentarios-submit-container.dark{
+    background-color: #1f1f1f;
+}

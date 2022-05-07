@@ -13,19 +13,23 @@ function toggleDarkMode(){
         esOscuro=true;
         
         Array.from(boxes).forEach((aux)=>{
-            aux.style.backgroundColor="#007ac1"
+            //aux.style.backgroundColor="#007ac1"
+            aux.classList.toggle("dark");
         });
 
         Array.from(tags).forEach((aux)=>{
-            aux.style.backgroundColor="#002f6c"
+            //aux.style.backgroundColor="#002f6c"
+            aux.classList.toggle("dark");
         });        
 
         Array.from(botonesPagina).forEach((aux)=>{
-            aux.style.backgroundColor="#731000";//"#c41c00";
+            //aux.style.backgroundColor="#731000";//"#c41c00";
+            aux.classList.toggle("dark");
         });
 
         Array.from(numeros).forEach((aux)=>{
-            aux.style.backgroundColor="#002f6c";
+            //aux.style.backgroundColor="#002f6c";
+            aux.classList.toggle("dark");
         });        
     }
     else{
@@ -33,19 +37,23 @@ function toggleDarkMode(){
         esOscuro=false;
 
         Array.from(boxes).forEach((aux)=>{
-            aux.style.backgroundColor=""
+            //aux.style.backgroundColor=""
+            aux.classList.toggle("dark");
         });        
 
         Array.from(tags).forEach((aux)=>{
-            aux.style.backgroundColor=""
+            //aux.style.backgroundColor=""
+            aux.classList.toggle("dark");
         });                
 
         Array.from(botonesPagina).forEach((aux)=>{
-            aux.style.backgroundColor="";
+            //aux.style.backgroundColor="";
+            aux.classList.toggle("dark");
         });        
 
         Array.from(numeros).forEach((aux)=>{
-            aux.style.backgroundColor="";
+            //aux.style.backgroundColor="";
+            aux.classList.toggle("dark");
         });                
     }
 
