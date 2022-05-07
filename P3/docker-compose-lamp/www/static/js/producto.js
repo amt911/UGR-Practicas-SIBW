@@ -124,7 +124,9 @@ function obtenerFechaActual(){
             break;                          
     }
 
-    return fecha.getDate()+" de "+mesString+" del "+fecha.getFullYear()+", "+fecha.getHours()+":"+fecha.getMinutes()
+    let dia=(fecha.getDate()<10)?"0"+fecha.getDate(): fecha.getDate();
+
+    return dia+" de "+mesString+" del "+fecha.getFullYear()+", "+fecha.getHours()+":"+fecha.getMinutes()
 }
 
 function subirOpacidad(elemento){
@@ -208,12 +210,12 @@ function subirComentario(){
         template.style.opacity="0"
 
         if(esDark){
-            template.style.backgroundColor="#4b830d";
+            template.classList.toggle("dark");
 
             let contenidoComentario=template.getElementsByClassName("contenido-comentario");
 
             Array.from(contenidoComentario).forEach((aux)=>{
-                aux.style.backgroundColor="#111111";
+                aux.classList.toggle("dark");
             })               
         }
 
