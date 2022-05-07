@@ -5,30 +5,35 @@
 
     $con=new Modelo();
 
+    //Botones de navegacion
     $menu=array("Inicio"=>"index.php",
                 "FAQ" => "index.php",
                 "Login" => "index.php");
 
+    //El numero total de paginas que tiene la portada
     $totalPaginas=$con->getNumPaginas();
-    //$totalPaginas=5;
+
     $pagina=1;
 
     if(isset($_GET["pagina"]) and $_GET["pagina"]>0 and $_GET["pagina"]<=$totalPaginas){
         $pagina=$_GET["pagina"];
     }
 
+    //Ya sabiendo la pagina, se obtienen los productos
     $productos=$con->getProductsPage($pagina);
 
     //Inserto en el array asociativo de productos la ruta de las imagenes que se encuentran en otra tabla
     //Esto lo hago por comodidad a la hora de usar TWIG
     for($i=0; $i<count($productos); $i++){
-        $imagen=$con->get_imagenes($productos[$i]["ID"])[0]["Ruta Imagen"];
+        $imagen=$con->getImagenes($productos[$i]["ID"])[0]["Ruta Imagen"];
         if($imagen==false)
             $imagen="placeholder.png";
             
         $productos[$i]["Imagenes"]=$imagen;
     }
 
+
+    //Las flechas de navegacion entre paginas
     $anterior=$pagina-1;
     $siguiente=$pagina+1;
 
@@ -39,21 +44,21 @@
         $siguiente=$pagina;
 
     //Supongo que el minimo es 1 y el maximo 5
-    $max_pagina=5;
-    $min_pagina=1;
+    $maxPagina=5;
+    $minPagina=1;
 
     //Si la pagina en la que se encuentra es mayor, o se encuentra a uno menos del 5, se entra
-    if($pagina>=$max_pagina or ($pagina+1)==$max_pagina){
+    if($pagina>=$maxPagina or ($pagina+1)==$maxPagina){
         //Se calcula la diferencia para llegar a pagina y se le añade a ambos
-        $aux=$pagina-$max_pagina;
+        $aux=$pagina-$maxPagina;
 
-        $min_pagina+=(2+$aux);
-        $max_pagina+=(2+$aux);
+        $minPagina+=(2+$aux);
+        $maxPagina+=(2+$aux);
     }
 
     //Si la pagina ha sobrepasado al maximo permitido
-    if($max_pagina>$totalPaginas)
-        $max_pagina=$totalPaginas;
+    if($maxPagina>$totalPaginas)
+        $maxPagina=$totalPaginas;
 
     $loader = new \Twig\Loader\FilesystemLoader('templates');
     $twig = new \Twig\Environment($loader);
@@ -61,8 +66,8 @@
         "Titulo" => "e-tienda. Más que comercio",
         "Menu" => $menu,
         "Productos" => $productos,
-        "MinPagina" => $min_pagina,//$min_pagina,
-        "MaxPagina" => $max_pagina,//$max_pagina, //300,
+        "MinPagina" => $minPagina,
+        "MaxPagina" => $maxPagina,
         "Anterior" => $anterior,
         "Siguiente" => $siguiente,
         "Actual" => $pagina

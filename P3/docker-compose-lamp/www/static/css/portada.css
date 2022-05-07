@@ -79,19 +79,18 @@ h1 {
     /*Tambien es muy util usar repeat para no tener que escribir lo mismo varias veces*/
     grid-template-columns: repeat(5, minmax(auto, 68px));
     align-content: center; /*Para que el contenido se alinee verticalmente*/
-    gap: 1rem ; /*Distancia entre las opciones del menu*/
+    gap: 1rem ;
 }
 
 /*Opciones para cada entrada del menu*/
 .menu {
     box-shadow: 0 3px 3px rgba(0,0,0,0.23); /* box-shadow: offset-x offset-y blur-radius color*/
     transition: all 0.3s;   /*La animacion que se ejecuta*/
-    background-color: #cddc39;  /*El color de fondo*/
-    border-radius: 0.5vh;   /*Bordes redondeados*/
+    background-color: #cddc39;
+    border-radius: 0.5vh;
     text-align: center; /*Alineacion horizontal del texto*/
     display: flex;
     justify-content: center;
-    /*align-items: center;*/
 }
 
 /*Regla que se ejecuta cuando se pasa el cursor por encima*/
@@ -102,24 +101,19 @@ h1 {
 
 /*Reglas para el contenedor de main y el aside*/
 #contenido {
-    display: grid;  /*Se usan grids*/
-    grid-template-columns: 75% 25%; /*La disposicion de columnas*/
-    background-color: #00897b;  /*Color de fondo*/
-    border-bottom: solid 2px #00897b;   /*Se le pone un border debajo para separarlo del pie*/
+    display: grid; 
+    grid-template-columns: 75% 25%;
+    background-color: #00897b;
+    border-bottom: solid 2px #00897b;
 }
 
 main{
     display: grid;
     grid-template-rows: 1fr auto;
     text-align: center; /*Para alinear el texto horizontalmente*/
-    background-color: beige; /*Color de fondo del main, no de los articulos*/    
-    border-radius: 0.5vh; /*Para que los bordes sean redondeados*/    
+    background-color: beige;
+    border-radius: 0.5vh;
 }
-/*
-main > *{
-    border: solid 1px red;
-}
-*/
 
 /*Seccion del main con los objetos*/
 .main-portada {
@@ -129,17 +123,17 @@ main > *{
     grid-auto-rows: 370px; /*Sirve para evitar poner el mismo numero 3 veces para las filas existentes*/
     align-content: center;  /*Para alinear el contenido verticalmente*/
     justify-content: center;    /*Para alinear el contenido horizontalmente*/
-    padding: 3%;    /*Sirve para dejar espacio en los 4 lados entre el main y los articulos*/
+    padding: 3%;
 }
 
 /*Reglas para los contenedores de los propios articulos*/
 .box {
-    border-radius: 0.5vh;   /*Para que los bordes sean redondeados*/
-    background-color: #03A9F4;  /*Color de fondo*/
-    display: grid;  /*Se usan grids*/
-    grid-template-rows: 65% 20% 15%;    /*Disposicion de las distintas partes que componen el articulo*/
-    grid-auto-columns: 100%;    /*Se obliga a que el ancho ocupe todo el div*/
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5); /*Sombra del articulo*/
+    border-radius: 0.5vh;
+    background-color: #03A9F4;
+    display: grid;
+    grid-template-rows: 65% 20% 15%;
+    grid-auto-columns: 100%;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
     transition: all 0.3s; /*Animacion del articulo*/
 }
 
@@ -251,22 +245,14 @@ main > *{
 }
 
 .botones-pagina{
-    /*border: solid 1px red;*/
-    /*display: flex;*/
-    /*align-items: center;*/
-    /*justify-content: center;*/
-    
     font-size: x-large;
-    /*font-weight: 900;*/
 
     box-shadow: 0 3px 3px rgb(0 0 0 / 23%);
     transition: all 0.3s;
 
     border-radius: 1vh;
 
-    background-color: #ff5722
-
-    ;
+    background-color: #ff5722;
 }
 
 #indice-paginas > div:first-child:hover,
@@ -284,12 +270,6 @@ main > *{
     grid-template-columns: minmax(5%, auto) minmax(25%, auto) minmax(5%, auto);
     justify-content: center;
 }
-/*
-#indice-paginas > *{
-    border: solid 1px red;
-}
-*/
-
 
 #indice-paginas-numeros > div{
     justify-self: center;
@@ -310,7 +290,6 @@ main > *{
     display: flex;
     width: 100%;
     height: 100%;
-    /*word-break:break-all;*/
     align-items: center;
     justify-content: center;
 }

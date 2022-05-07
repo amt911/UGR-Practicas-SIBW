@@ -1,5 +1,4 @@
 <?php
-
 class Modelo{
     private $mysqli;
     private $MAX_PAGE;
@@ -157,21 +156,7 @@ class Modelo{
         return $salida;
     }
 
-    function get_imagenes_comentarios($id){
-        $aux=$this->getProducto($id);
-        $res=false;
-
-        $array_i=preg_split("/\R/", $aux["Imagenes"]);
-        $array_c=preg_split("/\R/", $aux["Comentarios"]);
-
-        if(count($array_c)==count($array_i)){
-            $res=array_combine($array_i, $array_c);
-        }
-
-        return $res;
-    }    
-
-    function get_imagenes($id){  
+    function getImagenes($id){  
         $res=false;
 
         $prepare=$this->mysqli->prepare("SELECT * FROM Imagenes WHERE ID_Producto=?;");
@@ -225,7 +210,4 @@ class Modelo{
         return $res;
     }
 }
-
-//La sentencia que hay que usar es:
-//SELECT * FROM Productos WHERE ID BETWEEN 3 AND 7;
 ?>

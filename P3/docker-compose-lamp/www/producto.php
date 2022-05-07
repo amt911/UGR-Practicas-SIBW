@@ -1,28 +1,27 @@
 <?php
-    // Inicializamos el motor de plantillas
     require_once "/usr/local/lib/php/vendor/autoload.php";
     include("modelo.php");
 
-    //Conecto con la base de datos y obtengo el numero de productos para obtener su id
+    //Conexion base de datos
     $con=new Modelo();
     //Mas bien poner existeproductoid
 
-    //Supongo que si el usuario introduce un identificador invalido se redirige al primero
+
+    //Identificador del producto junto su comprobacion
     $id=1;
 
     if(isset($_GET["p"]) and $con->existeProducto($_GET["p"]))
         $id=$_GET["p"];
 
+    
     //Parte de hacer las queries
     $res=$con->getProducto($id);
     $fabricanteRes=$con->getFabricante($res["Nombre_Fabricante"]);
     $comentarios=$con->getAllComments($id);
     $palabrotas=$con->getPalabrotas();
-    $imagenes=$con->get_imagenes($id);
+    $imagenes=$con->getImagenes($id);
 
     //Si no ha encontrado ninguna imagen se pone un placeholder
-    //Esto es necesario para que funcione la pagina ya que
-    //Utiliza eventos en esa parte de html
     if($imagenes==false){
         $imagenes=array(array("Ruta Imagen"=>"placeholder.png", "Descripcion"=>"placeholder"));
     }
@@ -31,10 +30,11 @@
     if(isset($_GET["imprimir"]) and $_GET["imprimir"]==1){
         $pagina="producto_imprimir.twig";
         
-        $imagenes=array_slice($imagenes, 0, 2);
+        $imagenes=array_slice($imagenes, 0, 2); //Solo se ponen las dos primeras imagenes
     }
     else
         $pagina="producto.twig";
+    
     
     //Los botones del menu con sus respectivas paginas
     $menu=array("Inicio"=>"index.php",

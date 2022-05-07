@@ -5,13 +5,13 @@
 
 /*Contenedor donde se recoge la informacion del producto*/
 #info{
-    background-color: #c0ca33;  /*Se pone un color de fondo*/
+    background-color: #c0ca33;
     float:left; /*Se pone para que se pegue a la izquierda*/
-    width: 50%; /*Se le pone un ancho concreto (relativo)*/
-    display: grid;  /*Se usan grids*/
-    grid-template-rows: repeat(4, auto); /*Se dispone en tres filas*/
-    margin-bottom:10px; /*Se pone un poco de margen abajo para el texto*/
-    border-radius: 0.5vh;   /*Se redondean las esquinas*/
+    width: 50%;
+    display: grid;
+    grid-template-rows: repeat(4, auto);
+    margin-bottom:10px;
+    border-radius: 0.5vh;
     box-shadow: 0 7px 7px rgba(0,0,0,0.3); /*Se le pone una sombra*/
 }
 
@@ -32,7 +32,7 @@
 
 /*Reglas para el contenedor de imagenes*/
 #carrusel-imgs{
-    display: grid;  /*Se usan grids*/
+    display: grid;
     grid-template-rows: 1fr; /*Se le dan a las filas el mismo espacio (por eso las unidades fr)*/
     padding: 1% 4% 1% 4%;
     position: relative;
@@ -44,8 +44,8 @@
 
 /*Regla para el div que contiene la imagen en si y el pie de foto*/
 .img-producto{
-    display: none;  /*Se usan grids*/
-    grid-template-rows: minmax(0, 1fr) auto;  /*Se disponen de dos filas, una para la imagen y otra para el pie*/
+    display: none;
+    grid-template-rows: minmax(0, 1fr) auto;
     grid-auto-columns: minmax(0, 1fr);
     width: 90%;
     height: 270px;
@@ -73,9 +73,9 @@
 
 /*Regla que se usa para el texto de la descripcion del producto.*/
 .justificado{
-    clear: left;    /*Necesario para que el texto no aparezca entre el titulo del producto y las imagenes*/
-    word-wrap: normal;  /*Se le quita el romper las palabras por estetica*/
-    text-align: justify;    /*Se justifica el texto*/
+    clear: left;
+    word-wrap: normal;
+    text-align: justify;
 }
 
 /*Regla que se aplica a todos los h2*/
@@ -92,7 +92,7 @@ h3{
 
 /*Regla que se aplica a todas las tablas, td y tr*/
 table, td, tr{
-    border: solid 1px black;    /*Bordes negros*/
+    border: solid 1px black;
     border-collapse: collapse; /*Para que se junten los bordes*/
     /*Estos dos comandos son para centrar la tabla*/
     margin-left: auto;
@@ -107,7 +107,6 @@ table{
 .video-container{
     display: grid;
     grid-template-columns: minmax(auto, 600px);
-    /*grid-auto-rows: auto;*/
     justify-content: center;
 
     margin-top: 20px;
@@ -166,29 +165,24 @@ table{
 
 /*Clases e IDs de la P2*/
 #desplegable{
-    /*border: solid 1px red;*/
     position:fixed;
     height: 100%;
     top: 0;
     left: calc(-1 * min(700px, 65vw));
     display: flex;
     z-index: 10;
-    /*transition: 0.5s;*/
     pointer-events: none; /*Para poder marcar el texto de debajo del div*/
 }
 
 #comentarios-submit-container{
     width: min(700px, 65vw);
-    /*border: solid 1px black;*/
     display: grid;
     grid-auto-rows: max-content;
     grid-auto-columns: 100%;
     gap: 0.7vh;
     overflow: hidden auto;
-    /*background-color: rgba(255, 255, 255, 0.5);*/
     background-color: beige;
     border-radius: 0.5vh;
-    /*box-shadow: 0;*/
     pointer-events: all;
 }
 
@@ -312,8 +306,6 @@ button{
     float: right;   /*Para que se pegue a la derecha*/
     width: 40%; 
     max-width: 300px;
-    /*background-color: white;
-    border-radius: 0.5vh;*/
     margin-left: 10px;
     display: grid;
     gap: 10px;
@@ -334,7 +326,6 @@ button{
 .img-previa{
     align-items: center;
     display: flex;
-    /*border: solid 1px red;*/
     transition: all 0.3s;
     cursor: pointer;
 }
@@ -343,12 +334,13 @@ button{
     background-color: rgba(166, 166, 166, 0.5);
 }
 
+
 /*Reglas para que el que inserte los productos no tenga que poner clases*/
 .main-producto > p,
 .main-producto ul{
-    clear: left;    /*Necesario para que el texto no aparezca entre el titulo del producto y las imagenes*/
-    word-wrap: normal;  /*Se le quita el romper las palabras por estetica*/
-    text-align: justify;    /*Se justifica el texto*/    
+    clear: left;
+    word-wrap: normal;
+    text-align: justify;
 }
 
 .main-producto li{
@@ -357,4 +349,10 @@ button{
 
 .center{
     text-align: center !important;
+}
+
+
+form > label,
+#submit{
+    display: block;
 }
