@@ -11,7 +11,7 @@ function toggleDarkMode(){
     let comentariosSubmitContainer=document.getElementById("comentarios-submit-container");
     let comentariosContainer=document.getElementsByClassName("comentario-container");
     let contenidoComentario=document.getElementsByClassName("contenido-comentario");
-    //alert("main: "+main);
+
     if(!esDark){
         botonDark.innerText="Modo claro"
         esDark=true;
@@ -55,11 +55,7 @@ function toggleDarkMode(){
     toggleDarkModePlantilla(esDark);
 }
 
-let botonDark=document.getElementById("modo-oscuro");
-botonDark.addEventListener("click", toggleDarkMode);
 
-
-//Funciones
 //Funcion que comprueba mediante expresiones regulares si el formato del email es correcto y si no esta vacio
 function comprobarEmail(email){
     if(email!="" && email.search(/^([0-9a-z\.\_]+)+@{1}([0-9a-z]+\.)+[0-9a-z]+$/i)!=-1)
@@ -68,6 +64,7 @@ function comprobarEmail(email){
     else
         return false
 }
+
 
 //Funcion que devuelve la fecha actual en formato mas bonito
 function obtenerFechaActual(){
@@ -129,6 +126,7 @@ function obtenerFechaActual(){
     return dia+" de "+mesString+" del "+fecha.getFullYear()+", "+fecha.getHours()+":"+fecha.getMinutes()
 }
 
+
 function subirOpacidad(elemento){
     let contador=0
     let incremento=0.02;
@@ -153,8 +151,8 @@ function subirOpacidad(elemento){
 
     }, 24)
 }
-//-------------------------------------------------------------------------------------------------------------
-//Funciones que se llaman desde eventos
+
+
 //Funcion que se llama desde un evento para expandir la seccion de comentarios
 function expandirComentarios(){
     let desplegableComentarios=document.getElementById("comentarios-submit-container");
@@ -319,6 +317,7 @@ let contador=0;
 let abrir=true
 let esDark=false;
 let palabrotas=[];
+let botonDark=document.getElementById("modo-oscuro");
 let botonComentarios=document.getElementById("boton-comentario");
 let botonComprar=document.getElementById("boton-comprar");
 let botonSubmit=document.getElementById("submit")
@@ -336,6 +335,7 @@ cargarPalabrotas();
 
 
 //Declaracion de eventos
+botonDark.addEventListener("click", toggleDarkMode);
 botonSubmit.addEventListener("click", subirComentario);
 botonComentarios.addEventListener("click", expandirComentarios);
 zonaTextoNuevoComentario.addEventListener("keypress", comprobarPalabrotas)

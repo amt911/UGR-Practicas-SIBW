@@ -1,8 +1,8 @@
 {% extends "plantilla.twig" %}
 
 {% block archivosAdicionales %}
-{{ parent() }}
-<link rel="stylesheet" href="static/css/producto.css"> <!--Se enlaza al directorio css-->
+    {{ parent() }}
+    <link rel="stylesheet" href="static/css/producto.css"> <!--Se enlaza al directorio css-->
 {% endblock %}
 
 {% block desplegables %}
@@ -30,22 +30,22 @@
 
             {% if Comentarios != false %}            
 
-            {% for aux in Comentarios %}
-                <div class="comentario-container">
-                    <div class="nombre-comentario">
-                        <h4>{{ aux["Nombre"] }}</h4>
+                {% for aux in Comentarios %}
+                    <div class="comentario-container">
+                        <div class="nombre-comentario">
+                            <h4>{{ aux["Nombre"] }}</h4>
+                        </div>
+                        <div class="comentario-email">
+                            {{ aux["Correo"] }}
+                        </div>
+                        <div class="fecha">
+                            {{ aux["Fecha"] }}<!--12 de mayo del 2021, 13:37-->
+                        </div>
+                        <div class="contenido-comentario">
+                            {{ aux["Texto"] }}
+                        </div>
                     </div>
-                    <div class="comentario-email">
-                        {{ aux["Correo"] }}
-                    </div>
-                    <div class="fecha">
-                        {{ aux["Fecha"] }}<!--12 de mayo del 2021, 13:37-->
-                    </div>
-                    <div class="contenido-comentario">
-                        {{ aux["Texto"] }}
-                    </div>
-                </div>
-            {% endfor %}
+                {% endfor %}
 
             {% else %}
                 <p id="sin-comentarios" class="centrado">¡Sé el primero en comentar!</p>
@@ -81,8 +81,8 @@
     </article>
 
 
-        <div id="contenedor-imgs">
-            <div id="carrusel-imgs">
+    <div id="contenedor-imgs">
+        <div id="carrusel-imgs">
                 {% for aux in Images %}
                     <div class="img-producto">
                         <div>
@@ -96,71 +96,71 @@
                         {% endif %}
                     </div>
                 {% endfor %}
-                <div id="anterior">&#10096</div>
-                <div id="siguiente">&#10097</div>
-            </div>
-
-            <div id="vista-previa">
-                {% for aux in Images %}
-                    <div class="img-previa">
-                        <div>
-                            <img src="static/images/{{ aux["Ruta Imagen"] }}"/>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
+            <div id="anterior">&#10096</div>
+            <div id="siguiente">&#10097</div>
         </div>
+
+        <div id="vista-previa">
+            {% for aux in Images %}
+                <div class="img-previa">
+                    <div>
+                        <img src="static/images/{{ aux["Ruta Imagen"] }}"/>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 
     {{ Descripcion|raw }}
     
     {% block InformacionExtra %}
         <div id="producto-social">
-        <p class="negrita">Redes sociales de {{ Fabricante }}</p>
-        <div id="producto-rrss-container">
-        {% if PaginaOficial is not null %}
-        <div>
-            <a href="{{ PaginaOficial }}/">
-                <img id="pagina-oficial-logo" src="static/images/internet.png" alt="{{ Fabricante }} Pagina Oficial"/>
-            </a>
-        </div>
-        {% endif %}
+            <p class="negrita">Redes sociales de {{ Fabricante }}</p>
+            <div id="producto-rrss-container">
+                {% if PaginaOficial is not null %}
+                    <div>
+                        <a href="{{ PaginaOficial }}/">
+                            <img id="pagina-oficial-logo" src="static/images/internet.png" alt="{{ Fabricante }} Pagina Oficial"/>
+                        </a>
+                    </div>
+                {% endif %}
 
-        {% if Facebook is not null %}
-        <div>
-            <a href="https://www.facebook.com/{{ Facebook }}/">
-                <img src="static/images/facebook.png" alt="{{ Fabricante }} FaceBook Cuenta"/>
-            </a>
-        </div>
-        {% endif %}
-        
-        {% if Twitter is not null %}    
-        <div>
-            <a href="https://twitter.com/{{ Twitter }}">
-                <img src="static/images/twitter.png" alt="{{ Fabricante }} Twitter Cuenta"/>
-            </a>
-        </div>            
-        {% endif %}
-        
-        {% if YouTube is not null %}
-        <div>
-            <a href="https://www.youtube.com/c/{{ YouTube }}">
-                <img src="static/images/youtube.png" alt="{{ Fabricante }} YouTube Cuenta"/>
-            </a>
-        </div>
-        {% endif %}
+                {% if Facebook is not null %}
+                    <div>
+                        <a href="https://www.facebook.com/{{ Facebook }}/">
+                            <img src="static/images/facebook.png" alt="{{ Fabricante }} FaceBook Cuenta"/>
+                        </a>
+                    </div>
+                {% endif %}
+                
+                {% if Twitter is not null %}    
+                    <div>
+                        <a href="https://twitter.com/{{ Twitter }}">
+                            <img src="static/images/twitter.png" alt="{{ Fabricante }} Twitter Cuenta"/>
+                        </a>
+                    </div>            
+                {% endif %}
+                
+                {% if YouTube is not null %}
+                    <div>
+                        <a href="https://www.youtube.com/c/{{ YouTube }}">
+                            <img src="static/images/youtube.png" alt="{{ Fabricante }} YouTube Cuenta"/>
+                        </a>
+                    </div>
+                {% endif %}
 
-            <div>
-                <a href="producto.php?p={{ ID }}&imprimir=1">
-                    <img id="imprimir-logo" src="static/images/print.png" alt="Imprimir pagina"/>
-                </a>
+                <div>
+                    <a href="producto.php?p={{ ID }}&imprimir=1">
+                        <img id="imprimir-logo" src="static/images/print.png" alt="Imprimir pagina"/>
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
     {% endblock %}
 {% endblock %}
 
 
 {% block archivosJS %}
-<script src="static/js/modoOscuro.js"></script>
-<script src="static/js/producto.js"></script>
+    <script src="static/js/modoOscuro.js"></script>
+    <script src="static/js/producto.js"></script>
 {% endblock %}

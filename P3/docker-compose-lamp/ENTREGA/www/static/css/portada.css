@@ -4,7 +4,6 @@ body {
     width: fit-content; /*Esto permite que cuando se haga más zoom se pueda hacer scroll lateral*/
     word-wrap:break-word;
     border: 2px solid #00897b;
-    border-radius: 0.5vh;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23); /*Sombra por debajo*/
 }
 
@@ -119,7 +118,7 @@ main{
 .main-portada {
     display: grid;
     gap: 2vh;
-    grid-template-columns: repeat(3, 1fr); /*Obliga a que los articulos no se salgan del main*/
+    grid-template-columns: repeat(3, minmax(0, 1fr)); /*Obliga a que los articulos no se salgan del main*/
     grid-auto-rows: 370px; /*Sirve para evitar poner el mismo numero 3 veces para las filas existentes*/
     align-content: center;  /*Para alinear el contenido verticalmente*/
     justify-content: center;    /*Para alinear el contenido horizontalmente*/
@@ -147,6 +146,7 @@ main{
 
 /*Reglas que se usan para la parte de texto de los articulos*/
 .fondo-azul-claro {
+    display: flex;
     background-color: #64b5f6;  /*Color de fondo*/
 }
 
@@ -272,8 +272,6 @@ main{
 }
 
 #indice-paginas-numeros > div{
-    justify-self: center;
-    align-self: center;
     height: 100%;
     width: 90%;
     background-color: #64b5f6;
@@ -287,11 +285,16 @@ main{
 }
 
 .zona-click{
-    display: flex;
+    width: 100%;
+    align-self: center;
+    justify-self: center;
+}
+
+/*Reglas para el indice de la portada*/
+.click-entero{
+    display: block;
     width: 100%;
     height: 100%;
-    align-items: center;
-    justify-content: center;
 }
 
 .amarillo{

@@ -124,7 +124,9 @@ function obtenerFechaActual(){
             break;                          
     }
 
-    return fecha.getDate()+" de "+mesString+" del "+fecha.getFullYear()+", "+fecha.getHours()+":"+fecha.getMinutes()
+    let dia=(fecha.getDate()<10)?"0"+fecha.getDate(): fecha.getDate();
+
+    return dia+" de "+mesString+" del "+fecha.getFullYear()+", "+fecha.getHours()+":"+fecha.getMinutes()
 }
 
 function subirOpacidad(elemento){
@@ -208,12 +210,12 @@ function subirComentario(){
         template.style.opacity="0"
 
         if(esDark){
-            template.style.backgroundColor="#4b830d";
+            template.classList.toggle("dark");
 
             let contenidoComentario=template.getElementsByClassName("contenido-comentario");
 
             Array.from(contenidoComentario).forEach((aux)=>{
-                aux.style.backgroundColor="#111111";
+                aux.classList.toggle("dark");
             })               
         }
 
@@ -249,7 +251,6 @@ function animacionImagen(indice){
     }, 24)
 }
 
-let contador=0;
 function accionarCarruselDerecha(){
     imagenes[contador].style.display="none";
     vistasPrevias[contador].style.border="";
@@ -283,10 +284,7 @@ function accionarCarruselIzquierda(){
 }
 
 
-//https://www.w3schools.com/js/js_ajax_http.asp
-let palabrotas=[];
 function cargarPalabrotas(){
-    //alert("He entrado")
     const peticion = new XMLHttpRequest();
     peticion.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
@@ -317,33 +315,37 @@ function bajarOpacidadTodo(){
 //-------------------------------------------------------------------------------------------------------------
 //ZONA "MAIN"
 //Variables globales
-let botonComentarios=document.getElementById("boton-comentario");
-let zonaTextoNuevoComentario=document.getElementById("comentario-nuevo");
+let contador=0;
 let abrir=true
+let esDark=false;
+let palabrotas=[];
+let botonComentarios=document.getElementById("boton-comentario");
+let botonComprar=document.getElementById("boton-comprar");
 let botonSubmit=document.getElementById("submit")
-let seccionSoloComentarios=document.getElementById("desplegable");
 let carruselAnterior=document.getElementById("anterior");
 let carruselSiguiente=document.getElementById("siguiente");
 let imagenes=document.getElementsByClassName("img-producto");
-
+let seccionSoloComentarios=document.getElementById("desplegable");
+let vistasPrevias=document.getElementsByClassName("img-previa");
+let zonaTextoNuevoComentario=document.getElementById("comentario-nuevo");
 
 imagenes[0].style.display="grid";
+vistasPrevias[0].style.border="solid 2px black"
+
 cargarPalabrotas();
 
-let esDark=false;
 
 //Declaracion de eventos
 botonSubmit.addEventListener("click", subirComentario);
 botonComentarios.addEventListener("click", expandirComentarios);
 zonaTextoNuevoComentario.addEventListener("keypress", comprobarPalabrotas)
+
 seccionSoloComentarios.addEventListener("transitionend", ()=>{
     seccionSoloComentarios.style.transition="0s";
-})
+});
+
 carruselAnterior.addEventListener("click", accionarCarruselIzquierda);
 carruselSiguiente.addEventListener("click", accionarCarruselDerecha);
-
-let vistasPrevias=document.getElementsByClassName("img-previa");
-vistasPrevias[0].style.border="solid 2px black"
 
 //Esto sirve para que la galeria de imagenes funcione
 for(let i=0; i<vistasPrevias.length; i++){
@@ -360,5 +362,4 @@ for(let i=0; i<vistasPrevias.length; i++){
     })
 }
 
-let botonComprar=document.getElementById("boton-comprar");
 botonComprar.addEventListener("click", ()=>alert("Gracias por su compra"));

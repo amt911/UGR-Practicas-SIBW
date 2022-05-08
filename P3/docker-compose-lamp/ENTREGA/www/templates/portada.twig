@@ -27,20 +27,20 @@
 
         <div id="indice-paginas">
             <div class="botones-pagina">
-                <a class="no-underline zona-click" href="index.php?pagina={{Anterior}}">&#10096</a>
+                <a class="no-underline click-entero" href="index.php?pagina={{Anterior}}">&#10096</a>
             </div>
             <div id="indice-paginas-numeros">
                 {% for i in MinPagina..MaxPagina %}
                     {% if i == Actual %}
-                        <div class="amarillo"><a class="no-underline zona-click" href="index.php?pagina={{ i }}">{{ i }}</a></div>
+                        <div class="amarillo"><a class="no-underline click-entero" href="index.php?pagina={{ i }}">{{ i }}</a></div>
 
                     {% else %}
-                        <div><a class="no-underline zona-click" href="index.php?pagina={{ i }}">{{ i }}</a></div>
+                        <div><a class="no-underline click-entero" href="index.php?pagina={{ i }}">{{ i }}</a></div>
                     {% endif %}
                 {% endfor %}
             </div>
             <div class="botones-pagina">
-                <a class="no-underline zona-click" href="index.php?pagina={{Siguiente}}">&#10097</a>
+                <a class="no-underline click-entero" href="index.php?pagina={{Siguiente}}">&#10097</a>
             </div>
         </div>
 

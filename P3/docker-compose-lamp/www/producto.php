@@ -4,8 +4,6 @@
 
     //Conexion base de datos
     $con=new Modelo();
-    //Mas bien poner existeproductoid
-
 
     //Identificador del producto junto su comprobacion
     $id=1;

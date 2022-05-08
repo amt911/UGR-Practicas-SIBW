@@ -1,7 +1,7 @@
 {% extends "plantilla.twig" %}
 
 {% block main %}
-        <div class="main-portada">
+    <div class="main-portada">
         {% for aux in Productos %}
             <article class="box">
                 <section>
@@ -23,31 +23,29 @@
                 </section>
             </article>        
         {% endfor %}
+    </div>
+
+    <div id="indice-paginas">
+        <div class="botones-pagina">
+            <a class="no-underline click-entero" href="index.php?pagina={{Anterior}}">&#10096</a>
         </div>
+        <div id="indice-paginas-numeros">
+            {% for i in MinPagina..MaxPagina %}
+                {% if i == Actual %}
+                    <div class="amarillo"><a class="no-underline click-entero" href="index.php?pagina={{ i }}">{{ i }}</a></div>
 
-        <div id="indice-paginas">
-            <div class="botones-pagina">
-                <a class="no-underline click-entero" href="index.php?pagina={{Anterior}}">&#10096</a>
-            </div>
-            <div id="indice-paginas-numeros">
-                {% for i in MinPagina..MaxPagina %}
-                    {% if i == Actual %}
-                        <div class="amarillo"><a class="no-underline click-entero" href="index.php?pagina={{ i }}">{{ i }}</a></div>
-
-                    {% else %}
-                        <div><a class="no-underline click-entero" href="index.php?pagina={{ i }}">{{ i }}</a></div>
-                    {% endif %}
-                {% endfor %}
-            </div>
-            <div class="botones-pagina">
-                <a class="no-underline click-entero" href="index.php?pagina={{Siguiente}}">&#10097</a>
-            </div>
+                {% else %}
+                    <div><a class="no-underline click-entero" href="index.php?pagina={{ i }}">{{ i }}</a></div>
+                {% endif %}
+            {% endfor %}
         </div>
-
-
+        <div class="botones-pagina">
+            <a class="no-underline click-entero" href="index.php?pagina={{Siguiente}}">&#10097</a>
+        </div>
+    </div>
 {% endblock %}
 
 {% block archivosJS %}
-<script src="static/js/portada.js"></script>
-<script src="static/js/modoOscuro.js"></script>
+    <script src="static/js/portada.js"></script>
+    <script src="static/js/modoOscuro.js"></script>
 {% endblock %}

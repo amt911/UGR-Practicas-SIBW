@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql:3306
--- Generation Time: May 07, 2022 at 11:35 AM
+-- Generation Time: May 07, 2022 at 09:14 PM
 -- Server version: 8.0.28
 -- PHP Version: 8.0.15
 
@@ -271,7 +271,7 @@ ALTER TABLE `Productos`
 -- Constraints for table `Comentario`
 --
 ALTER TABLE `Comentario`
-  ADD CONSTRAINT `ComentarioTiene_ibfk_1` FOREIGN KEY (`ID_Producto`) REFERENCES `Productos` (`ID`);
+  ADD CONSTRAINT `Comentario_ibfk_1` FOREIGN KEY (`ID_Producto`) REFERENCES `Productos` (`ID`);
 
 --
 -- Constraints for table `Imagenes`
@@ -283,7 +283,7 @@ ALTER TABLE `Imagenes`
 -- Constraints for table `Productos`
 --
 ALTER TABLE `Productos`
-  ADD CONSTRAINT `ProductosFabrica_ibfk_1` FOREIGN KEY (`Nombre_Fabricante`) REFERENCES `Fabricante` (`Nombre`);
+  ADD CONSTRAINT `Productos_ibfk_1` FOREIGN KEY (`Nombre_Fabricante`) REFERENCES `Fabricante` (`Nombre`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
