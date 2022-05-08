@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql:3306
--- Generation Time: May 07, 2022 at 09:14 PM
+-- Generation Time: May 08, 2022 at 08:58 AM
 -- Server version: 8.0.28
 -- PHP Version: 8.0.15
 
@@ -159,16 +159,17 @@ CREATE TABLE `Palabrota` (
 --
 
 INSERT INTO `Palabrota` (`palabra`) VALUES
-('cabron'),
+('anormal'),
 ('caca'),
 ('cerdo'),
-('cojon'),
-('gilipollas'),
 ('imbecil'),
+('inutil'),
+('joder'),
 ('marrano'),
+('mierda'),
+('payasa'),
 ('payaso'),
-('polla'),
-('puta');
+('subnormal');
 
 -- --------------------------------------------------------
 
