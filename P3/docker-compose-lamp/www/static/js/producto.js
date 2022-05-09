@@ -122,8 +122,10 @@ function obtenerFechaActual(){
     }
 
     let dia=(fecha.getDate()<10)?"0"+fecha.getDate(): fecha.getDate();
+    let minutos=(fecha.getMinutes()<10)?"0"+fecha.getMinutes(): fecha.getMinutes();
+    let horas=(fecha.getHours()<10)?"0"+fecha.getHours():fecha.getHours();
 
-    return dia+" de "+mesString+" del "+fecha.getFullYear()+", "+fecha.getHours()+":"+fecha.getMinutes()
+    return dia+" de "+mesString+" del "+fecha.getFullYear()+", "+horas+":"+minutos
 }
 
 

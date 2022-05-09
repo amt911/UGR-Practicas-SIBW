@@ -70,7 +70,11 @@ function obtenerFechaActual(){
             break;                          
     }
 
-    return fecha.getDate()+" de "+mesString+" del "+fecha.getFullYear()+", "+fecha.getHours()+":"+fecha.getMinutes()
+    var dia=(fecha.getDate()<10)?"0"+fecha.getDate(): fecha.getDate();
+    var minutos=(fecha.getMinutes()<10)?"0"+fecha.getMinutes(): fecha.getMinutes();
+    var horas=(fecha.getHours()<10)?"0"+fecha.getHours():fecha.getHours();
+
+    return dia+" de "+mesString+" del "+fecha.getFullYear()+", "+horas+":"+minutos;
 }
 
 function subirOpacidad(elemento){
