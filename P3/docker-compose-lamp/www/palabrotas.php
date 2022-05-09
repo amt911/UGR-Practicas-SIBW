@@ -1,7 +1,7 @@
 <?php
-    include("modelo.php");
+    include("bd.php");
 
-    $con=new Modelo();
+    $con=new GestorBD();
 
     echo json_encode($con->getPalabrotas());
 ?>

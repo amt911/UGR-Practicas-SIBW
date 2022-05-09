@@ -1,9 +1,9 @@
 <?php
     require_once "/usr/local/lib/php/vendor/autoload.php";
-    include("modelo.php");
+    include("bd.php");
 
     //Conexion base de datos
-    $con=new Modelo();
+    $con=new GestorBD();
 
     //Identificador del producto junto su comprobacion
     $id=1;

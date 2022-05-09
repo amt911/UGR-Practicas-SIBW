@@ -1,9 +1,9 @@
 <?php
     // Inicializamos el motor de plantillas
     require_once "/usr/local/lib/php/vendor/autoload.php";
-    include("modelo.php");
+    include("bd.php");
 
-    $con=new Modelo();
+    $con=new GestorBD();
 
     //Botones de navegacion
     $menu=array("Inicio"=>"index.php",

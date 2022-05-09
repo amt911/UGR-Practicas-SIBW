@@ -1,5 +1,5 @@
 <?php
-class Modelo{
+class GestorBD{
     private $mysqli;
     private $MAX_PAGE;
 
@@ -8,9 +8,11 @@ class Modelo{
         $this->conectarDB();
     }
 
+
     function getMySQLi(){
         return $this->mysqli;
     }
+
 
     private function conectarDB(){
         $this->mysqli=new mysqli("mysql", "usuario", "usuario", "SIBW");
@@ -21,7 +23,7 @@ class Modelo{
         }
     }
 
-    //Hace falta dejarlo mejor para evitar inyeccion
+
     function getProducto($id){
         $row=false;
 
@@ -36,6 +38,7 @@ class Modelo{
     
         return $row;
     }
+
 
     function getFabrica($id){
         $row=false;
@@ -53,6 +56,7 @@ class Modelo{
         return $row;    
     }
 
+
     function getFabricante($id){
         $row=false;
 
@@ -69,6 +73,7 @@ class Modelo{
         return $row;
     }
 
+
     function getAllProducts(){
         $row=false;
         
@@ -81,6 +86,7 @@ class Modelo{
         return $row;    
     }
     
+
     function getNumPaginas(){
         $salida=$this->getNumFilasProducto();
 
@@ -91,6 +97,7 @@ class Modelo{
 
         return $res;
     }
+
 
     function getAllComments($idProducto){
         $res=false;
@@ -108,6 +115,7 @@ class Modelo{
         return $res;
     }
     
+
     private function getNumFilasProducto(){
         $res=false;
         
@@ -121,6 +129,7 @@ class Modelo{
         return $res;
     }
     
+
     function getComentarios($id){
         $res=false;
 
@@ -136,6 +145,7 @@ class Modelo{
         return $res;
     }
     
+
     function getPalabrotas(){
         $salida=false;
 
@@ -156,6 +166,7 @@ class Modelo{
         return $salida;
     }
 
+
     function getImagenes($id){  
         $res=false;
 
@@ -171,6 +182,7 @@ class Modelo{
         return $res;        
     }
 
+
     function getProductsPage($a){
         if($a<=0 or $a>$this->getNumPaginas())
             $a=1;
@@ -178,9 +190,7 @@ class Modelo{
         $res=false;
 
         $min=($a-1)*9;
-        //$max=$min+8;
 
-        //$prepare=$this->mysqli->prepare("SELECT * FROM Productos WHERE ID BETWEEN ? AND ?");
         $prepare=$this->mysqli->prepare("SELECT * FROM Productos ORDER BY ID LIMIT ?, ?");
         $prepare->bind_param("ii", $min, $this->MAX_PAGE);
         $prepare->execute();
@@ -192,6 +202,7 @@ class Modelo{
 
         return $res;
     }
+
 
     function existeProducto($id){
         $res=false;
