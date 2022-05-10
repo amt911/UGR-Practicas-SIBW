@@ -8,7 +8,7 @@
     //Botones de navegacion
     $menu=array("Inicio"=>"index.php",
                 "FAQ" => "index.php",
-                "Login" => "index.php");
+                "Login" => "login.php");
 
     //El numero total de paginas que tiene la portada
     $totalPaginas=$con->getNumPaginas();
