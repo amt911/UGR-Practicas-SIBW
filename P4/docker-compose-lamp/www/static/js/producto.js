@@ -338,9 +338,14 @@ cargarPalabrotas();
 
 //Declaracion de eventos
 botonDark.addEventListener("click", toggleDarkMode);
-botonSubmit.addEventListener("click", subirComentario);
+
+if(botonSubmit!=null)
+    botonSubmit.addEventListener("click", subirComentario);
+
 botonComentarios.addEventListener("click", expandirComentarios);
-zonaTextoNuevoComentario.addEventListener("keypress", comprobarPalabrotas)
+
+if(zonaTextoNuevoComentario!=null)
+    zonaTextoNuevoComentario.addEventListener("keypress", comprobarPalabrotas)
 
 seccionSoloComentarios.addEventListener("transitionend", ()=>{
     seccionSoloComentarios.style.transition="0s";

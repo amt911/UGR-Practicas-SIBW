@@ -7,7 +7,7 @@
 
     //Botones de navegacion
     $menu=array("Inicio"=>"index.php",
-                "FAQ" => "index.php",
+                "FAQ" => "destruir_cookies.php",
                 "Login" => "login.php");
 
     //El numero total de paginas que tiene la portada
@@ -60,6 +60,17 @@
     if($maxPagina>$totalPaginas)
         $maxPagina=$totalPaginas;
 
+
+    //HACER QUE ESTA PARTE SE EJECUTE EN UN MODULO APARTE
+    session_start();
+    //Parte de sesiones
+    if(!isset($_SESSION["correo"]))
+        $nombre="Anónimo";
+    else
+        $nombre=$con->getNombre($_SESSION["correo"]);
+
+
+
     $loader = new \Twig\Loader\FilesystemLoader('templates');
     $twig = new \Twig\Environment($loader);
     echo $twig->render('portada.twig', [
@@ -70,6 +81,7 @@
         "MaxPagina" => $maxPagina,
         "Anterior" => $anterior,
         "Siguiente" => $siguiente,
-        "Actual" => $pagina
+        "Actual" => $pagina,
+        "User" => $nombre
     ]);
 ?>

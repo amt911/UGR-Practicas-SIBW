@@ -220,5 +220,35 @@ class GestorBD{
 
         return $res;
     }
+
+    function comprobarCredenciales($correo, $pass){
+        $res=false;
+
+        $prepare=$this->mysqli->prepare("SELECT COUNT(*) FROM Usuarios WHERE Correo=? AND Password=?");
+        $prepare->bind_param("ss", $correo, $pass);
+        $prepare->execute();
+
+        $query=$prepare->get_result();
+
+        if($query->fetch_assoc()["COUNT(*)"]==1)
+            $res=true;
+
+        return $res;
+    }
+
+    function getNombre($correo){
+        $res=false;
+
+        $prepare=$this->mysqli->prepare("SELECT Nombre FROM Usuarios WHERE Correo=?");
+        $prepare->bind_param("s", $correo);
+        $prepare->execute();
+
+        $query=$prepare->get_result(); 
+
+        if($query->num_rows > 0)
+            $res=$query->fetch_assoc();
+
+        return $res["Nombre"];        
+    }
 }
 ?>

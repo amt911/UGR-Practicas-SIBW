@@ -37,7 +37,15 @@
     //Los botones del menu con sus respectivas paginas
     $menu=array("Inicio"=>"index.php",
                 "Imprimir"=>"producto.php?p=$id&imprimir=1",
-                "Login"=>"producto.php?p=$id");
+                "Login"=>"login.php?back=producto.php");
+
+
+    session_start();
+    //Parte de sesiones
+    if(!isset($_SESSION["correo"]))
+        $nombre="Anónimo";
+    else
+        $nombre=$con->getNombre($_SESSION["correo"]);
 
 
     $loader = new \Twig\Loader\FilesystemLoader('templates');
@@ -60,5 +68,7 @@
         "ID" => $id,
         "Imprimir" => $_GET["imprimir"],
         "Comentarios" => $comentarios,
+        "User" => $nombre,
+        "Cookie" => $_SESSION["correo"]
     ]);
 ?>

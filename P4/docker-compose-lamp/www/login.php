@@ -1,16 +1,34 @@
 <?php
     require_once "/usr/local/lib/php/vendor/autoload.php";
+    include("bd.php");
+
+    $con=new GestorBD();
+    $errores="";
+
+    $back="index.php";
+
+    if(isset($_GET["back"]))
+        $back=$_GET["back"];
+        
+
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+        $correo=$_POST["correo"];
+        $contra=$_POST["contra"];
+
+        if($con->comprobarCredenciales($correo, $contra)){
+            session_start();
+            $_SESSION["correo"]=$correo;
+
+            header("Location: $back");
+            exit();
+        }
+        $errores="Usuario/Contraseña incorrectos";
+    }
 
 $loader = new \Twig\Loader\FilesystemLoader('templates');
 $twig = new \Twig\Environment($loader);
 echo $twig->render('login.twig', [
-    "Titulo" => "e-tienda. Más que comercio",
-    "Menu" => $menu,
-    "Productos" => $productos,
-    "MinPagina" => $minPagina,
-    "MaxPagina" => $maxPagina,
-    "Anterior" => $anterior,
-    "Siguiente" => $siguiente,
-    "Actual" => $pagina
+    "Error" => $errores,
+    //"Back" => $back
 ]);
 ?>

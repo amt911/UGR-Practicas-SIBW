@@ -20,21 +20,24 @@
             </div>
             <div id="caja-login">
             <h2>Iniciar sesión</h2>
-                <form>
+            <div class="rojo">{{ Error }}</div>
+                <form action="login.php" method="post">
 
                     <label>Correo electrónico</label><br/>
-                    <input type="text"/>
+                    <input class="maximizado" type="text" name="correo"/>
 
                     <br/><br/>
                     <label>Contraseña</label><br/>
-                    <input type="text"/>
+                    <input class="maximizado" type="password" name="contra"/><br/>
+
+                    <input type="checkbox"/>Mostrar contraseña<br/>
 
                     <br/><br/>
                     <button>Iniciar sesión</button>
-
-                    <br/><br/>
-                    <button>Registrarse</button>
-                </form>                
+                </form>               
+                <div>
+                ¿No eres usuario? <a href="login.php">Regístrate</a> 
+                </div>
             </div>
         </div>
     </body>
