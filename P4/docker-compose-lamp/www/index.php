@@ -19,6 +19,7 @@
         $pagina=$_GET["pagina"];
     }
 
+    $menu["Login"]="login.php?back=index.php&p=$pagina";
     //Ya sabiendo la pagina, se obtienen los productos
     $productos=$con->getProductsPage($pagina);
 
@@ -63,11 +64,13 @@
 
     //HACER QUE ESTA PARTE SE EJECUTE EN UN MODULO APARTE
     session_start();
+
+    $usuario=$con->getUsuario("-1");
+
     //Parte de sesiones
-    if(!isset($_SESSION["correo"]))
-        $nombre="Anónimo";
-    else
-        $nombre=$con->getNombre($_SESSION["correo"]);
+    if(isset($_SESSION["correo"])){
+        $usuario=$con->getUsuario($_SESSION["correo"]);   
+    }
 
 
 
@@ -82,6 +85,8 @@
         "Anterior" => $anterior,
         "Siguiente" => $siguiente,
         "Actual" => $pagina,
-        "User" => $nombre
+        "User" => $usuario,
+        "Back" => "index.php"
+        //"Permisos" => asdasd,
     ]);
 ?>

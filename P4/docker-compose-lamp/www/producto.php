@@ -39,13 +39,14 @@
                 "Imprimir"=>"producto.php?p=$id&imprimir=1",
                 "Login"=>"login.php?back=producto.php");
 
-
     session_start();
     //Parte de sesiones
-    if(!isset($_SESSION["correo"]))
-        $nombre="Anónimo";
-    else
-        $nombre=$con->getNombre($_SESSION["correo"]);
+    $usuario=$con->getUsuario("-1");
+
+    //Parte de sesiones
+    if(isset($_SESSION["correo"])){
+        $usuario=$con->getUsuario($_SESSION["correo"]);   
+    }
 
 
     $loader = new \Twig\Loader\FilesystemLoader('templates');
@@ -68,7 +69,7 @@
         "ID" => $id,
         "Imprimir" => $_GET["imprimir"],
         "Comentarios" => $comentarios,
-        "User" => $nombre,
-        "Cookie" => $_SESSION["correo"]
+        "User" => $usuario,
+        "Back" => "producto.php?p=$id"
     ]);
 ?>

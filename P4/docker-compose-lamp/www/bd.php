@@ -250,5 +250,42 @@ class GestorBD{
 
         return $res["Nombre"];        
     }
+
+    function getPermisosUsuario($correo){
+        $res=false;
+
+        $prepare=$this->mysqli->prepare("SELECT esNormal,esModerador,esAdministrador FROM Usuarios WHERE Correo=?");
+        $prepare->bind_param("s", $correo);
+        $prepare->execute();
+
+        $query=$prepare->get_result(); 
+
+        if($query->num_rows > 0)
+            $res=$query->fetch_assoc();
+
+        return $res;                
+    }
+
+    function getUsuario($correo){
+        $res=[
+            "Nombre" => "Anónimo",
+            "Correo" => null,
+            "Password" => null,
+            "esNormal" => 0,
+            "esModerador" => 0,
+            "esGestor" => 0            
+        ];
+
+        $prepare=$this->mysqli->prepare("SELECT * FROM Usuarios WHERE Correo=?");
+        $prepare->bind_param("s", $correo);
+        $prepare->execute();
+
+        $query=$prepare->get_result(); 
+
+        if($query->num_rows > 0)
+            $res=$query->fetch_assoc();
+
+        return $res;        
+    }    
 }
 ?>

@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql:3306
--- Generation Time: May 16, 2022 at 11:02 AM
--- Server version: 8.0.29
+-- Generation Time: May 09, 2022 at 07:44 AM
+-- Server version: 8.0.28
 -- PHP Version: 8.0.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -22,6 +22,9 @@ SET time_zone = "+00:00";
 --
 
 -- --------------------------------------------------------
+
+CREATE USER 'usuario'@'%' IDENTIFIED BY 'usuario';
+GRANT SELECT,INSERT ON SIBW.* TO 'usuario'@'%';
 
 --
 -- Table structure for table `Comentario`
@@ -208,28 +211,6 @@ INSERT INTO `Productos` (`ID`, `Precio`, `Nombre`, `Descripción`, `Titulo pagin
 (18, 120.65, 'Mando Xbox Elite (Serie 1)', '<p>\r\nEl mando Xbox Elite se adapta al tamaño de tu mano y a tu estilo de juego con configuraciones que pueden mejorar la precisión, la velocidad y el alcance mediante gatillos de distintas formas y tamaños. Puedes intercambiar los joysticks de metal y crucetas para lograr un control y ergonomía personalizados. Incorpora cuatro ranuras para palancas intercambiables que puedes conectar o quitar sin ninguna herramienta. Si accionas el bloqueo de gatillos de alta sensibilidad, podrás disparar más rápido y ahorrar tu valioso tiempo en cada toque de gatillo. Todas las superficies y detalles están diseñados para satisfacer las demandas de los jugadores más competitivos: los anillos reforzados de bajo rozamiento alrededor de cada joystick minimizan el desgaste y aportan suavidad de movimiento. Por otro lado, los agarres de goma con relieve confieren al mando una apariencia sólida y proporcionan más estabilidad.\r\n</p>', 'Mando XBOX Elite 1', 'XBOX'),
 (19, 450.93, 'AMD Ryzen 9 5900X', '<p>\r\nEl procesador que ofrece la mejor experiencia de juego del mundo. 12 núcleos para potenciar la experiencia de juego, la transmisión en vivo y mucho más.\r\n</p>\r\n\r\n<p>\r\n<strong>\r\nTecnología AMD StoreMI:\r\n</strong>\r\nSoftware que combina la velocidad de SSD con la capacidad de disco duro en una sola unidad rápida y fácil de administrar, gratuita con la placa madre AMD Serie 400.\r\n</p>\r\n\r\n<p>\r\n<strong>Utilidad AMD Ryzen™ Master:</strong>\r\nLa utilidad de overclocking sencilla y a la vez potente para los procesadores AMD Ryzen™\r\n</p>\r\n\r\n<p>\r\n<strong>AMD Ryzen™ VR-Ready Premium:</strong>\r\nPara los usuarios que exigen una experiencia premium de realidad virtual, AMD ofrece procesadores especiales Ryzen™ VR-Ready Premium de alto rendimiento.\r\n</p>\r\n\r\n\r\n<table>\r\n<tr>\r\n<td>Frecuencia</td>\r\n<td>3,7 GHz</td>\r\n</tr>\r\n\r\n<tr>\r\n<td>Número de núcleos</td>\r\n<td>12</td>\r\n</tr>\r\n\r\n<tr>\r\n<td>Socket</td>\r\n<td>AM4</td>\r\n</tr>\r\n\r\n<tr>\r\n<td>Caché del procesador</td>\r\n<td>64 MB</td>\r\n</tr>\r\n\r\n</table>', 'AMD R9 5900X', 'AMD');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `Usuarios`
---
-
-CREATE TABLE `Usuarios` (
-  `Nombre` varchar(200) NOT NULL,
-  `Correo` varchar(100) NOT NULL,
-  `Password` varchar(300) NOT NULL,
-  `esNormal` tinyint(1) NOT NULL,
-  `esModerador` tinyint(1) NOT NULL,
-  `esGestor` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `Usuarios`
---
-
-INSERT INTO `Usuarios` (`Nombre`, `Correo`, `Password`, `esNormal`, `esModerador`, `esGestor`) VALUES
-('Andrés Merlo', 'a.merlo.truji10@gmail.com', '1234', 1, 1, 1);
-
 --
 -- Indexes for dumped tables
 --
@@ -266,12 +247,6 @@ ALTER TABLE `Palabrota`
 ALTER TABLE `Productos`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `Nombre_Fabricante` (`Nombre_Fabricante`);
-
---
--- Indexes for table `Usuarios`
---
-ALTER TABLE `Usuarios`
-  ADD PRIMARY KEY (`Correo`);
 
 --
 -- AUTO_INCREMENT for dumped tables

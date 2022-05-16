@@ -55,18 +55,29 @@
                         <img src="static/images/placeholder.png" alt="Ubicacion tienda"/>
                         </div>
                         <div>
-                        {{ User }}
+                        {{ User["Nombre"] }}
                         </div>
                     </div>
 
                     <div class="nota-contenido">
                     <!-- Quizas mejor una lista -->
+                        <a href="login.php?{{ Back }}">Iniciar sesión</a><br/>
                         <a href="login.php">Registrarse</a><br/>
-                        <a href="login.php">Iniciar sesión</a><br/>
-                        <a href="login.php">Cerrar sesión</a><br/>
+
+                        {% if User["Correo"] is not null %}
+                        <a href="destruir_cookies.php?back={{ Back }}">Cerrar sesión</a><br/>
+                        {% endif %}
+                        
+
+
+                        {% if User["esModerador"]==1 %}
+                        <a href="login.php">Modificar comentarios</a><br/>
+                        {% endif %}
+                        
+                        {% if User["esGestor"]==1 %}
                         <a href="login.php">Añadir producto</a><br/>
                         <a href="login.php">Modificar producto</a><br/>
-                        <a href="login.php">Modificar comentarios</a><br/>
+                        {% endif %}
                     </div>
                 </section>
 
