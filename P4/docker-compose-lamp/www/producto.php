@@ -11,7 +11,14 @@
     if(isset($_GET["p"]) and $con->existeProducto($_GET["p"]))
         $id=$_GET["p"];
 
+    //Parte de añadir comentarios
+    session_start();
+    if($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST["comentario"]) and isset($_SESSION["correo"])){
+        $con->insertarComentario($_SESSION["correo"], $_POST["comentario"], $id);
+        unset($_POST["comentario"]);
+    }
     
+
     //Parte de hacer las queries
     $res=$con->getProducto($id);
     $fabricanteRes=$con->getFabricante($res["Nombre_Fabricante"]);
@@ -39,25 +46,13 @@
                 "Imprimir"=>"producto.php?p=$id&imprimir=1",
                 "Login"=>"login.php?back=producto.php");
 
-    session_start();
+    
     //Parte de sesiones
     $usuario=$con->getUsuario("-1");
 
     //Parte de sesiones
     if(isset($_SESSION["correo"])){
         $usuario=$con->getUsuario($_SESSION["correo"]);   
-    }
-
-
-    //Parte de captar post
-    if($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST["comentario"]) and isset($_SESSION["correo"])){
-        //echo $_POST["comentario"];
-
-        echo "patata";
-        var_dump($_POST["comentario"]);
-        $resultado=$con->insertarComentario($_SESSION["correo"], $_POST["comentario"], $id);
-
-        var_dump($resultado);
     }
 
 

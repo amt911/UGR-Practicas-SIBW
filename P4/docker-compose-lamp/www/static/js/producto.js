@@ -182,20 +182,21 @@ function subirComentario(){
     let submit=document.getElementById("submit-comentario");
 
     //if(/*nombre.value!="" &&*/ comprobarEmail(email.value) /*&& comentarioNuevo.value!=""*/){
+        /*
         if(comentarios.length==0){
             document.getElementById("sin-comentarios").remove();
         }
 
         let nombre={value: "prueba"};
         let email={value: "otro"};
-
-        let template=document.createElement("div");
-        template.setAttribute("class", "comentario-container");
+*/
+        //let template=document.createElement("div");
+        //template.setAttribute("class", "comentario-container");
         //Se inserta el nuevo comentario justo debajo del final de la caja para crear uno.
         //Aunque tambien se puede hacer cogiendo todos los comentarios y poniendolo antes de todos en el array
         comprobarPalabrotas();
         //IMPORTANTE: InnerHTML sirve para modificar solo lo de dentro del div en este caso, outerHTML es para todo el DOM
-        template.innerHTML="<div class=\"nombre-comentario\">"+
+        /*template.innerHTML="<div class=\"nombre-comentario\">"+
                                 "<h4>"+nombre.value+"</h4>"+
                             "</div>"+
                             "<div class=\"comentario-email\">"+
@@ -224,7 +225,7 @@ function subirComentario(){
         document.getElementById("comentarios-submit-container").insertBefore(template, submit.nextSibling)
         subirOpacidad(template)
 
-        nombre.value=email.value=comentarioNuevo.value=""
+        nombre.value=email.value=comentarioNuevo.value=""*/
 
     /*}
     else{

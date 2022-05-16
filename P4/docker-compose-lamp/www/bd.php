@@ -275,8 +275,6 @@ class GestorBD{
         $usuario=$this->getUsuario($correo);
         $pCheck=$this->existeProducto($producto);
 
-        var_dump($comentario);
-
         if($usuario["Correo"]!=null and $pCheck){
             $this->mysqli->query("SET time_zone='Europe/Madrid'");
             $prepare=$this->mysqli->prepare("INSERT INTO Comentario VALUES(?, DEFAULT, NOW(), ?, ?, ?)");
