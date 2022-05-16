@@ -61,8 +61,11 @@
 
                     <div class="nota-contenido">
                     <!-- Quizas mejor una lista -->
-                        <a href="login.php?{{ Back }}">Iniciar sesión</a><br/>
+                        {% if User["Correo"] is null %}
+                        <a href="login.php?back={{ Back }}">Iniciar sesión</a><br/>
                         <a href="login.php">Registrarse</a><br/>
+                        {% endif %}
+                        
 
                         {% if User["Correo"] is not null %}
                         <a href="destruir_cookies.php?back={{ Back }}">Cerrar sesión</a><br/>

@@ -14,11 +14,13 @@
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         $correo=$_POST["correo"];
         $contra=$_POST["contra"];
+        $back=$_POST["anterior"];
 
         if($con->comprobarCredenciales($correo, $contra)){
             session_start();
             $_SESSION["correo"]=$correo;
 
+            //$back="producto.php?p=3";
             header("Location: $back");
             exit();
         }
@@ -29,6 +31,6 @@ $loader = new \Twig\Loader\FilesystemLoader('templates');
 $twig = new \Twig\Environment($loader);
 echo $twig->render('login.twig', [
     "Error" => $errores,
-    //"Back" => $back
+    "Back" => $back
 ]);
 ?>

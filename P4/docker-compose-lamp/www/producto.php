@@ -49,6 +49,18 @@
     }
 
 
+    //Parte de captar post
+    if($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST["comentario"]) and isset($_SESSION["correo"])){
+        //echo $_POST["comentario"];
+
+        echo "patata";
+        var_dump($_POST["comentario"]);
+        $resultado=$con->insertarComentario($_SESSION["correo"], $_POST["comentario"], $id);
+
+        var_dump($resultado);
+    }
+
+
     $loader = new \Twig\Loader\FilesystemLoader('templates');
     $twig = new \Twig\Environment($loader);
 

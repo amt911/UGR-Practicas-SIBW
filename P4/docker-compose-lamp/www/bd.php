@@ -103,7 +103,7 @@ class GestorBD{
         $res=false;
 
         $this->mysqli->query("SET lc_time_names='es_ES';");
-        $prepare=$this->mysqli->prepare("SELECT Nombre,DATE_FORMAT(Fecha, '%d de %M del %Y, %k:%i') AS Fecha,Texto,Correo FROM Comentario WHERE ID_Producto=?;");
+        $prepare=$this->mysqli->prepare("SELECT Nombre,DATE_FORMAT(Fecha, '%d de %M del %Y, %k:%i') AS Fecha,Texto,Correo FROM Comentario WHERE ID_Producto=? ORDER BY ID DESC");
         $prepare->bind_param("i", $idProducto);
         $prepare->execute();
 
@@ -128,23 +128,6 @@ class GestorBD{
     
         return $res;
     }
-    
-
-    function getComentarios($id){
-        $res=false;
-
-        $prepare=$this->mysqli->prepare("SELECT * FROM Comentario,Tiene WHERE ID_Producto=1 AND ID=?;");
-        $prepare->bind_param("i", $id);
-        $prepare->execute();
-
-        $res=$prepare->get_result();
-    
-        if($query->num_rows > 0)
-            $res=$query->fetch_all(MYSQLI_ASSOC);
-    
-        return $res;
-    }
-    
 
     function getPalabrotas(){
         $salida=false;
@@ -287,5 +270,21 @@ class GestorBD{
 
         return $res;        
     }    
+
+    function insertarComentario($correo, $comentario, $producto){
+        $usuario=$this->getUsuario($correo);
+        $pCheck=$this->existeProducto($producto);
+
+        var_dump($comentario);
+
+        if($usuario["Correo"]!=null and $pCheck){
+            $this->mysqli->query("SET time_zone='Europe/Madrid'");
+            $prepare=$this->mysqli->prepare("INSERT INTO Comentario VALUES(?, DEFAULT, NOW(), ?, ?, ?)");
+
+            $prepare->bind_param("sssi", $usuario["Nombre"], $comentario, $usuario["Correo"], $producto);
+
+            $prepare->execute();
+        }
+    }
 }
 ?>

@@ -175,17 +175,19 @@ function expandirComentarios(){
 
 //Funcion que sirve para añadir un nuevo comentario
 function subirComentario(){
-    let nombre=document.getElementById("nombre")
-    let email=document.getElementById("email")
+    //let nombre=document.getElementById("nombre")
+    //let email=document.getElementById("email")
     let comentarioNuevo=document.getElementById("comentario-nuevo")
     let comentarios=document.getElementsByClassName("comentario-container")
     let submit=document.getElementById("submit-comentario");
 
-    if(nombre.value!="" && comprobarEmail(email.value) && comentarioNuevo.value!=""){
+    //if(/*nombre.value!="" &&*/ comprobarEmail(email.value) /*&& comentarioNuevo.value!=""*/){
         if(comentarios.length==0){
             document.getElementById("sin-comentarios").remove();
         }
 
+        let nombre={value: "prueba"};
+        let email={value: "otro"};
 
         let template=document.createElement("div");
         template.setAttribute("class", "comentario-container");
@@ -224,10 +226,10 @@ function subirComentario(){
 
         nombre.value=email.value=comentarioNuevo.value=""
 
-    }
+    /*}
     else{
         alert("Uno o varios campos están vacíos o son inválidos")
-    }
+    }*/
 }
 
 

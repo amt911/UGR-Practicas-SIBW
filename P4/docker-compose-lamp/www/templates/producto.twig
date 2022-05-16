@@ -11,20 +11,13 @@
             {% if User["Correo"] is not null %}
                 <div id="submit-comentario">
                     <h4>Escribir comentario</h4>
-                    <form>
-                        <label>Nombre:
-                            <input type="text" class="ancho" id="nombre" placeholder="Nombre Apellidos">
-                        </label>
+                    <form action="producto.php" method="post">
+                        <label>Comentario: </label>
+                        <textarea id="comentario-nuevo" placeholder="Introduzca el comentario" name="comentario"></textarea>
+                        <!--input type="text" name="comentario"/-->
 
-                        <label>Correo: 
-                            <input type="email" class="ancho" id="email" placeholder="ejemplo@ejemplo.org">
-                        </label>
-
-                        <label>Comentario: 
-                            <textarea id="comentario-nuevo" placeholder="Introduzca el comentario"></textarea>
-                        </label>
-                        
-                        <button type="button" id="submit">Submit</button>
+                        <br/><br/>
+                        <button id="submit">Submit</button>
                     </form>
                 </div>
 
