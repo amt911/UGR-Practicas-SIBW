@@ -18,6 +18,8 @@
 
                         <br/><br/>
                         <button id="submit">Submit</button>
+
+                        <input type="hidden" name="actual" value="{{ Back }}"/>
                     </form>
                 </div>
 
@@ -29,6 +31,15 @@
 
                 {% for aux in Comentarios %}
                     <div class="comentario-container">
+                        <div class="mod-comentario-container">
+                            <div class="editar">
+                                <img class="imagen" src="static/images/edit.png" alt="editar"/>
+                            </div>
+                            <div class="borrar">
+                                <img class="imagen" src="static/images/delete.png" alt="borrar"/>
+                            </div>
+                        </div>
+
                         <div class="nombre-comentario">
                             <h4>{{ aux["Nombre"] }}</h4>
                         </div>

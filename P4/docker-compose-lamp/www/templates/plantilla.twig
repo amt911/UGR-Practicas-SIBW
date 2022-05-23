@@ -62,17 +62,10 @@
                     <div class="nota-contenido">
                     <!-- Quizas mejor una lista -->
                         {% if User["Correo"] is null %}
-                        <a href="login.php?back={{ Back }}">Iniciar sesión</a><br/>
+                        <a href="login.php?back={{ URL }}{{ Back }}">Iniciar sesión</a><br/>
                         <a href="login.php">Registrarse</a><br/>
                         {% endif %}
                         
-
-                        {% if User["Correo"] is not null %}
-                        <a href="destruir_cookies.php?back={{ Back }}">Cerrar sesión</a><br/>
-                        {% endif %}
-                        
-
-
                         {% if User["esModerador"]==1 %}
                         <a href="login.php">Modificar comentarios</a><br/>
                         {% endif %}
@@ -80,6 +73,12 @@
                         {% if User["esGestor"]==1 %}
                         <a href="login.php">Añadir producto</a><br/>
                         <a href="login.php">Modificar producto</a><br/>
+                        {% endif %}
+
+
+                        {% if User["Correo"] is not null %}
+                        <a href="#">Ajustes de perfil</a><br/>
+                        <a href="destruir_cookies.php?back={{ URL }}{{ Back }}">Cerrar sesión</a><br/>
                         {% endif %}
                     </div>
                 </section>

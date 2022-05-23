@@ -5,11 +5,6 @@
 
     $con=new GestorBD();
 
-    //Botones de navegacion
-    $menu=array("Inicio"=>"index.php",
-                "FAQ" => "destruir_cookies.php",
-                "Login" => "login.php");
-
     //El numero total de paginas que tiene la portada
     $totalPaginas=$con->getNumPaginas();
 
@@ -65,6 +60,13 @@
     //HACER QUE ESTA PARTE SE EJECUTE EN UN MODULO APARTE
     session_start();
 
+    //Botones de navegacion
+    $menu=array("Inicio"=>"index.php",
+                "FAQ" => "destruir_cookies.php");
+
+    if(!isset($_SESSION["correo"]))
+        $menu["Login"] = "login.php";    
+
     $usuario=$con->getUsuario("-1");
 
     //Parte de sesiones
@@ -86,7 +88,7 @@
         "Siguiente" => $siguiente,
         "Actual" => $pagina,
         "User" => $usuario,
-        "Back" => "index.php"
+        "URL" => "index.php"
         //"Permisos" => asdasd,
     ]);
 ?>

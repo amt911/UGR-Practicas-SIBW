@@ -5,11 +5,11 @@
     $con=new GestorBD();
     $errores="";
 
+
     $back="index.php";
 
     if(isset($_GET["back"]))
-        $back=$_GET["back"];
-        
+        $back=$_GET["back"]; 
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         $correo=$_POST["correo"];

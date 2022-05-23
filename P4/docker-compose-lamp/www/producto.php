@@ -14,8 +14,12 @@
     //Parte de añadir comentarios
     session_start();
     if($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST["comentario"]) and isset($_SESSION["correo"])){
-        $con->insertarComentario($_SESSION["correo"], $_POST["comentario"], $id);
+        $prodID=$_POST["actual"];
+        $con->insertarComentario($_SESSION["correo"], $_POST["comentario"], $prodID);
         unset($_POST["comentario"]);
+
+        header("Location: producto.php?p=$prodID");     //Redirijo para evitar que salga una ventana emergente de confirmar subida de nuevo
+        exit();
     }
     
 
@@ -43,8 +47,10 @@
     
     //Los botones del menu con sus respectivas paginas
     $menu=array("Inicio"=>"index.php",
-                "Imprimir"=>"producto.php?p=$id&imprimir=1",
-                "Login"=>"login.php?back=producto.php");
+                "Imprimir"=>"producto.php?p=$id&imprimir=1");
+
+    if(!isset($_SESSION["correo"]))
+        $menu["Login"]="login.php?back=producto.php";
 
     
     //Parte de sesiones
@@ -77,6 +83,7 @@
         "Imprimir" => $_GET["imprimir"],
         "Comentarios" => $comentarios,
         "User" => $usuario,
-        "Back" => "producto.php?p=$id"
+        "URL" => "producto.php?p=",
+        "Back" => $id
     ]);
 ?>
