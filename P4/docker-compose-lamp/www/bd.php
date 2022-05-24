@@ -256,6 +256,7 @@ class GestorBD{
     }
 
     function getUsuario($correo){
+        //QUIZAS QUITAR LA PARTE DE LA CONTRASEÑA
         $res=[
             "Nombre" => "Anónimo",
             "Correo" => null,
@@ -340,6 +341,25 @@ class GestorBD{
             $res=$query->fetch_assoc()["Texto"];
 
         return $res;         
+    }
+
+    function changeComentario($correo, $id, $comentario){
+        //echo "no se";
+        //UPDATE Comentario SET Texto='xdd' WHERE ID_Producto=5;
+        $usuario=$this->getUsuario($correo);
+        $existeComment=$this->existeComentario($id);
+
+        //var_dump($comentario);
+        //var_dump($correo);
+        //var_dump($usuario);
+        //var_dump($existeComment);
+        //var_dump($id);
+        if($usuario["Correo"]!=null and $usuario["esModerador"]==1 and $existeComment){
+            //echo "funciona";
+            $prepare=$this->mysqli->prepare("UPDATE Comentario SET Texto=? WHERE ID=?");
+            $prepare->bind_param("si", $comentario, $id);
+            $prepare->execute();
+        }
     }
 }
 ?>

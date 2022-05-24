@@ -30,10 +30,20 @@
         $error=-2;
     }
 
-    var_dump($_SERVER["REQUEST_METHOD"]);
-
     //Parte de post
 //$_SERVER["REQUEST_METHOD"] == "POST"
+
+    if($_SERVER["REQUEST_METHOD"] == "POST" and isset($_SESSION["usuario"]) and $_SESSION["usuario"]["esModerador"]==1){
+        $_POST["comentario"]="\"Comentario editado por un moderador\"\n".$_POST["comentario"];
+
+        //echo $_SESSION["usuario"]["correo"];
+        //var_dump($_SESSION["usuario"]);
+        $con->changeComentario($_SESSION["usuario"]["Correo"], $_POST["idComentario"], $_POST["comentario"]);
+
+        $backProduct=$_POST["back"];
+        header("Location: producto.php?p=$backProduct");
+        exit();
+    }
 
     $menu=["Inicio" => "index.php"];
 
@@ -44,7 +54,8 @@
         "Menu" => $menu,
         "BackID" => $backID,
         "Comentario" => $comentario,
-        "ErrorStatus" => $error
+        "ErrorStatus" => $error,
+        "idComentario" => $idComentario
     ]);
 
 ?>
