@@ -1,0 +1,50 @@
+{% extends "formulario_plantilla.twig" %}
+
+{% block archivosAdicionales %}
+{{ parent() }}
+<link rel="stylesheet" href="static/css/perfil.css">
+{% endblock %}
+
+{% block main %}
+{{ parent() }}
+
+{% if Errores == -1 %}
+<h1 class="rojo">No estás registrado</h1>
+
+{% else %}
+<div id="div-info-perfil">
+    <div id="foto-perfil-div">
+        <img src="static/images/placeholder.png"/>
+    </div>
+
+    <div id="info-texto">
+        <div>
+            <strong>Nombre:</strong> {{ Credenciales["Nombre"] }}
+        </div>
+
+        <div>
+            <strong>Correo:</strong> {{ Credenciales["Correo"] }}
+        </div>
+
+        <div>
+            <strong>Pais:</strong> pais
+        </div>
+
+        <div>
+            <strong>Género:</strong> {{ Genero }}
+        </div>
+
+        <div>
+            <strong>Tipo de cuenta:</strong> {{ Tipo }}
+        </div>
+    </div>
+
+        <div class="centrado">
+            <a href="edit_perfil.php">Editar mi perfil</a>
+        </div>
+        <div id="logout-div" class="centrado">
+            <a href="destruir_cookies.php?back=index.php">Cerrar sesión</a>
+        </div>
+</div>
+{% endif %}
+{% endblock %}

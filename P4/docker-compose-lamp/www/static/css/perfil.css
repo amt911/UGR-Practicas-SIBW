@@ -1,0 +1,28 @@
+#foto-perfil-div{
+    width: 180px;
+    height:180px;
+    border: solid 2px black;
+    /*border-radius: 50%;*/
+    overflow: hidden;
+    margin: 12px;
+}
+
+#div-info-perfil{
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    align-items: center;
+}
+
+#logout-div{
+    margin-top: 20px;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+#info-texto{
+    margin-left: 12px;
+    display: grid;
+    gap: 12px;
+    margin-bottom: 42px;
+}
