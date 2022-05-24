@@ -58,6 +58,7 @@
 
     //Parte de sesiones
     if(isset($_SESSION["correo"])){
+        //Arreglar esto, hace falta tener una opcion fallback
         $usuario=$con->getUsuario($_SESSION["correo"]);   
     }
 

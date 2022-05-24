@@ -404,13 +404,18 @@ tr.dark{
     right: 0;
 
     display: grid;
-    grid-template-columns: /*30px 30px;*/ repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 3px;
 
 
-    min-width: 50%;
-    max-width: 2px;
+    max-width: 70px;
+    width: 50%;
     padding: 3px;
+}
+
+.mod-comentario-container > div{
+    background-color: white;
+    border-radius: 0.5vh;
 }
 
 body div{

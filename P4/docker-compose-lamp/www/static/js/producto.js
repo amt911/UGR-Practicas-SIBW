@@ -71,6 +71,7 @@ function obtenerFechaActual(){
     let fecha=new Date()
     let mesString;
 
+    //pasar a un map si da tiempo
     switch(fecha.getMonth()){
         case 0:
             mesString="enero"
@@ -373,3 +374,18 @@ for(let i=0; i<vistasPrevias.length; i++){
 }
 
 botonComprar.addEventListener("click", ()=>alert("Gracias por su compra"));
+
+//let botonesBorrar=document.getElementsByClassName("ref-borrar");
+
+//mejorable
+function confirmacion(){
+    return confirm("¿Está seguro que desea eliminar el comentario? Esta acción no se puede deshacer."); 
+}
+/*
+for(let i=0; i<botonesBorrar.length; i++){
+    botonesBorrar[i].addEventListener("click", ()=>{
+        return confirm("¿Está seguro que desea eliminar el comentario? Esta acción no se puede deshacer."); 
+    });
+
+}
+*/

@@ -3,9 +3,9 @@ class GestorBD{
     private $mysqli;
     private $MAX_PAGE;
 
-    function __construct(){
+    function __construct($user="usuario", $pass="usuario"){
         $this->MAX_PAGE=9;
-        $this->conectarDB();
+        $this->conectarDB($user, $pass);
     }
 
 
@@ -14,8 +14,8 @@ class GestorBD{
     }
 
 
-    private function conectarDB(){
-        $this->mysqli=new mysqli("mysql", "usuario", "usuario", "SIBW");
+    private function conectarDB($user, $pass){
+        $this->mysqli=new mysqli("mysql", $user, $pass, "SIBW");
     
         if($this->mysqli->connect_errno){
             echo("Fallo al conectar: ". $this->mysqli->connect_error);
@@ -103,7 +103,7 @@ class GestorBD{
         $res=false;
 
         $this->mysqli->query("SET lc_time_names='es_ES';");
-        $prepare=$this->mysqli->prepare("SELECT Nombre,DATE_FORMAT(Fecha, '%d de %M del %Y, %k:%i') AS Fecha,Texto,Correo FROM Comentario WHERE ID_Producto=? ORDER BY ID DESC");
+        $prepare=$this->mysqli->prepare("SELECT ID,Nombre,DATE_FORMAT(Fecha, '%d de %M del %Y, %k:%i') AS Fecha,Texto,Correo FROM Comentario WHERE ID_Producto=? ORDER BY ID DESC");
         $prepare->bind_param("i", $idProducto);
         $prepare->execute();
 
@@ -188,7 +188,7 @@ class GestorBD{
 
 
     function existeProducto($id){
-        $res=false;
+        $res=-1;
 
         $prepare=$this->mysqli->prepare("SELECT COUNT(*) FROM Productos WHERE ID=?");
         $prepare->bind_param("i", $id);
@@ -200,6 +200,12 @@ class GestorBD{
             $res=$query->fetch_assoc();
             $res=$res["COUNT(*)"];
         }
+
+        //PARTE NUEVA
+        if($res<=0)
+            $res=false;
+        else 
+            $res=true;
 
         return $res;
     }
@@ -281,6 +287,42 @@ class GestorBD{
 
             $prepare->bind_param("sssi", $usuario["Nombre"], $comentario, $usuario["Correo"], $producto);
 
+            $prepare->execute();
+        }
+    }
+
+    private function existeComentario($idComment){
+        $res=-1;
+
+        $prepare=$this->mysqli->prepare("SELECT COUNT(*) FROM Comentario WHERE ID=?");
+        $prepare->bind_param("i", $idComment);
+        $prepare->execute();
+
+        $query=$prepare->get_result();
+    
+        if($query->num_rows > 0){
+            $res=$query->fetch_assoc();
+            $res=$res["COUNT(*)"];
+        }
+
+        //PARTE NUEVA
+        if($res<=0)
+            $res=false;
+        else
+            $res=true;
+
+        return $res;
+    }
+
+    function deleteComment($idComment, $correo){
+        //delete from Comentario where ID=6;
+        
+        $usuario=$this->getUsuario($correo);
+        $existeComment=$this->existeComentario($idComment);
+
+        if($usuario["Correo"]!=null and $usuario["esModerador"]==1 and $existeComment){
+            $prepare=$this->mysqli->prepare("DELETE FROM Comentario WHERE ID=?");
+            $prepare->bind_param("i", $idComment);
             $prepare->execute();
         }
     }

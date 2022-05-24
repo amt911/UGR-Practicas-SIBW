@@ -31,14 +31,20 @@
 
                 {% for aux in Comentarios %}
                     <div class="comentario-container">
-                        <div class="mod-comentario-container">
-                            <div class="editar">
-                                <img class="imagen" src="static/images/edit.png" alt="editar"/>
+                        {% if User["esModerador"]==1 %}
+                            <div class="mod-comentario-container">
+                                <div class="editar">
+                                    <a href="edit.php?back={{ Back }}&id={{ aux["ID"] }}">
+                                        <img class="imagen ref-editar" src="static/images/edit.png" alt="editar"/>
+                                    </a>
+                                </div>
+                                <div class="borrar">
+                                    <a href="delete.php?back={{ Back }}&id={{ aux["ID"] }}">
+                                        <img class="imagen ref-borrar" src="static/images/delete.png" alt="borrar" onclick="return confirmacion();"/>
+                                    </a>
+                                </div>
                             </div>
-                            <div class="borrar">
-                                <img class="imagen" src="static/images/delete.png" alt="borrar"/>
-                            </div>
-                        </div>
+                        {% endif %}
 
                         <div class="nombre-comentario">
                             <h4>{{ aux["Nombre"] }}</h4>
