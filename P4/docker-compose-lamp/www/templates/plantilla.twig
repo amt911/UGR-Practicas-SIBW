@@ -27,8 +27,14 @@
                 </a>
             </div>
             <div id="div-titulo-menu">  <!--Seccion que contiene el titulo de la pagina y el menu-->
-                <div>
-                    <h1>e-tienda</h1>   <!--Titulo de la pagina-->
+                <div id="titulo-img-div">
+                    <div>
+                        <h1>e-tienda</h1>   <!--Titulo de la pagina-->
+                    </div>
+
+                    <div id="perfil-superior">
+                        <img src="static/images/placeholder.png" alt="Perfil foto"/>
+                    </div>                    
                 </div>
 
                 <nav id="navegacion">   <!--Seccion de navegacion con los menus-->
@@ -48,6 +54,7 @@
                 {% endblock %}
             </main>
 
+        {% block aside %}
             <aside> <!--Seccion auxiliar con diverso contenido-->
                 <section class="nota-container">
                     <div class="nota-titulo">
@@ -156,6 +163,7 @@
                     </div>
                 </section>
             </aside>
+        {% endblock %}
         </div>
 
         <footer>    <!--Esta seccion contiene el pie de pagina-->

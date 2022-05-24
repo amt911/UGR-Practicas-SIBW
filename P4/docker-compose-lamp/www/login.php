@@ -19,7 +19,8 @@
         if($con->comprobarCredenciales($correo, $contra)){
             session_start();
             $_SESSION["correo"]=$correo;
-
+            $_SESSION["usuario"]=$con->getUsuario($correo);
+            
             //$back="producto.php?p=3";
             header("Location: $back");
             exit();

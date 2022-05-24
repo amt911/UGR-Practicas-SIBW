@@ -291,7 +291,7 @@ class GestorBD{
         }
     }
 
-    private function existeComentario($idComment){
+    function existeComentario($idComment){
         $res=-1;
 
         $prepare=$this->mysqli->prepare("SELECT COUNT(*) FROM Comentario WHERE ID=?");
@@ -325,6 +325,21 @@ class GestorBD{
             $prepare->bind_param("i", $idComment);
             $prepare->execute();
         }
+    }
+
+    function getComentario($idComentario){
+        $res="";
+
+        $prepare=$this->mysqli->prepare("SELECT Texto FROM Comentario WHERE ID=?");
+        $prepare->bind_param("i", $idComentario);
+        $prepare->execute();
+
+        $query=$prepare->get_result(); 
+
+        if($query->num_rows > 0)
+            $res=$query->fetch_assoc()["Texto"];
+
+        return $res;         
     }
 }
 ?>

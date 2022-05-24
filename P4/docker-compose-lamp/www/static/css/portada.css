@@ -1,10 +1,12 @@
 /*Reglas generales para el body*/
 body {
     font-family: 'Roboto', sans-serif;
-    width: fit-content; /*Esto permite que cuando se haga más zoom se pueda hacer scroll lateral*/
+    /*width: fit-content; /*Esto permite que cuando se haga más zoom se pueda hacer scroll lateral*/
     word-wrap:break-word;
     border: 2px solid #00897b;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23); /*Sombra por debajo*/
+
+    min-width: fit-content;
 }
 
 /*Regla general para todas las imagenes*/
@@ -370,4 +372,31 @@ a.dark{
     margin-left: auto;
     margin-right: auto;
     border: solid 2px black;
+}
+
+.negro{
+    color: black;
+}
+
+#perfil-superior{
+    border: solid 1px red;
+    background-color: beige;
+    margin: 12px;
+}
+
+
+#titulo-img-div{
+    border: solid 2px blue;
+    display: grid;
+    grid-template-columns: 80% minmax(0, 1fr);
+    /*grid-template-columns: minmax(0, 1fr) 170px;*/
+    grid-auto-rows: 100%;
+}
+
+.perfil-superior-img{
+
+}
+
+.rojo{
+    color: red;
 }

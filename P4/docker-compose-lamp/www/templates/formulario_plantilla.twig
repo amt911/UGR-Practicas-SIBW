@@ -1,0 +1,15 @@
+{% extends "plantilla.twig" %}
+
+{% block archivosAdicionales %}
+{{ parent() }}
+<link rel="stylesheet" href="static/css/formulario_plantilla.css">
+{% endblock %}
+
+{% block aside %}
+{% endblock %}
+
+{% block main %}
+
+<h2 class="negro">{{ NombreForm }}</h2>
+
+{% endblock %}

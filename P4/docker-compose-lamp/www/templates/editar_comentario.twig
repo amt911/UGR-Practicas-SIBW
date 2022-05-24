@@ -1,0 +1,26 @@
+{% extends "formulario_plantilla.twig" %}
+
+{% block archivosAdicionales %}
+{{ parent() }}
+<link rel="stylesheet" href="static/css/editar_comentario.css">
+{% endblock %}
+
+{% block main %}
+{{ parent() }}
+
+{% if ErrorStatus == -1 %}
+    <h1 class="rojo">Error, el comentario no existe</h1>
+
+{% elseif ErrorStatus == -2 %}
+    <h1 class="rojo">No tiene permisos para realizar esto</h1>
+
+{% else %}
+    <form action="edit.php" method="post">
+        <label>Comentario</label><br/>
+        <textarea id="caja-comentario" name="comentario">{{ Comentario }}</textarea><br/><br/>
+        <button>Enviar</button>
+
+        <input type="hidden" name="back" value="{{ BackID }}"/>
+    </form>
+{% endif %}
+{% endblock %}
