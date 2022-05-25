@@ -33,7 +33,9 @@
                     </div>
 
                     <div id="perfil-superior">
-                        <img src="static/images/placeholder.png" alt="Perfil foto"/>
+                        <a href="perfil.php">
+                            <img src="static/images/placeholder.png" alt="Perfil foto"/>
+                        </a>
                     </div>                    
                 </div>
 
@@ -84,8 +86,8 @@
 
 
                         {% if User["Correo"] is not null %}
-                        <a href="perfil.php">Ajustes de perfil</a><br/>
-                        <a href="destruir_cookies.php?back={{ URL }}{{ Back }}">Cerrar sesión</a><br/>
+                            <a href="perfil.php">Mi perfil</a><br/>
+                            <a href="destruir_cookies.php?back={{ URL }}{{ Back }}">Cerrar sesión</a><br/>
                         {% endif %}
                     </div>
                 </section>

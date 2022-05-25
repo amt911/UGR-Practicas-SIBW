@@ -243,7 +243,7 @@ class GestorBD{
     function getPermisosUsuario($correo){
         $res=false;
 
-        $prepare=$this->mysqli->prepare("SELECT esNormal,esModerador,esAdministrador FROM Usuarios WHERE Correo=?");
+        $prepare=$this->mysqli->prepare("SELECT esNormal,esModerador,esGestor, esSuperusuario FROM Usuarios WHERE Correo=?");
         $prepare->bind_param("s", $correo);
         $prepare->execute();
 
@@ -260,10 +260,10 @@ class GestorBD{
         $res=[
             "Nombre" => "Anónimo",
             "Correo" => null,
-            "Password" => null,
             "esNormal" => 0,
             "esModerador" => 0,
-            "esGestor" => 0            
+            "esGestor" => 0 ,
+            "esSuperusuario" => 0           
         ];
 
         $prepare=$this->mysqli->prepare("SELECT * FROM Usuarios WHERE Correo=?");
