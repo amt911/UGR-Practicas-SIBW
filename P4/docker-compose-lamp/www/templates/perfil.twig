@@ -16,36 +16,74 @@
     <div id="foto-perfil-div">
         <img src="static/images/placeholder.png"/>
     </div>
+        <a href="#">Cambiar foto</a>
 
     <div id="info-texto">
         <div>
-            <strong>Nombre:</strong> {{ Credenciales["Nombre"] }}
+            <div class="break">
+                <strong>Nombre:</strong> {{ Credenciales["Nombre"] }}
+            </div>
+
+            <div class="boton">
+                <a href="#">Cambiar</a>
+            </div>
         </div>
 
         <div>
-            <strong>Correo:</strong> {{ Credenciales["Correo"] }}
+            <div class="break">
+                <strong>Correo:</strong> {{ Credenciales["Correo"] }}
+            </div>
+
+            <div class="boton">
+                <a href="#">Cambiar</a>
+            </div>
         </div>
 
         <div>
-            <strong>Pais:</strong> pais
+            <div class="break">
+                <strong>Pais:</strong> pais
+            </div>
+
+            <div class="boton">
+                <a href="#">Cambiar</a>
+            </div>            
         </div>
 
         <div>
-            <strong>Género:</strong> {{ Genero }}
+            <div class="break">
+                <strong>Género:</strong> {{ Genero }}
+            </div>
+
+            <div class="boton">
+                <a href="#">Cambiar</a>
+            </div>            
         </div>
 
         <div>
-            <strong>Dirección de envío:</strong> {{ Direccion }}
+            <div class="break">
+                <strong>Dirección de envío:</strong> {{ Direccion }}
+            </div>
+
+            <div class="boton">
+                <a href="#">Cambiar</a>
+            </div>            
         </div>
 
         <div>
-            <strong>Tipo de cuenta:</strong> {{ Tipo }}
+            <div class="break">
+                <strong>Tipo de cuenta:</strong> {{ Tipo }}
+            </div>
+
+            <div class="boton">
+                <a href="#">Cambiar</a>
+            </div>            
         </div>
     </div>
-
+{#
         <div class="centrado">
             <a href="edit_perfil.php">Editar mi perfil</a>
         </div>
+    #}
         <div id="logout-div" class="centrado">
             <a href="destruir_cookies.php?back=index.php">Cerrar sesión</a>
         </div>

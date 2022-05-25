@@ -13,13 +13,21 @@
 
     //Parte de añadir comentarios
     session_start();
+
+    $error=0;
     if($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST["comentario"]) and isset($_SESSION["correo"])){
         $prodID=$_POST["actual"];
-        $con->insertarComentario($_SESSION["correo"], $_POST["comentario"], $prodID);
-        unset($_POST["comentario"]);
 
-        header("Location: producto.php?p=$prodID");     //Redirijo para evitar que salga una ventana emergente de confirmar subida de nuevo
-        exit();
+        if($_POST["comentario"] != ""){
+            $con->insertarComentario($_SESSION["correo"], $_POST["comentario"], $prodID);
+            //unset($_POST["comentario"]);
+
+            header("Location: producto.php?p=$prodID");     //Redirijo para evitar que salga una ventana emergente de confirmar subida de nuevo
+            exit();
+        }
+        else{
+            $error=-1;
+        }
     }
     
 
@@ -85,6 +93,7 @@
         "Comentarios" => $comentarios,
         "User" => $usuario,
         "URL" => "producto.php?p=",
-        "Back" => $id
+        "Back" => $id,
+        "Error" => $error
     ]);
 ?>

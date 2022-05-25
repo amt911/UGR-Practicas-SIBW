@@ -11,6 +11,11 @@
             {% if User["Correo"] is not null %}
                 <div id="submit-comentario">
                     <h4>Escribir comentario</h4>
+
+                    {% if Error == -1 %}
+                        <div class="rojo"><strong>Comentario vacío</strong></div>
+                    {% endif %}
+                    
                     <form action="producto.php" method="post">
                         <label>Comentario: </label>
                         <textarea id="comentario-nuevo" placeholder="Introduzca el comentario" name="comentario"></textarea>

@@ -2,53 +2,66 @@
 
 {% block main %}
 {{ parent() }}
-COMPROBACIONES DE LA CONTRASEÑA CON JAVASCRIPT, Y EN EL SERVIDOR TAMBIEN, AUNQUE SEA EL HASH
-HACER QUE CUANDO UNO SE DEJE VACIO, DIGA CUALES SON OBLIGATORIOS<br/><br/>
+<!--COMPROBACIONES DE LA CONTRASEÑA CON JAVASCRIPT, Y EN EL SERVIDOR TAMBIEN, AUNQUE SEA EL HASH
+HACER QUE CUANDO UNO SE DEJE VACIO, DIGA CUALES SON OBLIGATORIOS<br/><br/>-->
 <div>
-    <form action="edit_perfil.php" method="post" enctype="multipart/form-data">
-        <label>Cambiar foto de perfil</label><br/>
-        <input type="file"/>
-        <br/><br/>
+    <div class="rojo">
+    {% for aux in Errores %}
+        <h2>{{ aux }}</h2>
+    {% endfor %}
+    </div>
 
-        <label>Nombre</label><br/>
-        <input type="text" value="{{ User["Nombre"] }}"/>
+    {% if estaRegistrado == true %}
+        <form action="edit_perfil.php" method="post" enctype="multipart/form-data">
+            {% if Tipo == 1 %}
+            <label>Cambiar foto de perfil</label><br/>
+            <input type="file"/>
 
-        <br/><br/>
+            {% elseif Tipo == 2 %}
+            <label>Nombre</label><br/>
+            <input type="text"/>
 
-        <label>Cambiar pais de residencia</label><br/>
-        <select>
-            <option>patata</option>
-            <option>patata2</option>
-            <option>patata3</option>
-            <option>patata4</option>
-            <option>patata5</option>
-        </select>
-        <br/><br/>
+            {% elseif Tipo == 3 %}
+            <label>Cambiar pais de residencia</label><br/>
+            <select>
+                <option>patata</option>
+                <option>patata2</option>
+                <option>patata3</option>
+                <option>patata4</option>
+                <option>patata5</option>
+            </select>
 
-        <label>Cambiar contraseña</label><br/>
-        <input type="password"/>
-        <br/><br/>
-        <label>Confirmar contraseña</label><br/>
-        <input type="password"/>
+            {% elseif Tipo == 4 %}
+            <label>Cambiar nombre</label><br/>
+            <input type="text"/>
 
-        <br/><br/>
+            {% elseif Tipo == 5 %}
+            <label>Cambiar contraseña</label><br/>
+            <input type="password"/>
+            <br/><br/>
+            <label>Confirmar contraseña</label><br/>
+            <input type="password"/>
 
-        <label>Cambiar dirección de envío</label><br/>
-        <input type="text" value="ARREGLAME"/>
+            {% elseif Tipo == 6 %}
+            <label>Cambiar dirección de envío</label><br/>
+            <input type="text"/>
 
-        <br/><br/>
+            {% elseif Tipo == 7 %}
+            <label>Cambiar género</label><br/>
+            <select>
+                <option>Hombre</option>
+                <option>Mujer</option>
+                <option>Otro</option>
+                <option>Prefiero no decirlo</option>
+            </select>
 
-        <label>Cambiar género</label><br/>
-        <select>
-            <option>Hombre</option>
-            <option>Mujer</option>
-            <option>Otro</option>
-            <option>Prefiero no decirlo</option>
-        </select>
+            {% endif %}
 
-        <br/><br/>
-
-        <button>Enviar</button>
-    </form>
+            {% if Tipo >=1 and Tipo <=7 %}
+            <br/><br/>
+            <button>Enviar</button>
+            {% endif %}
+        </form>
+    {% endif %}
 </div>
 {% endblock %}

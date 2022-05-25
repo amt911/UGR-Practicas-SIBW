@@ -26,17 +26,20 @@
                     <img src="static/images/patata_logo.png" alt="Logo"/>  <!--Logotipo-->
                 </a>
             </div>
+        
             <div id="div-titulo-menu">  <!--Seccion que contiene el titulo de la pagina y el menu-->
                 <div id="titulo-img-div">
                     <div>
                         <h1>e-tienda</h1>   <!--Titulo de la pagina-->
                     </div>
 
+                    {% if User["Correo"] is not null %}
                     <div id="perfil-superior">
                         <a href="perfil.php">
                             <img src="static/images/placeholder.png" alt="Perfil foto"/>
                         </a>
                     </div>                    
+                    {% endif %}
                 </div>
 
                 <nav id="navegacion">   <!--Seccion de navegacion con los menus-->
