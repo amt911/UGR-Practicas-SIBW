@@ -8,7 +8,7 @@
 
     $back="index.php";
 
-    if(isset($_GET["back"]))
+    if(isset($_GET["back"]) and !empty($_GET["back"]))
         $back=$_GET["back"]; 
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -18,8 +18,8 @@
 
         if($con->comprobarCredenciales($correo, $contra)){
             session_start();
-            $_SESSION["correo"]=$correo;
-            $_SESSION["usuario"]=$con->getUsuario($correo);
+            //$_SESSION["correo"]=$correo;
+            $_SESSION["usuario"]=$con->getUsuarioFromCorreo($correo);
             
             //$back="producto.php?p=3";
             header("Location: $back");

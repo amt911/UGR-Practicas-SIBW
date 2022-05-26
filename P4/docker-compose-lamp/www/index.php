@@ -10,7 +10,7 @@
 
     $pagina=1;
 
-    if(isset($_GET["pagina"]) and $_GET["pagina"]>0 and $_GET["pagina"]<=$totalPaginas){
+    if(isset($_GET["pagina"]) and !empty($_GET["pagina"]) and is_numeric($_GET["pagina"]) and $_GET["pagina"]>0 and $_GET["pagina"]<=$totalPaginas){
         $pagina=$_GET["pagina"];
     }
 
@@ -64,17 +64,17 @@
     $menu=array("Inicio"=>"index.php",
                 "FAQ" => "destruir_cookies.php");
 
-    if(!isset($_SESSION["correo"]))
-        $menu["Login"] = "login.php";    
-
-    $usuario=$con->getUsuario("-1");
+    $usuario=$con->getUsuario(-1);
 
     //Parte de sesiones
-    if(isset($_SESSION["correo"])){
-        $usuario=$con->getUsuario($_SESSION["correo"]);   
+    if(isset($_SESSION["usuario"])){
+        $usuario=$_SESSION["usuario"];
+    }
+    else{
+        $menu["Login"] = "login.php";
     }
 
-
+    //var_dump(isset($_GET["usuario"]));
 
     $loader = new \Twig\Loader\FilesystemLoader('templates');
     $twig = new \Twig\Environment($loader);

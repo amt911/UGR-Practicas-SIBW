@@ -12,18 +12,22 @@ HACER QUE CUANDO UNO SE DEJE VACIO, DIGA CUALES SON OBLIGATORIOS<br/><br/>-->
     </div>
 
     {% if estaRegistrado == true %}
-        <form action="edit_perfil.php" method="post" enctype="multipart/form-data">
+        <form action="edit_perfil.php?campo={{ Tipo }}" method="post" enctype="multipart/form-data">
             {% if Tipo == 1 %}
             <label>Cambiar foto de perfil</label><br/>
-            <input type="file"/>
+            <input type="file" name="Foto"/>
 
             {% elseif Tipo == 2 %}
             <label>Nombre</label><br/>
-            <input type="text"/>
+            <input type="text" name="Nombre"/>
 
             {% elseif Tipo == 3 %}
-            <label>Cambiar pais de residencia</label><br/>
-            <select>
+            <label>Correo nuevo</label><br/>
+            <input type="text" name="Correo"/>
+
+            {% elseif Tipo == 4 %}
+            <label>Cambiar pais</label><br/>
+            <select name="Pais">
                 <option>patata</option>
                 <option>patata2</option>
                 <option>patata3</option>
@@ -31,36 +35,33 @@ HACER QUE CUANDO UNO SE DEJE VACIO, DIGA CUALES SON OBLIGATORIOS<br/><br/>-->
                 <option>patata5</option>
             </select>
 
-            {% elseif Tipo == 4 %}
-            <label>Cambiar nombre</label><br/>
-            <input type="text"/>
-
             {% elseif Tipo == 5 %}
-            <label>Cambiar contraseña</label><br/>
-            <input type="password"/>
-            <br/><br/>
-            <label>Confirmar contraseña</label><br/>
-            <input type="password"/>
-
-            {% elseif Tipo == 6 %}
-            <label>Cambiar dirección de envío</label><br/>
-            <input type="text"/>
-
-            {% elseif Tipo == 7 %}
             <label>Cambiar género</label><br/>
-            <select>
+            <select name="Genero">
                 <option>Hombre</option>
                 <option>Mujer</option>
                 <option>Otro</option>
                 <option>Prefiero no decirlo</option>
             </select>
 
+            {% elseif Tipo == 6 %}
+            <label>Cambiar dirección de envío</label><br/>
+            <input type="text" name="Direccion"/>
+
+            {% elseif Tipo == 7 %}
+            <label>Cambiar contraseña</label><br/>
+            <input type="password" name="Password"/>
+            <br/><br/>
+            <label>Confirmar contraseña</label><br/>
+            <input type="password" name="Password-confirm"/>
             {% endif %}
 
             {% if Tipo >=1 and Tipo <=7 %}
             <br/><br/>
             <button>Enviar</button>
             {% endif %}
+
+            <input type="hidden" name="tipo" value="{{ Tipo }}"/>
         </form>
     {% endif %}
 </div>

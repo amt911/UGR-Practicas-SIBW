@@ -7,12 +7,12 @@
     $con=new GestorBD("root", "tiger");
 
     $backID=1;
-    if(isset($_GET["back"]))
+    if(isset($_GET["back"]) and !empty($_GET["back"]))
         $backID=$_GET["back"];
     
     $error=-1;
     $idComentario=-1;
-    if(isset($_GET["id"]) and $con->existeComentario($_GET["id"])){
+    if(isset($_GET["id"]) and !empty($_GET["id"]) and is_numeric($_GET["id"]) and $con->existeComentario($_GET["id"])){
         $idComentario=$_GET["id"];
         $error=0;
     }
@@ -36,9 +36,7 @@
     if($_SERVER["REQUEST_METHOD"] == "POST" and isset($_SESSION["usuario"]) and $_SESSION["usuario"]["esModerador"]==1){
         $_POST["comentario"]="\"Comentario editado por un moderador\"\n".$_POST["comentario"];
 
-        //echo $_SESSION["usuario"]["correo"];
-        //var_dump($_SESSION["usuario"]);
-        $con->changeComentario($_SESSION["usuario"]["Correo"], $_POST["idComentario"], $_POST["comentario"]);
+        $con->changeComentario($_SESSION["usuario"]["ID"], $_POST["idComentario"], $_POST["comentario"]);
 
         $backProduct=$_POST["back"];
         header("Location: producto.php?p=$backProduct");

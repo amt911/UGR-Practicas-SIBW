@@ -8,19 +8,18 @@
     //Identificador del producto junto su comprobacion
     $id=1;
 
-    if(isset($_GET["p"]) and $con->existeProducto($_GET["p"]))
+    if(isset($_GET["p"]) and !empty($_GET["p"]) and is_numeric($_GET["p"]) and $con->existeProducto($_GET["p"]))
         $id=$_GET["p"];
 
     //Parte de añadir comentarios
     session_start();
 
     $error=0;
-    if($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST["comentario"]) and isset($_SESSION["correo"])){
+    if($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST["comentario"]) and isset($_SESSION["usuario"])){
         $prodID=$_POST["actual"];
 
-        if($_POST["comentario"] != ""){
-            $con->insertarComentario($_SESSION["correo"], $_POST["comentario"], $prodID);
-            //unset($_POST["comentario"]);
+        if($_POST["comentario"] !== ""){
+            $con->insertarComentario($_SESSION["usuario"]["ID"], $_POST["comentario"], $prodID);
 
             header("Location: producto.php?p=$prodID");     //Redirijo para evitar que salga una ventana emergente de confirmar subida de nuevo
             exit();
@@ -44,7 +43,7 @@
     }
 
     //Para lanzar la version imprimible o no
-    if(isset($_GET["imprimir"]) and $_GET["imprimir"]==1){
+    if(isset($_GET["imprimir"]) and !empty($_GET["imprimir"]) and is_numeric($_GET["imprimir"]) and $_GET["imprimir"]==1){
         $pagina="producto_imprimir.twig";
         
         $imagenes=array_slice($imagenes, 0, 2); //Solo se ponen las dos primeras imagenes
@@ -57,17 +56,17 @@
     $menu=array("Inicio"=>"index.php",
                 "Imprimir"=>"producto.php?p=$id&imprimir=1");
 
-    if(!isset($_SESSION["correo"]))
-        $menu["Login"]="login.php?back=producto.php";
-
     
     //Parte de sesiones
-    $usuario=$con->getUsuario("-1");
+    $usuario=$con->getUsuario(-1);
 
     //Parte de sesiones
-    if(isset($_SESSION["correo"])){
+    if(isset($_SESSION["usuario"])){
         //Arreglar esto, hace falta tener una opcion fallback
-        $usuario=$con->getUsuario($_SESSION["correo"]);   
+        $usuario=$_SESSION["usuario"];   
+    }
+    else{
+        $menu["Login"]="login.php?back=producto.php";        
     }
 
 

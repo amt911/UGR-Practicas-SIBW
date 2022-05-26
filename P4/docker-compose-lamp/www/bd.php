@@ -255,15 +255,40 @@ class GestorBD{
         return $res;                
     }
 
-    function getUsuario($correo){
+    function getUsuario($id){
         //QUIZAS QUITAR LA PARTE DE LA CONTRASEÑA
         $res=[
+            "ID" => -1,
             "Nombre" => "Anónimo",
             "Correo" => null,
             "esNormal" => 0,
             "esModerador" => 0,
             "esGestor" => 0 ,
-            "esSuperusuario" => 0           
+            "esSuperusuario" => 0       
+        ];
+
+        $prepare=$this->mysqli->prepare("SELECT * FROM Usuarios WHERE ID=?");
+        $prepare->bind_param("i", $id);
+        $prepare->execute();
+
+        $query=$prepare->get_result(); 
+
+        if($query->num_rows > 0)
+            $res=$query->fetch_assoc();
+
+        return $res;        
+    }    
+
+    function getUsuarioFromCorreo($correo){
+        //QUIZAS QUITAR LA PARTE DE LA CONTRASEÑA
+        $res=[
+            "ID" => -1,
+            "Nombre" => "Anónimo",
+            "Correo" => null,
+            "esNormal" => 0,
+            "esModerador" => 0,
+            "esGestor" => 0 ,
+            "esSuperusuario" => 0       
         ];
 
         $prepare=$this->mysqli->prepare("SELECT * FROM Usuarios WHERE Correo=?");
@@ -278,11 +303,11 @@ class GestorBD{
         return $res;        
     }    
 
-    function insertarComentario($correo, $comentario, $producto){
-        $usuario=$this->getUsuario($correo);
+    function insertarComentario($id, $comentario, $producto){
+        $usuario=$this->getUsuario($id);
         $pCheck=$this->existeProducto($producto);
 
-        if($usuario["Correo"]!=null and $pCheck){
+        if($usuario["ID"]!=-1 and $pCheck){
             $this->mysqli->query("SET time_zone='Europe/Madrid'");
             $prepare=$this->mysqli->prepare("INSERT INTO Comentario VALUES(?, DEFAULT, NOW(), ?, ?, ?)");
 
@@ -315,13 +340,11 @@ class GestorBD{
         return $res;
     }
 
-    function deleteComment($idComment, $correo){
-        //delete from Comentario where ID=6;
-        
-        $usuario=$this->getUsuario($correo);
+    function deleteComment($idComment, $id){        
+        $usuario=$this->getUsuario($id);
         $existeComment=$this->existeComentario($idComment);
 
-        if($usuario["Correo"]!=null and $usuario["esModerador"]==1 and $existeComment){
+        if($usuario["ID"]!=-1 and $usuario["esModerador"]==1 and $existeComment){
             $prepare=$this->mysqli->prepare("DELETE FROM Comentario WHERE ID=?");
             $prepare->bind_param("i", $idComment);
             $prepare->execute();
@@ -343,23 +366,28 @@ class GestorBD{
         return $res;         
     }
 
-    function changeComentario($correo, $id, $comentario){
-        //echo "no se";
-        //UPDATE Comentario SET Texto='xdd' WHERE ID_Producto=5;
-        $usuario=$this->getUsuario($correo);
+    function changeComentario($idUsuario, $id, $comentario){
+        $usuario=$this->getUsuario($idUsuario);
         $existeComment=$this->existeComentario($id);
 
-        //var_dump($comentario);
-        //var_dump($correo);
-        //var_dump($usuario);
-        //var_dump($existeComment);
-        //var_dump($id);
-        if($usuario["Correo"]!=null and $usuario["esModerador"]==1 and $existeComment){
+        if($usuario["ID"]!=-1 and $usuario["esModerador"]==1 and $existeComment){
             //echo "funciona";
             $prepare=$this->mysqli->prepare("UPDATE Comentario SET Texto=? WHERE ID=?");
             $prepare->bind_param("si", $comentario, $id);
             $prepare->execute();
         }
+    }
+
+    function cambiarDatosUsuario($id, $nuevoNombre, $campo){
+        $lista=["Foto", "Nombre", "Correo", "Pais", "Genero", "Direccion", "Password"];
+
+        $usuario=$this->getUsuario($id);
+
+        if($usuario["ID"]!=-1 and in_array($campo, $lista, true)){
+            $prepare=$this->mysqli->prepare("UPDATE Usuarios SET $campo=? WHERE ID=?");
+            $prepare->bind_param("si", $nuevoNombre, $id);
+            $prepare->execute();
+        }        
     }
 }
 ?>

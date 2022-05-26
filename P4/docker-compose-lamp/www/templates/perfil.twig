@@ -16,7 +16,7 @@
     <div id="foto-perfil-div">
         <img src="static/images/placeholder.png"/>
     </div>
-        <a href="#">Cambiar foto</a>
+        <a href="edit_perfil.php?campo=1">Cambiar foto</a>
 
     <div id="info-texto">
         <div>
@@ -25,7 +25,7 @@
             </div>
 
             <div class="boton">
-                <a href="#">Cambiar</a>
+                <a href="edit_perfil.php?campo=2">Cambiar</a>
             </div>
         </div>
 
@@ -35,37 +35,37 @@
             </div>
 
             <div class="boton">
-                <a href="#">Cambiar</a>
+                <a href="edit_perfil.php?campo=3">Cambiar</a>
             </div>
         </div>
 
         <div>
             <div class="break">
-                <strong>Pais:</strong> pais
+                <strong>Pais:</strong> {{ Credenciales["Pais"] }}
             </div>
 
             <div class="boton">
-                <a href="#">Cambiar</a>
+                <a href="edit_perfil.php?campo=4">Cambiar</a>
             </div>            
         </div>
 
         <div>
             <div class="break">
-                <strong>Género:</strong> {{ Genero }}
+                <strong>Género:</strong> {{ Credenciales["Genero"] }}
             </div>
 
             <div class="boton">
-                <a href="#">Cambiar</a>
+                <a href="edit_perfil.php?campo=5">Cambiar</a>
             </div>            
         </div>
 
         <div>
             <div class="break">
-                <strong>Dirección de envío:</strong> {{ Direccion }}
+                <strong>Dirección de envío:</strong> {{ Credenciales["Direccion"] }}
             </div>
 
             <div class="boton">
-                <a href="#">Cambiar</a>
+                <a href="edit_perfil.php?campo=6">Cambiar</a>
             </div>            
         </div>
 
@@ -75,15 +75,13 @@
             </div>
 
             <div class="boton">
-                <a href="#">Cambiar</a>
             </div>            
         </div>
     </div>
-{#
         <div class="centrado">
-            <a href="edit_perfil.php">Editar mi perfil</a>
+            <a href="edit_perfil.php?campo=7">Cambiar contraseña</a>
         </div>
-    #}
+
         <div id="logout-div" class="centrado">
             <a href="destruir_cookies.php?back=index.php">Cerrar sesión</a>
         </div>
