@@ -38,6 +38,20 @@
         $error[]="El producto no existe";
     }
 
+
+    //Parte de POST
+    if($_SERVER["REQUEST_METHOD"]=="POST" and isset($_SESSION["usuario"])){
+        if(empty($_POST["precio"]) or empty($_POST["nombre"]) or empty($_POST["descripcion"]) or empty($_POST["titulo-top"]) or !is_numeric($_POST["precio"])){
+            $error[]="Hay campos obligatorios vacíos o incorrectos";
+        }
+        else{
+            $con->cambiarDatosProducto($_SESSION["usuario"]["ID"], $_POST["product-id"], $_POST["precio"], $_POST["nombre"], $_POST["descripcion"], $_POST["titulo-top"]);
+
+            header("Location: $back");
+            exit();
+        }
+    }
+
     $loader = new \Twig\Loader\FilesystemLoader('templates');
     $twig = new \Twig\Environment($loader);
     echo $twig->render('edit_product.twig', [

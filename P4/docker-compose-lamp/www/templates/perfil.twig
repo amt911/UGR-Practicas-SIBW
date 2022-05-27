@@ -14,7 +14,12 @@
 {% else %}
 <div id="div-info-perfil">
     <div id="foto-perfil-div">
-        <img src="static/images/placeholder.png"/>
+    {% if Credenciales["Foto"]!="" %}
+        <img src="{{ Credenciales["Foto"] }}"/>
+    {% else %}
+        <img src="static/images/default_user.png"/>
+    {% endif %}
+    
     </div>
         <a href="edit_perfil.php?campo=1">Cambiar foto</a>
 

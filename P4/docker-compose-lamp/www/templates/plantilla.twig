@@ -36,7 +36,11 @@
                     {% if User["Correo"] is not null %}
                     <div id="perfil-superior">
                         <a href="perfil.php">
-                            <img src="static/images/placeholder.png" alt="Perfil foto"/>
+                        {% if User["Foto"] != "" %}
+                            <img src="{{ User["Foto"] }}" alt="Perfil foto"/>
+                        {% else %}
+                            <img src="static/images/default_user.png" alt="Perfil foto"/>
+                        {% endif %}
                         </a>
                     </div>                    
                     {% endif %}
@@ -63,9 +67,16 @@
             <aside> <!--Seccion auxiliar con diverso contenido-->
                 <section class="nota-container">
                     <div class="nota-titulo">
-                        <div class="perfil">
-                        <img src="static/images/placeholder.png" alt="Ubicacion tienda"/>
-                        </div>
+                        {% if User["Correo"] is not null %}
+                            <div class="perfil">
+                                {% if User["Foto"] != "" %}
+                                    <img src="{{ User["Foto"] }}" alt="Perfil foto"/>
+                                {% else %}
+                                    <img src="static/images/default_user.png" alt="Perfil foto"/>
+                                {% endif %}                        
+                            </div>
+                        {% endif %}
+                        
                         <div>
                         {{ User["Nombre"] }}
                         </div>

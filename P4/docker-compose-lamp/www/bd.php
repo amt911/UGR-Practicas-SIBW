@@ -407,5 +407,31 @@ class GestorBD{
             $prepare->execute();
         }        
     }
+
+
+    function actualizarFotoPerfil($idUsuario, $ruta){
+        $user=$this->getUsuario($idUsuario);
+
+        if($user["ID"]!=-1){
+            $prepare=$this->mysqli->prepare("UPDATE Usuarios SET Foto=? WHERE ID=?");
+            $prepare->bind_param("si", $ruta, $idUsuario);
+            $prepare->execute();            
+        }
+    }
+
+    function cambiarDatosProducto($idUsuario, $idProducto, $precio, $nombre, $descripcion, $tituloTop){
+        $usuario=$this->getUsuario($idUsuario);
+        $existeProd=$this->existeProducto($idProducto);
+        //echo "me gusta esto";
+        //var_dump($usuario);
+        //var_dump($existeProd);
+        //var_dump($idProducto);
+        if($usuario["ID"]!=-1 and $usuario["esGestor"]==1 and $existeProd){
+            //echo "mp";
+            $prepare=$this->mysqli->prepare("UPDATE Productos SET  Precio=?,Nombre=?,Descripción=?,`Titulo pagina`=? WHERE ID=?");
+            $prepare->bind_param("dsssi", $precio, $nombre, $descripcion, $tituloTop, $idProducto);
+            $prepare->execute();     
+        }
+    }
 }
 ?>
