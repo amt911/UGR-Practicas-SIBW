@@ -1,0 +1,57 @@
+{% extends "formulario_plantilla.twig" %}
+
+{% block archivosAdicionales %}
+{{ parent() }}
+<link rel="stylesheet" href="static/css/edit_product.css">
+{% endblock %}
+
+{% block main %}
+{{ parent() }}
+
+<div class="rojo">
+    {% for aux in Errores %}
+        <h2>{{ aux }}</h2>
+    {% endfor %}
+</div>
+
+{% if EsGestor == true %}
+<form action="edit_product.php" method="post">
+    <label>Precio</label><br/>
+    <input type="text" value="{{ Producto["Precio"] }}"/>
+    <br/><br/>
+
+    <label>Nombre del producto</label><br/>
+    <input type="text" name="nombre" value="{{ Producto["Nombre"] }}"/>
+    <br/><br/>
+
+    <label>Descripción del producto (se puede usar HTML)</label><br/>
+    <textarea class="no-resize" name="descripcion">{{ Producto["Descripción"] }}</textarea>
+    <br/><br/>
+
+    <label>Título de la página (nombre de la pestaña)</label><br/>
+    <input type="text" name="titulo-top" value="{{ Producto["Titulo pagina"] }}"/>
+    <br/><br/>
+
+    <label>Fabricante del producto</label><br/>
+    <select name="fabricante">
+        {% for aux in Fabricantes %}
+            {% if aux == Producto["Nombre_Fabricante"] %}
+                <option selected>{{ aux }}</option>
+
+            {% else %}
+                <option>{{ aux }}</option>
+            {% endif %}
+            
+        {% endfor %}
+    </select>
+    <br/><br/>
+
+    <!--Poner para añadir/eliminar imagenes-->
+
+    <button>Enviar</button>
+
+    <input type="hidden" name="back" value="{{ Back }}"/>
+    <input type="hidden" name="product-id" value="{{ ProductID }}"/>
+</form>
+{% endif %}
+{% endblock %}

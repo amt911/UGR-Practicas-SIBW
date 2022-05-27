@@ -62,7 +62,8 @@
 
     //Botones de navegacion
     $menu=array("Inicio"=>"index.php",
-                "FAQ" => "destruir_cookies.php");
+                "FAQ" => "destruir_cookies.php",
+            "Añadir producto" => "add.php");
 
     $usuario=$con->getUsuario(-1);
 

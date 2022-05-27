@@ -136,6 +136,7 @@ main{
     grid-auto-columns: 100%;
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
     transition: all 0.3s; /*Animacion del articulo*/
+    position: relative;
 }
 
 /*Reglas que se activan cuando se pasa el cursor por encima*/
@@ -403,4 +404,28 @@ a.dark{
 
 .centrado{
     text-align: center;
+}
+
+.mod-container{
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3px;
+
+
+    max-width: 60px;
+    width: 50%;
+    padding: 3px;
+}
+
+.mod-container > div{
+    background-color: white;
+    border-radius: 0.5vh;
+}
+
+body div{
+    border: solid 1px red;
 }

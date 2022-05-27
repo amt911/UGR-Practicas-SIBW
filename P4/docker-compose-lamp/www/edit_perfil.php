@@ -10,9 +10,9 @@ $menu=array("Inicio"=>"index.php");
 $error=null;
 
 //Parte de GET
-
+$error=array();
 if(isset($_SESSION["usuario"])){
-    $error[]="";
+    //$error[]="";
     $estaRegistrado=true;
 }
 else{
@@ -64,6 +64,32 @@ if($_SERVER["REQUEST_METHOD"]=="POST" and isset($_SESSION["usuario"])){
         else{
             $error[]="Los campos no pueden estar vacíos";
         }                
+    }
+    else {
+        if(isset($_FILES["Foto"]) and $_FILES["Foto"]["error"]!=4){
+            $hayError=false;
+            $extensionesPermitidas=array("jpeg", "jpg", "png");
+
+            $extensionImagen=strtolower(end(explode(".", $_FILES["Foto"]["name"])));
+
+            if(in_array($extensionImagen, $extensionesPermitidas, true) === false){
+                $error[]="Extensión de imagen incorrecta.";
+                $hayError=true;
+            }
+
+            if($_FILES["Foto"]["size"] > 2097152){
+                $error[]="La imagen es demasiado grande";
+                $hayError=true;
+            }
+
+            if(!$hayError){
+                move_uploaded_file($_FILES["Foto"]["tmp_name"], "static/images/".$_FILES["Foto"]["name"]);
+                header("Location: perfil.php");
+            }
+        }
+        else{
+            $error[]="No se ha adjuntado ninguna imagen";
+        }
     }
 }
 

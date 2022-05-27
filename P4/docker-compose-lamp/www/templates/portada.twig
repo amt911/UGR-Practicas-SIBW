@@ -4,6 +4,21 @@
     <div class="main-portada">
         {% for aux in Productos %}
             <article class="box">
+                {% if User["esGestor"] == 1 %}
+                    <div class="mod-container">
+                        <div>
+                            <a href="edit_product.php?back=index.php?pagina={{ Actual }}&id={{ aux["ID"] }}">
+                                <img src="static/images/edit.png" alt="Editar producto"/>
+                            </a>
+                        </div>
+
+                        <div>
+                            <a href="delete_product.php?back=index.php?p={{ Actual }}&id={{ aux["ID"] }}">
+                                <img src="static/images/delete.png" alt="Borrar producto"/>
+                            </a>
+                        </div>
+                    </div>
+                {% endif %}
                 <section>
                     <a href="producto.php?p={{ aux["ID"] }}">
                         <img src="static/images/{{ aux["Imagenes"] }}"/>

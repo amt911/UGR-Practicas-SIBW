@@ -57,6 +57,24 @@ class GestorBD{
     }
 
 
+    function getAllFabricantes(){
+        $row=false;
+
+        $res=$this->mysqli->query("SELECT Nombre FROM Fabricante");
+    
+        if($res->num_rows > 0){
+            $row=$res->fetch_all(MYSQLI_ASSOC);
+        }
+
+        $salida=array();
+
+        for($i=0; $i<count($row); $i++){
+            $salida[]=$row[$i]["Nombre"];
+        }
+
+        return $salida;        
+    }
+
     function getFabricante($id){
         $row=false;
 
@@ -82,7 +100,7 @@ class GestorBD{
         if($res->num_rows > 0){
             $row=$res->fetch_all(MYSQLI_ASSOC);
         }
-    
+
         return $row;    
     }
     
