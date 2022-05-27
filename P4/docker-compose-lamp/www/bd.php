@@ -433,5 +433,24 @@ class GestorBD{
             $prepare->execute();     
         }
     }
+
+    function deleteProducto($idUsuario, $id){
+        $usuario=$this->getUsuario($idUsuario);
+        $existeProd=$this->existeProducto($id);
+        //echo "me gusta esto";
+        //var_dump($usuario);
+        //var_dump($existeProd);
+        //var_dump($id);
+        if($usuario["ID"]!=-1 and $usuario["esGestor"]==1 and $existeProd){
+            //echo "mp";
+//            $prepare=$this->mysqli->prepare("DELETE FROM Comentario WHERE ID_Producto=?");
+//            $prepare->bind_param("i", $id);
+//            $prepare->execute();     
+
+            $prepare=$this->mysqli->prepare("DELETE FROM Productos WHERE ID=?");
+            $prepare->bind_param("i", $id);
+            $prepare->execute();     
+        }        
+    }
 }
 ?>

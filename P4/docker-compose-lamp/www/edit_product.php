@@ -11,7 +11,7 @@
 
     $id=-1;     //Error por defecto
 
-    if(isset($_GET["id"]) and !empty($_GET["id"]))
+    if(isset($_GET["id"]) and !empty($_GET["id"]) and is_numeric($_GET["id"]))
         $id=$_GET["id"];
 
     
