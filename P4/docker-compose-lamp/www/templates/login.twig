@@ -1,49 +1,24 @@
-<!DOCTYPE html>
+{% extends "plantilla_login.twig" %}
 
-<html>
-    <head>
-    <link rel="stylesheet" href="static/css/login.css">
-        <title>
-            Login
-        </title>
+{% block Formulario %}
+<form action="login.php" method="post">
 
-        <!--Uso las fuentes de Google-->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">        
-    </head>
+    <label>Correo electrónico</label><br/>
+    <input class="maximizado" type="text" name="correo"/>
 
-    <body>
-        <div id="contenedor-contenido">
-            <div id="nombre-web">
-                <h1>e-tienda</h1>
-            </div>
-            <div id="caja-login">
-            <h2>Iniciar sesión</h2>
-            <div class="rojo">{{ Error }}</div>
-                <form action="login.php" method="post">
+    <br/><br/>
+    <label>Contraseña</label><br/>
+    <input class="maximizado" type="password" name="contra"/><br/>
 
-                    <label>Correo electrónico</label><br/>
-                    <input class="maximizado" type="text" name="correo"/>
+    <input type="checkbox"/>Mostrar contraseña<br/>
 
-                    <br/><br/>
-                    <label>Contraseña</label><br/>
-                    <input class="maximizado" type="password" name="contra"/><br/>
+    <br/><br/>
+    <button>Iniciar sesión</button>
 
-                    <input type="checkbox"/>Mostrar contraseña<br/>
-
-                    <br/><br/>
-                    <button>Iniciar sesión</button>
-
-                    <!-- Poner el hidden aqui-->
-                    <input type="hidden" name="anterior" value="{{ Back }}"/>
-                </form>               
-                <div>
-                ¿No eres usuario? <a href="login.php">Regístrate</a> 
-                </div>
-            </div>
-        </div>
-    </body>
-
-
-</html>
+    <!-- Poner el hidden aqui-->
+    <input type="hidden" name="anterior" value="{{ Back }}"/>
+</form>               
+<div>
+¿No eres usuario? <a href="signup.php">Regístrate</a> 
+</div>
+{% endblock %}

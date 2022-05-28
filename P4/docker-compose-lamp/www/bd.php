@@ -452,5 +452,49 @@ class GestorBD{
             $prepare->execute();     
         }        
     }
+
+    function estaRegistrado($correo){
+        $res=-1;
+
+        $prepare=$this->mysqli->prepare("SELECT COUNT(*) FROM Usuarios WHERE Correo=?");
+        $prepare->bind_param("s", $correo);
+        $prepare->execute();
+
+        $query=$prepare->get_result();
+    
+        if($query->num_rows > 0){
+            $res=$query->fetch_assoc();
+            $res=$res["COUNT(*)"];
+        }
+
+        //PARTE NUEVA
+        if($res<=0)
+            $res=false;
+        else
+            $res=true;
+
+        return $res;
+    }
+
+    function registrarUsuario($correo, $password, $nombre, $direccion, $genero, $foto, $pais){
+        if($foto["error"]==4){
+            $prepare=$this->mysqli->prepare("INSERT INTO Usuarios (Nombre, Correo, Pais, Genero, Direccion, Password, esNormal, esModerador, esGestor, esSuperusuario) VALUES (?,?,?,?,?,?,1,0,0,0)");
+            $prepare->bind_param("ssssss", $nombre, $correo, $pais, $genero, $direccion, $password);
+        }
+        else{
+            move_uploaded_file($foto["tmp_name"], "static/images/".$foto["name"]);
+            $prepare=$this->mysqli->prepare("INSERT INTO Usuarios (Nombre, Correo, Pais, Genero, Direccion, Password, esNormal, esModerador, esGestor, esSuperusuario, Foto) VALUES (?,?,?,?,?,?,1,0,0,0,?)");
+            //$dirFoto="static/images/".$foto["name"];
+            //var_dump($foto);
+            $prepare->bind_param("sssssss", $nombre, $correo, $pais, $genero, $direccion, $password, "static/images/".$foto["name"]);
+        }
+        //var_dump($nombre);
+        //var_dump($correo);
+        //var_dump($pais);
+        //var_dump($genero);
+        //var_dump($direccion);
+        //var_dump($password);
+        $prepare->execute();
+    }
 }
 ?>

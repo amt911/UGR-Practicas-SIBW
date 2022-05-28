@@ -15,7 +15,7 @@ body{
 #caja-login{
     padding: 30px;
     width: 250px;
-    height: 300px;
+    height: auto;
     background-color: beige;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23); /*Sombra por debajo*/
     border-radius: 0.7vh;

@@ -3,7 +3,7 @@
     include("bd.php");
 
     $con=new GestorBD();
-    $errores="";
+    $errores=array();
 
 
     $back="index.php";
@@ -25,13 +25,15 @@
             header("Location: $back");
             exit();
         }
-        $errores="Usuario/Contraseña incorrectos";
+        $errores[]="Usuario/Contraseña incorrectos";
     }
 
 $loader = new \Twig\Loader\FilesystemLoader('templates');
 $twig = new \Twig\Environment($loader);
 echo $twig->render('login.twig', [
-    "Error" => $errores,
-    "Back" => $back
+    "Errores" => $errores,
+    "Back" => $back,
+    "Titulo" => "Iniciar sesión",
+    "Header" => "Iniciar sesión",
 ]);
 ?>

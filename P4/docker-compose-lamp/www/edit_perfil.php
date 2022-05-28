@@ -66,10 +66,10 @@ if($_SERVER["REQUEST_METHOD"]=="POST" and isset($_SESSION["usuario"])){
         }                
     }
     else {
+        //var_dump($_FILES["Foto"]);
         if(isset($_FILES["Foto"]) and $_FILES["Foto"]["error"]!=4){
             $hayError=false;
             $extensionesPermitidas=array("jpeg", "jpg", "png");
-
             $extensionImagen=strtolower(end(explode(".", $_FILES["Foto"]["name"])));
 
             if(in_array($extensionImagen, $extensionesPermitidas, true) === false){
@@ -87,7 +87,8 @@ if($_SERVER["REQUEST_METHOD"]=="POST" and isset($_SESSION["usuario"])){
                 $con->actualizarFotoPerfil($_SESSION["usuario"]["ID"], "static/images/".$_FILES["Foto"]["name"]);
 
                 $_SESSION["usuario"]=$con->getUsuario($_SESSION["usuario"]["ID"]);
-                header("Location: perfil.php");
+                //header("Location: perfil.php");
+                //exit();
             }
         }
         else{
