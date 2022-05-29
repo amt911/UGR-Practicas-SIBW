@@ -121,7 +121,8 @@ class GestorBD{
         $res=false;
 
         $this->mysqli->query("SET lc_time_names='es_ES';");
-        $prepare=$this->mysqli->prepare("SELECT ID,Nombre,DATE_FORMAT(Fecha, '%d de %M del %Y, %k:%i') AS Fecha,Texto,Correo FROM Comentario WHERE ID_Producto=? ORDER BY ID DESC");
+        //$prepare=$this->mysqli->prepare("SELECT ID,Nombre,DATE_FORMAT(Fecha, '%d de %M del %Y, %k:%i') AS Fecha,Texto,Correo FROM Comentario WHERE ID_Producto=? ORDER BY ID DESC");
+        $prepare=$this->mysqli->prepare("SELECT Comentario.ID,Nombre,Correo,Fecha,Texto FROM Comentario,Usuarios WHERE Comentario.ID_Usuario=Usuarios.ID AND Comentario.ID_Producto=? ORDER BY Comentario.ID DESC");
         $prepare->bind_param("i", $idProducto);
         $prepare->execute();
 
@@ -327,9 +328,9 @@ class GestorBD{
 
         if($usuario["ID"]!=-1 and $pCheck){
             $this->mysqli->query("SET time_zone='Europe/Madrid'");
-            $prepare=$this->mysqli->prepare("INSERT INTO Comentario VALUES(?, DEFAULT, NOW(), ?, ?, ?)");
+            $prepare=$this->mysqli->prepare("INSERT INTO Comentario (ID_Usuario, Fecha, Texto, ID_Producto) VALUES(?, NOW(), ?, ?)");
 
-            $prepare->bind_param("sssi", $usuario["Nombre"], $comentario, $usuario["Correo"], $producto);
+            $prepare->bind_param("isi", $usuario["ID"], $comentario, $producto);
 
             $prepare->execute();
         }
@@ -477,6 +478,7 @@ class GestorBD{
     }
 
     function registrarUsuario($correo, $password, $nombre, $direccion, $genero, $foto, $pais){
+        //var_dump($foto);
         if($foto["error"]==4){
             $prepare=$this->mysqli->prepare("INSERT INTO Usuarios (Nombre, Correo, Pais, Genero, Direccion, Password, esNormal, esModerador, esGestor, esSuperusuario) VALUES (?,?,?,?,?,?,1,0,0,0)");
             $prepare->bind_param("ssssss", $nombre, $correo, $pais, $genero, $direccion, $password);
@@ -484,17 +486,55 @@ class GestorBD{
         else{
             move_uploaded_file($foto["tmp_name"], "static/images/".$foto["name"]);
             $prepare=$this->mysqli->prepare("INSERT INTO Usuarios (Nombre, Correo, Pais, Genero, Direccion, Password, esNormal, esModerador, esGestor, esSuperusuario, Foto) VALUES (?,?,?,?,?,?,1,0,0,0,?)");
-            //$dirFoto="static/images/".$foto["name"];
-            //var_dump($foto);
-            $prepare->bind_param("sssssss", $nombre, $correo, $pais, $genero, $direccion, $password, "static/images/".$foto["name"]);
+            $dirFoto="static/images/".$foto["name"];
+
+            $prepare->bind_param("sssssss", $nombre, $correo, $pais, $genero, $direccion, $password, $dirFoto);
         }
-        //var_dump($nombre);
-        //var_dump($correo);
-        //var_dump($pais);
-        //var_dump($genero);
-        //var_dump($direccion);
-        //var_dump($password);
         $prepare->execute();
+    }
+
+    function addFabricante($idUsuario, $nombre, $face, $tw, $yt, $web){
+        $usuario=$this->getUsuario($idUsuario);
+
+        if($usuario["ID"]!=-1 and $usuario["esGestor"]==1){
+
+            $prepare=$this->mysqli->prepare("INSERT INTO Fabricante (Nombre, Facebook, Twitter, Youtube, `Pagina oficial`) VALUES (?,?,?,?,?)");
+            $prepare->bind_param("sssss", $nombre, $face, $tw, $yt, $web);
+            $prepare->execute();
+        }
+    }
+
+    function existeFabricante($nombre){
+        $res=-1;
+
+        $prepare=$this->mysqli->prepare("SELECT COUNT(*) FROM Fabricante WHERE Nombre=?");
+        $prepare->bind_param("s", $nombre);
+        $prepare->execute();
+
+        $query=$prepare->get_result();
+    
+        if($query->num_rows > 0){
+            $res=$query->fetch_assoc();
+            $res=$res["COUNT(*)"];
+        }
+
+        //PARTE NUEVA
+        if($res<=0)
+            $res=false;
+        else 
+            $res=true;
+
+        return $res;
+    }    
+
+    function deleteFabricante($idUsuario, $nombre){
+        $usuario=$this->getUsuario($idUsuario);
+
+        if($usuario["ID"]!=-1 and $usuario["esGestor"]==1){
+            $prepare=$this->mysqli->prepare("DELETE FROM Fabricante WHERE Nombre=?");
+            $prepare->bind_param("s", $nombre);
+            $prepare->execute();     
+        }         
     }
 }
 ?>

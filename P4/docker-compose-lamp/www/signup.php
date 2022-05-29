@@ -25,25 +25,22 @@
             //var_dump($foto);
             if($contra==$contra2){
                 $extensionesPermitidas=array("jpeg", "jpg", "png");
-                $extensionImagen=strtolower(end(explode(".", $_FILES["Foto"]["name"])));                
+                $extensionImagen=strtolower(end(explode(".", $_FILES["foto"]["name"])));                
 
                 //ARREGLAR ESTO
                 if(in_array($extensionImagen, $extensionesPermitidas)){
-                    $con->registrarUsuario($nombre, $correo, $contra, $dir, $genero, $pais, $foto);
-                    header("Location: $back");
-                    exit();
+                    if(!$con->estaRegistrado($correo)){
+                        $con->registrarUsuario($correo, $contra, $nombre, $dir, $genero, $foto, $pais);
+                        session_start();
+                        $_SESSION["usuario"]=$con->getUsuarioFromCorreo($correo);
+                        header("Location: $back");
+                        exit();
+                    }
+                    $errores[]="El correo ya está registrado";
                 }
                 else{
-                    $errores[]="La extension de la imagen no es valida";
+                    $errores[]="La extensión de la imagen no es válida";
                 }
-                if(!$con->estaRegistrado($correo)){
-                    $con->registrarUsuario($correo, $contra, $nombre, $dir, $genero, $foto, $pais);
-                    session_start();
-                    $_SESSION["usuario"]=$con->getUsuarioFromCorreo($correo);
-                    header("Location: $back");
-                    exit();
-                }
-                $errores[]="El correo ya está registrado";
             }
             else
                 $errores[]="Las contraseñas no coinciden";

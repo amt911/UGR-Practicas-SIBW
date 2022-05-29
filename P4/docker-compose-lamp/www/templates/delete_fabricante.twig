@@ -1,0 +1,43 @@
+{% extends "formulario_plantilla.twig" %}
+
+{% block archivosAdicionales %}
+{{ parent() }}
+<link rel="stylesheet" href="static/css/delete_fabricante.css">
+{% endblock %}
+
+{% block main %}
+{{ parent()}}
+
+<div class="rojo">
+    {% for aux in Errores %}
+        <h2>{{ aux }}</h2>
+    {% endfor %}
+</div>
+
+{% if ShowForm == true %}
+<div class="fixed-width-container">
+    <div class="fixed-width">
+        <form action="delete_fabricante.php" method="post">
+            {#
+            <select name="nombre">
+                {% for aux in Fabricantes %}
+                    <option>{{ aux }}</option>
+                {% endfor %}
+            </select><br/><br/>
+        #}
+
+            {% for aux in Fabricantes %}
+                <input type="checkbox" name="{{ aux }}"/>{{ aux }}<br/>
+            {% endfor %}
+
+            <br/>
+            <div class="center-content">
+                <button>Enviar</button>
+            </div>
+
+            <input type="hidden" name="back" value="{{ Back }}"/>
+        </form>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

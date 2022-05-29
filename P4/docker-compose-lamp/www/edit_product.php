@@ -21,7 +21,6 @@
     $error=array();
 
     if(isset($_SESSION["usuario"]) and $_SESSION["usuario"]["esGestor"]==1){
-        //$error[]="";
         $esGestor=true;
     }
     else{
@@ -43,10 +42,13 @@
     if($_SERVER["REQUEST_METHOD"]=="POST" and isset($_SESSION["usuario"])){
         if(empty($_POST["precio"]) or empty($_POST["nombre"]) or empty($_POST["descripcion"]) or empty($_POST["titulo-top"]) or !is_numeric($_POST["precio"])){
             $error[]="Hay campos obligatorios vacíos o incorrectos";
+
+            $back=$_POST["back"];
         }
         else{
             $con->cambiarDatosProducto($_SESSION["usuario"]["ID"], $_POST["product-id"], $_POST["precio"], $_POST["nombre"], $_POST["descripcion"], $_POST["titulo-top"]);
 
+            $back=$_POST["back"];
             header("Location: $back");
             exit();
         }

@@ -62,14 +62,18 @@
 
     //Botones de navegacion
     $menu=array("Inicio"=>"index.php",
-                "FAQ" => "destruir_cookies.php",
-            "Añadir producto" => "add.php");
+                "FAQ" => "destruir_cookies.php");
+            //"Añadir producto" => "add.php"
 
     $usuario=$con->getUsuario(-1);
 
     //Parte de sesiones
     if(isset($_SESSION["usuario"])){
         $usuario=$_SESSION["usuario"];
+
+        if($_SESSION["usuario"]["esGestor"]==1){
+            $menu["Añadir producto"]="add.php";
+        }
     }
     else{
         $menu["Login"] = "login.php";

@@ -15,7 +15,7 @@
 </div>
 
 {% if EsGestor == true %}
-<form action="edit_product.php" method="post">
+<form action="edit_product.php?id={{ ProductID }}" method="post">
     <label>Precio</label><br/>
     <input type="text" name="precio" value="{{ Producto["Precio"] }}"/>
     <br/><br/>
