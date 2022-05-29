@@ -421,7 +421,7 @@ class GestorBD{
             $extension=end(explode(".", $foto["name"]));
             $nombre=explode(".", $foto["name"])[0];
 
-            $directorioNuevaFoto="static/images/".$nombre."_".$idUsuario.".".$extension;
+            $directorioNuevaFoto="static/images/".$nombre."_idUser".$idUsuario.".".$extension;
             move_uploaded_file($foto["tmp_name"], $directorioNuevaFoto);
 
             $prepare=$this->mysqli->prepare("UPDATE Usuarios SET Foto=? WHERE ID=?");
@@ -488,15 +488,34 @@ class GestorBD{
         if($foto["error"]==4){
             $prepare=$this->mysqli->prepare("INSERT INTO Usuarios (Nombre, Correo, Pais, Genero, Direccion, Password, esNormal, esModerador, esGestor, esSuperusuario) VALUES (?,?,?,?,?,?,1,0,0,0)");
             $prepare->bind_param("ssssss", $nombre, $correo, $pais, $genero, $direccion, $password);
+            $prepare->execute();
         }
         else{
-            move_uploaded_file($foto["tmp_name"], "static/images/".$foto["name"]);
-            $prepare=$this->mysqli->prepare("INSERT INTO Usuarios (Nombre, Correo, Pais, Genero, Direccion, Password, esNormal, esModerador, esGestor, esSuperusuario, Foto) VALUES (?,?,?,?,?,?,1,0,0,0,?)");
-            $dirFoto="static/images/".$foto["name"];
+            //move_uploaded_file($foto["tmp_name"], "static/images/".$foto["name"]);
+            $prepare=$this->mysqli->prepare("INSERT INTO Usuarios (Nombre, Correo, Pais, Genero, Direccion, Password, esNormal, esModerador, esGestor, esSuperusuario) VALUES (?,?,?,?,?,?,1,0,0,0)");
+            //$dirFoto="static/images/".$foto["name"];
+            
+            $prepare->bind_param("sssssss", $nombre, $correo, $pais, $genero, $direccion, $password);
+            $prepare->execute();
 
-            $prepare->bind_param("sssssss", $nombre, $correo, $pais, $genero, $direccion, $password, $dirFoto);
+
+            //Se separa de la foto la extension y el nombre
+            if($foto["error"]!=4){
+                //Ahora se obtiene el usuario a partir del correo pasado por parametro, para poder insertar la foto con su id
+                $idUsuario=$this->getUsuarioFromCorreo($correo)["ID"];
+
+                $extension=end(explode(".", $foto["name"]));
+                $nombre=explode(".", $foto["name"])[0];
+    
+                $directorioNuevaFoto="static/images/".$nombre."_idUser".$idUsuario.".".$extension;
+                move_uploaded_file($foto["tmp_name"], $directorioNuevaFoto);
+
+                //Ahora se pone el directorio de la imagen en Foto con el usuario con ID
+                $prepare=$this->mysqli->prepare("UPDATE Usuarios SET Foto=? WHERE ID=?");
+                $prepare->bind_param("si", $directorioNuevaFoto, $idUsuario);
+                $prepare->execute();
+            }
         }
-        $prepare->execute();
     }
 
     function addFabricante($idUsuario, $nombre, $face, $tw, $yt, $web){
@@ -543,13 +562,38 @@ class GestorBD{
         }         
     }
 
-    function insertProducto($idUsuario, $nombre, $precio, $descripcion, $tituloTop, $idFabricante, $foto=null){
+    function insertProducto($idUsuario, $nombre, $precio, $descripcion, $tituloTop, $idFabricante, $foto){
         $usuario=$this->getUsuario($idUsuario);
 
         if($usuario["ID"]!=-1 and $usuario["esGestor"]==1){
             $prepare=$this->mysqli->prepare("INSERT INTO Productos (Nombre, Precio, Descripción, `Titulo pagina`, Nombre_Fabricante) VALUES (?,?,?,?,?)");
             $prepare->bind_param("sdsss", $nombre, $precio, $descripcion, $tituloTop, $idFabricante);
             $prepare->execute();
+
+            //Al ser unique el nombre, es puede obtener el nuevo producto insertado
+            $prepare=$this->mysqli->prepare("SELECT ID FROM Productos WHERE Nombre=?");
+            $prepare->bind_param("s", $nombre);
+            $prepare->execute();
+
+            $idProducto=$prepare->get_result()->fetch_assoc()["ID"];
+            
+
+            //Comprobar si se ha mandado alguna imagen
+            //Ahora se envian las imagenes al servidor y se insertan en la base de datos
+            for($i=0; $i<count($foto["name"]); $i++){
+                if($foto["error"][$i]!=4){
+                    //move_uploaded_file($foto["tmp_name"][$i], "static/images/".$foto["name"][$i]);
+                    $extension=end(explode(".", $foto["name"][$i]));
+                    $nombre=explode(".", $foto["name"][$i])[0];
+    
+                    $directorioNuevaFoto="static/images/".$nombre."_".$idProducto.".".$extension;
+                    move_uploaded_file($foto["tmp_name"][$i], $directorioNuevaFoto);
+
+                    $prepare=$this->mysqli->prepare("INSERT INTO Imagenes (ID_Producto, `Ruta Imagen`) VALUES (?,?)");
+                    $prepare->bind_param("is", $idProducto, $directorioNuevaFoto);
+                    $prepare->execute();
+                }
+            }
         }
     }
 }

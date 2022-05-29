@@ -105,7 +105,7 @@
                 {% for aux in Images %}
                     <div class="img-producto">
                         <div>
-                            <img src="static/images/{{ aux["Ruta Imagen"] }}"/>
+                            <img src="{{ aux["Ruta Imagen"] }}"/>
                         </div>
 
                         {% if aux["Descripcion"] != "" %}
@@ -123,7 +123,7 @@
             {% for aux in Images %}
                 <div class="img-previa">
                     <div>
-                        <img src="static/images/{{ aux["Ruta Imagen"] }}"/>
+                        <img src="{{ aux["Ruta Imagen"] }}"/>
                     </div>
                 </div>
             {% endfor %}

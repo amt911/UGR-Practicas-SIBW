@@ -31,21 +31,16 @@ if($_SERVER["REQUEST_METHOD"]=="POST" and isset($_SESSION["usuario"]) and $_SESS
 
     if(!empty($descripcion) and !empty($nombre) and !empty($fabricante) and !empty($tituloTab) and !empty($precio)){
         if(is_numeric($precio)){
-            $con->insertProducto($_SESSION["usuario"]["ID"], $nombre, $precio, $descripcion, $tituloTab, $fabricante);
+            $con->insertProducto($_SESSION["usuario"]["ID"], $nombre, $precio, $descripcion, $tituloTab, $fabricante, $_FILES["imagenes"]);
             
-
-            header("Location: $back");
-            exit();
+            //header("Location: $back");
+            //exit();
         }
         $errores[]="El precio debe ser un número";
     }
     else{
         $errores[]="No se han rellenado todos los campos";
     }
-
-
-    //header("Location: $back");
-    //exit();
 }
 
 $loader = new \Twig\Loader\FilesystemLoader('templates');
