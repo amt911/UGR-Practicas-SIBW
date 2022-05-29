@@ -28,24 +28,21 @@
     
     if($_SERVER["REQUEST_METHOD"]=="POST" and isset($_SESSION["usuario"]) and $_SESSION["usuario"]["esGestor"]==1){
         $back=$_POST["back"];
-        //$nombre=$_POST["nombre"];
 
-        var_dump($_POST);
+        foreach($_POST as $key => $valor){
+            if($key!="back" and $valor=="on"){
+                $con->deleteFabricante($_SESSION["usuario"]["ID"], $key);
+            }
+        }
 
-        //if(!empty($nombre)){
-            //$con->deleteFabricante($_SESSION["usuario"]["ID"], $nombre);
-
-            //header("Location: $back");
-            //exit();
-        //}
-        //else
-        //    $errores[]="El nombre no puede estar vacío";
+        header("Location: $back");
+        exit();
     }
 
     $loader = new \Twig\Loader\FilesystemLoader('templates');
     $twig = new \Twig\Environment($loader);
     echo $twig->render('delete_fabricante.twig', [
-        "NombreForm" => "Eliminar fabricante",
+        "NombreForm" => "Eliminar fabricantes",
         "Menu" => $menu,
         "Back" => $back,
         "Errores" => $errores,

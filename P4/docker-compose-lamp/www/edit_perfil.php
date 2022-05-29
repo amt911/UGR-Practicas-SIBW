@@ -83,12 +83,12 @@ if($_SERVER["REQUEST_METHOD"]=="POST" and isset($_SESSION["usuario"])){
             }
 
             if(!$hayError){
-                move_uploaded_file($_FILES["Foto"]["tmp_name"], "static/images/".$_FILES["Foto"]["name"]);
-                $con->actualizarFotoPerfil($_SESSION["usuario"]["ID"], "static/images/".$_FILES["Foto"]["name"]);
+                ////move_uploaded_file($_FILES["Foto"]["tmp_name"], "static/images/".$_FILES["Foto"]["name"]);
+                $con->actualizarFotoPerfil($_SESSION["usuario"]["ID"], $_FILES["Foto"]);
 
                 $_SESSION["usuario"]=$con->getUsuario($_SESSION["usuario"]["ID"]);
-                //header("Location: perfil.php");
-                //exit();
+                header("Location: perfil.php");
+                exit();
             }
         }
         else{

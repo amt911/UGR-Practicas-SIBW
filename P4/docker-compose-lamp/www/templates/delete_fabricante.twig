@@ -18,14 +18,6 @@
 <div class="fixed-width-container">
     <div class="fixed-width">
         <form action="delete_fabricante.php" method="post">
-            {#
-            <select name="nombre">
-                {% for aux in Fabricantes %}
-                    <option>{{ aux }}</option>
-                {% endfor %}
-            </select><br/><br/>
-        #}
-
             {% for aux in Fabricantes %}
                 <input type="checkbox" name="{{ aux }}"/>{{ aux }}<br/>
             {% endfor %}

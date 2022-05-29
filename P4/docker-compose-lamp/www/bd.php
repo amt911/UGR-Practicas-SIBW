@@ -410,27 +410,33 @@ class GestorBD{
     }
 
 
-    function actualizarFotoPerfil($idUsuario, $ruta){
+    function actualizarFotoPerfil($idUsuario, $foto){
         $user=$this->getUsuario($idUsuario);
 
         if($user["ID"]!=-1){
+            if(!empty($user["Foto"]))
+                unlink($user["Foto"]);
+    
+            //Se separa de la foto la extension y el nombre
+            $extension=end(explode(".", $foto["name"]));
+            $nombre=explode(".", $foto["name"])[0];
+
+            $directorioNuevaFoto="static/images/".$nombre."_".$idUsuario.".".$extension;
+            move_uploaded_file($foto["tmp_name"], $directorioNuevaFoto);
+
             $prepare=$this->mysqli->prepare("UPDATE Usuarios SET Foto=? WHERE ID=?");
-            $prepare->bind_param("si", $ruta, $idUsuario);
-            $prepare->execute();            
+            $prepare->bind_param("si", $directorioNuevaFoto, $idUsuario);
+            $prepare->execute();
         }
     }
 
-    function cambiarDatosProducto($idUsuario, $idProducto, $precio, $nombre, $descripcion, $tituloTop){
+    function cambiarDatosProducto($idUsuario, $idProducto, $precio, $nombre, $descripcion, $tituloTop, $fabricante){
         $usuario=$this->getUsuario($idUsuario);
         $existeProd=$this->existeProducto($idProducto);
-        //echo "me gusta esto";
-        //var_dump($usuario);
-        //var_dump($existeProd);
-        //var_dump($idProducto);
+
         if($usuario["ID"]!=-1 and $usuario["esGestor"]==1 and $existeProd){
-            //echo "mp";
-            $prepare=$this->mysqli->prepare("UPDATE Productos SET  Precio=?,Nombre=?,Descripción=?,`Titulo pagina`=? WHERE ID=?");
-            $prepare->bind_param("dsssi", $precio, $nombre, $descripcion, $tituloTop, $idProducto);
+            $prepare=$this->mysqli->prepare("UPDATE Productos SET  Precio=?,Nombre=?,Descripción=?,`Titulo pagina`=?,Nombre_Fabricante=? WHERE ID=?");
+            $prepare->bind_param("dssssi", $precio, $nombre, $descripcion, $tituloTop, $fabricante, $idProducto);
             $prepare->execute();     
         }
     }
@@ -535,6 +541,16 @@ class GestorBD{
             $prepare->bind_param("s", $nombre);
             $prepare->execute();     
         }         
+    }
+
+    function insertProducto($idUsuario, $nombre, $precio, $descripcion, $tituloTop, $idFabricante, $foto=null){
+        $usuario=$this->getUsuario($idUsuario);
+
+        if($usuario["ID"]!=-1 and $usuario["esGestor"]==1){
+            $prepare=$this->mysqli->prepare("INSERT INTO Productos (Nombre, Precio, Descripción, `Titulo pagina`, Nombre_Fabricante) VALUES (?,?,?,?,?)");
+            $prepare->bind_param("sdsss", $nombre, $precio, $descripcion, $tituloTop, $idFabricante);
+            $prepare->execute();
+        }
     }
 }
 ?>

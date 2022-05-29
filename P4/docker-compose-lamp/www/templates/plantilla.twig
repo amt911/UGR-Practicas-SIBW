@@ -98,7 +98,7 @@
                         {% endif %}
                         
                         {% if User["esGestor"]==1 %}
-                        <a href="login.php">Añadir producto</a><br/>
+                        <a href="new_producto.php?back={{ URL }}{{ Back }}">Añadir producto</a><br/>
                         <a href="login.php">Modificar producto</a><br/>
                         <a href="new_fabricante.php?back={{ URL }}{{ Back }}">Añadir fabricante</a><br/>
                         <a href="delete_fabricante.php?back={{ URL }}{{ Back }}">Eliminar fabricante</a><br/>
