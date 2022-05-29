@@ -6,6 +6,13 @@ session_start();
 
 $con=new GestorBD();
 
+$back="index.php";
+
+if(isset($_GET["back"]) and !empty($_GET["back"])){
+    $back=$_GET["back"];
+}
+
+
 $menu=array("Inicio"=>"index.php");
 $errores=array();
 
@@ -33,8 +40,10 @@ if($_SERVER["REQUEST_METHOD"]=="POST" and isset($_SESSION["usuario"]) and $_SESS
         if(is_numeric($precio)){
             $con->insertProducto($_SESSION["usuario"]["ID"], $nombre, $precio, $descripcion, $tituloTab, $fabricante, $_FILES["imagenes"]);
             
-            //header("Location: $back");
-            //exit();
+            //var_dump($back);
+
+            header("Location: $back");
+            exit();
         }
         $errores[]="El precio debe ser un número";
     }

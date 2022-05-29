@@ -452,8 +452,16 @@ class GestorBD{
             //echo "mp";
 //            $prepare=$this->mysqli->prepare("DELETE FROM Comentario WHERE ID_Producto=?");
 //            $prepare->bind_param("i", $id);
-//            $prepare->execute();     
+//            $prepare->execute();    
+            $prepare=$this->mysqli->prepare("SELECT `Ruta Imagen` FROM Imagenes WHERE ID_Producto=?");
+            $prepare->bind_param("i", $id);
+            $prepare->execute();                 
+            $query=$prepare->get_result()->fetch_all();
 
+            for($i=0; $i<count($query); $i++){
+                unlink($query[$i][0]);
+            }
+            
             $prepare=$this->mysqli->prepare("DELETE FROM Productos WHERE ID=?");
             $prepare->bind_param("i", $id);
             $prepare->execute();     
