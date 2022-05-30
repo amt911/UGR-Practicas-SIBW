@@ -133,7 +133,24 @@ class GestorBD{
 
         return $res;
     }
-    
+
+    function getAllCommentsTodosProductos(){
+        $res=false;
+
+        $this->mysqli->query("SET lc_time_names='es_ES';");
+        //$prepare=$this->mysqli->prepare("SELECT ID,Nombre,DATE_FORMAT(Fecha, '%d de %M del %Y, %k:%i') AS Fecha,Texto,Correo FROM Comentario WHERE ID_Producto=? ORDER BY ID DESC");
+        $prepare=$this->mysqli->prepare("SELECT Comentario.ID,Nombre,Correo,Fecha,Texto FROM Comentario,Usuarios WHERE Comentario.ID_Usuario=Usuarios.ID ORDER BY Comentario.ID DESC");
+        //$prepare->bind_param("i", $idProducto);
+        $prepare->execute();
+
+        $query=$prepare->get_result(); 
+
+        if($query->num_rows > 0)
+            $res=$query->fetch_all(MYSQLI_ASSOC);
+
+        return $res;
+    }    
+
 
     private function getNumFilasProducto(){
         $res=false;
@@ -603,6 +620,29 @@ class GestorBD{
                 }
             }
         }
+    }
+
+    function getAllUsuarios(){
+        $row=false;
+        
+        $res=$this->mysqli->query("SELECT * FROM Usuarios;");
+        
+        if($res->num_rows > 0){
+            $row=$res->fetch_all(MYSQLI_ASSOC);
+        }
+
+        return $row;    
+    }    
+
+    function cambiarPermisosUsuario($idSuperusuario, $idUsuario, $gestor, $moderador, $superusuario){
+        $super=$this->getUsuario($idSuperusuario);
+        $usuario=$this->getUsuario($idUsuario);
+
+        if($super["ID"]!=-1 and $super["esSuperusuario"]==1 and $usuario["ID"]!=-1){
+            $prepare=$this->mysqli->prepare("UPDATE Usuarios SET esModerador=?,esGestor=?,esSuperusuario=? WHERE ID=?");
+            $prepare->bind_param("iiii", $moderador, $gestor, $superusuario, $idUsuario);
+            $prepare->execute();     
+        }        
     }
 }
 ?>

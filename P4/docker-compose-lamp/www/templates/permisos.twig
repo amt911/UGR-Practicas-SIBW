@@ -1,6 +1,39 @@
 {% extends "formulario_plantilla.twig" %}
 
-{% block main %}
-aiuda
+{% block archivosAdicionales %}
+{{ parent() }}
+<link rel="stylesheet" href="static/css/permisos.css">
+{% endblock %}
 
+{% block main %}
+{{ parent() }}
+
+<div class="rojo">
+    {% for aux in Errores %}
+        <h2>{{ aux }}</h2>
+    {% endfor %}
+</div>
+
+{% if ShowForm == true %}
+<form action="permisos.php" method="POST">
+    <label>Usuario</label>
+    <select name="usuario">
+        {% for i in Usuarios %}
+            <option value="{{i["ID"]}}">{{i["Correo"]}} - {{i["Nombre"]}} </option>
+        {% endfor %}
+    </select><br/><br/>
+
+    <div class="flex-wrapper">
+        <div>
+            <!--input type="checkbox" name="normal"/>Normal<br/-->
+            <input type="checkbox" name="gestor"/>Gestor<br/>
+            <input type="checkbox" name="moderador"/>Moderador<br/>
+            <input type="checkbox" name="superusuario"/>Superusuario<br/>
+        </div>
+    </div>
+
+    <br/>
+    <button>Enviar</button>
+</form>
+{% endif %}
 {% endblock %}

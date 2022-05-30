@@ -1,0 +1,49 @@
+{% extends "formulario_plantilla.twig" %}
+
+{% block archivosAdicionales %}
+{{ parent() }}
+<link rel="stylesheet" href="static/css/lista_comentarios.css">
+{% endblock %}
+
+{% block main %}
+{{ parent() }}
+
+<div class="rojo">
+    {% for aux in Errores %}
+        <h2>{{ aux }}</h2>
+    {% endfor %}
+</div>
+{% if ShowForm == true %}
+<form action="lista_comentarios.php" method="POST">
+    <input type="text" name="keyword" placeholder="Buscar..."/>
+    <button>Enviar</button>
+</form>
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td>Nombre</td>
+        <td>Email</td>
+        <td>Comentario</td>
+        <td>Fecha</td>
+    </tr>
+    {% for aux in Comentarios %}
+        <tr>
+            <td>{{ aux.ID }}</td>
+            <td>{{ aux.Nombre }}</td>
+            <td>{{ aux.Correo }}</td>
+            <td>{{ aux.Texto }}</td>
+            <td>{{ aux.Fecha }}</td>
+            <td>
+                <a href="edit.php?back=lista_comentarios.php&id={{ aux.ID }}">Editar</a>
+            </td>            
+            <td>
+                <a href="delete.php?back=lista_comentarios.php&id={{ aux.ID }}">Borrar</a>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+{% endif %}
+
+
+{% endblock %}

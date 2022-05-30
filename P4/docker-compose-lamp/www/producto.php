@@ -64,9 +64,14 @@
     if(isset($_SESSION["usuario"])){
         //Arreglar esto, hace falta tener una opcion fallback
         $usuario=$_SESSION["usuario"];   
+
+        if($usuario["esGestor"]==1){
+            $menu["Editar producto"]="edit_product.php?back=producto.php?p=$id&id=$id";
+            $menu["Eliminar producto"]="delete_product.php?back=index.php&id=$id";   
+        }
     }
     else{
-        $menu["Login"]="login.php?back=producto.php";        
+        $menu["Login"]="login.php?back=producto.php";     
     }
 
 
