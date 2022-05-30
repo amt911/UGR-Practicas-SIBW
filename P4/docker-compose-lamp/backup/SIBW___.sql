@@ -21,6 +21,9 @@ SET time_zone = "+00:00";
 -- Database: `SIBW`
 --
 
+CREATE USER 'usuario'@'%' IDENTIFIED BY 'usuario';
+GRANT SELECT,INSERT,UPDATE ON SIBW.* TO 'usuario'@'%';
+
 -- --------------------------------------------------------
 
 --

@@ -40,10 +40,14 @@ if($_SERVER["REQUEST_METHOD"]=="POST" and isset($_SESSION["usuario"]) and $_SESS
     $imagenes=$con->getImagenes($_POST["idProducto"]);
 
     //var_dump($_POST["imagen".$i]);
-    //var_dump($_POST["imagen_".$i]);
+    //var_dump($_POST);
+    //var_dump($imagenes);
 
     for($i=0; $i<count($imagenes); $i++){
-        $con->insertarComentarioImagen($_SESSION["usuario"]["ID"], $imagenes[$i]["ID_Producto"], $imagenes[$i]["Ruta Imagen"], $_POST["imagen_".$imagenes[$i]["Ruta Imagen"]]);
+        //var_dump("imagen_".$imagenes[$i]["Ruta Imagen"]);
+        //var_dump($_POST["imagen_".$imagenes[$i]["Ruta Imagen"]]);
+
+        $con->insertarComentarioImagen($_SESSION["usuario"]["ID"], $imagenes[$i]["ID_Producto"], $imagenes[$i]["Ruta Imagen"], $_POST[$imagenes[$i]["ID_Imagen"]]);
     }
 
     header("Location: $back");

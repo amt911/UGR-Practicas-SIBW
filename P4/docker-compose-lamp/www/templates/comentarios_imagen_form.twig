@@ -20,7 +20,7 @@
         {% for i in Imagenes %}
             <div>
                 <img src="{{ i["Ruta Imagen"] }}" alt="Imagen" class="img-form">
-                <input type="text" name="imagen_{{ i["ID_Producto"]}}"/>    <!--Poner aqui y en la base de datos un id de la propia imagen, porque no direcciona bien-->
+                <input type="text" name="{{ i["ID_Imagen"]}}"/>    <!--Poner aqui y en la base de datos un id de la propia imagen, porque no direcciona bien-->
             </div>
         {% endfor %}
     </div>

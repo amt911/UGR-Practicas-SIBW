@@ -72,7 +72,7 @@
         $usuario=$_SESSION["usuario"];
 
         if($_SESSION["usuario"]["esGestor"]==1){
-            $menu["Añadir producto"]="add.php";
+            $menu["Añadir producto"]="new_producto.php";
         }
     }
     else{

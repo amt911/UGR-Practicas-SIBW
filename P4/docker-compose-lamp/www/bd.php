@@ -439,6 +439,7 @@ class GestorBD{
             $nombre=explode(".", $foto["name"])[0];
 
             $directorioNuevaFoto="static/images/".$nombre."_idUser".$idUsuario.".".$extension;
+            $directorioNuevaFoto=str_replace(" ", "_", $directorioNuevaFoto);
             move_uploaded_file($foto["tmp_name"], $directorioNuevaFoto);
 
             $prepare=$this->mysqli->prepare("UPDATE Usuarios SET Foto=? WHERE ID=?");
@@ -533,6 +534,7 @@ class GestorBD{
                 $nombre=explode(".", $foto["name"])[0];
     
                 $directorioNuevaFoto="static/images/".$nombre."_idUser".$idUsuario.".".$extension;
+                $directorioNuevaFoto=str_replace(" ", "_", $directorioNuevaFoto);
                 move_uploaded_file($foto["tmp_name"], $directorioNuevaFoto);
 
                 //Ahora se pone el directorio de la imagen en Foto con el usuario con ID
@@ -614,6 +616,7 @@ class GestorBD{
                     $nombre=explode(".", $foto["name"][$i])[0];
     
                     $directorioNuevaFoto="static/images/".$nombre."_".$idProducto.".".$extension;
+                    $directorioNuevaFoto=str_replace(" ", "_", $directorioNuevaFoto);
                     move_uploaded_file($foto["tmp_name"][$i], $directorioNuevaFoto);
 
                     $prepare=$this->mysqli->prepare("INSERT INTO Imagenes (ID_Producto, `Ruta Imagen`) VALUES (?,?)");
@@ -653,6 +656,9 @@ class GestorBD{
         $usuario=$this->getUsuario($idUsuario);
 
         if($usuario["ID"]!=-1 and $usuario["esGestor"]==1){
+            //var_dump de todos los argumentos
+            //var_dump($idUsuario, $idProducto, $ruta, $comentario);
+
             $prepare=$this->mysqli->prepare("UPDATE Imagenes SET Descripcion=? WHERE ID_Producto=? AND `Ruta Imagen`=?");
             $prepare->bind_param("sss", $comentario, $idProducto, $ruta);
             $prepare->execute();
