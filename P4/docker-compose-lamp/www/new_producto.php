@@ -38,14 +38,25 @@ if($_SERVER["REQUEST_METHOD"]=="POST" and isset($_SESSION["usuario"]) and $_SESS
 
     if(!empty($descripcion) and !empty($nombre) and !empty($fabricante) and !empty($tituloTab) and !empty($precio)){
         if(is_numeric($precio)){
-            $con->insertProducto($_SESSION["usuario"]["ID"], $nombre, $precio, $descripcion, $tituloTab, $fabricante, $_FILES["imagenes"]);
+            //var_dump($con->existeProductoNombre($nombre));
+            if(!$con->existeProductoNombre($nombre)){
+            $id=$con->insertProducto($_SESSION["usuario"]["ID"], $nombre, $precio, $descripcion, $tituloTab, $fabricante, $_FILES["imagenes"]);
             
-            //var_dump($back);
+            //var_dump($_FILES);
 
-            header("Location: $back");
-            exit();
+            if(empty($_FILES["imagenes"]["name"][0]) and count($_FILES["imagenes"]["name"])==1){
+                header("Location: $back");
+                exit();
+            }
+//  var_dump($id);
+            header("Location: comentarios_imagen_form.php?back=$back&id=$id");
+            exit();            
+            }
+            $errores[]="Ya existe el producto";
+
         }
-        $errores[]="El precio debe ser un número";
+        else
+            $errores[]="El precio debe ser un número";
     }
     else{
         $errores[]="No se han rellenado todos los campos";

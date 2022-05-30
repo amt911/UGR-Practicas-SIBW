@@ -588,6 +588,7 @@ class GestorBD{
     }
 
     function insertProducto($idUsuario, $nombre, $precio, $descripcion, $tituloTop, $idFabricante, $foto){
+        $res=-1;
         $usuario=$this->getUsuario($idUsuario);
 
         if($usuario["ID"]!=-1 and $usuario["esGestor"]==1){
@@ -602,6 +603,7 @@ class GestorBD{
 
             $idProducto=$prepare->get_result()->fetch_assoc()["ID"];
             
+            $res=$idProducto;
 
             //Comprobar si se ha mandado alguna imagen
             //Ahora se envian las imagenes al servidor y se insertan en la base de datos
@@ -620,6 +622,8 @@ class GestorBD{
                 }
             }
         }
+
+        return $res;
     }
 
     function getAllUsuarios(){
@@ -644,5 +648,38 @@ class GestorBD{
             $prepare->execute();     
         }        
     }
+
+    function insertarComentarioImagen($idUsuario, $idProducto, $ruta, $comentario){
+        $usuario=$this->getUsuario($idUsuario);
+
+        if($usuario["ID"]!=-1 and $usuario["esGestor"]==1){
+            $prepare=$this->mysqli->prepare("UPDATE Imagenes SET Descripcion=? WHERE ID_Producto=? AND `Ruta Imagen`=?");
+            $prepare->bind_param("sss", $comentario, $idProducto, $ruta);
+            $prepare->execute();
+        }
+    }
+
+    function existeProductoNombre($nombre){
+        $res=-1;
+
+        $prepare=$this->mysqli->prepare("SELECT COUNT(*) FROM Productos WHERE Nombre=?");
+        $prepare->bind_param("s", $nombre);
+        $prepare->execute();
+
+        $query=$prepare->get_result();
+    
+        if($query->num_rows > 0){
+            $res=$query->fetch_assoc();
+            $res=$res["COUNT(*)"];
+        }
+
+        //PARTE NUEVA
+        if($res<=0)
+            $res=false;
+        else 
+            $res=true;
+
+        return $res;
+    }        
 }
 ?>

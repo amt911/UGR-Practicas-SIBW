@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql:3306
--- Generation Time: May 30, 2022 at 09:52 AM
--- Server version: 8.0.29
+-- Generation Time: May 30, 2022 at 04:20 PM
+-- Server version: 8.0.28
 -- PHP Version: 8.0.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -20,9 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `SIBW`
 --
-
-CREATE USER 'usuario'@'%' IDENTIFIED BY 'usuario';
-GRANT SELECT,INSERT,UPDATE ON SIBW.* TO 'usuario'@'%';
 
 -- --------------------------------------------------------
 
@@ -45,6 +42,17 @@ CREATE TABLE `Comentario` (
 INSERT INTO `Comentario` (`ID`, `ID_Usuario`, `Fecha`, `Texto`, `ID_Producto`) VALUES
 (34, 1, '2022-05-29 08:13:31', '\"Comentario editado por un moderador\"\nqwerty sisi', 1),
 (41, 6, '2022-05-30 11:19:24', 'asdasdasdas', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Etiquetas`
+--
+
+CREATE TABLE `Etiquetas` (
+  `ID_Producto` int NOT NULL,
+  `Nombre` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -141,7 +149,17 @@ INSERT INTO `Imagenes` (`ID_Producto`, `Ruta Imagen`, `Descripcion`) VALUES
 (18, 'static/images/elite2.png', 'Lateral'),
 (18, 'static/images/elite3.png', 'Caja del mando'),
 (19, 'static/images/5900x_1.png', 'Caja del microprocesador.'),
-(19, 'static/images/5900x_2.png', 'IHS del microprocesador.');
+(19, 'static/images/5900x_2.png', 'IHS del microprocesador.'),
+(93, 'static/images/17-176578_png-file-svg-browser-icon-png_93.png', '101'),
+(93, 'static/images/Screenshot from 2022-03-03 15-50-42_93.png', '101'),
+(93, 'static/images/Screenshot from 2022-03-11 20-06-31_93.png', '101'),
+(93, 'static/images/Screenshot from 2022-03-14 18-29-39_93.png', '101'),
+(93, 'static/images/Screenshot from 2022-03-23 18-22-38_93.png', '101'),
+(94, 'static/images/17-176578_png-file-svg-browser-icon-png_94.png', NULL),
+(94, 'static/images/Screenshot from 2022-03-03 15-50-42_94.png', NULL),
+(94, 'static/images/Screenshot from 2022-03-11 20-06-31_94.png', NULL),
+(94, 'static/images/Screenshot from 2022-03-14 18-29-39_94.png', NULL),
+(94, 'static/images/Screenshot from 2022-03-23 18-22-38_94.png', NULL);
 
 -- --------------------------------------------------------
 
@@ -208,7 +226,9 @@ INSERT INTO `Productos` (`ID`, `Precio`, `Nombre`, `Descripción`, `Titulo pagin
 (16, 64.95, 'Mando DualSense PlayStation 5', '<p>\r\nSi necesitas un buen mando que te acompañe en tus sesiones de juego con tus amigos, el mando Sony PS5 DualSense™ es tu aliado.\r\n</p>\r\n\r\n<p>\r\n<strong>Multiplicará tus sensaciones</strong>\r\nEl nuevo DualSense, el mando que multiplicará tus sensaciones ofreciéndote un nuevo concepto de inmersión. Haz que los mundos de juego cobren vida y empieza a crear nuevos y épicos recuerdos. Siente la respuesta táctil capaz de transmitir las acciones del juego con dos activadores que sustituyen a los motores de vibración tradicionales. Cuando lo tienes en las manos, estas vibraciones dinámicas son capaces de simular todo tipo de sensaciones, como los elementos del entorno o el retroceso de diferentes armas.\r\n</p>', 'Mando PS5', 'Sony Computer Entertainment'),
 (17, 45.41, 'Mando DualShock 4 PlayStation 4', '<p>\r\nToma el control de una nueva generación de videojuegos con un mando inalámbrico DualShock 4 Black rediseñado que pone en tus manos la mayor precisión en tus juegos de PlayStation 4. Con un panel táctil nuevo que revela desde arriba la barra luminosa y un elegante acabado mate, es la forma más ergonómicas e intuitiva de jugar que haya habido nunca.\r\n</p>\r\n\r\n<p>\r\n<strong>DISEÑO ERGONÓMICO.</strong>\r\nUn diseño elegante y súper confortable unido a los botones y sticks analógicos altamente sensibles aportan una mayor precisión durante el juego.\r\n</p>\r\n\r\n<p>\r\n<strong>Botón SHARE.</strong>\r\nUtiliza el botón SHARE para compartir tus hazañas en las redes sociales. Sube tu partida en streaming a Twitch, YouTube o Dailymotion o edita las grabaciones y compártelas en Facebook y Twitter. Además, podrás invitar a tus amigos que se encuentren online para jugar a tus juegos contigo -incluso si no disponen del juego- con Share Play.\r\n</p>\r\n<p>\r\n<strong>TOUCH PAD.</strong>\r\nControla y dibuja mediante el touchpad de alta respuesta, ahora rediseñada para que puedas ver la barra de luz desde la parte superior mientras juegas.\r\n</p>\r\n<p>\r\n<strong>BARRA DE LUZ.</strong>\r\nLa barra de luz integrada puede emitir varios colores para personalizar tu experiencia y añadir una nueva dimensión a los juegos. Además, ayuda a la PlayStation Camera a trackear la posición del mando para mejorar la interacción virtual mientras utilizas PlayStation VR.\r\n\r\n<p>\r\n<strong>ALTAVOZ INTEGRADO Y CONECTOR DE AURICULARES ESTÉREO.</strong> Disfruta de los efectos extra de sonido -emitidos directamente desde el mando- y chatea con tus amigos online a través de auriculares con micrófono incorporado. Auriculares estéreo incluidos con la PS4.\r\n</p>\r\n<p>\r\n<strong>VIBRACIÓN.</strong>\r\nSiente las vibraciones emitidas por  el mando mediante unos motores de vibración más intuitivos y precisos.\r\n</p>\r\n<p>\r\n<strong>REMOTE PLAY.</strong>\r\nJuega a tus juegos de PS4 en streaming en Windows PC or Mac para poder seguir jugando si te encuentras lejos de tu televisor. El adaptador inalámbrico DualShock 4 USB mejora la experiencia Remote Play permitiéndote jugar de manera inalámbrica.\r\n</p>\r\n<p>\r\n<strong>CONTROL CUSTOMIZADO.</strong>\r\nConfigura tu mando DualShock 4 de la manera que quieras: elige el volumen de los altavoces, deshabilita la vibración, ajusta el brillo de la barra de luz para incrementar la vida útil de tu batería cuando ya no la necesites. Puedes elegir si compartir los datos vías Bluetooth o utilizando un cable USB para conectarlo a la PS4.\r\n</p>', 'Mando PS4', 'Sony Computer Entertainment'),
 (18, 120.65, 'Mando Xbox Elite (Serie 1)', '<p>\r\nEl mando Xbox Elite se adapta al tamaño de tu mano y a tu estilo de juego con configuraciones que pueden mejorar la precisión, la velocidad y el alcance mediante gatillos de distintas formas y tamaños. Puedes intercambiar los joysticks de metal y crucetas para lograr un control y ergonomía personalizados. Incorpora cuatro ranuras para palancas intercambiables que puedes conectar o quitar sin ninguna herramienta. Si accionas el bloqueo de gatillos de alta sensibilidad, podrás disparar más rápido y ahorrar tu valioso tiempo en cada toque de gatillo. Todas las superficies y detalles están diseñados para satisfacer las demandas de los jugadores más competitivos: los anillos reforzados de bajo rozamiento alrededor de cada joystick minimizan el desgaste y aportan suavidad de movimiento. Por otro lado, los agarres de goma con relieve confieren al mando una apariencia sólida y proporcionan más estabilidad.\r\n</p>', 'Mando XBOX Elite 1', 'XBOX'),
-(19, 450.93, 'AMD Ryzen 9 5900X', '<p>\r\nEl procesador que ofrece la mejor experiencia de juego del mundo. 12 núcleos para potenciar la experiencia de juego, la transmisión en vivo y mucho más.\r\n</p>\r\n\r\n<p>\r\n<strong>\r\nTecnología AMD StoreMI:\r\n</strong>\r\nSoftware que combina la velocidad de SSD con la capacidad de disco duro en una sola unidad rápida y fácil de administrar, gratuita con la placa madre AMD Serie 400.\r\n</p>\r\n\r\n<p>\r\n<strong>Utilidad AMD Ryzen™ Master:</strong>\r\nLa utilidad de overclocking sencilla y a la vez potente para los procesadores AMD Ryzen™\r\n</p>\r\n\r\n<p>\r\n<strong>AMD Ryzen™ VR-Ready Premium:</strong>\r\nPara los usuarios que exigen una experiencia premium de realidad virtual, AMD ofrece procesadores especiales Ryzen™ VR-Ready Premium de alto rendimiento.\r\n</p>\r\n\r\n\r\n<table>\r\n<tr>\r\n<td>Frecuencia</td>\r\n<td>3,7 GHz</td>\r\n</tr>\r\n\r\n<tr>\r\n<td>Número de núcleos</td>\r\n<td>12</td>\r\n</tr>\r\n\r\n<tr>\r\n<td>Socket</td>\r\n<td>AM4</td>\r\n</tr>\r\n\r\n<tr>\r\n<td>Caché del procesador</td>\r\n<td>64 MB</td>\r\n</tr>\r\n\r\n</table>', 'AMD R9 5900X', 'AMD');
+(19, 450.93, 'AMD Ryzen 9 5900X', '<p>\r\nEl procesador que ofrece la mejor experiencia de juego del mundo. 12 núcleos para potenciar la experiencia de juego, la transmisión en vivo y mucho más.\r\n</p>\r\n\r\n<p>\r\n<strong>\r\nTecnología AMD StoreMI:\r\n</strong>\r\nSoftware que combina la velocidad de SSD con la capacidad de disco duro en una sola unidad rápida y fácil de administrar, gratuita con la placa madre AMD Serie 400.\r\n</p>\r\n\r\n<p>\r\n<strong>Utilidad AMD Ryzen™ Master:</strong>\r\nLa utilidad de overclocking sencilla y a la vez potente para los procesadores AMD Ryzen™\r\n</p>\r\n\r\n<p>\r\n<strong>AMD Ryzen™ VR-Ready Premium:</strong>\r\nPara los usuarios que exigen una experiencia premium de realidad virtual, AMD ofrece procesadores especiales Ryzen™ VR-Ready Premium de alto rendimiento.\r\n</p>\r\n\r\n\r\n<table>\r\n<tr>\r\n<td>Frecuencia</td>\r\n<td>3,7 GHz</td>\r\n</tr>\r\n\r\n<tr>\r\n<td>Número de núcleos</td>\r\n<td>12</td>\r\n</tr>\r\n\r\n<tr>\r\n<td>Socket</td>\r\n<td>AM4</td>\r\n</tr>\r\n\r\n<tr>\r\n<td>Caché del procesador</td>\r\n<td>64 MB</td>\r\n</tr>\r\n\r\n</table>', 'AMD R9 5900X', 'AMD'),
+(93, 123, 'asd', '123', '123', 'AMD'),
+(94, 321, 'dsa', '312', '321', 'AMD');
 
 -- --------------------------------------------------------
 
@@ -253,6 +273,12 @@ ALTER TABLE `Comentario`
   ADD KEY `ID_Usuario` (`ID_Usuario`);
 
 --
+-- Indexes for table `Etiquetas`
+--
+ALTER TABLE `Etiquetas`
+  ADD PRIMARY KEY (`ID_Producto`,`Nombre`);
+
+--
 -- Indexes for table `Fabricante`
 --
 ALTER TABLE `Fabricante`
@@ -278,6 +304,7 @@ ALTER TABLE `Palabrota`
 ALTER TABLE `Productos`
   ADD PRIMARY KEY (`ID`),
   ADD UNIQUE KEY `Nombre` (`Nombre`),
+  ADD UNIQUE KEY `Nombre_2` (`Nombre`),
   ADD KEY `Nombre_Fabricante` (`Nombre_Fabricante`),
   ADD KEY `Nombre_Fabricante_2` (`Nombre_Fabricante`);
 
@@ -302,7 +329,7 @@ ALTER TABLE `Comentario`
 -- AUTO_INCREMENT for table `Productos`
 --
 ALTER TABLE `Productos`
-  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 
 --
 -- AUTO_INCREMENT for table `Usuarios`
@@ -320,6 +347,12 @@ ALTER TABLE `Usuarios`
 ALTER TABLE `Comentario`
   ADD CONSTRAINT `Comentario_ibfk_1` FOREIGN KEY (`ID_Producto`) REFERENCES `Productos` (`ID`) ON DELETE CASCADE ON UPDATE RESTRICT,
   ADD CONSTRAINT `Comentario_ibfk_2` FOREIGN KEY (`ID_Usuario`) REFERENCES `Usuarios` (`ID`);
+
+--
+-- Constraints for table `Etiquetas`
+--
+ALTER TABLE `Etiquetas`
+  ADD CONSTRAINT `Etiquetas_ibfk_1` FOREIGN KEY (`ID_Producto`) REFERENCES `Productos` (`ID`);
 
 --
 -- Constraints for table `Fabricante`
