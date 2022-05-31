@@ -15,7 +15,7 @@
 </div>
 
 {% if EsGestor == true %}
-<form action="edit_product.php?id={{ ProductID }}" method="post">
+<form action="edit_product.php?id={{ ProductID }}" method="post" enctype="multipart/form-data">
     <label>Precio</label><br/>
     <input type="text" name="precio" value="{{ Producto["Precio"] }}"/>
     <br/><br/>
@@ -47,6 +47,26 @@
     <br/><br/>
 
     <!--Poner para añadir/eliminar imagenes-->
+    <label>Añadir imágenes</label><br/>
+    <input type="file" name="imagenes[]" multiple>
+    <br/><br/>
+
+    {# Hacer un if para que si no haya imagenes no aparezca #}
+    <label>Eliminar imágenes (seleccione para eliminar)</label><br/>
+    {% if Imagenes != false %}
+        <div class="foto-eliminar-container">
+            {% for aux in Imagenes %}
+                <div class="foto-eliminar">
+                    <div>
+                        <img src="{{ aux["Ruta Imagen"] }}" alt="imagen">
+                    </div>
+                    <div>
+                        <input type="checkbox" name="imagen-eliminar_{{ aux["ID_Imagen"]  }}"/>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
 
     <button>Enviar</button>
 

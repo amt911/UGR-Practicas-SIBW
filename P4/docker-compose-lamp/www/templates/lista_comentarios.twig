@@ -19,6 +19,7 @@
     <button>Enviar</button>
 </form>
 
+{#
 <table>
     <tr>
         <td>ID</td>
@@ -27,7 +28,12 @@
         <td>Comentario</td>
         <td>Fecha</td>
     </tr>
+    #}
+
+    
+    <div id="comentarios-submit-container">
     {% for aux in Comentarios %}
+    {#
         <tr>
             <td>{{ aux.ID }}</td>
             <td>{{ aux.Nombre }}</td>
@@ -41,8 +47,38 @@
                 <a href="delete.php?back=lista_comentarios.php&id={{ aux.ID }}">Borrar</a>
             </td>
         </tr>
+        #}
+
+        <div class="comentario-container">
+            <div class="mod-comentario-container">
+                <div class="editar">
+                    <a href="edit.php?back={{ Back }}&id={{ aux["ID"] }}">
+                        <img class="imagen ref-editar" src="static/images/edit.png" alt="editar"/>
+                    </a>
+                </div>
+                <div class="borrar">
+                    <a href="delete.php?back={{ Back }}&id={{ aux["ID"] }}">
+                        <img class="imagen ref-borrar" src="static/images/delete.png" alt="borrar" onclick="return confirmacion();"/>
+                    </a>
+                </div>
+            </div>
+
+            <div class="nombre-comentario">
+                <h4>{{ aux["Nombre"] }}</h4>
+            </div>
+            <div class="comentario-email">
+                {{ aux["Correo"] }}
+            </div>
+            <div class="fecha">
+                {{ aux["Fecha"] }}<!--12 de mayo del 2021, 13:37-->
+            </div>
+            <div class="contenido-comentario">
+                {{ aux["Texto"] }}
+            </div>
+        </div>   
     {% endfor %}
-</table>
+    </div>
+{#</table>#}
 {% endif %}
 
 

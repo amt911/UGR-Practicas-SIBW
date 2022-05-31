@@ -18,7 +18,7 @@
         //    $res=$con->searchComentarios($_POST["keyword"]);
         //}
 
-        $res=$con->getAllProducts();
+        $res=$con->getAllProductsWithImage();
     }
     else{
         $errores[]="No tienes permisos para ver esta página";

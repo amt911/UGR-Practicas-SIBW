@@ -18,7 +18,7 @@
     <input type="text" name="keyword" placeholder="Buscar..."/>
     <button>Enviar</button>
 </form>
-
+{#
 <table>
     <tr>
         <td>ID</td>
@@ -41,6 +41,35 @@
         </tr>
     {% endfor %}
 </table>
+#}
+
+<div class="grid">
+{% for aux in Comentarios %}
+    <div class="img-text-container">{#Separacion en dos columnas, imagen texto#}
+        <div>
+            <img src="{{ aux["Imagen"] }}"/>
+        </div>
+        <div class="info-container">
+            <div><h2>{{ aux["Nombre"] }}</h2></div>
+            <div><h3>{{ aux["Nombre_Fabricante"] }}</h3></div>
+
+            <div class="precio-etiq-container">
+                <div>
+                    {{ aux["Precio"]|number_format(2, ",", "") }}€
+                </div>
+                <div>
+                    hashtag 1 2 3 4 5 6 7 8 89 esto va en un bucle
+                </div>
+            </div>
+
+            <div class="botones-container">
+                <div><a href="edit_product.php?back=lista_productos.php&id={{ aux["ID"] }}">EDITAR PRODUCTO</a></div>
+                <div><a href="delete_product.php?back=lista_productos.php&id={{ aux["ID"] }}">ELIMINAR PRODUCTO</a></div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+</div>
 {% endif %}
 
 

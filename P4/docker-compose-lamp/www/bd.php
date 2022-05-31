@@ -201,6 +201,57 @@ class GestorBD{
         return $res;        
     }
 
+    function getImageCount($idProducto){
+        $res=-1;
+
+        $prepare=$this->mysqli->prepare("SELECT COUNT(*) FROM Imagenes WHERE ID_Producto=?");
+        $prepare->bind_param("i", $idProducto);
+        $prepare->execute();
+
+        $query=$prepare->get_result();
+    
+        if($query->num_rows > 0){
+            $res=$query->fetch_assoc();
+            $res=$res["COUNT(*)"];
+        }
+
+        //PARTE NUEVA
+        if($res<=0)
+            $res=false;
+        else
+            $res=true;
+
+        return $res;        
+    }
+
+    function getImagenIDImg($idImg){
+        $res=false;
+
+        $prepare=$this->mysqli->prepare("SELECT * FROM Imagenes WHERE ID_Imagen=?;");
+        $prepare->bind_param("i", $idImg);
+        $prepare->execute();
+
+        $query=$prepare->get_result();
+    
+        if($query->num_rows > 0)
+            $res=$query->fetch_assoc();
+    
+        return $res; 
+    }
+
+
+    function deleteImage($imgID){
+        $imagen=$this->getImagenIDImg($imgID);
+
+        if(!empty($imagen["Ruta Imagen"]))
+            unlink($imagen["Ruta Imagen"]);
+
+        //var_dump($imgID);
+
+        $prepare=$this->mysqli->prepare("DELETE FROM Imagenes WHERE ID_Imagen=?");
+        $prepare->bind_param("i", $imgID);
+        $prepare->execute();        
+    }
 
     function getProductsPage($a){
         if($a<=0 or $a>$this->getNumPaginas())
@@ -448,14 +499,32 @@ class GestorBD{
         }
     }
 
-    function cambiarDatosProducto($idUsuario, $idProducto, $precio, $nombre, $descripcion, $tituloTop, $fabricante){
+    function cambiarDatosProducto($idUsuario, $idProducto, $precio, $nombre, $descripcion, $tituloTop, $fabricante, $foto){
         $usuario=$this->getUsuario($idUsuario);
         $existeProd=$this->existeProducto($idProducto);
 
         if($usuario["ID"]!=-1 and $usuario["esGestor"]==1 and $existeProd){
             $prepare=$this->mysqli->prepare("UPDATE Productos SET  Precio=?,Nombre=?,Descripción=?,`Titulo pagina`=?,Nombre_Fabricante=? WHERE ID=?");
             $prepare->bind_param("dssssi", $precio, $nombre, $descripcion, $tituloTop, $fabricante, $idProducto);
-            $prepare->execute();     
+            $prepare->execute();  
+            
+            //Comprobar si se ha mandado alguna imagen
+            //Ahora se envian las imagenes al servidor y se insertan en la base de datos
+            for($i=0; $i<count($foto["name"]); $i++){
+                if($foto["error"][$i]!=4){
+                    //move_uploaded_file($foto["tmp_name"][$i], "static/images/".$foto["name"][$i]);
+                    $extension=end(explode(".", $foto["name"][$i]));
+                    $nombre=explode(".", $foto["name"][$i])[0];
+    
+                    $directorioNuevaFoto="static/images/".$nombre."_".$idProducto.".".$extension;
+                    $directorioNuevaFoto=str_replace(" ", "_", $directorioNuevaFoto);
+                    move_uploaded_file($foto["tmp_name"][$i], $directorioNuevaFoto);
+
+                    $prepare=$this->mysqli->prepare("INSERT INTO Imagenes (ID_Producto, `Ruta Imagen`) VALUES (?,?)");
+                    $prepare->bind_param("is", $idProducto, $directorioNuevaFoto);
+                    $prepare->execute();
+                }
+            }            
         }
     }
 
@@ -686,6 +755,24 @@ class GestorBD{
             $res=true;
 
         return $res;
-    }        
+    }  
+    
+    function getAllProductsWithImage(){
+        $productos=$this->getAllProducts();
+
+        for($i=0; $i<count($productos); $i++){
+            $aux=$this->getImagenes($productos[$i]["ID"]);
+
+            if($aux!=false)
+                $productos[$i]["Imagen"]=$aux[0]["Ruta Imagen"];
+            else
+                $productos[$i]["Imagen"]="static/images/placeholder.png";
+        }
+
+        return $productos;
+    }
 }
+//Para getComentariosConProducto
+//SELECT Productos.Nombre,Comentario.ID,Usuarios.Nombre,Correo,Fecha,Texto FROM Comentario,Usuarios,Productos WHERE Comentario.ID_Usuario=Usuarios.ID AND Productos.ID=Comentario.ID_Producto ORDER BY Comentario.ID DESC;
+
 ?>

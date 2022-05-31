@@ -16,7 +16,7 @@
 
     
     session_start();
-    $con=new GestorBD();
+    $con=new GestorBD("root", "tiger");
 
     $error=array();
 
@@ -37,6 +37,7 @@
         $error[]="El producto no existe";
     }
 
+    $imagenes=$con->getImagenes($id);
 
     //Parte de POST
     if($_SERVER["REQUEST_METHOD"]=="POST" and isset($_SESSION["usuario"])){
@@ -46,9 +47,28 @@
             $back=$_POST["back"];
         }
         else{
-            $con->cambiarDatosProducto($_SESSION["usuario"]["ID"], $_POST["product-id"], $_POST["precio"], $_POST["nombre"], $_POST["descripcion"], $_POST["titulo-top"], $_POST["fabricante"]);
+            $imagenesAntiguas=$con->getImagenes($id);
+
+            if($imagenesAntiguas!=false){
+                for($i=0; $i<count($imagenesAntiguas); $i++){
+                    if(isset($_POST["imagen-eliminar_".$imagenesAntiguas[$i]["ID_Imagen"]]) and !empty($_POST["imagen-eliminar_".$imagenesAntiguas[$i]["ID_Imagen"]]) and $_POST["imagen-eliminar_".$imagenesAntiguas[$i]["ID_Imagen"]]=="on"){
+                        $con->deleteImage($imagenesAntiguas[$i]["ID_Imagen"]);
+                    }
+                }
+            }
+
+            $con->cambiarDatosProducto($_SESSION["usuario"]["ID"], $_POST["product-id"], $_POST["precio"], $_POST["nombre"], $_POST["descripcion"], $_POST["titulo-top"], $_POST["fabricante"], $_FILES["imagenes"]);
+
+            $nroImg=$con->getImageCount($id);
 
             $back=$_POST["back"];
+
+            //var_dump($_POST);
+
+            if($nroImg>0){
+                header("Location: comentarios_imagen_form.php?id=".$id."&back=".$back);
+                exit();                
+            }
             header("Location: $back");
             exit();
         }
@@ -64,6 +84,7 @@
         "Errores" => $error,
         "EsGestor" => $esGestor,
         "Producto" => $producto,
-        "Fabricantes" => $fabricantes
+        "Fabricantes" => $fabricantes,
+        "Imagenes" => $imagenes
     ]);    
 ?>

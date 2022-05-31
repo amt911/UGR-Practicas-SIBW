@@ -3,3 +3,27 @@
     width: 500px;
     height: 300px;
 }
+
+img{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+.foto-eliminar-container{
+    display: grid;
+    grid-template-columns: repeat(3, max-content);
+    padding: 12px;
+    gap: 12px;
+    justify-content: center;
+    max-height: 420px;
+    height: fit-content;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+
+.foto-eliminar{
+    display: grid;
+    grid-template-rows: 150px max-content;
+}
