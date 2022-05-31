@@ -46,7 +46,15 @@
 
         <div>
             <div class="break">
-                <strong>Pais:</strong> {{ Credenciales["Pais"] }}
+                <strong>Pais:</strong> 
+                <div class="pais-foto-container">
+                    <div>
+                    {{ Pais["CountryName"] }}
+                    </div>
+                    <div>
+                        <img src="static/images/flags/{{ Pais["Code"] }}.PNG"/>
+                    </div>
+                </div>
             </div>
 
             <div class="boton">

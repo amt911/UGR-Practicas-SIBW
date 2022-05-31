@@ -483,7 +483,7 @@ class GestorBD{
     }
 
     function cambiarDatosUsuario($id, $nuevoNombre, $campo){
-        $lista=["Foto", "Nombre", "Correo", "Pais", "Genero", "Direccion", "Password"];
+        $lista=["Foto", "Nombre", "Correo", "CountryCode", "Genero", "Direccion", "Password"];
 
         $usuario=$this->getUsuario($id);
 
@@ -834,7 +834,41 @@ class GestorBD{
             $prepare->execute();
         }
     }
+
+    function getAllPaises(){
+        $paises=false;
+        
+        $prepare=$this->mysqli->prepare("SELECT * FROM Pais ORDER BY CountryName");
+        $prepare->execute();
+        
+        $query=$prepare->get_result();
+        
+        if($query->num_rows > 0){
+            $paises=$query->fetch_all(MYSQLI_ASSOC);
+        }
+        
+        return $paises;
+    }
+
+    function getPais($idPais){
+        var_dump($idPais);
+        $pais=false;
+        
+        $prepare=$this->mysqli->prepare("SELECT * FROM Pais WHERE CountryCode=?");
+        $prepare->bind_param("s", $idPais);
+        $prepare->execute();
+        
+        $query=$prepare->get_result();
+        
+        if($query->num_rows > 0){
+            $pais=$query->fetch_assoc();
+        }
+        
+        return $pais;
+    }
 }
+
+
 //Para getComentariosConProducto
 //SELECT Productos.Nombre,Comentario.ID,Usuarios.Nombre,Correo,Fecha,Texto FROM Comentario,Usuarios,Productos WHERE Comentario.ID_Usuario=Usuarios.ID AND Productos.ID=Comentario.ID_Producto ORDER BY Comentario.ID DESC;
 

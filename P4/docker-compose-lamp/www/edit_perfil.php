@@ -34,7 +34,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST" and isset($_SESSION["usuario"])){
         1 => "Foto",
         2 => "Nombre",
         3 => "Correo",
-        4 => "Pais",
+        4 => "CountryCode",
         5 => "Genero",
         6 => "Direccion",
         7 => "Password"
@@ -106,6 +106,7 @@ echo $twig->render("edit_perfil.twig", [
     "Errores" => $error,
     "User" => $_SESSION["usuario"],
     "Tipo" => $tipo,
-    "estaRegistrado" => $estaRegistrado
+    "estaRegistrado" => $estaRegistrado,
+    "Paises" => $con->getAllPaises(),
 ]);
 ?>

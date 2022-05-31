@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql:3306
--- Generation Time: May 16, 2022 at 11:02 AM
--- Server version: 8.0.29
+-- Generation Time: May 31, 2022 at 03:25 PM
+-- Server version: 8.0.28
 -- PHP Version: 8.0.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -21,9 +21,6 @@ SET time_zone = "+00:00";
 -- Database: `SIBW`
 --
 
-CREATE USER 'usuario'@'%' IDENTIFIED BY 'usuario';
-GRANT SELECT,INSERT ON SIBW.* TO 'usuario'@'%';
-
 -- --------------------------------------------------------
 
 --
@@ -31,11 +28,10 @@ GRANT SELECT,INSERT ON SIBW.* TO 'usuario'@'%';
 --
 
 CREATE TABLE `Comentario` (
-  `Nombre` varchar(200) NOT NULL,
   `ID` int NOT NULL,
+  `ID_Usuario` int NOT NULL,
   `Fecha` datetime NOT NULL,
   `Texto` varchar(1000) NOT NULL,
-  `Correo` varchar(150) NOT NULL,
   `ID_Producto` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -43,9 +39,32 @@ CREATE TABLE `Comentario` (
 -- Dumping data for table `Comentario`
 --
 
-INSERT INTO `Comentario` (`Nombre`, `ID`, `Fecha`, `Texto`, `Correo`, `ID_Producto`) VALUES
-('Antonio Robles', 1, '2021-05-12 12:41:00', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam erat metus, pellentesque non libero ac, aliquam auctor odio. Pellentesque eu efficitur est. Donec facilisis tellus ac tellus fermentum, tempor tempor nulla posuere. Duis a arcu non orci suscipit eleifend. Maecenas malesuada sem et leo iaculis dapibus. Duis arcu erat, tempor vitae fermentum ac, convallis vel mauris. Sed lacinia quam nec rhoncus tempus.\r\n', 'example@fakemail.com', 1),
-('Juan Hidalgo', 2, '2020-04-06 13:37:00', 'orem ipsum dolor sit amet, consectetur adipiscing elit. Etiam erat metus, pellentesque non libero ac, aliquam auctor odio. Pellentesque eu efficitur est. Donec facilisis tellus ac tellus fermentum, tempor tempor nulla posuere. Duis a arcu non orci suscipit eleifend. Maecenas malesuada sem et leo iaculis dapibus. Duis arcu erat, tempor vitae fermentum ac, convallis vel mauris. Sed lacinia quam nec rhoncus tempus.', 'ejemplo@fakemail2.com', 1);
+INSERT INTO `Comentario` (`ID`, `ID_Usuario`, `Fecha`, `Texto`, `ID_Producto`) VALUES
+(34, 1, '2022-05-29 08:13:31', '\"Comentario editado por un moderador\"\nqwerty sisi', 1),
+(41, 6, '2022-05-30 11:19:24', '\"Comentario editado por un moderador\"\nasdasdasdas cabron', 1),
+(44, 1, '2022-05-31 12:20:37', 'si', 2),
+(45, 1, '2022-05-31 12:20:42', 'no', 6),
+(46, 1, '2022-05-31 12:23:03', 'no\r\n', 2),
+(47, 1, '2022-05-31 12:49:32', 'un intel\r\n', 9);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Etiquetas`
+--
+
+CREATE TABLE `Etiquetas` (
+  `ID_Producto` int NOT NULL,
+  `Nombre` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `Etiquetas`
+--
+
+INSERT INTO `Etiquetas` (`ID_Producto`, `Nombre`) VALUES
+(1, 'GPU'),
+(1, 'NVIDIA');
 
 -- --------------------------------------------------------
 
@@ -81,68 +100,337 @@ INSERT INTO `Fabricante` (`Nombre`, `Facebook`, `Twitter`, `YouTube`, `Pagina of
 --
 
 CREATE TABLE `Imagenes` (
+  `ID_Imagen` int NOT NULL,
   `ID_Producto` int NOT NULL,
   `Ruta Imagen` varchar(100) NOT NULL,
-  `Descripcion` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
+  `Descripcion` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `Imagenes`
 --
 
-INSERT INTO `Imagenes` (`ID_Producto`, `Ruta Imagen`, `Descripcion`) VALUES
-(1, '3090_2.png', 'Vista general'),
-(1, '3090_3.png', 'Otra vista'),
-(1, '3090_4.png', 'Otra vista de la GPU'),
-(1, '3090.png', 'Vista trasera'),
-(2, 'controller.png', 'Vista frontal'),
-(2, 'elite2_1.png', 'Parte trasera'),
-(2, 'elite2_2.png', ''),
-(3, 'NVME_1.png', 'El propio disco duro SSD'),
-(3, 'NVME_2.png', ''),
-(4, 'ps5_1.png', 'Posición horizontal'),
-(4, 'ps5_2.png', 'Otra vista'),
-(4, 'PS5.png', 'Consola y mando'),
-(5, 'AMD_CPU_1.png', 'Caja del procesador'),
-(5, 'AMD_CPU_2.png', 'IHS del microprocesador'),
-(6, 'HDD_1.png', ''),
-(6, 'HDD_2.png', 'Interior del disco'),
-(7, 'nintendo_switch_oled_white_1.png', 'Caja de la consola'),
-(8, 'Series_X_1.png', 'Consola y mando en vista isométrica'),
-(8, 'Series_X_2.png', 'Frontal de la consola'),
-(9, 'intel_cpu_1.png', 'Caja del procesador Intel'),
-(9, 'intel_cpu_2.png', 'IHS del microprocesador'),
-(10, 'slim1.png', 'Consola y mando'),
-(10, 'slim2.png', 'Caja de la consola'),
-(10, 'slim3.png', 'Vista frontal'),
-(10, 'slim4.png', 'Posisición en vertical'),
-(11, 'pro1.png', 'Caja de la consola'),
-(11, 'pro2.png', 'Posición en vertical'),
-(11, 'pro3.png', 'Posición en horizontal'),
-(12, 'ones1.png', 'Consola y mando'),
-(12, 'ones2.png', 'Frontal de la consola'),
-(12, 'ones3.png', 'Caja de la consola'),
-(13, 'x1.png', 'Consola y mando'),
-(13, 'x2.png', 'Frontal'),
-(13, 'x3.png', ''),
-(14, '6900_1.png', 'Vista general'),
-(14, '6900_2.png', 'Parte trasera'),
-(14, '6900_3.png', 'PPuertos'),
-(14, '6900_4.png', 'Frontal'),
-(15, 'switch1.png', 'Consola con los joycons'),
-(15, 'switch2.png', 'Se puede conectar a la TV'),
-(15, 'switch3.png', 'También se pueden desacoplar los joycons'),
-(15, 'switch4.png', 'Caja de la consola'),
-(16, 'ps5mando1.png', 'Frontal'),
-(16, 'ps5mando2.png', 'Lateral'),
-(16, 'ps5mando3.png', 'Caja'),
-(17, 'ps4mando1.png', ''),
-(17, 'ps4mando2.png', 'Caja del mando'),
-(18, 'elite1.png', 'Frontal'),
-(18, 'elite2.png', 'Lateral'),
-(18, 'elite3.png', 'Caja del mando'),
-(19, '5900x_1.png', 'Caja del microprocesador.'),
-(19, '5900x_2.png', 'IHS del microprocesador.');
+INSERT INTO `Imagenes` (`ID_Imagen`, `ID_Producto`, `Ruta Imagen`, `Descripcion`) VALUES
+(1, 1, 'static/images/3090_3.png', 'Otra vista'),
+(2, 1, 'static/images/3090_4.png', 'Otra vista de la GPU'),
+(3, 1, 'static/images/3090.png', 'Vista trasera'),
+(4, 2, 'static/images/controller.png', 'Vista frontal'),
+(5, 2, 'static/images/elite2_1.png', 'Parte trasera'),
+(6, 2, 'static/images/elite2_2.png', ''),
+(7, 3, 'static/images/NVME_1.png', 'El propio disco duro SSD'),
+(8, 3, 'static/images/NVME_2.png', ''),
+(9, 4, 'static/images/ps5_1.png', 'Posición horizontal'),
+(10, 4, 'static/images/ps5_2.png', 'Otra vista'),
+(11, 4, 'static/images/PS5.png', 'Consola y mando'),
+(12, 5, 'static/images/AMD_CPU_1.png', 'Caja del procesador'),
+(13, 5, 'static/images/AMD_CPU_2.png', 'IHS del microprocesador'),
+(14, 6, 'static/images/HDD_1.png', ''),
+(15, 6, 'static/images/HDD_2.png', 'Interior del disco'),
+(16, 7, 'static/images/nintendo_switch_oled_white_1.png', 'Caja de la consola'),
+(17, 8, 'static/images/Series_X_1.png', 'Consola y mando en vista isométrica'),
+(18, 8, 'static/images/Series_X_2.png', 'Frontal de la consola'),
+(19, 9, 'static/images/intel_cpu_1.png', 'Caja del procesador Intel'),
+(20, 9, 'static/images/intel_cpu_2.png', 'IHS del microprocesador'),
+(21, 10, 'static/images/slim1.png', 'Consola y mando'),
+(22, 10, 'static/images/slim2.png', 'Caja de la consola'),
+(23, 10, 'static/images/slim3.png', 'Vista frontal'),
+(24, 10, 'static/images/slim4.png', 'Posisición en vertical'),
+(25, 11, 'static/images/pro1.png', 'Caja de la consola'),
+(26, 11, 'static/images/pro2.png', 'Posición en vertical'),
+(27, 11, 'static/images/pro3.png', 'Posición en horizontal'),
+(28, 12, 'static/images/ones1.png', 'Consola y mando'),
+(29, 12, 'static/images/ones2.png', 'Frontal de la consola'),
+(30, 12, 'static/images/ones3.png', 'Caja de la consola'),
+(31, 13, 'static/images/x1.png', 'Consola y mando'),
+(32, 13, 'static/images/x2.png', 'Frontal'),
+(33, 13, 'static/images/x3.png', ''),
+(34, 14, 'static/images/6900_1.png', 'Vista general'),
+(35, 14, 'static/images/6900_2.png', 'Parte trasera'),
+(36, 14, 'static/images/6900_3.png', 'PPuertos'),
+(37, 14, 'static/images/6900_4.png', 'Frontal'),
+(38, 15, 'static/images/switch1.png', 'Consola con los joycons'),
+(39, 15, 'static/images/switch2.png', 'Se puede conectar a la TV'),
+(40, 15, 'static/images/switch3.png', 'También se pueden desacoplar los joycons'),
+(41, 15, 'static/images/switch4.png', 'Caja de la consola'),
+(42, 16, 'static/images/ps5mando1.png', 'Frontal'),
+(43, 16, 'static/images/ps5mando2.png', 'Lateral'),
+(44, 16, 'static/images/ps5mando3.png', 'Caja'),
+(45, 17, 'static/images/ps4mando1.png', ''),
+(46, 17, 'static/images/ps4mando2.png', 'Caja del mando'),
+(47, 18, 'static/images/elite1.png', 'Frontal'),
+(48, 18, 'static/images/elite2.png', 'Lateral'),
+(49, 18, 'static/images/elite3.png', 'Caja del mando'),
+(50, 19, 'static/images/5900x_1.png', 'Caja del microprocesador.'),
+(51, 19, 'static/images/5900x_2.png', 'IHS del microprocesador.'),
+(53, 1, 'static/images/3090_2.png', 'Vista general');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Pais`
+--
+
+CREATE TABLE `Pais` (
+  `CountryCode` char(3) NOT NULL,
+  `CountryName` varchar(200) NOT NULL,
+  `Code` char(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `Pais`
+--
+
+INSERT INTO `Pais` (`CountryCode`, `CountryName`, `Code`) VALUES
+('ABW', 'Aruba', 'AW'),
+('AFG', 'Afghanistan', 'AF'),
+('AGO', 'Angola', 'AO'),
+('AIA', 'Anguilla', 'AI'),
+('ALA', 'Åland', 'AX'),
+('ALB', 'Albania', 'AL'),
+('AND', 'Andorra', 'AD'),
+('ARE', 'United Arab Emirates', 'AE'),
+('ARG', 'Argentina', 'AR'),
+('ARM', 'Armenia', 'AM'),
+('ASM', 'American Samoa', 'AS'),
+('ATA', 'Antarctica', 'AQ'),
+('ATF', 'French Southern Territories', 'TF'),
+('ATG', 'Antigua and Barbuda', 'AG'),
+('AUS', 'Australia', 'AU'),
+('AUT', 'Austria', 'AT'),
+('AZE', 'Azerbaijan', 'AZ'),
+('BDI', 'Burundi', 'BI'),
+('BEL', 'Belgium', 'BE'),
+('BEN', 'Benin', 'BJ'),
+('BES', 'Bonaire', 'BQ'),
+('BFA', 'Burkina Faso', 'BF'),
+('BGD', 'Bangladesh', 'BD'),
+('BGR', 'Bulgaria', 'BG'),
+('BHR', 'Bahrain', 'BH'),
+('BHS', 'Bahamas', 'BS'),
+('BIH', 'Bosnia and Herzegovina', 'BA'),
+('BLM', 'Saint Barthélemy', 'BL'),
+('BLR', 'Belarus', 'BY'),
+('BLZ', 'Belize', 'BZ'),
+('BMU', 'Bermuda', 'BM'),
+('BOL', 'Bolivia', 'BO'),
+('BRA', 'Brazil', 'BR'),
+('BRB', 'Barbados', 'BB'),
+('BRN', 'Brunei', 'BN'),
+('BTN', 'Bhutan', 'BT'),
+('BVT', 'Bouvet Island', 'BV'),
+('BWA', 'Botswana', 'BW'),
+('CAF', 'Central African Republic', 'CF'),
+('CAN', 'Canada', 'CA'),
+('CCK', 'Cocos [Keeling] Islands', 'CC'),
+('CHE', 'Switzerland', 'CH'),
+('CHL', 'Chile', 'CL'),
+('CHN', 'China', 'CN'),
+('CIV', 'Ivory Coast', 'CI'),
+('CMR', 'Cameroon', 'CM'),
+('COD', 'Democratic Republic of the Congo', 'CD'),
+('COG', 'Republic of the Congo', 'CG'),
+('COK', 'Cook Islands', 'CK'),
+('COL', 'Colombia', 'CO'),
+('COM', 'Comoros', 'KM'),
+('CPV', 'Cape Verde', 'CV'),
+('CRI', 'Costa Rica', 'CR'),
+('CUB', 'Cuba', 'CU'),
+('CUW', 'Curacao', 'CW'),
+('CXR', 'Christmas Island', 'CX'),
+('CYM', 'Cayman Islands', 'KY'),
+('CYP', 'Cyprus', 'CY'),
+('CZE', 'Czech Republic', 'CZ'),
+('DEU', 'Germany', 'DE'),
+('DJI', 'Djibouti', 'DJ'),
+('DMA', 'Dominica', 'DM'),
+('DNK', 'Denmark', 'DK'),
+('DOM', 'Dominican Republic', 'DO'),
+('DZA', 'Algeria', 'DZ'),
+('ECU', 'Ecuador', 'EC'),
+('EGY', 'Egypt', 'EG'),
+('ERI', 'Eritrea', 'ER'),
+('ESH', 'Western Sahara', 'EH'),
+('ESP', 'Spain', 'ES'),
+('EST', 'Estonia', 'EE'),
+('ETH', 'Ethiopia', 'ET'),
+('FIN', 'Finland', 'FI'),
+('FJI', 'Fiji', 'FJ'),
+('FLK', 'Falkland Islands', 'FK'),
+('FRA', 'France', 'FR'),
+('FRO', 'Faroe Islands', 'FO'),
+('FSM', 'Micronesia', 'FM'),
+('GAB', 'Gabon', 'GA'),
+('GBR', 'United Kingdom', 'GB'),
+('GEO', 'Georgia', 'GE'),
+('GGY', 'Guernsey', 'GG'),
+('GHA', 'Ghana', 'GH'),
+('GIB', 'Gibraltar', 'GI'),
+('GIN', 'Guinea', 'GN'),
+('GLP', 'Guadeloupe', 'GP'),
+('GMB', 'Gambia', 'GM'),
+('GNB', 'Guinea-Bissau', 'GW'),
+('GNQ', 'Equatorial Guinea', 'GQ'),
+('GRC', 'Greece', 'GR'),
+('GRD', 'Grenada', 'GD'),
+('GRL', 'Greenland', 'GL'),
+('GTM', 'Guatemala', 'GT'),
+('GUF', 'French Guiana', 'GF'),
+('GUM', 'Guam', 'GU'),
+('GUY', 'Guyana', 'GY'),
+('HKG', 'Hong Kong', 'HK'),
+('HMD', 'Heard Island and McDonald Islands', 'HM'),
+('HND', 'Honduras', 'HN'),
+('HRV', 'Croatia', 'HR'),
+('HTI', 'Haiti', 'HT'),
+('HUN', 'Hungary', 'HU'),
+('IDN', 'Indonesia', 'ID'),
+('IMN', 'Isle of Man', 'IM'),
+('IND', 'India', 'IN'),
+('IOT', 'British Indian Ocean Territory', 'IO'),
+('IRL', 'Ireland', 'IE'),
+('IRN', 'Iran', 'IR'),
+('IRQ', 'Iraq', 'IQ'),
+('ISL', 'Iceland', 'IS'),
+('ISR', 'Israel', 'IL'),
+('ITA', 'Italy', 'IT'),
+('JAM', 'Jamaica', 'JM'),
+('JEY', 'Jersey', 'JE'),
+('JOR', 'Jordan', 'JO'),
+('JPN', 'Japan', 'JP'),
+('KAZ', 'Kazakhstan', 'KZ'),
+('KEN', 'Kenya', 'KE'),
+('KGZ', 'Kyrgyzstan', 'KG'),
+('KHM', 'Cambodia', 'KH'),
+('KIR', 'Kiribati', 'KI'),
+('KNA', 'Saint Kitts and Nevis', 'KN'),
+('KOR', 'South Korea', 'KR'),
+('KWT', 'Kuwait', 'KW'),
+('LAO', 'Laos', 'LA'),
+('LBN', 'Lebanon', 'LB'),
+('LBR', 'Liberia', 'LR'),
+('LBY', 'Libya', 'LY'),
+('LCA', 'Saint Lucia', 'LC'),
+('LIE', 'Liechtenstein', 'LI'),
+('LKA', 'Sri Lanka', 'LK'),
+('LSO', 'Lesotho', 'LS'),
+('LTU', 'Lithuania', 'LT'),
+('LUX', 'Luxembourg', 'LU'),
+('LVA', 'Latvia', 'LV'),
+('MAC', 'Macao', 'MO'),
+('MAF', 'Saint Martin', 'MF'),
+('MAR', 'Morocco', 'MA'),
+('MCO', 'Monaco', 'MC'),
+('MDA', 'Moldova', 'MD'),
+('MDG', 'Madagascar', 'MG'),
+('MDV', 'Maldives', 'MV'),
+('MEX', 'Mexico', 'MX'),
+('MHL', 'Marshall Islands', 'MH'),
+('MKD', 'Macedonia', 'MK'),
+('MLI', 'Mali', 'ML'),
+('MLT', 'Malta', 'MT'),
+('MMR', 'Myanmar [Burma]', 'MM'),
+('MNE', 'Montenegro', 'ME'),
+('MNG', 'Mongolia', 'MN'),
+('MNP', 'Northern Mariana Islands', 'MP'),
+('MOZ', 'Mozambique', 'MZ'),
+('MRT', 'Mauritania', 'MR'),
+('MSR', 'Montserrat', 'MS'),
+('MTQ', 'Martinique', 'MQ'),
+('MUS', 'Mauritius', 'MU'),
+('MWI', 'Malawi', 'MW'),
+('MYS', 'Malaysia', 'MY'),
+('MYT', 'Mayotte', 'YT'),
+('NAM', 'Namibia', 'NA'),
+('NCL', 'New Caledonia', 'NC'),
+('NER', 'Niger', 'NE'),
+('NFK', 'Norfolk Island', 'NF'),
+('NGA', 'Nigeria', 'NG'),
+('NIC', 'Nicaragua', 'NI'),
+('NIU', 'Niue', 'NU'),
+('NLD', 'Netherlands', 'NL'),
+('NOR', 'Norway', 'NO'),
+('NPL', 'Nepal', 'NP'),
+('NRU', 'Nauru', 'NR'),
+('NZL', 'New Zealand', 'NZ'),
+('OMN', 'Oman', 'OM'),
+('PAK', 'Pakistan', 'PK'),
+('PAN', 'Panama', 'PA'),
+('PCN', 'Pitcairn Islands', 'PN'),
+('PER', 'Peru', 'PE'),
+('PHL', 'Philippines', 'PH'),
+('PLW', 'Palau', 'PW'),
+('PNG', 'Papua New Guinea', 'PG'),
+('POL', 'Poland', 'PL'),
+('PRI', 'Puerto Rico', 'PR'),
+('PRK', 'North Korea', 'KP'),
+('PRT', 'Portugal', 'PT'),
+('PRY', 'Paraguay', 'PY'),
+('PSE', 'Palestine', 'PS'),
+('PYF', 'French Polynesia', 'PF'),
+('QAT', 'Qatar', 'QA'),
+('REU', 'Réunion', 'RE'),
+('ROU', 'Romania', 'RO'),
+('RUS', 'Russia', 'RU'),
+('RWA', 'Rwanda', 'RW'),
+('SAU', 'Saudi Arabia', 'SA'),
+('SDN', 'Sudan', 'SD'),
+('SEN', 'Senegal', 'SN'),
+('SGP', 'Singapore', 'SG'),
+('SGS', 'South Georgia and the South Sandwich Islands', 'GS'),
+('SHN', 'Saint Helena', 'SH'),
+('SJM', 'Svalbard and Jan Mayen', 'SJ'),
+('SLB', 'Solomon Islands', 'SB'),
+('SLE', 'Sierra Leone', 'SL'),
+('SLV', 'El Salvador', 'SV'),
+('SMR', 'San Marino', 'SM'),
+('SOM', 'Somalia', 'SO'),
+('SPM', 'Saint Pierre and Miquelon', 'PM'),
+('SRB', 'Serbia', 'RS'),
+('SSD', 'South Sudan', 'SS'),
+('STP', 'São Tomé and Príncipe', 'ST'),
+('SUR', 'Suriname', 'SR'),
+('SVK', 'Slovakia', 'SK'),
+('SVN', 'Slovenia', 'SI'),
+('SWE', 'Sweden', 'SE'),
+('SWZ', 'Swaziland', 'SZ'),
+('SXM', 'Sint Maarten', 'SX'),
+('SYC', 'Seychelles', 'SC'),
+('SYR', 'Syria', 'SY'),
+('TCA', 'Turks and Caicos Islands', 'TC'),
+('TCD', 'Chad', 'TD'),
+('TGO', 'Togo', 'TG'),
+('THA', 'Thailand', 'TH'),
+('TJK', 'Tajikistan', 'TJ'),
+('TKL', 'Tokelau', 'TK'),
+('TKM', 'Turkmenistan', 'TM'),
+('TLS', 'East Timor', 'TL'),
+('TON', 'Tonga', 'TO'),
+('TTO', 'Trinidad and Tobago', 'TT'),
+('TUN', 'Tunisia', 'TN'),
+('TUR', 'Turkey', 'TR'),
+('TUV', 'Tuvalu', 'TV'),
+('TWN', 'Taiwan', 'TW'),
+('TZA', 'Tanzania', 'TZ'),
+('UGA', 'Uganda', 'UG'),
+('UKR', 'Ukraine', 'UA'),
+('UMI', 'U.S. Minor Outlying Islands', 'UM'),
+('URY', 'Uruguay', 'UY'),
+('USA', 'United States', 'US'),
+('UZB', 'Uzbekistan', 'UZ'),
+('VAT', 'Vatican City', 'VA'),
+('VCT', 'Saint Vincent and the Grenadines', 'VC'),
+('VEN', 'Venezuela', 'VE'),
+('VGB', 'British Virgin Islands', 'VG'),
+('VIR', 'U.S. Virgin Islands', 'VI'),
+('VNM', 'Vietnam', 'VN'),
+('VUT', 'Vanuatu', 'VU'),
+('WLF', 'Wallis and Futuna', 'WF'),
+('WSM', 'Samoa', 'WS'),
+('XKX', 'Kosovo', 'XK'),
+('YEM', 'Yemen', 'YE'),
+('ZAF', 'South Africa', 'ZA'),
+('ZMB', 'Zambia', 'ZM'),
+('ZWE', 'Zimbabwe', 'ZW');
 
 -- --------------------------------------------------------
 
@@ -218,20 +506,28 @@ INSERT INTO `Productos` (`ID`, `Precio`, `Nombre`, `Descripción`, `Titulo pagin
 --
 
 CREATE TABLE `Usuarios` (
-  `Nombre` varchar(200) NOT NULL,
-  `Correo` varchar(100) NOT NULL,
-  `Password` varchar(300) NOT NULL,
+  `ID` int NOT NULL,
+  `Nombre` varchar(150) NOT NULL,
+  `Correo` varchar(150) NOT NULL,
+  `Password` varchar(150) NOT NULL,
   `esNormal` tinyint(1) NOT NULL,
   `esModerador` tinyint(1) NOT NULL,
-  `esGestor` tinyint(1) NOT NULL
+  `esGestor` tinyint(1) NOT NULL,
+  `esSuperusuario` tinyint(1) NOT NULL,
+  `Genero` varchar(100) NOT NULL,
+  `Foto` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `Direccion` varchar(200) NOT NULL,
+  `CountryCode` char(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `Usuarios`
 --
 
-INSERT INTO `Usuarios` (`Nombre`, `Correo`, `Password`, `esNormal`, `esModerador`, `esGestor`) VALUES
-('Andrés Merlo', 'a.merlo.truji10@gmail.com', '1234', 1, 1, 1);
+INSERT INTO `Usuarios` (`ID`, `Nombre`, `Correo`, `Password`, `esNormal`, `esModerador`, `esGestor`, `esSuperusuario`, `Genero`, `Foto`, `Direccion`, `CountryCode`) VALUES
+(1, 'Andrés', 'a.merlo.truji10@gmail.com', 'asd', 1, 1, 1, 1, 'Hombre', 'static/images/ZDVORKB2B4GUPIPWBC3SN5IJXI_1.jpg', 'Mi casa', 'ARG'),
+(6, 'trollface meme', 'trollface', 'asd', 1, 1, 1, 1, 'Hombre', 'static/images/trollface_idUser6.jpg', 'asd', 'YEM'),
+(7, 'ddd', 'ddd', 'asd', 1, 1, 1, 1, 'Prefiero no decirlo', 'static/images/trollface_idUser7.jpg', 'asd', 'YEM');
 
 --
 -- Indexes for dumped tables
@@ -242,20 +538,36 @@ INSERT INTO `Usuarios` (`Nombre`, `Correo`, `Password`, `esNormal`, `esModerador
 --
 ALTER TABLE `Comentario`
   ADD PRIMARY KEY (`ID`),
-  ADD KEY `ID_Producto` (`ID_Producto`);
+  ADD KEY `ID_Producto` (`ID_Producto`),
+  ADD KEY `ID_Usuario` (`ID_Usuario`);
+
+--
+-- Indexes for table `Etiquetas`
+--
+ALTER TABLE `Etiquetas`
+  ADD PRIMARY KEY (`ID_Producto`,`Nombre`);
 
 --
 -- Indexes for table `Fabricante`
 --
 ALTER TABLE `Fabricante`
   ADD PRIMARY KEY (`Nombre`),
-  ADD KEY `Nombre` (`Nombre`);
+  ADD KEY `Nombre` (`Nombre`),
+  ADD KEY `Nombre_2` (`Nombre`);
 
 --
 -- Indexes for table `Imagenes`
 --
 ALTER TABLE `Imagenes`
-  ADD PRIMARY KEY (`ID_Producto`,`Ruta Imagen`);
+  ADD PRIMARY KEY (`ID_Imagen`),
+  ADD KEY `ID_Producto` (`ID_Producto`);
+
+--
+-- Indexes for table `Pais`
+--
+ALTER TABLE `Pais`
+  ADD PRIMARY KEY (`CountryCode`),
+  ADD KEY `CountryCode` (`CountryCode`);
 
 --
 -- Indexes for table `Palabrota`
@@ -268,13 +580,18 @@ ALTER TABLE `Palabrota`
 --
 ALTER TABLE `Productos`
   ADD PRIMARY KEY (`ID`),
-  ADD KEY `Nombre_Fabricante` (`Nombre_Fabricante`);
+  ADD UNIQUE KEY `Nombre` (`Nombre`),
+  ADD UNIQUE KEY `Nombre_2` (`Nombre`),
+  ADD KEY `Nombre_Fabricante` (`Nombre_Fabricante`),
+  ADD KEY `Nombre_Fabricante_2` (`Nombre_Fabricante`);
 
 --
 -- Indexes for table `Usuarios`
 --
 ALTER TABLE `Usuarios`
-  ADD PRIMARY KEY (`Correo`);
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `Correo` (`Correo`),
+  ADD KEY `CountryCode` (`CountryCode`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -284,13 +601,25 @@ ALTER TABLE `Usuarios`
 -- AUTO_INCREMENT for table `Comentario`
 --
 ALTER TABLE `Comentario`
-  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+
+--
+-- AUTO_INCREMENT for table `Imagenes`
+--
+ALTER TABLE `Imagenes`
+  MODIFY `ID_Imagen` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- AUTO_INCREMENT for table `Productos`
 --
 ALTER TABLE `Productos`
-  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
+
+--
+-- AUTO_INCREMENT for table `Usuarios`
+--
+ALTER TABLE `Usuarios`
+  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables
@@ -300,19 +629,38 @@ ALTER TABLE `Productos`
 -- Constraints for table `Comentario`
 --
 ALTER TABLE `Comentario`
-  ADD CONSTRAINT `Comentario_ibfk_1` FOREIGN KEY (`ID_Producto`) REFERENCES `Productos` (`ID`);
+  ADD CONSTRAINT `Comentario_ibfk_1` FOREIGN KEY (`ID_Producto`) REFERENCES `Productos` (`ID`) ON DELETE CASCADE ON UPDATE RESTRICT,
+  ADD CONSTRAINT `Comentario_ibfk_2` FOREIGN KEY (`ID_Usuario`) REFERENCES `Usuarios` (`ID`);
+
+--
+-- Constraints for table `Etiquetas`
+--
+ALTER TABLE `Etiquetas`
+  ADD CONSTRAINT `Etiquetas_ibfk_1` FOREIGN KEY (`ID_Producto`) REFERENCES `Productos` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `Fabricante`
+--
+ALTER TABLE `Fabricante`
+  ADD CONSTRAINT `delete_cascada_fabricante` FOREIGN KEY (`Nombre`) REFERENCES `Fabricante` (`Nombre`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `Imagenes`
 --
 ALTER TABLE `Imagenes`
-  ADD CONSTRAINT `Imagenes_ibfk_1` FOREIGN KEY (`ID_Producto`) REFERENCES `Productos` (`ID`);
+  ADD CONSTRAINT `Imagenes_ibfk_1` FOREIGN KEY (`ID_Producto`) REFERENCES `Productos` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `Productos`
 --
 ALTER TABLE `Productos`
-  ADD CONSTRAINT `Productos_ibfk_1` FOREIGN KEY (`Nombre_Fabricante`) REFERENCES `Fabricante` (`Nombre`);
+  ADD CONSTRAINT `Productos_ibfk_1` FOREIGN KEY (`Nombre_Fabricante`) REFERENCES `Fabricante` (`Nombre`) ON DELETE CASCADE ON UPDATE RESTRICT;
+
+--
+-- Constraints for table `Usuarios`
+--
+ALTER TABLE `Usuarios`
+  ADD CONSTRAINT `Usuarios_ibfk_1` FOREIGN KEY (`CountryCode`) REFERENCES `Pais` (`CountryCode`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

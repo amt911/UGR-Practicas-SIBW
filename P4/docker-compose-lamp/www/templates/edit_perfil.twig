@@ -27,12 +27,10 @@ HACER QUE CUANDO UNO SE DEJE VACIO, DIGA CUALES SON OBLIGATORIOS<br/><br/>-->
 
             {% elseif Tipo == 4 %}
             <label>Cambiar pais</label><br/>
-            <select name="Pais">
-                <option>patata</option>
-                <option>patata2</option>
-                <option>patata3</option>
-                <option>patata4</option>
-                <option>patata5</option>
+            <select name="CountryCode">
+                {% for i in Paises %}
+                    <option value="{{ i["CountryCode"] }}">{{ i["CountryName"] }}</option>    
+                {% endfor %}
             </select>
 
             {% elseif Tipo == 5 %}
