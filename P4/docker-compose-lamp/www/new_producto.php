@@ -41,8 +41,18 @@ if($_SERVER["REQUEST_METHOD"]=="POST" and isset($_SESSION["usuario"]) and $_SESS
             //var_dump($con->existeProductoNombre($nombre));
             if(!$con->existeProductoNombre($nombre)){
             $id=$con->insertProducto($_SESSION["usuario"]["ID"], $nombre, $precio, $descripcion, $tituloTab, $fabricante, $_FILES["imagenes"]);
-            
-            //var_dump($_FILES);
+
+            if(!empty($_POST["etiquetas"]) and isset($_POST["etiquetas"])){
+                $etiquetas=$_POST["etiquetas"];
+                //eliminar espacios
+                $etiquetas=str_replace(" ", "", $etiquetas);
+
+                //separar por comas y obtener un array
+                $etiquetas=explode(",", $etiquetas);
+
+                //var_dump($etiquetas);
+                $con->insertEtiquetas($_SESSION["usuario"]["ID"], $id, $etiquetas);
+            }
 
             if(empty($_FILES["imagenes"]["name"][0]) and count($_FILES["imagenes"]["name"])==1){
                 header("Location: $back");

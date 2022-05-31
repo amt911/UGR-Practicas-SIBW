@@ -38,6 +38,7 @@
     }
 
     $imagenes=$con->getImagenes($id);
+    $etiquetas=$con->getEtiquetas($id);
 
     //Parte de POST
     if($_SERVER["REQUEST_METHOD"]=="POST" and isset($_SESSION["usuario"])){
@@ -57,13 +58,34 @@
                 }
             }
 
+            $etiquetasAntiguas=$con->getEtiquetas($id);
+
+            if($etiquetasAntiguas!=false){
+                for($i=0; $i<count($etiquetasAntiguas); $i++){
+                    if(isset($_POST["eliminar-etiqueta_".$etiquetasAntiguas[$i]["Nombre"]]) and !empty($_POST["eliminar-etiqueta_".$etiquetasAntiguas[$i]["Nombre"]]) and $_POST["eliminar-etiqueta_".$etiquetasAntiguas[$i]["Nombre"]]=="on"){
+                        $con->deleteEtiqueta($_SESSION["usuario"]["ID"], $_POST["product-id"], $etiquetasAntiguas[$i]["Nombre"]);
+                    }
+                }
+            }
+
+            if(!empty($_POST["etiquetas"]) and isset($_POST["etiquetas"])){
+                $etiquetas=$_POST["etiquetas"];
+                //eliminar espacios
+                $etiquetas=str_replace(" ", "", $etiquetas);
+
+                //separar por comas y obtener un array
+                $etiquetas=explode(",", $etiquetas);
+
+                //var_dump($etiquetas);
+                $con->insertEtiquetas($_SESSION["usuario"]["ID"], $id, $etiquetas);
+            }            
+
             $con->cambiarDatosProducto($_SESSION["usuario"]["ID"], $_POST["product-id"], $_POST["precio"], $_POST["nombre"], $_POST["descripcion"], $_POST["titulo-top"], $_POST["fabricante"], $_FILES["imagenes"]);
 
             $nroImg=$con->getImageCount($id);
 
             $back=$_POST["back"];
 
-            //var_dump($_POST);
 
             if($nroImg>0){
                 header("Location: comentarios_imagen_form.php?id=".$id."&back=".$back);
@@ -85,6 +107,7 @@
         "EsGestor" => $esGestor,
         "Producto" => $producto,
         "Fabricantes" => $fabricantes,
-        "Imagenes" => $imagenes
+        "Imagenes" => $imagenes,
+        "Etiquetas" => $etiquetas,
     ]);    
 ?>

@@ -176,6 +176,14 @@
             </div>
         </div>
     {% endblock %}
+    
+    <div id="etiquetas-container">
+            {% for aux in Etiquetas %}
+                <div class="etiqueta">
+                    {{aux["Nombre"]}}
+                </div>
+            {% endfor %}
+    </div>
 {% endblock %}
 
 

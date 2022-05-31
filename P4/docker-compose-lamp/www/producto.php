@@ -36,6 +36,7 @@
     $comentarios=$con->getAllComments($id);
     $palabrotas=$con->getPalabrotas();
     $imagenes=$con->getImagenes($id);
+    $etiquetas=$con->getEtiquetas($id);
 
     //Si no ha encontrado ninguna imagen se pone un placeholder
     if($imagenes==false){
@@ -98,6 +99,7 @@
         "User" => $usuario,
         "URL" => "producto.php?p=",
         "Back" => $id,
-        "Error" => $error
+        "Error" => $error,
+        "Etiquetas" => $etiquetas,
     ]);
 ?>

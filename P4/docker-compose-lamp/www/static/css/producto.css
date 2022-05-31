@@ -421,3 +421,18 @@ tr.dark{
 body div{
     border: solid 1px red;
 }
+
+#etiquetas-container{
+    margin-top: 12px;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: max-content;
+    gap: 12px;
+}
+
+#etiquetas-container >div{
+    border-radius: 0.5vh;
+    /*border: solid 1px black;    */
+    background-color: #aed581;    
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+}

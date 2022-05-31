@@ -46,14 +46,31 @@
     </select>
     <br/><br/>
 
+    <label>Etiquetas (separadas por coma y sin espacio)</label><br/>
+    <input type="text" name="etiquetas"/>
+    <br/><br/>
+
+    {% if Etiquetas != false %}
+    <label>Eliminar etiquetas</label>
+    <br/>
+        <div id="del-etiquetas-container">
+            {% for aux in Etiquetas %}
+                <div>
+                    <input type="checkbox" name="eliminar-etiqueta_{{aux["Nombre"]}}"/>
+                    <label>{{ aux["Nombre"] }}</label>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
     <!--Poner para añadir/eliminar imagenes-->
     <label>Añadir imágenes</label><br/>
     <input type="file" name="imagenes[]" multiple>
     <br/><br/>
 
     {# Hacer un if para que si no haya imagenes no aparezca #}
-    <label>Eliminar imágenes (seleccione para eliminar)</label><br/>
     {% if Imagenes != false %}
+    <label>Eliminar imágenes (seleccione para eliminar)</label><br/>
         <div class="foto-eliminar-container">
             {% for aux in Imagenes %}
                 <div class="foto-eliminar">

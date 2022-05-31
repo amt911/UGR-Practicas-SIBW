@@ -771,6 +771,49 @@ class GestorBD{
 
         return $productos;
     }
+
+    function insertEtiquetas($idUsuario, $idProducto, $etiquetas){
+        //$etiquetas=explode(",", $etiquetas);
+        $usuario=$this->getUsuario($idUsuario);
+    
+        if($usuario["ID"]!=-1 and $usuario["esGestor"]==1){
+            for($i=0; $i<count($etiquetas); $i++){
+                $etiqueta=trim($etiquetas[$i]);
+    
+                if($etiqueta!=""){
+                    $prepare=$this->mysqli->prepare("INSERT INTO Etiquetas (ID_Producto, Nombre) VALUES (?,?)");
+                    $prepare->bind_param("is", $idProducto, $etiqueta);
+                    $prepare->execute();
+                }
+            }
+        }
+    }
+    
+    function getEtiquetas($idProducto){
+        $etiquetas=false;
+    
+        $prepare=$this->mysqli->prepare("SELECT Nombre FROM Etiquetas WHERE ID_Producto=?");
+        $prepare->bind_param("i", $idProducto);
+        $prepare->execute();
+    
+        $query=$prepare->get_result();
+    
+        if($query->num_rows > 0){
+            $etiquetas=$query->fetch_all(MYSQLI_ASSOC);
+        }
+    
+        return $etiquetas;
+    } 
+    
+    function deleteEtiqueta($idUsuario, $idProducto, $etiqueta){
+        $usuario=$this->getUsuario($idUsuario);
+    
+        if($usuario["ID"]!=-1 and $usuario["esGestor"]==1){
+            $prepare=$this->mysqli->prepare("DELETE FROM Etiquetas WHERE ID_Producto=? AND Nombre=?");
+            $prepare->bind_param("is", $idProducto, $etiqueta);
+            $prepare->execute();
+        }
+    }
 }
 //Para getComentariosConProducto
 //SELECT Productos.Nombre,Comentario.ID,Usuarios.Nombre,Correo,Fecha,Texto FROM Comentario,Usuarios,Productos WHERE Comentario.ID_Usuario=Usuarios.ID AND Productos.ID=Comentario.ID_Producto ORDER BY Comentario.ID DESC;
