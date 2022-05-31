@@ -23,7 +23,7 @@
     for($i=0; $i<count($productos); $i++){
         $imagen=$con->getImagenes($productos[$i]["ID"])[0]["Ruta Imagen"];
         if($imagen==false)
-            $imagen="placeholder.png";
+            $imagen="static/images/placeholder.png";
             
         $productos[$i]["Imagenes"]=$imagen;
     }

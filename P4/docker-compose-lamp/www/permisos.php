@@ -45,6 +45,7 @@
         "Menu" => $menu,
         "Errores" => $errores,
         "ShowForm" => $showForm,
-        "Usuarios" => $usuarios
+        "Usuarios" => $usuarios,
+        "Yo" => $_SESSION["usuario"]
     ]);    
 ?>

@@ -135,23 +135,6 @@ class GestorBD{
     }
 
     function getAllCommentsTodosProductos(){
-        /*
-        $res=false;
-
-        $this->mysqli->query("SET lc_time_names='es_ES';");
-        //$prepare=$this->mysqli->prepare("SELECT ID,Nombre,DATE_FORMAT(Fecha, '%d de %M del %Y, %k:%i') AS Fecha,Texto,Correo FROM Comentario WHERE ID_Producto=? ORDER BY ID DESC");
-        //$prepare=$this->mysqli->prepare("SELECT Comentario.ID,Nombre,Correo,Fecha,Texto FROM Comentario,Usuarios WHERE Comentario.ID_Usuario=Usuarios.ID ORDER BY Comentario.ID DESC");
-
-//SELECT Productos.Nombre,Comentario.ID,Usuarios.Nombre,Correo,Fecha,Texto FROM Comentario,Usuarios,Productos WHERE Comentario.ID_Usuario=Usuarios.ID AND Productos.ID=Comentario.ID_Producto ORDER BY Productos.ID,Comentario.Fecha DESC;
-        $prepare=$this->mysqli->prepare("SELECT Productos.Nombre AS Nombre_Producto,Comentario.ID,Usuarios.Nombre,Correo,Fecha,Texto FROM Comentario,Usuarios,Productos WHERE Comentario.ID_Usuario=Usuarios.ID AND Productos.ID=Comentario.ID_Producto ORDER BY Productos.ID,Comentario.Fecha DESC");
-        //$prepare->bind_param("i", $idProducto);
-        $prepare->execute();
-
-        $query=$prepare->get_result(); 
-
-        if($query->num_rows > 0)
-            $res=$query->fetch_all(MYSQLI_ASSOC);
-*/
         $productos=$this->getAllProducts();
 
         $count=count($productos);
@@ -167,6 +150,37 @@ class GestorBD{
         //return $res;
         return $productos;
     }    
+
+    function searchComentariosIDProducto($idProducto, $texto){
+        $res=false;
+
+        $prepare=$this->mysqli->prepare("SELECT * FROM Comentario WHERE ID_Producto=? AND Texto LIKE ?");
+        $keywordSQL="%".$texto."%";
+        $prepare->bind_param("is", $idProducto, $keywordSQL);
+        $prepare->execute();
+
+        $query=$prepare->get_result(); 
+
+        if($query->num_rows > 0)
+            $res=$query->fetch_all(MYSQLI_ASSOC);
+
+        return $res;
+    }
+
+    function searchComentarios($texto){
+        $productos=$this->getAllProducts();
+
+        $count=count($productos);
+        for($i=0; $i<$count; $i++){
+            $productos[$i]["Comentarios"]=$this->searchComentariosIDProducto($productos[$i]["ID"], $texto);
+
+            if(!isset($productos[$i]["Comentarios"]) or empty($productos[$i]["Comentarios"])){
+                unset($productos[$i]);
+            }            
+        }
+
+        return $productos;
+    }
 
 
     private function getNumFilasProducto(){
@@ -596,15 +610,14 @@ class GestorBD{
     }
 
     function registrarUsuario($correo, $password, $nombre, $direccion, $genero, $foto, $pais){
-        //var_dump($foto);
         if($foto["error"]==4){
-            $prepare=$this->mysqli->prepare("INSERT INTO Usuarios (Nombre, Correo, Pais, Genero, Direccion, Password, esNormal, esModerador, esGestor, esSuperusuario) VALUES (?,?,?,?,?,?,1,0,0,0)");
+            $prepare=$this->mysqli->prepare("INSERT INTO Usuarios (Nombre, Correo, CountryCode, Genero, Direccion, Password, esNormal, esModerador, esGestor, esSuperusuario) VALUES (?,?,?,?,?,?,1,0,0,0)");
             $prepare->bind_param("ssssss", $nombre, $correo, $pais, $genero, $direccion, $password);
             $prepare->execute();
         }
         else{
             //move_uploaded_file($foto["tmp_name"], "static/images/".$foto["name"]);
-            $prepare=$this->mysqli->prepare("INSERT INTO Usuarios (Nombre, Correo, Pais, Genero, Direccion, Password, esNormal, esModerador, esGestor, esSuperusuario) VALUES (?,?,?,?,?,?,1,0,0,0)");
+            $prepare=$this->mysqli->prepare("INSERT INTO Usuarios (Nombre, Correo, CountryCode, Genero, Direccion, Password, esNormal, esModerador, esGestor, esSuperusuario) VALUES (?,?,?,?,?,?,1,0,0,0)");
             //$dirFoto="static/images/".$foto["name"];
             
             $prepare->bind_param("sssssss", $nombre, $correo, $pais, $genero, $direccion, $password);
@@ -612,7 +625,7 @@ class GestorBD{
 
 
             //Se separa de la foto la extension y el nombre
-            if($foto["error"]!=4){
+            //if($foto["error"]!=4){
                 //Ahora se obtiene el usuario a partir del correo pasado por parametro, para poder insertar la foto con su id
                 $idUsuario=$this->getUsuarioFromCorreo($correo)["ID"];
 
@@ -627,7 +640,7 @@ class GestorBD{
                 $prepare=$this->mysqli->prepare("UPDATE Usuarios SET Foto=? WHERE ID=?");
                 $prepare->bind_param("si", $directorioNuevaFoto, $idUsuario);
                 $prepare->execute();
-            }
+            //}
         }
     }
 
@@ -851,7 +864,7 @@ class GestorBD{
     }
 
     function getPais($idPais){
-        var_dump($idPais);
+        //var_dump($idPais);
         $pais=false;
         
         $prepare=$this->mysqli->prepare("SELECT * FROM Pais WHERE CountryCode=?");

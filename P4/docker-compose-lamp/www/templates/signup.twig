@@ -36,12 +36,11 @@
 
     <br/><br/>
 
-    <label>Género</label><br/>
+    <label>País</label><br/>
     <select class="maximizado" name="pais">
-        <option>patata</option>
-        <option>patata2</option>
-        <option>patata3</option>
-        <option>patata5</option>
+        {% for i in Paises %}
+            <option value="{{i.CountryCode}}">{{i.CountryName}}</option>
+        {% endfor %}
     </select>
 
     <br/><br/>

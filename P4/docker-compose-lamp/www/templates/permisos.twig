@@ -19,7 +19,9 @@
     <label>Usuario</label>
     <select name="usuario">
         {% for i in Usuarios %}
-            <option value="{{i["ID"]}}">{{i["Correo"]}} - {{i["Nombre"]}} </option>
+            {% if Yo["ID"] != i["ID"] %}
+                <option value="{{i["ID"]}}">{{i["Correo"]}} - {{i["Nombre"]}} </option>
+            {% endif %}
         {% endfor %}
     </select><br/><br/>
 

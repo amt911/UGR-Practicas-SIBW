@@ -16,9 +16,11 @@
     background-color: white;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
     width: fit-content;
+    max-width: 420px;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 12px;
+    word-break: break-word;
 }
 
 #logout-div{
@@ -46,6 +48,10 @@
     text-align: center;
 }
 
-.break{
-    word-break: break-word;
+.pais-foto-container{
+    display: grid;
+    /*grid-template-columns: repeat(3, max-content);*/
+    grid-template-columns: repeat(2, auto) 42px;
+    /*grid-auto-rows: 20px;*/
+    gap: 3px;
 }

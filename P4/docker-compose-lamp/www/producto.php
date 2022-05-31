@@ -40,7 +40,7 @@
 
     //Si no ha encontrado ninguna imagen se pone un placeholder
     if($imagenes==false){
-        $imagenes=array(array("Ruta Imagen"=>"placeholder.png", "Descripcion"=>"placeholder"));
+        $imagenes=array(array("Ruta Imagen"=>"static/images/placeholder.png", "Descripcion"=>"placeholder"));
     }
 
     //Para lanzar la version imprimible o no

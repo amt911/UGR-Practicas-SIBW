@@ -25,7 +25,7 @@
 
     <div id="info-texto">
         <div>
-            <div class="break">
+            <div>
                 <strong>Nombre:</strong> {{ Credenciales["Nombre"] }}
             </div>
 
@@ -35,7 +35,7 @@
         </div>
 
         <div>
-            <div class="break">
+            <div>
                 <strong>Correo:</strong> {{ Credenciales["Correo"] }}
             </div>
 
@@ -45,15 +45,13 @@
         </div>
 
         <div>
-            <div class="break">
-                <strong>Pais:</strong> 
-                <div class="pais-foto-container">
-                    <div>
-                    {{ Pais["CountryName"] }}
-                    </div>
-                    <div>
-                        <img src="static/images/flags/{{ Pais["Code"] }}.PNG"/>
-                    </div>
+            <div class="pais-foto-container">
+                <div><strong>Pais:</strong></div>
+                <div>
+                {{ Pais["CountryName"] }}
+                </div>
+                <div>
+                    <img src="static/images/flags/{{ Pais["Code"] }}.PNG"/>
                 </div>
             </div>
 
@@ -63,7 +61,7 @@
         </div>
 
         <div>
-            <div class="break">
+            <div>
                 <strong>Género:</strong> {{ Credenciales["Genero"] }}
             </div>
 
@@ -73,7 +71,7 @@
         </div>
 
         <div>
-            <div class="break">
+            <div>
                 <strong>Dirección de envío:</strong> {{ Credenciales["Direccion"] }}
             </div>
 
@@ -83,7 +81,7 @@
         </div>
 
         <div>
-            <div class="break">
+            <div>
                 <strong>Tipo de cuenta:</strong> {{ Tipo }}
             </div>
 

@@ -14,11 +14,12 @@
     if(isset($_SESSION["usuario"]) and $_SESSION["usuario"]["esModerador"]==1){
         $showForm=true;
 
-        //if($_SERVER["REQUEST_METHOD"]=="POST"){
-        //    $res=$con->searchComentarios($_POST["keyword"]);
-        //}
-
-        $res=$con->getAllCommentsTodosProductos();
+        if($_SERVER["REQUEST_METHOD"]=="POST"){
+            $res=$con->searchComentarios($_POST["keyword"]);
+        }
+        else{
+            $res=$con->getAllCommentsTodosProductos();
+        }
     }
     else{
         $errores[]="No tienes permisos para ver esta página";
