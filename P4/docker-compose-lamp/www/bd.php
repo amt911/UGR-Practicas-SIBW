@@ -329,18 +329,25 @@ class GestorBD{
     }
 
     function comprobarCredenciales($correo, $pass){
-        $res=false;
+        $res="";
 
-        $prepare=$this->mysqli->prepare("SELECT COUNT(*) FROM Usuarios WHERE Correo=? AND Password=?");
-        $prepare->bind_param("ss", $correo, $pass);
+        //$prepare=$this->mysqli->prepare("SELECT COUNT(*) FROM Usuarios WHERE Correo=? AND Password=?");
+        //$prepare->bind_param("ss", $correo, $pass);
+        //$prepare->execute();
+
+        $prepare=$this->mysqli->prepare("SELECT * FROM Usuarios WHERE Correo=?");
+        $prepare->bind_param("s", $correo);
         $prepare->execute();
 
         $query=$prepare->get_result();
 
-        if($query->fetch_assoc()["COUNT(*)"]==1)
-            $res=true;
+        if($query->num_rows > 0){
+            $res=$query->fetch_assoc()["Password"];
+        }
+        else
+            return false;
 
-        return $res;
+        return password_verify($pass, $res);
     }
 
     function getNombre($correo){
@@ -502,6 +509,9 @@ class GestorBD{
         $usuario=$this->getUsuario($id);
 
         if($usuario["ID"]!=-1 and in_array($campo, $lista, true)){
+            if($campo=="Password")
+                $nuevoNombre=password_hash($nuevoNombre, PASSWORD_DEFAULT);
+            
             $prepare=$this->mysqli->prepare("UPDATE Usuarios SET $campo=? WHERE ID=?");
             $prepare->bind_param("si", $nuevoNombre, $id);
             $prepare->execute();
@@ -610,6 +620,7 @@ class GestorBD{
     }
 
     function registrarUsuario($correo, $password, $nombre, $direccion, $genero, $foto, $pais){
+        $password=password_hash($password, PASSWORD_DEFAULT);
         if($foto["error"]==4){
             $prepare=$this->mysqli->prepare("INSERT INTO Usuarios (Nombre, Correo, CountryCode, Genero, Direccion, Password, esNormal, esModerador, esGestor, esSuperusuario) VALUES (?,?,?,?,?,?,1,0,0,0)");
             $prepare->bind_param("ssssss", $nombre, $correo, $pais, $genero, $direccion, $password);
@@ -620,7 +631,7 @@ class GestorBD{
             $prepare=$this->mysqli->prepare("INSERT INTO Usuarios (Nombre, Correo, CountryCode, Genero, Direccion, Password, esNormal, esModerador, esGestor, esSuperusuario) VALUES (?,?,?,?,?,?,1,0,0,0)");
             //$dirFoto="static/images/".$foto["name"];
             
-            $prepare->bind_param("sssssss", $nombre, $correo, $pais, $genero, $direccion, $password);
+            $prepare->bind_param("ssssss", $nombre, $correo, $pais, $genero, $direccion, $password);
             $prepare->execute();
 
 

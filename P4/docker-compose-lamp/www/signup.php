@@ -2,6 +2,8 @@
     require_once "/usr/local/lib/php/vendor/autoload.php";
     include("bd.php");
 
+    session_start();
+
     $con=new GestorBD();
     $errores=array();
 
@@ -11,7 +13,6 @@
         $back=$_GET["back"];
 
     function comprobarCorreo($correo){
-        ///^([0-9a-z\.\_]+)+@{1}([0-9a-z]+\.)+[0-9a-z]+$/i
         if(preg_match("/^([0-9a-z\.\_]+)+@{1}([0-9a-z]+\.)+[0-9a-z]+$/i",$correo)===1)
             return true;
         else
@@ -45,7 +46,6 @@
                     if(comprobarCorreo($correo)){
                         if(!$con->estaRegistrado($correo)){
                             $con->registrarUsuario($correo, $contra, $nombre, $dir, $genero, $foto, $pais);
-                            session_start();
                             $_SESSION["usuario"]=$con->getUsuarioFromCorreo($correo);
                             header("Location: $back");
                             exit();
