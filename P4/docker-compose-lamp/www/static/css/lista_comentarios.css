@@ -86,4 +86,12 @@ h2, h3{
     display: grid;
     grid-auto-rows: max-content;
     grid-auto-columns: 100%;
+    gap: 12px;
+}
+
+.producto-comentarios-container{
+    display: grid;
+    grid-auto-flow: row;
+    border-radius: 0.5vh;
+    background-color: #fff59d;
 }

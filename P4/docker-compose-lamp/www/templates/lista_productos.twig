@@ -58,7 +58,9 @@
                     {{ aux["Precio"]|number_format(2, ",", "") }}€
                 </div>
                 <div>
-                    hashtag 1 2 3 4 5 6 7 8 89 esto va en un bucle
+                    {% for j in aux["Etiquetas"] %}
+                        {{ j["Nombre"] }}
+                    {% endfor %}
                 </div>
             </div>
 

@@ -135,11 +135,15 @@ class GestorBD{
     }
 
     function getAllCommentsTodosProductos(){
+        /*
         $res=false;
 
         $this->mysqli->query("SET lc_time_names='es_ES';");
         //$prepare=$this->mysqli->prepare("SELECT ID,Nombre,DATE_FORMAT(Fecha, '%d de %M del %Y, %k:%i') AS Fecha,Texto,Correo FROM Comentario WHERE ID_Producto=? ORDER BY ID DESC");
-        $prepare=$this->mysqli->prepare("SELECT Comentario.ID,Nombre,Correo,Fecha,Texto FROM Comentario,Usuarios WHERE Comentario.ID_Usuario=Usuarios.ID ORDER BY Comentario.ID DESC");
+        //$prepare=$this->mysqli->prepare("SELECT Comentario.ID,Nombre,Correo,Fecha,Texto FROM Comentario,Usuarios WHERE Comentario.ID_Usuario=Usuarios.ID ORDER BY Comentario.ID DESC");
+
+//SELECT Productos.Nombre,Comentario.ID,Usuarios.Nombre,Correo,Fecha,Texto FROM Comentario,Usuarios,Productos WHERE Comentario.ID_Usuario=Usuarios.ID AND Productos.ID=Comentario.ID_Producto ORDER BY Productos.ID,Comentario.Fecha DESC;
+        $prepare=$this->mysqli->prepare("SELECT Productos.Nombre AS Nombre_Producto,Comentario.ID,Usuarios.Nombre,Correo,Fecha,Texto FROM Comentario,Usuarios,Productos WHERE Comentario.ID_Usuario=Usuarios.ID AND Productos.ID=Comentario.ID_Producto ORDER BY Productos.ID,Comentario.Fecha DESC");
         //$prepare->bind_param("i", $idProducto);
         $prepare->execute();
 
@@ -147,8 +151,21 @@ class GestorBD{
 
         if($query->num_rows > 0)
             $res=$query->fetch_all(MYSQLI_ASSOC);
+*/
+        $productos=$this->getAllProducts();
 
-        return $res;
+        $count=count($productos);
+        for($i=0; $i<$count; $i++){
+            $productos[$i]["Comentarios"]=$this->getAllComments($productos[$i]["ID"]);
+
+            if(!isset($productos[$i]["Comentarios"]) or empty($productos[$i]["Comentarios"])){
+                unset($productos[$i]);
+            }
+        }
+
+        
+        //return $res;
+        return $productos;
     }    
 
 
@@ -767,6 +784,9 @@ class GestorBD{
                 $productos[$i]["Imagen"]=$aux[0]["Ruta Imagen"];
             else
                 $productos[$i]["Imagen"]="static/images/placeholder.png";
+
+            //Se insertan todas sus etiquetas
+            $productos[$i]["Etiquetas"]=$this->getEtiquetas($productos[$i]["ID"]);
         }
 
         return $productos;

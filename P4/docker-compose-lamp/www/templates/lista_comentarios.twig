@@ -32,50 +32,44 @@
 
     
     <div id="comentarios-submit-container">
-    {% for aux in Comentarios %}
-    {#
-        <tr>
-            <td>{{ aux.ID }}</td>
-            <td>{{ aux.Nombre }}</td>
-            <td>{{ aux.Correo }}</td>
-            <td>{{ aux.Texto }}</td>
-            <td>{{ aux.Fecha }}</td>
-            <td>
-                <a href="edit.php?back=lista_comentarios.php&id={{ aux.ID }}">Editar</a>
-            </td>            
-            <td>
-                <a href="delete.php?back=lista_comentarios.php&id={{ aux.ID }}">Borrar</a>
-            </td>
-        </tr>
-        #}
-
-        <div class="comentario-container">
-            <div class="mod-comentario-container">
-                <div class="editar">
-                    <a href="edit.php?back={{ Back }}&id={{ aux["ID"] }}">
-                        <img class="imagen ref-editar" src="static/images/edit.png" alt="editar"/>
-                    </a>
+    {% for aux in Productos %}
+        <div class="producto-comentarios-container">
+            <div>
+                <h2>{{ aux["Nombre"] }}</h2>
+            </div>
+            
+            <div>
+            {% for j in aux["Comentarios"] %}
+            <div class="comentario-container">
+                <div class="mod-comentario-container">
+                    <div class="editar">
+                        <a href="edit.php?back={{ Back }}&id={{ j["ID"] }}">
+                            <img class="imagen ref-editar" src="static/images/edit.png" alt="editar"/>
+                        </a>
+                    </div>
+                    <div class="borrar">
+                        <a href="delete.php?back={{ Back }}&id={{ j["ID"] }}">
+                            <img class="imagen ref-borrar" src="static/images/delete.png" alt="borrar" onclick="return confirmacion();"/>
+                        </a>
+                    </div>
                 </div>
-                <div class="borrar">
-                    <a href="delete.php?back={{ Back }}&id={{ aux["ID"] }}">
-                        <img class="imagen ref-borrar" src="static/images/delete.png" alt="borrar" onclick="return confirmacion();"/>
-                    </a>
-                </div>
-            </div>
 
-            <div class="nombre-comentario">
-                <h4>{{ aux["Nombre"] }}</h4>
+                <div class="nombre-comentario">
+                    <h4>{{ j["Nombre"] }}</h4>
+                </div>
+                <div class="comentario-email">
+                    {{ j["Correo"] }}
+                </div>
+                <div class="fecha">
+                    {{ j["Fecha"] }}<!--12 de mayo del 2021, 13:37-->
+                </div>
+                <div class="contenido-comentario">
+                    {{ j["Texto"] }}
+                </div>
+            </div>   
+            {% endfor %}
             </div>
-            <div class="comentario-email">
-                {{ aux["Correo"] }}
-            </div>
-            <div class="fecha">
-                {{ aux["Fecha"] }}<!--12 de mayo del 2021, 13:37-->
-            </div>
-            <div class="contenido-comentario">
-                {{ aux["Texto"] }}
-            </div>
-        </div>   
+        </div>
     {% endfor %}
     </div>
 {#</table>#}
