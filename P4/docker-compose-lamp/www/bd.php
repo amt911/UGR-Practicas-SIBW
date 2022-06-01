@@ -122,7 +122,7 @@ class GestorBD{
 
         $this->mysqli->query("SET lc_time_names='es_ES';");
         //$prepare=$this->mysqli->prepare("SELECT ID,Nombre,DATE_FORMAT(Fecha, '%d de %M del %Y, %k:%i') AS Fecha,Texto,Correo FROM Comentario WHERE ID_Producto=? ORDER BY ID DESC");
-        $prepare=$this->mysqli->prepare("SELECT Comentario.ID,Nombre,Correo,Fecha,Texto FROM Comentario,Usuarios WHERE Comentario.ID_Usuario=Usuarios.ID AND Comentario.ID_Producto=? ORDER BY Comentario.ID DESC");
+        $prepare=$this->mysqli->prepare("SELECT Comentario.ID,Nombre,Correo,Fecha,Texto,Comentario.Editado FROM Comentario,Usuarios WHERE Comentario.ID_Usuario=Usuarios.ID AND Comentario.ID_Producto=? ORDER BY Comentario.ID DESC");
         $prepare->bind_param("i", $idProducto);
         $prepare->execute();
 
@@ -497,7 +497,7 @@ class GestorBD{
 
         if($usuario["ID"]!=-1 and $usuario["esModerador"]==1 and $existeComment){
             //echo "funciona";
-            $prepare=$this->mysqli->prepare("UPDATE Comentario SET Texto=? WHERE ID=?");
+            $prepare=$this->mysqli->prepare("UPDATE Comentario SET Texto=?,Editado=1 WHERE ID=?");
             $prepare->bind_param("si", $comentario, $id);
             $prepare->execute();
         }
@@ -804,6 +804,7 @@ class GestorBD{
         }        
     }
 
+    //ARREGLAR PARA QUE SE PILLE POR EL ID DE LA IMAGEN
     function insertarComentarioImagen($idUsuario, $idProducto, $ruta, $comentario){
         $usuario=$this->getUsuario($idUsuario);
 
@@ -812,7 +813,7 @@ class GestorBD{
             //var_dump($idUsuario, $idProducto, $ruta, $comentario);
 
             $prepare=$this->mysqli->prepare("UPDATE Imagenes SET Descripcion=? WHERE ID_Producto=? AND `Ruta Imagen`=?");
-            $prepare->bind_param("sss", $comentario, $idProducto, $ruta);
+            $prepare->bind_param("sis", $comentario, $idProducto, $ruta);
             $prepare->execute();
         }
     }
@@ -878,7 +879,7 @@ class GestorBD{
     function getEtiquetas($idProducto){
         $etiquetas=false;
     
-        $prepare=$this->mysqli->prepare("SELECT Nombre FROM Etiquetas WHERE ID_Producto=?");
+        $prepare=$this->mysqli->prepare("SELECT * FROM Etiquetas WHERE ID_Producto=?");
         $prepare->bind_param("i", $idProducto);
         $prepare->execute();
     
@@ -932,10 +933,37 @@ class GestorBD{
         
         return $pais;
     }
+
+    function existeImagen($idImagen){
+        $res=-1;
+
+        $prepare=$this->mysqli->prepare("SELECT COUNT(*) FROM Imagenes WHERE ID_Imagen=?");
+        $prepare->bind_param("i", $idImagen);
+        $prepare->execute();
+
+        $query=$prepare->get_result();
+    
+        if($query->num_rows > 0){
+            $res=$query->fetch_assoc();
+            $res=$res["COUNT(*)"];
+        }
+
+        //PARTE NUEVA
+        if($res<=0)
+            $res=false;
+        else 
+            $res=true;
+
+        return $res;
+    }
 }
 
 
 //Para getComentariosConProducto
 //SELECT Productos.Nombre,Comentario.ID,Usuarios.Nombre,Correo,Fecha,Texto FROM Comentario,Usuarios,Productos WHERE Comentario.ID_Usuario=Usuarios.ID AND Productos.ID=Comentario.ID_Producto ORDER BY Comentario.ID DESC;
+
+
+//Para editar etiquetas
+// /UPDATE Etiquetas SET Nombre='GPUA' WHERE ID_Producto=1 AND Nombre='GPU';
 
 ?>

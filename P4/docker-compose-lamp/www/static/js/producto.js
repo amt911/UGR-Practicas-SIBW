@@ -379,7 +379,7 @@ botonComprar.addEventListener("click", ()=>alert("Gracias por su compra"));
 
 //mejorable
 function confirmacion(){
-    return confirm("¿Está seguro que desea eliminar el comentario? Esta acción no se puede deshacer."); 
+    return confirm("¿Está seguro que desea eliminar el contenido? Esta acción no se puede deshacer."); 
 }
 /*
 for(let i=0; i<botonesBorrar.length; i++){

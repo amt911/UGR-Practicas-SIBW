@@ -34,7 +34,7 @@
 //$_SERVER["REQUEST_METHOD"] == "POST"
 
     if($_SERVER["REQUEST_METHOD"] == "POST" and isset($_SESSION["usuario"]) and $_SESSION["usuario"]["esModerador"]==1){
-        $_POST["comentario"]="\"Comentario editado por un moderador\"\n".$_POST["comentario"];
+        //$_POST["comentario"]="\"Comentario editado por un moderador\"\n".$_POST["comentario"];
 
         $con->changeComentario($_SESSION["usuario"]["ID"], $_POST["idComentario"], $_POST["comentario"]);
 

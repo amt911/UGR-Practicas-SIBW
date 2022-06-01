@@ -47,7 +47,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST" and isset($_SESSION["usuario"]) and $_SESS
 $loader = new \Twig\Loader\FilesystemLoader('templates');
 $twig = new \Twig\Environment($loader);
 echo $twig->render("comentarios_imagen_form.twig", [
-    "NombreForm" => "Añadir producto",
+    "NombreForm" => "Poner comentarios a imágenes",
     "Menu" => $menu,
     "Errores" => $errores,
     "ShowForm" => $showForm,

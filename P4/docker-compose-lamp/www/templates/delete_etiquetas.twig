@@ -1,0 +1,33 @@
+{% extends "formulario_plantilla.twig" %}
+
+{% block archivosAdicionales %}
+{{ parent() }}
+<link rel="stylesheet" href="static/css/delete_etiquetas.css">
+{% endblock %}
+
+{% block main %}
+{{ parent()}}
+
+<div class="rojo">
+    {% for aux in Errores %}
+        <h2>{{ aux }}</h2>
+    {% endfor %}
+</div>
+
+{% if ShowForm == true %}
+<form action="delete_etiquetas.php" method="post">
+    <div class="flex-wrapper">
+        <div class="wrapper">
+        {% for i in Etiquetas %}
+            <input type="checkbox" name="etiqueta_{{ i["Nombre"] }}">{{ i["Nombre"] }}<br>
+        {% endfor %}
+        </div>
+    </div>
+
+
+    <button>Enviar</button>
+    <input type="hidden" value="{{ Back }}" name="back"/>
+    <input type="hidden" value="{{ IDProd }}" name="id"/>
+</form>
+{% endif %}
+{% endblock %}

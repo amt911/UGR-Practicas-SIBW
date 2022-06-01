@@ -1,0 +1,37 @@
+{% extends "formulario_plantilla.twig" %}
+
+{% block archivosAdicionales %}
+{{ parent() }}
+<link rel="stylesheet" href="static/css/comentarios_imagen_form.css">
+{% endblock %}
+
+{% block main %}
+{{ parent()}}
+
+<div class="rojo">
+    {% for aux in Errores %}
+        <h2>{{ aux }}</h2>
+    {% endfor %}
+</div>
+
+{% if ShowForm == true %}
+<form action="edit_image.php" method="post" enctype="multipart/form-data">
+    <div id="form-img-div">
+        <div class="div-imagen-producto">
+            <div>
+                <img src="{{ Imagen["Ruta Imagen"] }}" alt="Imagen" class="img-form">
+            </div>
+            <div>
+                <input type="text" name="{{ Imagen["ID_Imagen"]}}" value="{{ Imagen["Descripcion"] }}"/>    <!--Poner aqui y en la base de datos un id de la propia imagen, porque no direcciona bien-->
+            </div>
+        </div>
+    </div>
+
+    <button>Enviar</button>
+
+    <input type="hidden" name="back" value="{{ Back }}"/>
+
+    <input type="hidden" name="id" value="{{ idImagen }}"/>
+</form>
+{% endif %}
+{% endblock %}

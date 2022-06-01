@@ -18,9 +18,13 @@
 <form action="comentarios_imagen_form.php" method="post" enctype="multipart/form-data">
     <div id="form-img-div">
         {% for i in Imagenes %}
-            <div>
-                <img src="{{ i["Ruta Imagen"] }}" alt="Imagen" class="img-form">
-                <input type="text" name="{{ i["ID_Imagen"]}}" value="{{ i["Descripcion"] }}"/>    <!--Poner aqui y en la base de datos un id de la propia imagen, porque no direcciona bien-->
+            <div class="div-imagen-producto">
+                <div>
+                    <img src="{{ i["Ruta Imagen"] }}" alt="Imagen" class="img-form">
+                </div>
+                <div>
+                    <input type="text" name="{{ i["ID_Imagen"]}}" value="{{ i["Descripcion"] }}"/>    <!--Poner aqui y en la base de datos un id de la propia imagen, porque no direcciona bien-->
+                </div>
             </div>
         {% endfor %}
     </div>

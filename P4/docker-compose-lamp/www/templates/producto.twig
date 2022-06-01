@@ -60,6 +60,10 @@
                         <div class="fecha">
                             {{ aux["Fecha"] }}<!--12 de mayo del 2021, 13:37-->
                         </div>
+                        {% if aux["Editado"] == 1 %}
+                            <div class="centrado"><strong>"Comentario editado por el moderador"</strong></div>
+                        {% endif %}
+                        
                         <div class="contenido-comentario">
                             {{ aux["Texto"] }}
                         </div>
@@ -107,12 +111,12 @@
                         {% if User["esModerador"]==1 %}
                             <div class="mod-comentario-container">
                                 <div class="editar">
-                                    <a href="edit_image.php?back=producto.php?id={{ Back }}&id={{ aux["ID_Imagen"] }}">
+                                    <a href="edit_image.php?back=producto.php?p={{ Back }}&id={{ aux["ID_Imagen"] }}">
                                         <img class="imagen ref-editar" src="static/images/edit.png" alt="editar"/>
                                     </a>
                                 </div>
                                 <div class="borrar">
-                                    <a href="delete_image.php?back=producto.php?id={{ Back }}&id={{ aux["ID_Imagen"] }}">
+                                    <a href="delete_image.php?back=producto.php?p={{ Back }}&id={{ aux["ID_Imagen"] }}">
                                         <img class="imagen ref-borrar" src="static/images/delete.png" alt="borrar" onclick="return confirmacion();"/>
                                     </a>
                                 </div>
@@ -142,15 +146,6 @@
                 </div>
             {% endfor %}
         </div>
-
-        {% if User["esModerador"] == true %}
-            <div>
-                <a href="new_image.php?back=producto.php?id={{ Back }}?id={{ Back }}">
-                    nuevo
-                </a>
-            </div>
-        {% endif %}
-        
     </div>
 
     {{ Descripcion|raw }}
@@ -207,6 +202,21 @@
                 </div>
             {% endfor %}
     </div>
+
+    {% if User["esGestor"]==1 %}
+        <div class="mod-etiq-container">
+            <div class="editar">
+                <a href="new_etiquetas.php?back=producto.php?p={{ Back }}&id={{ ID }}">
+                    <img class="imagen ref-editar" src="static/images/edit.png" alt="editar"/>
+                </a>
+            </div>
+            <div class="borrar">
+                <a href="delete_etiquetas.php?back=producto.php?p={{ Back }}&id={{ ID }}">
+                    <img class="imagen ref-borrar" src="static/images/delete.png" alt="borrar"/>
+                </a>
+            </div>
+        </div>
+    {% endif %}    
 {% endblock %}
 
 
