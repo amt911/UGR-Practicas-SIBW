@@ -58,7 +58,6 @@ if($_SERVER["REQUEST_METHOD"]=="POST" and isset($_SESSION["usuario"]) and $_SESS
                 header("Location: $back");
                 exit();
             }
-//  var_dump($id);
             header("Location: comentarios_imagen_form.php?back=$back&id=$id");
             exit();            
             }

@@ -23,7 +23,7 @@ class GestorBD{
         }
     }
 
-
+    //GETTERS ESPECIFICOS
     function getProducto($id){
         $row=false;
 
@@ -37,42 +37,6 @@ class GestorBD{
             $row=$res->fetch_assoc();
     
         return $row;
-    }
-
-
-    function getFabrica($id){
-        $row=false;
-
-        $prepare=$this->mysqli->prepare("SELECT * FROM Fabrica WHERE ID=?");
-        $prepare->bind_param("i", $id);
-        $prepare->execute();
-
-        $res=$prepare->get_result();
-
-        if($res->num_rows > 0){
-            $row=$res->fetch_assoc();
-        }
-    
-        return $row;    
-    }
-
-
-    function getAllFabricantes(){
-        $row=false;
-
-        $res=$this->mysqli->query("SELECT Nombre FROM Fabricante");
-    
-        if($res->num_rows > 0){
-            $row=$res->fetch_all(MYSQLI_ASSOC);
-        }
-
-        $salida=array();
-
-        for($i=0; $i<count($row); $i++){
-            $salida[]=$row[$i]["Nombre"];
-        }
-
-        return $salida;        
     }
 
     function getFabricante($id){
@@ -92,7 +56,27 @@ class GestorBD{
     }
 
 
-    function getAllProducts(){
+    //GETTERS PARA TODAS LAS FILAS
+    function getAllFabricantes(){
+        $row=false;
+
+        $res=$this->mysqli->query("SELECT Nombre FROM Fabricante");
+    
+        if($res->num_rows > 0){
+            $row=$res->fetch_all(MYSQLI_ASSOC);
+        }
+
+        $salida=array();
+
+        for($i=0; $i<count($row); $i++){
+            $salida[]=$row[$i]["Nombre"];
+        }
+
+        return $salida;        
+    }
+
+    //Marcada como sospechosa
+    private function getAllProducts(){
         $row=false;
         
         $res=$this->mysqli->query("SELECT * FROM Productos;");
@@ -104,19 +88,6 @@ class GestorBD{
         return $row;    
     }
     
-
-    function getNumPaginas(){
-        $salida=$this->getNumFilasProducto();
-
-        $res=intval($salida/$this->MAX_PAGE);
-
-        if($salida%$this->MAX_PAGE != 0)
-            $res++;
-
-        return $res;
-    }
-
-
     function getAllComments($idProducto){
         $res=false;
 
@@ -134,6 +105,7 @@ class GestorBD{
         return $res;
     }
 
+    //Obtiene todos los productos y sus comentarios
     function getAllCommentsTodosProductos(){
         $productos=$this->getAllProducts();
 
@@ -146,12 +118,27 @@ class GestorBD{
             }
         }
 
-        
-        //return $res;
         return $productos;
-    }    
+    }  
 
-    function searchComentariosIDProducto($idProducto, $texto){
+
+    //Obtiene el numero de pagina para la portada
+    function getNumPaginas(){
+        $salida=$this->getNumFilasProducto();
+
+        $res=intval($salida/$this->MAX_PAGE);
+
+        if($salida%$this->MAX_PAGE != 0)
+            $res++;
+
+        return $res;
+    }
+
+
+  
+
+    //Obtiene los comentarios que encajen con las palabras pasadas como parametro
+    private function searchComentariosIDProducto($idProducto, $texto){
         $res=false;
 
         $prepare=$this->mysqli->prepare("SELECT * FROM Comentario WHERE ID_Producto=? AND Texto LIKE ?");
@@ -167,6 +154,7 @@ class GestorBD{
         return $res;
     }
 
+    //Busca los comentarios que contengan las palabras pasadas como parametro
     function searchComentarios($texto){
         $productos=$this->getAllProducts();
 
@@ -232,9 +220,8 @@ class GestorBD{
         return $res;        
     }
 
+    //Obtiene el numero de imagenes que tiene un producto
     function getImageCount($idProducto){
-        $res=-1;
-
         $prepare=$this->mysqli->prepare("SELECT COUNT(*) FROM Imagenes WHERE ID_Producto=?");
         $prepare->bind_param("i", $idProducto);
         $prepare->execute();
@@ -245,12 +232,6 @@ class GestorBD{
             $res=$query->fetch_assoc();
             $res=$res["COUNT(*)"];
         }
-
-        //PARTE NUEVA
-        if($res<=0)
-            $res=false;
-        else
-            $res=true;
 
         return $res;        
     }
@@ -277,12 +258,11 @@ class GestorBD{
         if(!empty($imagen["Ruta Imagen"]))
             unlink($imagen["Ruta Imagen"]);
 
-        //var_dump($imgID);
-
         $prepare=$this->mysqli->prepare("DELETE FROM Imagenes WHERE ID_Imagen=?");
         $prepare->bind_param("i", $imgID);
         $prepare->execute();        
     }
+
 
     function getProductsPage($a){
         if($a<=0 or $a>$this->getNumPaginas())
@@ -306,8 +286,6 @@ class GestorBD{
 
 
     function existeProducto($id){
-        $res=-1;
-
         $prepare=$this->mysqli->prepare("SELECT COUNT(*) FROM Productos WHERE ID=?");
         $prepare->bind_param("i", $id);
         $prepare->execute();
@@ -319,22 +297,13 @@ class GestorBD{
             $res=$res["COUNT(*)"];
         }
 
-        //PARTE NUEVA
-        if($res<=0)
-            $res=false;
-        else 
-            $res=true;
+        $res=($res<=0)?false:true;
 
         return $res;
     }
 
+    //Marcar para arreglar
     function comprobarCredenciales($correo, $pass){
-        $res="";
-
-        //$prepare=$this->mysqli->prepare("SELECT COUNT(*) FROM Usuarios WHERE Correo=? AND Password=?");
-        //$prepare->bind_param("ss", $correo, $pass);
-        //$prepare->execute();
-
         $prepare=$this->mysqli->prepare("SELECT * FROM Usuarios WHERE Correo=?");
         $prepare->bind_param("s", $correo);
         $prepare->execute();
@@ -348,36 +317,6 @@ class GestorBD{
             return false;
 
         return password_verify($pass, $res);
-    }
-
-    function getNombre($correo){
-        $res=false;
-
-        $prepare=$this->mysqli->prepare("SELECT Nombre FROM Usuarios WHERE Correo=?");
-        $prepare->bind_param("s", $correo);
-        $prepare->execute();
-
-        $query=$prepare->get_result(); 
-
-        if($query->num_rows > 0)
-            $res=$query->fetch_assoc();
-
-        return $res["Nombre"];        
-    }
-
-    function getPermisosUsuario($correo){
-        $res=false;
-
-        $prepare=$this->mysqli->prepare("SELECT esNormal,esModerador,esGestor, esSuperusuario FROM Usuarios WHERE Correo=?");
-        $prepare->bind_param("s", $correo);
-        $prepare->execute();
-
-        $query=$prepare->get_result(); 
-
-        if($query->num_rows > 0)
-            $res=$query->fetch_assoc();
-
-        return $res;                
     }
 
     function getUsuario($id){
@@ -404,8 +343,8 @@ class GestorBD{
         return $res;        
     }    
 
+    //Marcada como sospechosa
     function getUsuarioFromCorreo($correo){
-        //QUIZAS QUITAR LA PARTE DE LA CONTRASEÑA
         $res=[
             "ID" => -1,
             "Nombre" => "Anónimo",
@@ -443,8 +382,6 @@ class GestorBD{
     }
 
     function existeComentario($idComment){
-        $res=-1;
-
         $prepare=$this->mysqli->prepare("SELECT COUNT(*) FROM Comentario WHERE ID=?");
         $prepare->bind_param("i", $idComment);
         $prepare->execute();
@@ -456,11 +393,7 @@ class GestorBD{
             $res=$res["COUNT(*)"];
         }
 
-        //PARTE NUEVA
-        if($res<=0)
-            $res=false;
-        else
-            $res=true;
+        $res=($res<=0)?false:true;
 
         return $res;
     }
@@ -553,7 +486,6 @@ class GestorBD{
             //Ahora se envian las imagenes al servidor y se insertan en la base de datos
             for($i=0; $i<count($foto["name"]); $i++){
                 if($foto["error"][$i]!=4){
-                    //move_uploaded_file($foto["tmp_name"][$i], "static/images/".$foto["name"][$i]);
                     $extension=end(explode(".", $foto["name"][$i]));
                     $nombre=explode(".", $foto["name"][$i])[0];
     
@@ -569,25 +501,7 @@ class GestorBD{
         }
     }
 
-    //Unir
-    function insertarImagen($idUsuario, $idProducto, $foto){
-        $existeProd=$this->existeProducto($idProducto);
-        $usuario=$this->getUsuario($idUsuario);
-
-        if($usuario["ID"]!=-1 and $usuario["esGestor"]==1 and $existeProd){
-            $extension=end(explode(".", $foto["name"]));
-            $nombre=explode(".", $foto["name"])[0];
-
-            $directorioNuevaFoto="static/images/".$nombre."_".$idProducto.".".$extension;
-            $directorioNuevaFoto=str_replace(" ", "_", $directorioNuevaFoto);
-            move_uploaded_file($foto["tmp_name"], $directorioNuevaFoto);
-
-            $prepare=$this->mysqli->prepare("INSERT INTO Imagenes (ID_Producto, `Ruta Imagen`) VALUES (?,?)");
-            $prepare->bind_param("is", $idProducto, $directorioNuevaFoto);
-            $prepare->execute();
-        }
-    }
-
+    //Marcar como sospechosa
     function insertarImagenes($idUsuario, $idProducto, $fotos){
         $existeProd=$this->existeProducto($idProducto);
         $usuario=$this->getUsuario($idUsuario);
@@ -595,7 +509,6 @@ class GestorBD{
         if($usuario["ID"]!=-1 and $usuario["esGestor"]==1 and $existeProd){
             for($i=0; $i<count($fotos["name"]); $i++){
                 if($fotos["error"][$i]!=4){
-                    //move_uploaded_file($foto["tmp_name"][$i], "static/images/".$foto["name"][$i]);
                     $extension=end(explode(".", $fotos["name"][$i]));
                     $nombre=explode(".", $fotos["name"][$i])[0];
 
@@ -614,15 +527,8 @@ class GestorBD{
     function deleteProducto($idUsuario, $id){
         $usuario=$this->getUsuario($idUsuario);
         $existeProd=$this->existeProducto($id);
-        //echo "me gusta esto";
-        //var_dump($usuario);
-        //var_dump($existeProd);
-        //var_dump($id);
-        if($usuario["ID"]!=-1 and $usuario["esGestor"]==1 and $existeProd){
-            //echo "mp";
-//            $prepare=$this->mysqli->prepare("DELETE FROM Comentario WHERE ID_Producto=?");
-//            $prepare->bind_param("i", $id);
-//            $prepare->execute();    
+
+        if($usuario["ID"]!=-1 and $usuario["esGestor"]==1 and $existeProd){   
             $prepare=$this->mysqli->prepare("SELECT `Ruta Imagen` FROM Imagenes WHERE ID_Producto=?");
             $prepare->bind_param("i", $id);
             $prepare->execute();                 
@@ -639,8 +545,6 @@ class GestorBD{
     }
 
     function estaRegistrado($correo){
-        $res=-1;
-
         $prepare=$this->mysqli->prepare("SELECT COUNT(*) FROM Usuarios WHERE Correo=?");
         $prepare->bind_param("s", $correo);
         $prepare->execute();
@@ -652,15 +556,12 @@ class GestorBD{
             $res=$res["COUNT(*)"];
         }
 
-        //PARTE NUEVA
-        if($res<=0)
-            $res=false;
-        else
-            $res=true;
+        $res=($res<=0)?false:true;
 
         return $res;
     }
 
+    //ARREGLAR
     function registrarUsuario($correo, $password, $nombre, $direccion, $genero, $foto, $pais){
         $password=password_hash($password, PASSWORD_DEFAULT);
         if($foto["error"]==4){
@@ -709,8 +610,6 @@ class GestorBD{
     }
 
     function existeFabricante($nombre){
-        $res=-1;
-
         $prepare=$this->mysqli->prepare("SELECT COUNT(*) FROM Fabricante WHERE Nombre=?");
         $prepare->bind_param("s", $nombre);
         $prepare->execute();
@@ -722,11 +621,7 @@ class GestorBD{
             $res=$res["COUNT(*)"];
         }
 
-        //PARTE NUEVA
-        if($res<=0)
-            $res=false;
-        else 
-            $res=true;
+        $res=($res<=0)?false:true;            
 
         return $res;
     }    
@@ -781,6 +676,7 @@ class GestorBD{
         return $res;
     }
 
+    //Marcar como sospechosa
     function getAllUsuarios(){
         $row=false;
         
@@ -809,9 +705,6 @@ class GestorBD{
         $usuario=$this->getUsuario($idUsuario);
 
         if($usuario["ID"]!=-1 and $usuario["esGestor"]==1){
-            //var_dump de todos los argumentos
-            //var_dump($idUsuario, $idProducto, $ruta, $comentario);
-
             $prepare=$this->mysqli->prepare("UPDATE Imagenes SET Descripcion=? WHERE ID_Producto=? AND `Ruta Imagen`=?");
             $prepare->bind_param("sis", $comentario, $idProducto, $ruta);
             $prepare->execute();
@@ -819,8 +712,6 @@ class GestorBD{
     }
 
     function existeProductoNombre($nombre){
-        $res=-1;
-
         $prepare=$this->mysqli->prepare("SELECT COUNT(*) FROM Productos WHERE Nombre=?");
         $prepare->bind_param("s", $nombre);
         $prepare->execute();
@@ -832,15 +723,12 @@ class GestorBD{
             $res=$res["COUNT(*)"];
         }
 
-        //PARTE NUEVA
-        if($res<=0)
-            $res=false;
-        else 
-            $res=true;
+        $res=($res<=0)?false:true;
 
         return $res;
     }  
     
+    //Marcar como sospechosa
     function getAllProductsWithImage(){
         $productos=$this->getAllProducts();
 
@@ -935,8 +823,6 @@ class GestorBD{
     }
 
     function existeImagen($idImagen){
-        $res=-1;
-
         $prepare=$this->mysqli->prepare("SELECT COUNT(*) FROM Imagenes WHERE ID_Imagen=?");
         $prepare->bind_param("i", $idImagen);
         $prepare->execute();
@@ -948,11 +834,8 @@ class GestorBD{
             $res=$res["COUNT(*)"];
         }
 
-        //PARTE NUEVA
-        if($res<=0)
-            $res=false;
-        else 
-            $res=true;
+        $res=($res<=0)?false:true;
+        
 
         return $res;
     }

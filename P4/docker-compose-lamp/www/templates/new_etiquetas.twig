@@ -8,12 +8,6 @@
 {% block main %}
 {{ parent() }}
 
-<div class="rojo">
-    {% for aux in Errores %}
-        <h2>{{ aux }}</h2>
-    {% endfor %}
-</div>
-
 {% if ShowForm == true %}
 <form action="new_etiquetas.php" method="post">
     <label>Etiquetas (separadas por coma y sin espacio)</label><br/>

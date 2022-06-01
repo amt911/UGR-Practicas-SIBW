@@ -3,12 +3,6 @@
 {% block main %}
 {{ parent()}}
 
-<div class="rojo">
-    {% for aux in Errores %}
-        <h2>{{ aux }}</h2>
-    {% endfor %}
-</div>
-
 {% if ShowForm == true %}
 <form action="new_producto.php" method="post" enctype="multipart/form-data">
     <label>Nombre</label><br/>

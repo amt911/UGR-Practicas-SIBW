@@ -8,12 +8,6 @@
 {% block main %}
 {{ parent()}}
 
-<div class="rojo">
-    {% for aux in Errores %}
-        <h2>{{ aux }}</h2>
-    {% endfor %}
-</div>
-
 {% if ShowForm == true %}
 <form action="comentarios_imagen_form.php" method="post" enctype="multipart/form-data">
     <div id="form-img-div">

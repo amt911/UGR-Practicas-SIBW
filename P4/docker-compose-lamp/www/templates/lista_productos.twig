@@ -8,11 +8,6 @@
 {% block main %}
 {{ parent() }}
 
-<div class="rojo">
-    {% for aux in Errores %}
-        <h2>{{ aux }}</h2>
-    {% endfor %}
-</div>
 {% if ShowForm == true %}
 <form action="lista_productos.php" method="POST">
     <input type="text" name="keyword" placeholder="Buscar..."/>

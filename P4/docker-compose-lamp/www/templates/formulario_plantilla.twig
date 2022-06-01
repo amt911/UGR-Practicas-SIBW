@@ -12,4 +12,10 @@
 
 <h2 class="negro">{{ NombreForm }}</h2>
 
+<div class="rojo">
+    {% for aux in Errores %}
+        <h2>{{ aux }}</h2>
+    {% endfor %}
+</div>
+
 {% endblock %}

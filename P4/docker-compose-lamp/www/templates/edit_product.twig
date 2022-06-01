@@ -8,12 +8,6 @@
 {% block main %}
 {{ parent() }}
 
-<div class="rojo">
-    {% for aux in Errores %}
-        <h2>{{ aux }}</h2>
-    {% endfor %}
-</div>
-
 {% if EsGestor == true %}
 <form action="edit_product.php?id={{ ProductID }}" method="post" enctype="multipart/form-data">
     <label>Precio</label><br/>
