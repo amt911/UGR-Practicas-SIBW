@@ -47,23 +47,25 @@
 }
 
 /*Regla para el div que contiene la imagen en si y el pie de foto*/
-.img-producto{
+.img-producto-container{
     display: none;
     grid-template-rows: minmax(0, 1fr) auto;
     grid-auto-columns: minmax(0, 1fr);
     width: 90%;
     height: 270px;
     justify-self: center;
+    position: relative;
 }
 
-.img-producto > div:first-child{
+.img-producto{
     justify-self: center;
     align-self: center;
     height: 100%;
 }
 
 
-.img-producto > div:nth-child(2){
+/*.img-producto > div:nth-child(2){*/
+.break{
     word-wrap: break-word;
     align-self:flex-end;
 }

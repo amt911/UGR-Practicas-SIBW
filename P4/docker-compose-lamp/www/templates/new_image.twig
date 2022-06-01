@@ -1,0 +1,23 @@
+{% extends "formulario_plantilla.twig" %}
+
+{% block main %}
+{{ parent()}}
+
+<div class="rojo">
+    {% for aux in Errores %}
+        <h2>{{ aux }}</h2>
+    {% endfor %}
+</div>
+
+{% if ShowForm == true %}
+<form action="new_image.php" method="post" enctype="multipart/form-data">
+    <label>Imágenes</label></br>
+    <input type="file" name="imagenes[]" multiple>
+    <br/><br/>
+
+    <button>Enviar</button>
+    <input type="hidden" value="{{ Back }}" name="back"/>
+    <input type="hidden" value="{{ IDProd }}" name="id-prod"/>
+</form>
+{% endif %}
+{% endblock %}

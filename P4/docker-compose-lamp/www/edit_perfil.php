@@ -102,8 +102,8 @@ $twig = new \Twig\Environment($loader);
 echo $twig->render("edit_perfil.twig", [
     "NombreForm" => "Cambiar datos de perfil",
     "Menu" => $menu,
-    "Credenciales" => $_SESSION["usuario"],
     "Errores" => $error,
+    "Credenciales" => $_SESSION["usuario"],
     "User" => $_SESSION["usuario"],
     "Tipo" => $tipo,
     "estaRegistrado" => $estaRegistrado,

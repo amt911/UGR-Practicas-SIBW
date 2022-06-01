@@ -569,6 +569,48 @@ class GestorBD{
         }
     }
 
+    //Unir
+    function insertarImagen($idUsuario, $idProducto, $foto){
+        $existeProd=$this->existeProducto($idProducto);
+        $usuario=$this->getUsuario($idUsuario);
+
+        if($usuario["ID"]!=-1 and $usuario["esGestor"]==1 and $existeProd){
+            $extension=end(explode(".", $foto["name"]));
+            $nombre=explode(".", $foto["name"])[0];
+
+            $directorioNuevaFoto="static/images/".$nombre."_".$idProducto.".".$extension;
+            $directorioNuevaFoto=str_replace(" ", "_", $directorioNuevaFoto);
+            move_uploaded_file($foto["tmp_name"], $directorioNuevaFoto);
+
+            $prepare=$this->mysqli->prepare("INSERT INTO Imagenes (ID_Producto, `Ruta Imagen`) VALUES (?,?)");
+            $prepare->bind_param("is", $idProducto, $directorioNuevaFoto);
+            $prepare->execute();
+        }
+    }
+
+    function insertarImagenes($idUsuario, $idProducto, $fotos){
+        $existeProd=$this->existeProducto($idProducto);
+        $usuario=$this->getUsuario($idUsuario);
+
+        if($usuario["ID"]!=-1 and $usuario["esGestor"]==1 and $existeProd){
+            for($i=0; $i<count($fotos["name"]); $i++){
+                if($fotos["error"][$i]!=4){
+                    //move_uploaded_file($foto["tmp_name"][$i], "static/images/".$foto["name"][$i]);
+                    $extension=end(explode(".", $fotos["name"][$i]));
+                    $nombre=explode(".", $fotos["name"][$i])[0];
+
+                    $directorioNuevaFoto="static/images/".$nombre."_".$idProducto.".".$extension;
+                    $directorioNuevaFoto=str_replace(" ", "_", $directorioNuevaFoto);
+                    move_uploaded_file($fotos["tmp_name"][$i], $directorioNuevaFoto);
+
+                    $prepare=$this->mysqli->prepare("INSERT INTO Imagenes (ID_Producto, `Ruta Imagen`) VALUES (?,?)");
+                    $prepare->bind_param("is", $idProducto, $directorioNuevaFoto);
+                    $prepare->execute();
+                }
+            }            
+        }
+    }
+
     function deleteProducto($idUsuario, $id){
         $usuario=$this->getUsuario($idUsuario);
         $existeProd=$this->existeProducto($id);

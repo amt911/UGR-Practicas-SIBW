@@ -103,13 +103,27 @@
     <div id="contenedor-imgs">
         <div id="carrusel-imgs">
                 {% for aux in Images %}
-                    <div class="img-producto">
-                        <div>
+                    <div class="img-producto-container">
+                        {% if User["esModerador"]==1 %}
+                            <div class="mod-comentario-container">
+                                <div class="editar">
+                                    <a href="edit_image.php?back=producto.php?id={{ Back }}&id={{ aux["ID_Imagen"] }}">
+                                        <img class="imagen ref-editar" src="static/images/edit.png" alt="editar"/>
+                                    </a>
+                                </div>
+                                <div class="borrar">
+                                    <a href="delete_image.php?back=producto.php?id={{ Back }}&id={{ aux["ID_Imagen"] }}">
+                                        <img class="imagen ref-borrar" src="static/images/delete.png" alt="borrar" onclick="return confirmacion();"/>
+                                    </a>
+                                </div>
+                            </div>
+                        {% endif %}
+                        <div class="img-producto">
                             <img src="{{ aux["Ruta Imagen"] }}"/>
                         </div>
 
                         {% if aux["Descripcion"] != "" %}
-                            <div class="centrado-vertical"> <!--Texto al pie de pagina-->
+                            <div class="centrado-vertical break"> <!--Texto al pie de pagina-->
                                 {{ aux["Descripcion"] }}
                             </div>                          
                         {% endif %}
@@ -128,6 +142,15 @@
                 </div>
             {% endfor %}
         </div>
+
+        {% if User["esModerador"] == true %}
+            <div>
+                <a href="new_image.php?back=producto.php?id={{ Back }}?id={{ Back }}">
+                    nuevo
+                </a>
+            </div>
+        {% endif %}
+        
     </div>
 
     {{ Descripcion|raw }}
