@@ -43,7 +43,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST" and isset($_SESSION["usuario"])){
     if($_POST["tipo"]>=2 and $_POST["tipo"]<=6){
         if(!empty($_POST[$operacion[$_POST["tipo"]]]) and !empty($_POST[$operacion[$_POST["tipo"]]])){
             $con->cambiarDatosUsuario($_SESSION["usuario"]["ID"], $_POST[$operacion[$_POST["tipo"]]], $operacion[$_POST["tipo"]]);
-            $_SESSION["usuario"]=$con->getUsuario($_SESSION["usuario"]["ID"]);
+            $_SESSION["usuario"]=$con->getUsuario2($_SESSION["usuario"]["ID"], "ID");
             header("Location: perfil.php");
             exit();            
         }
@@ -86,7 +86,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST" and isset($_SESSION["usuario"])){
                 ////move_uploaded_file($_FILES["Foto"]["tmp_name"], "static/images/".$_FILES["Foto"]["name"]);
                 $con->actualizarFotoPerfil($_SESSION["usuario"]["ID"], $_FILES["Foto"]);
 
-                $_SESSION["usuario"]=$con->getUsuario($_SESSION["usuario"]["ID"]);
+                $_SESSION["usuario"]=$con->getUsuario2($_SESSION["usuario"]["ID"], "ID");
                 header("Location: perfil.php");
                 exit();
             }

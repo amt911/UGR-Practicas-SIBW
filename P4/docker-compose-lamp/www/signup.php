@@ -46,7 +46,7 @@
                     if(comprobarCorreo($correo)){
                         if(!$con->estaRegistrado($correo)){
                             $con->registrarUsuario($correo, $contra, $nombre, $dir, $genero, $foto, $pais);
-                            $_SESSION["usuario"]=$con->getUsuarioFromCorreo($correo);
+                            $_SESSION["usuario"]=$con->getUsuario2($correo, "Correo");
                             header("Location: $back");
                             exit();
                         }

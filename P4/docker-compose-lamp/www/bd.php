@@ -75,7 +75,6 @@ class GestorBD{
         return $salida;        
     }
 
-    //Marcada como sospechosa
     private function getAllProducts(){
         $row=false;
         
@@ -92,7 +91,6 @@ class GestorBD{
         $res=false;
 
         $this->mysqli->query("SET lc_time_names='es_ES';");
-        //$prepare=$this->mysqli->prepare("SELECT ID,Nombre,DATE_FORMAT(Fecha, '%d de %M del %Y, %k:%i') AS Fecha,Texto,Correo FROM Comentario WHERE ID_Producto=? ORDER BY ID DESC");
         $prepare=$this->mysqli->prepare("SELECT Comentario.ID,Nombre,Correo,Fecha,Texto,Comentario.Editado FROM Comentario,Usuarios WHERE Comentario.ID_Usuario=Usuarios.ID AND Comentario.ID_Producto=? ORDER BY Comentario.ID DESC");
         $prepare->bind_param("i", $idProducto);
         $prepare->execute();
@@ -120,6 +118,34 @@ class GestorBD{
 
         return $productos;
     }  
+
+    function getAllPaises(){
+        $paises=false;
+        
+        $query=$this->mysqli->query("SELECT * FROM Pais ORDER BY CountryName");
+        
+        if($query->num_rows > 0){
+            $paises=$query->fetch_all(MYSQLI_ASSOC);
+        }
+        
+        return $paises;
+    }
+
+    function getPais($idPais){
+        $pais=false;
+        
+        $prepare=$this->mysqli->prepare("SELECT * FROM Pais WHERE CountryCode=?");
+        $prepare->bind_param("s", $idPais);
+        $prepare->execute();
+        
+        $query=$prepare->get_result();
+        
+        if($query->num_rows > 0){
+            $pais=$query->fetch_assoc();
+        }
+        
+        return $pais;
+    }
 
 
     //Obtiene el numero de pagina para la portada
@@ -302,7 +328,7 @@ class GestorBD{
         return $res;
     }
 
-    //Marcar para arreglar
+
     function comprobarCredenciales($correo, $pass){
         $prepare=$this->mysqli->prepare("SELECT * FROM Usuarios WHERE Correo=?");
         $prepare->bind_param("s", $correo);
@@ -319,8 +345,8 @@ class GestorBD{
         return password_verify($pass, $res);
     }
 
-    function getUsuario($id){
-        //QUIZAS QUITAR LA PARTE DE LA CONTRASEÑA
+    function getUsuario2($id, $campo){
+        $validos=array("ID", "Correo");
         $res=[
             "ID" => -1,
             "Nombre" => "Anónimo",
@@ -331,44 +357,30 @@ class GestorBD{
             "esSuperusuario" => 0       
         ];
 
-        $prepare=$this->mysqli->prepare("SELECT * FROM Usuarios WHERE ID=?");
-        $prepare->bind_param("i", $id);
-        $prepare->execute();
+        if(in_array($campo, $validos)){
+            if($campo==="ID"){
+                $columna="ID";
+                $tipo="i";
+            }
+            else if($campo==="Correo"){
+                $columna="Correo";
+                $tipo="s";
+            }
+            $prepare=$this->mysqli->prepare("SELECT * FROM Usuarios WHERE $columna=?");
+            $prepare->bind_param($tipo, $id);                            
+            $prepare->execute();
 
-        $query=$prepare->get_result(); 
+            $query=$prepare->get_result(); 
 
-        if($query->num_rows > 0)
-            $res=$query->fetch_assoc();
-
-        return $res;        
-    }    
-
-    //Marcada como sospechosa
-    function getUsuarioFromCorreo($correo){
-        $res=[
-            "ID" => -1,
-            "Nombre" => "Anónimo",
-            "Correo" => null,
-            "esNormal" => 0,
-            "esModerador" => 0,
-            "esGestor" => 0 ,
-            "esSuperusuario" => 0       
-        ];
-
-        $prepare=$this->mysqli->prepare("SELECT * FROM Usuarios WHERE Correo=?");
-        $prepare->bind_param("s", $correo);
-        $prepare->execute();
-
-        $query=$prepare->get_result(); 
-
-        if($query->num_rows > 0)
-            $res=$query->fetch_assoc();
+            if($query->num_rows > 0)
+                $res=$query->fetch_assoc();
+        }
 
         return $res;        
-    }    
+    }  
 
     function insertarComentario($id, $comentario, $producto){
-        $usuario=$this->getUsuario($id);
+        $usuario=$this->getUsuario2($id, "ID");
         $pCheck=$this->existeProducto($producto);
 
         if($usuario["ID"]!=-1 and $pCheck){
@@ -399,7 +411,7 @@ class GestorBD{
     }
 
     function deleteComment($idComment, $id){        
-        $usuario=$this->getUsuario($id);
+        $usuario=$this->getUsuario2($id, "ID");
         $existeComment=$this->existeComentario($idComment);
 
         if($usuario["ID"]!=-1 and $usuario["esModerador"]==1 and $existeComment){
@@ -425,11 +437,10 @@ class GestorBD{
     }
 
     function changeComentario($idUsuario, $id, $comentario){
-        $usuario=$this->getUsuario($idUsuario);
+        $usuario=$this->getUsuario2($idUsuario, "ID");
         $existeComment=$this->existeComentario($id);
 
         if($usuario["ID"]!=-1 and $usuario["esModerador"]==1 and $existeComment){
-            //echo "funciona";
             $prepare=$this->mysqli->prepare("UPDATE Comentario SET Texto=?,Editado=1 WHERE ID=?");
             $prepare->bind_param("si", $comentario, $id);
             $prepare->execute();
@@ -439,7 +450,7 @@ class GestorBD{
     function cambiarDatosUsuario($id, $nuevoNombre, $campo){
         $lista=["Foto", "Nombre", "Correo", "CountryCode", "Genero", "Direccion", "Password"];
 
-        $usuario=$this->getUsuario($id);
+        $usuario=$this->getUsuario2($id, "ID");
 
         if($usuario["ID"]!=-1 and in_array($campo, $lista, true)){
             if($campo=="Password")
@@ -453,28 +464,20 @@ class GestorBD{
 
 
     function actualizarFotoPerfil($idUsuario, $foto){
-        $user=$this->getUsuario($idUsuario);
+        $user=$this->getUsuario2($idUsuario, "ID");
 
         if($user["ID"]!=-1){
             if(!empty($user["Foto"]))
                 unlink($user["Foto"]);
     
             //Se separa de la foto la extension y el nombre
-            $extension=end(explode(".", $foto["name"]));
-            $nombre=explode(".", $foto["name"])[0];
-
-            $directorioNuevaFoto="static/images/".$nombre."_idUser".$idUsuario.".".$extension;
-            $directorioNuevaFoto=str_replace(" ", "_", $directorioNuevaFoto);
-            move_uploaded_file($foto["tmp_name"], $directorioNuevaFoto);
-
-            $prepare=$this->mysqli->prepare("UPDATE Usuarios SET Foto=? WHERE ID=?");
-            $prepare->bind_param("si", $directorioNuevaFoto, $idUsuario);
-            $prepare->execute();
+            $directorioNuevaFoto=$this->subirImagen($foto, $idUsuario, true);
+            $this->cambiarDatosUsuario($idUsuario, $directorioNuevaFoto, "Foto");
         }
     }
 
     function cambiarDatosProducto($idUsuario, $idProducto, $precio, $nombre, $descripcion, $tituloTop, $fabricante, $foto){
-        $usuario=$this->getUsuario($idUsuario);
+        $usuario=$this->getUsuario2($idUsuario, "ID");
         $existeProd=$this->existeProducto($idProducto);
 
         if($usuario["ID"]!=-1 and $usuario["esGestor"]==1 and $existeProd){
@@ -486,46 +489,22 @@ class GestorBD{
             //Ahora se envian las imagenes al servidor y se insertan en la base de datos
             for($i=0; $i<count($foto["name"]); $i++){
                 if($foto["error"][$i]!=4){
-                    $extension=end(explode(".", $foto["name"][$i]));
-                    $nombre=explode(".", $foto["name"][$i])[0];
-    
-                    $directorioNuevaFoto="static/images/".$nombre."_".$idProducto.".".$extension;
-                    $directorioNuevaFoto=str_replace(" ", "_", $directorioNuevaFoto);
-                    move_uploaded_file($foto["tmp_name"][$i], $directorioNuevaFoto);
-
-                    $prepare=$this->mysqli->prepare("INSERT INTO Imagenes (ID_Producto, `Ruta Imagen`) VALUES (?,?)");
-                    $prepare->bind_param("is", $idProducto, $directorioNuevaFoto);
-                    $prepare->execute();
+                    $fotoActual=["name"=>$foto["name"][$i], "tmp_name"=>$foto["tmp_name"][$i], "error"=>$foto["error"][$i]];
+                    $directorioNuevaFoto=$this->subirImagen($fotoActual, $idProducto, false);
+                    $this->insertImagen($idProducto, $directorioNuevaFoto);
                 }
             }            
         }
     }
 
-    //Marcar como sospechosa
-    function insertarImagenes($idUsuario, $idProducto, $fotos){
-        $existeProd=$this->existeProducto($idProducto);
-        $usuario=$this->getUsuario($idUsuario);
-
-        if($usuario["ID"]!=-1 and $usuario["esGestor"]==1 and $existeProd){
-            for($i=0; $i<count($fotos["name"]); $i++){
-                if($fotos["error"][$i]!=4){
-                    $extension=end(explode(".", $fotos["name"][$i]));
-                    $nombre=explode(".", $fotos["name"][$i])[0];
-
-                    $directorioNuevaFoto="static/images/".$nombre."_".$idProducto.".".$extension;
-                    $directorioNuevaFoto=str_replace(" ", "_", $directorioNuevaFoto);
-                    move_uploaded_file($fotos["tmp_name"][$i], $directorioNuevaFoto);
-
-                    $prepare=$this->mysqli->prepare("INSERT INTO Imagenes (ID_Producto, `Ruta Imagen`) VALUES (?,?)");
-                    $prepare->bind_param("is", $idProducto, $directorioNuevaFoto);
-                    $prepare->execute();
-                }
-            }            
-        }
+    private function insertImagen($idProducto, $directorio){
+        $prepare=$this->mysqli->prepare("INSERT INTO Imagenes (ID_Producto, `Ruta Imagen`) VALUES (?,?)");
+        $prepare->bind_param("is", $idProducto, $directorio);
+        $prepare->execute();
     }
 
     function deleteProducto($idUsuario, $id){
-        $usuario=$this->getUsuario($idUsuario);
+        $usuario=$this->getUsuario2($idUsuario ,"ID");
         $existeProd=$this->existeProducto($id);
 
         if($usuario["ID"]!=-1 and $usuario["esGestor"]==1 and $existeProd){   
@@ -561,45 +540,44 @@ class GestorBD{
         return $res;
     }
 
-    //ARREGLAR
     function registrarUsuario($correo, $password, $nombre, $direccion, $genero, $foto, $pais){
         $password=password_hash($password, PASSWORD_DEFAULT);
-        if($foto["error"]==4){
-            $prepare=$this->mysqli->prepare("INSERT INTO Usuarios (Nombre, Correo, CountryCode, Genero, Direccion, Password, esNormal, esModerador, esGestor, esSuperusuario) VALUES (?,?,?,?,?,?,1,0,0,0)");
-            $prepare->bind_param("ssssss", $nombre, $correo, $pais, $genero, $direccion, $password);
-            $prepare->execute();
-        }
-        else{
-            //move_uploaded_file($foto["tmp_name"], "static/images/".$foto["name"]);
-            $prepare=$this->mysqli->prepare("INSERT INTO Usuarios (Nombre, Correo, CountryCode, Genero, Direccion, Password, esNormal, esModerador, esGestor, esSuperusuario) VALUES (?,?,?,?,?,?,1,0,0,0)");
-            //$dirFoto="static/images/".$foto["name"];
+
+        $prepare=$this->mysqli->prepare("INSERT INTO Usuarios (Nombre, Correo, CountryCode, Genero, Direccion, Password, esNormal, esModerador, esGestor, esSuperusuario) VALUES (?,?,?,?,?,?,1,0,0,0)");
+        $prepare->bind_param("ssssss", $nombre, $correo, $pais, $genero, $direccion, $password);
+        $prepare->execute();
+
+        if($foto["error"]!=4){
+            //Ahora se obtiene el usuario a partir del correo pasado por parametro, para poder insertar la foto con su id
+            $idUsuario=$this->getUsuario2($correo, "Correo")["ID"];
+            $directorioNuevaFoto=$this->subirImagen($foto, $idUsuario, true);
             
-            $prepare->bind_param("ssssss", $nombre, $correo, $pais, $genero, $direccion, $password);
+            //Ahora se pone el directorio de la imagen en Foto con el usuario con ID
+            $prepare=$this->mysqli->prepare("UPDATE Usuarios SET Foto=? WHERE ID=?");
+            $prepare->bind_param("si", $directorioNuevaFoto, $idUsuario);
             $prepare->execute();
-
-
-            //Se separa de la foto la extension y el nombre
-            //if($foto["error"]!=4){
-                //Ahora se obtiene el usuario a partir del correo pasado por parametro, para poder insertar la foto con su id
-                $idUsuario=$this->getUsuarioFromCorreo($correo)["ID"];
-
-                $extension=end(explode(".", $foto["name"]));
-                $nombre=explode(".", $foto["name"])[0];
-    
-                $directorioNuevaFoto="static/images/".$nombre."_idUser".$idUsuario.".".$extension;
-                $directorioNuevaFoto=str_replace(" ", "_", $directorioNuevaFoto);
-                move_uploaded_file($foto["tmp_name"], $directorioNuevaFoto);
-
-                //Ahora se pone el directorio de la imagen en Foto con el usuario con ID
-                $prepare=$this->mysqli->prepare("UPDATE Usuarios SET Foto=? WHERE ID=?");
-                $prepare->bind_param("si", $directorioNuevaFoto, $idUsuario);
-                $prepare->execute();
-            //}
         }
     }
 
+    private function subirImagen($foto, $id, $esUsuario){
+        $extension=end(explode(".", $foto["name"]));
+        $nombre=explode(".", $foto["name"])[0];
+
+        if($esUsuario){
+            $directorioNuevaFoto="static/images/".$nombre."_idUser".$id.".".$extension;
+        }
+        else{
+            $directorioNuevaFoto="static/images/".$nombre."_idUser".$id.".".$extension;
+        }
+
+        $directorioNuevaFoto=str_replace(" ", "_", $directorioNuevaFoto);
+        move_uploaded_file($foto["tmp_name"], $directorioNuevaFoto);
+
+        return $directorioNuevaFoto;
+    }
+
     function addFabricante($idUsuario, $nombre, $face, $tw, $yt, $web){
-        $usuario=$this->getUsuario($idUsuario);
+        $usuario=$this->getUsuario2($idUsuario, "ID");
 
         if($usuario["ID"]!=-1 and $usuario["esGestor"]==1){
 
@@ -627,7 +605,7 @@ class GestorBD{
     }    
 
     function deleteFabricante($idUsuario, $nombre){
-        $usuario=$this->getUsuario($idUsuario);
+        $usuario=$this->getUsuario2($idUsuario, "ID");
 
         if($usuario["ID"]!=-1 and $usuario["esGestor"]==1){
             $prepare=$this->mysqli->prepare("DELETE FROM Fabricante WHERE Nombre=?");
@@ -638,7 +616,7 @@ class GestorBD{
 
     function insertProducto($idUsuario, $nombre, $precio, $descripcion, $tituloTop, $idFabricante, $foto){
         $res=-1;
-        $usuario=$this->getUsuario($idUsuario);
+        $usuario=$this->getUsuario2($idUsuario, "ID");
 
         if($usuario["ID"]!=-1 and $usuario["esGestor"]==1){
             $prepare=$this->mysqli->prepare("INSERT INTO Productos (Nombre, Precio, Descripción, `Titulo pagina`, Nombre_Fabricante) VALUES (?,?,?,?,?)");
@@ -658,17 +636,9 @@ class GestorBD{
             //Ahora se envian las imagenes al servidor y se insertan en la base de datos
             for($i=0; $i<count($foto["name"]); $i++){
                 if($foto["error"][$i]!=4){
-                    //move_uploaded_file($foto["tmp_name"][$i], "static/images/".$foto["name"][$i]);
-                    $extension=end(explode(".", $foto["name"][$i]));
-                    $nombre=explode(".", $foto["name"][$i])[0];
-    
-                    $directorioNuevaFoto="static/images/".$nombre."_".$idProducto.".".$extension;
-                    $directorioNuevaFoto=str_replace(" ", "_", $directorioNuevaFoto);
-                    move_uploaded_file($foto["tmp_name"][$i], $directorioNuevaFoto);
-
-                    $prepare=$this->mysqli->prepare("INSERT INTO Imagenes (ID_Producto, `Ruta Imagen`) VALUES (?,?)");
-                    $prepare->bind_param("is", $idProducto, $directorioNuevaFoto);
-                    $prepare->execute();
+                    $fotoActual=["name"=>$foto["name"][$i], "tmp_name"=>$foto["tmp_name"][$i], "error"=>$foto["error"][$i]];
+                    $directorioNuevaFoto=$this->subirImagen($fotoActual, $idProducto, false);
+                    $this->insertImagen($idProducto, $directorioNuevaFoto);
                 }
             }
         }
@@ -676,7 +646,6 @@ class GestorBD{
         return $res;
     }
 
-    //Marcar como sospechosa
     function getAllUsuarios(){
         $row=false;
         
@@ -690,8 +659,8 @@ class GestorBD{
     }    
 
     function cambiarPermisosUsuario($idSuperusuario, $idUsuario, $gestor, $moderador, $superusuario){
-        $super=$this->getUsuario($idSuperusuario);
-        $usuario=$this->getUsuario($idUsuario);
+        $super=$this->getUsuario2($idSuperusuario, "ID");
+        $usuario=$this->getUsuario2($idUsuario, "ID");
 
         if($super["ID"]!=-1 and $super["esSuperusuario"]==1 and $usuario["ID"]!=-1){
             $prepare=$this->mysqli->prepare("UPDATE Usuarios SET esModerador=?,esGestor=?,esSuperusuario=? WHERE ID=?");
@@ -702,7 +671,7 @@ class GestorBD{
 
     //ARREGLAR PARA QUE SE PILLE POR EL ID DE LA IMAGEN
     function insertarComentarioImagen($idUsuario, $idProducto, $ruta, $comentario){
-        $usuario=$this->getUsuario($idUsuario);
+        $usuario=$this->getUsuario2($idUsuario, "ID");
 
         if($usuario["ID"]!=-1 and $usuario["esGestor"]==1){
             $prepare=$this->mysqli->prepare("UPDATE Imagenes SET Descripcion=? WHERE ID_Producto=? AND `Ruta Imagen`=?");
@@ -728,7 +697,6 @@ class GestorBD{
         return $res;
     }  
     
-    //Marcar como sospechosa
     function getAllProductsWithImage(){
         $productos=$this->getAllProducts();
 
@@ -748,8 +716,7 @@ class GestorBD{
     }
 
     function insertEtiquetas($idUsuario, $idProducto, $etiquetas){
-        //$etiquetas=explode(",", $etiquetas);
-        $usuario=$this->getUsuario($idUsuario);
+        $usuario=$this->getUsuario2($idUsuario, "ID");
     
         if($usuario["ID"]!=-1 and $usuario["esGestor"]==1){
             for($i=0; $i<count($etiquetas); $i++){
@@ -781,45 +748,13 @@ class GestorBD{
     } 
     
     function deleteEtiqueta($idUsuario, $idProducto, $etiqueta){
-        $usuario=$this->getUsuario($idUsuario);
+        $usuario=$this->getUsuario2($idUsuario, "ID");
     
         if($usuario["ID"]!=-1 and $usuario["esGestor"]==1){
             $prepare=$this->mysqli->prepare("DELETE FROM Etiquetas WHERE ID_Producto=? AND Nombre=?");
             $prepare->bind_param("is", $idProducto, $etiqueta);
             $prepare->execute();
         }
-    }
-
-    function getAllPaises(){
-        $paises=false;
-        
-        $prepare=$this->mysqli->prepare("SELECT * FROM Pais ORDER BY CountryName");
-        $prepare->execute();
-        
-        $query=$prepare->get_result();
-        
-        if($query->num_rows > 0){
-            $paises=$query->fetch_all(MYSQLI_ASSOC);
-        }
-        
-        return $paises;
-    }
-
-    function getPais($idPais){
-        //var_dump($idPais);
-        $pais=false;
-        
-        $prepare=$this->mysqli->prepare("SELECT * FROM Pais WHERE CountryCode=?");
-        $prepare->bind_param("s", $idPais);
-        $prepare->execute();
-        
-        $query=$prepare->get_result();
-        
-        if($query->num_rows > 0){
-            $pais=$query->fetch_assoc();
-        }
-        
-        return $pais;
     }
 
     function existeImagen($idImagen){
@@ -840,13 +775,4 @@ class GestorBD{
         return $res;
     }
 }
-
-
-//Para getComentariosConProducto
-//SELECT Productos.Nombre,Comentario.ID,Usuarios.Nombre,Correo,Fecha,Texto FROM Comentario,Usuarios,Productos WHERE Comentario.ID_Usuario=Usuarios.ID AND Productos.ID=Comentario.ID_Producto ORDER BY Comentario.ID DESC;
-
-
-//Para editar etiquetas
-// /UPDATE Etiquetas SET Nombre='GPUA' WHERE ID_Producto=1 AND Nombre='GPU';
-
 ?>

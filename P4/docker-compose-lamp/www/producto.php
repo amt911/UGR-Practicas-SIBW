@@ -59,7 +59,7 @@
 
     
     //Parte de sesiones
-    $usuario=$con->getUsuario(-1);
+    $usuario=$con->getUsuario2(-1, "ID");
 
     //Parte de sesiones
     if(isset($_SESSION["usuario"])){

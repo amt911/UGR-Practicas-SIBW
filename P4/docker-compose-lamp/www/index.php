@@ -65,7 +65,7 @@
                 "FAQ" => "destruir_cookies.php");
             //"Añadir producto" => "add.php"
 
-    $usuario=$con->getUsuario(-1);
+    $usuario=$con->getUsuario2(-1, "ID");
 
     //Parte de sesiones
     if(isset($_SESSION["usuario"])){
