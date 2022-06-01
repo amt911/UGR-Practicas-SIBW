@@ -7,7 +7,6 @@ session_start();
 $con=new GestorBD();
 
 $back="index.php";
-
 if(isset($_GET["back"]) and !empty($_GET["back"])){
     $back=$_GET["back"];
 }
@@ -80,6 +79,7 @@ echo $twig->render("new_producto.twig", [
     "Errores" => $errores,
     "ShowForm" => $showForm,
     "Back" => $back,
-    "Fabricantes" => $fabricantes
+    "Fabricantes" => $fabricantes,
+    "Titulo" => "Nuevo producto",
 ]);
 ?>

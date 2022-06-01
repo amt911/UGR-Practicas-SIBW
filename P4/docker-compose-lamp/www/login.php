@@ -2,9 +2,10 @@
     require_once "/usr/local/lib/php/vendor/autoload.php";
     include("bd.php");
 
+    session_start();
+
     $con=new GestorBD();
     $errores=array();
-
 
     $back="index.php";
 
@@ -17,11 +18,8 @@
         $back=$_POST["anterior"];
 
         if($con->comprobarCredenciales($correo, $contra)){
-            session_start();
-            //$_SESSION["correo"]=$correo;
             $_SESSION["usuario"]=$con->getUsuario2($correo ,"Correo");
-            
-            //$back="producto.php?p=3";
+
             header("Location: $back");
             exit();
         }

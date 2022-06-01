@@ -46,6 +46,7 @@
         "Errores" => $errores,
         "ShowForm" => $showForm,
         "Usuarios" => $usuarios,
-        "Yo" => $_SESSION["usuario"]
+        "Yo" => $_SESSION["usuario"],
+        "Titulo" => "Cambiar permiso usuarios",
     ]);    
 ?>

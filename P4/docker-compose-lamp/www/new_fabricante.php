@@ -9,7 +9,6 @@
     $menu=array("Inicio"=>"index.php");
 
     $back="index.php";  //Fallback
-
     if(isset($_GET["back"]) and !empty($_GET["back"]))
         $back=$_GET["back"];
 
@@ -54,5 +53,6 @@
         "Back" => $back,
         "Errores" => $errores,
         "ShowForm" => $showForm,
+        "Titulo" => "Nuevo fabricante",
     ]);
 ?>

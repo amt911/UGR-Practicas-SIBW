@@ -2,10 +2,12 @@
     require_once "/usr/local/lib/php/vendor/autoload.php";
     include("bd.php");
 
+    session_start();
+    $con=new GestorBD("root", "tiger");
+
     $menu=array("Inicio"=>"index.php");
 
     $back="index.php";  //Fallback
-
     if(isset($_GET["back"]) and !empty($_GET["back"]))
         $back=$_GET["back"];
 
@@ -14,9 +16,6 @@
     if(isset($_GET["id"]) and !empty($_GET["id"]) and is_numeric($_GET["id"]))
         $id=$_GET["id"];
 
-    
-    session_start();
-    $con=new GestorBD("root", "tiger");
 
     $error=array();
 
@@ -32,16 +31,16 @@
     if($con->existeProducto($id)){
         $producto=$con->getProducto($id);
         $fabricantes=$con->getAllFabricantes();
+        $imagenes=$con->getImagenes($id);
+        $etiquetas=$con->getEtiquetas($id);
     }
     else{
         $error[]="El producto no existe";
     }
 
-    $imagenes=$con->getImagenes($id);
-    $etiquetas=$con->getEtiquetas($id);
 
     //Parte de POST
-    if($_SERVER["REQUEST_METHOD"]=="POST" and isset($_SESSION["usuario"])){
+    if($_SERVER["REQUEST_METHOD"]=="POST" and isset($_SESSION["usuario"]) and $_SESSION["usuario"]["esGestor"]==1){
         if(empty($_POST["precio"]) or empty($_POST["nombre"]) or empty($_POST["descripcion"]) or empty($_POST["titulo-top"]) or !is_numeric($_POST["precio"])){
             $error[]="Hay campos obligatorios vacíos o incorrectos";
 
@@ -75,22 +74,19 @@
 
                 //separar por comas y obtener un array
                 $etiquetas=explode(",", $etiquetas);
-
-                //var_dump($etiquetas);
                 $con->insertEtiquetas($_SESSION["usuario"]["ID"], $id, $etiquetas);
             }            
 
             $con->cambiarDatosProducto($_SESSION["usuario"]["ID"], $_POST["product-id"], $_POST["precio"], $_POST["nombre"], $_POST["descripcion"], $_POST["titulo-top"], $_POST["fabricante"], $_FILES["imagenes"]);
-
             $nroImg=$con->getImageCount($id);
 
             $back=$_POST["back"];
-
 
             if($nroImg>0){
                 header("Location: comentarios_imagen_form.php?id=".$id."&back=".$back);
                 exit();                
             }
+
             header("Location: $back");
             exit();
         }
@@ -109,5 +105,6 @@
         "Fabricantes" => $fabricantes,
         "Imagenes" => $imagenes,
         "Etiquetas" => $etiquetas,
+        "Titulo" => "Cambiar datos del producto",
     ]);    
 ?>

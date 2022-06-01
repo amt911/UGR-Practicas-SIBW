@@ -24,18 +24,13 @@
         $usuario=$_SESSION["usuario"];
 
         $comentario=$con->getComentario($idComentario);
-        //var_dump($comentario);
     }
     else{
         $error=-2;
     }
 
     //Parte de post
-//$_SERVER["REQUEST_METHOD"] == "POST"
-
     if($_SERVER["REQUEST_METHOD"] == "POST" and isset($_SESSION["usuario"]) and $_SESSION["usuario"]["esModerador"]==1){
-        //$_POST["comentario"]="\"Comentario editado por un moderador\"\n".$_POST["comentario"];
-
         $con->changeComentario($_SESSION["usuario"]["ID"], $_POST["idComentario"], $_POST["comentario"]);
 
         $backProduct=$_POST["back"];
@@ -53,7 +48,8 @@
         "BackID" => $backID,
         "Comentario" => $comentario,
         "ErrorStatus" => $error,
-        "idComentario" => $idComentario
+        "idComentario" => $idComentario,
+        "Titulo" => "Editar comentario",
     ]);
 
 ?>

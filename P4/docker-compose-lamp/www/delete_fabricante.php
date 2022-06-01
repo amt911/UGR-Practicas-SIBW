@@ -2,18 +2,16 @@
     require_once "/usr/local/lib/php/vendor/autoload.php";
     include("bd.php");
 
-    $menu=array("Inicio"=>"index.php");
-
     session_start();
-
     $con=new GestorBD("root", "tiger");
 
-    $back="index.php";  //Fallback
+    $errores=array();
+    $menu=array("Inicio"=>"index.php");
 
+    $back="index.php";  //Fallback
     if(isset($_GET["back"]) and !empty($_GET["back"]))
         $back=$_GET["back"];
 
-    $errores=array();
 
     //Parte de mostrar el formulario o no, dependiendo de si tiene permisos
     $showForm=false;
@@ -47,6 +45,7 @@
         "Back" => $back,
         "Errores" => $errores,
         "ShowForm" => $showForm,
-        "Fabricantes" => $fabricantes
+        "Fabricantes" => $fabricantes,
+        "Titulo" => "Eliminar fabricantes",
     ]);    
 ?>

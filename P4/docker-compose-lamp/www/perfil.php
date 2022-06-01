@@ -23,6 +23,7 @@ echo $twig->render("perfil.twig", [
     "Menu" => $menu,
     "Credenciales" => $_SESSION["usuario"],
     "Pais" => $con->getPais($_SESSION["usuario"]["CountryCode"]),
-    "Errores" => $error
+    "Errores" => $error,
+    "Titulo" => "Mi perfil",
 ]);
 ?>

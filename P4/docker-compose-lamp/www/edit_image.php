@@ -7,7 +7,6 @@ session_start();
 $con=new GestorBD();
 
 $back="index.php";
-
 if(isset($_GET["back"]) and !empty($_GET["back"])){
     $back=$_GET["back"];
 }
@@ -34,9 +33,7 @@ $imagen=$con->getImagenIDImg($id);
 
 if($_SERVER["REQUEST_METHOD"]=="POST" and isset($_SESSION["usuario"]) and $_SESSION["usuario"]["esGestor"]==1){
     $back=$_POST["back"];
-    //$imagen=$con->getImagenes($_POST["idProducto"]);
     $imagen=$con->getImagenIDImg($_POST["id"]);
-    //var_dump($imagen);
     $con->insertarComentarioImagen($_SESSION["usuario"]["ID"], $imagen["ID_Producto"], $imagen["Ruta Imagen"], $_POST[$imagen["ID_Imagen"]]);
 
     header("Location: $back");
@@ -53,6 +50,7 @@ echo $twig->render("edit_image.twig", [
     "Back" => $back,
     "Fabricantes" => $fabricantes,
     "Imagen" => $imagen,
-    "idImagen" => $id
+    "idImagen" => $id,
+    "Titulo" => "Editar comentario imagen",
 ]);
 ?>

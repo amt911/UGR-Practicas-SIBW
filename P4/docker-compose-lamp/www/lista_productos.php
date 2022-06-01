@@ -27,10 +27,11 @@
     $loader = new \Twig\Loader\FilesystemLoader('templates');
     $twig = new \Twig\Environment($loader);
     echo $twig->render("lista_productos.twig", [
-        "NombreForm" => "Listado comentarios",
+        "NombreForm" => "Listado productos",
         "Menu" => $menu,
         "Errores" => $errores,
         "ShowForm" => $showForm,
-        "Comentarios" => $res
+        "Comentarios" => $res,
+        "Titulo" => "Listado productos",
     ]);    
 ?>

@@ -15,7 +15,7 @@
     session_start();
 
     $error=0;
-    if($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST["comentario"]) and isset($_SESSION["usuario"])){
+    if($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST["comentario"]) and !empty($_SESSION["usuario"])){
         $prodID=$_POST["actual"];
 
         if($_POST["comentario"] !== ""){

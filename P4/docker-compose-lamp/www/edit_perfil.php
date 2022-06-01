@@ -7,12 +7,10 @@ session_start();
 $con=new GestorBD();
 
 $menu=array("Inicio"=>"index.php");
-$error=null;
 
 //Parte de GET
 $error=array();
 if(isset($_SESSION["usuario"])){
-    //$error[]="";
     $estaRegistrado=true;
 }
 else{
@@ -44,6 +42,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST" and isset($_SESSION["usuario"])){
         if(!empty($_POST[$operacion[$_POST["tipo"]]]) and !empty($_POST[$operacion[$_POST["tipo"]]])){
             $con->cambiarDatosUsuario($_SESSION["usuario"]["ID"], $_POST[$operacion[$_POST["tipo"]]], $operacion[$_POST["tipo"]]);
             $_SESSION["usuario"]=$con->getUsuario2($_SESSION["usuario"]["ID"], "ID");
+
             header("Location: perfil.php");
             exit();            
         }
@@ -55,6 +54,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST" and isset($_SESSION["usuario"])){
     else if($_POST["tipo"]==7){
         if(isset($_POST["Password"]) and isset($_POST["Password-confirm"]) and !empty($_POST["Password"]) and !empty($_POST["Password-confirm"]) and $_POST["Password"]===$_POST["Password-confirm"]){
             $con->cambiarDatosUsuario($_SESSION["usuario"]["ID"], $_POST["Password"], "Password");
+
             header("Location: destruir_cookies.php");
             exit();            
         }
@@ -66,7 +66,6 @@ if($_SERVER["REQUEST_METHOD"]=="POST" and isset($_SESSION["usuario"])){
         }                
     }
     else {
-        //var_dump($_FILES["Foto"]);
         if(isset($_FILES["Foto"]) and $_FILES["Foto"]["error"]!=4){
             $hayError=false;
             $extensionesPermitidas=array("jpeg", "jpg", "png");
@@ -83,10 +82,9 @@ if($_SERVER["REQUEST_METHOD"]=="POST" and isset($_SESSION["usuario"])){
             }
 
             if(!$hayError){
-                ////move_uploaded_file($_FILES["Foto"]["tmp_name"], "static/images/".$_FILES["Foto"]["name"]);
                 $con->actualizarFotoPerfil($_SESSION["usuario"]["ID"], $_FILES["Foto"]);
-
                 $_SESSION["usuario"]=$con->getUsuario2($_SESSION["usuario"]["ID"], "ID");
+                
                 header("Location: perfil.php");
                 exit();
             }
@@ -103,10 +101,9 @@ echo $twig->render("edit_perfil.twig", [
     "NombreForm" => "Cambiar datos de perfil",
     "Menu" => $menu,
     "Errores" => $error,
-    "Credenciales" => $_SESSION["usuario"],
-    "User" => $_SESSION["usuario"],
     "Tipo" => $tipo,
     "estaRegistrado" => $estaRegistrado,
     "Paises" => $con->getAllPaises(),
+    "Titulo" => "Cambiar datos de perfil",
 ]);
 ?>

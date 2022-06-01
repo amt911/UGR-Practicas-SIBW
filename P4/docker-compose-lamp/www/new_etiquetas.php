@@ -2,21 +2,19 @@
     require_once "/usr/local/lib/php/vendor/autoload.php";
     include("bd.php");
 
+    session_start();
+    $con=new GestorBD();
+
     $menu=array("Inicio"=>"index.php");
 
     $back="index.php";  //Fallback
-
     if(isset($_GET["back"]) and !empty($_GET["back"]))
         $back=$_GET["back"];
 
     $id=-1;     //Error por defecto
-
     if(isset($_GET["id"]) and !empty($_GET["id"]) and is_numeric($_GET["id"]))
         $id=$_GET["id"];
-
     
-    session_start();
-    $con=new GestorBD();
 
     $error=array();
 
@@ -63,5 +61,6 @@
         "ProductID" => $id,
         "Errores" => $error,
         "ShowForm" => $showForm,
+        "Titulo" => "Nuevas etiquetas",
     ]);    
 ?>

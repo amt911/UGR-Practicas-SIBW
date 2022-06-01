@@ -66,10 +66,6 @@
             $errores[]="No puede haber campos vacíos";
     }
 
-    //$_FILES["Foto"]["error"]!=4
-
-
-
     $loader = new \Twig\Loader\FilesystemLoader('templates');
     $twig = new \Twig\Environment($loader);
     echo $twig->render('signup.twig', [

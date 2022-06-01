@@ -32,6 +32,7 @@
         "Menu" => $menu,
         "Errores" => $errores,
         "ShowForm" => $showForm,
-        "Productos" => $res
+        "Productos" => $res,
+        "Titulo" => "Listado comentarios",
     ]);    
 ?>

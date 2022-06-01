@@ -9,7 +9,6 @@
     $totalPaginas=$con->getNumPaginas();
 
     $pagina=1;
-
     if(isset($_GET["pagina"]) and !empty($_GET["pagina"]) and is_numeric($_GET["pagina"]) and $_GET["pagina"]>0 and $_GET["pagina"]<=$totalPaginas){
         $pagina=$_GET["pagina"];
     }

@@ -54,6 +54,7 @@ echo $twig->render("comentarios_imagen_form.twig", [
     "Back" => $back,
     "Fabricantes" => $fabricantes,
     "Imagenes" => $imagenes,
-    "idProducto" => $id
+    "idProducto" => $id,
+    "Titulo" => "Comentarios imagen",
 ]);
 ?>

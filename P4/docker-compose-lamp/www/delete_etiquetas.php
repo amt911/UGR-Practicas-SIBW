@@ -4,10 +4,11 @@
     
     session_start();
 
-    $error=array();
-    $menu=array("Inicio"=>"index.php");
-
     $con=new GestorBD("root", "tiger");
+    
+    $menu=array("Inicio"=>"index.php");
+    $error=array();
+
 
 
     $back="index.php";
@@ -64,6 +65,7 @@ echo $twig->render("delete_etiquetas.twig", [
     "ShowForm" => $showForm,
     "IDProd" => $id,
     "Back" => $back,
-    "Etiquetas" => $etiquetas
+    "Etiquetas" => $etiquetas,
+    "Titulo" => "Eliminar etiquetas",
 ]);
 ?>
