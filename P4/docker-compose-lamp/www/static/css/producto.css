@@ -462,3 +462,16 @@ body div{
     width: 50%;
     padding: 3px;    
 }
+
+.img-datos-container{
+    display: grid;
+    grid-template-columns: 15% minmax(0, 1fr);
+    gap: 3px;
+}
+
+.perfil-img{
+    margin-left: 12px;
+    margin-top: 12px;
+    border: solid 1px black;
+    height: fit-content;
+}

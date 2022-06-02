@@ -50,20 +50,30 @@
                                 </div>
                             </div>
                         {% endif %}
-
-                        <div class="nombre-comentario">
-                            <h4>{{ aux["Nombre"] }}</h4>
+                        <div class="img-datos-container">
+                            <div class="perfil-img">
+                            {% if aux["Foto"] != "" %}
+                                <img src="{{ aux["Foto"] }}" alt="usuario"/>
+                            {% else %}
+                                <img src="static/images/default_user.png" alt="usuario"/>
+                            {% endif %}
+                            
+                            </div>
+                            <div>                        
+                                <div class="nombre-comentario">
+                                    <h4>{{ aux["Nombre"] }}</h4>
+                                </div>
+                                <div class="comentario-email">
+                                    {{ aux["Correo"] }}
+                                </div>
+                                <div class="fecha">
+                                    {{ aux["Fecha"] }}<!--12 de mayo del 2021, 13:37-->
+                                </div>
+                                {% if aux["Editado"] == 1 %}
+                                    <div class="centrado"><strong>"Comentario editado por el moderador"</strong></div>
+                                {% endif %}
+                            </div>
                         </div>
-                        <div class="comentario-email">
-                            {{ aux["Correo"] }}
-                        </div>
-                        <div class="fecha">
-                            {{ aux["Fecha"] }}<!--12 de mayo del 2021, 13:37-->
-                        </div>
-                        {% if aux["Editado"] == 1 %}
-                            <div class="centrado"><strong>"Comentario editado por el moderador"</strong></div>
-                        {% endif %}
-                        
                         <div class="contenido-comentario">
                             {{ aux["Texto"] }}
                         </div>
