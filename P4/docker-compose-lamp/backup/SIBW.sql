@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql:3306
--- Generation Time: May 31, 2022 at 03:25 PM
--- Server version: 8.0.28
+-- Generation Time: Jun 02, 2022 at 10:54 AM
+-- Server version: 8.0.29
 -- PHP Version: 8.0.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -24,6 +24,9 @@ SET time_zone = "+00:00";
 CREATE USER 'usuario'@'%' IDENTIFIED BY 'usuario';
 GRANT SELECT,INSERT,UPDATE ON SIBW.* TO 'usuario'@'%';
 
+CREATE USER 'super'@'%' IDENTIFIED BY 'super';
+GRANT ALL PRIVILEGES ON SIBW.* TO 'super'@'%';
+
 -- --------------------------------------------------------
 
 --
@@ -35,20 +38,23 @@ CREATE TABLE `Comentario` (
   `ID_Usuario` int NOT NULL,
   `Fecha` datetime NOT NULL,
   `Texto` varchar(1000) NOT NULL,
-  `ID_Producto` int NOT NULL
+  `ID_Producto` int NOT NULL,
+  `Editado` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `Comentario`
 --
 
-INSERT INTO `Comentario` (`ID`, `ID_Usuario`, `Fecha`, `Texto`, `ID_Producto`) VALUES
-(34, 1, '2022-05-29 08:13:31', '\"Comentario editado por un moderador\"\nqwerty sisi', 1),
-(41, 6, '2022-05-30 11:19:24', '\"Comentario editado por un moderador\"\nasdasdasdas cabron', 1),
-(44, 1, '2022-05-31 12:20:37', 'si', 2),
-(45, 1, '2022-05-31 12:20:42', 'no', 6),
-(46, 1, '2022-05-31 12:23:03', 'no\r\n', 2),
-(47, 1, '2022-05-31 12:49:32', 'un intel\r\n', 9);
+INSERT INTO `Comentario` (`ID`, `ID_Usuario`, `Fecha`, `Texto`, `ID_Producto`, `Editado`) VALUES
+(52, 12, '2022-06-01 23:41:19', 'no se', 5, 0),
+(54, 21, '2022-06-02 01:51:17', 'asdddd', 5, 0),
+(55, 21, '2022-06-02 01:51:24', 'dsaa\r\nno digass eso\r\n', 1, 1),
+(58, 12, '2022-06-02 03:12:08', 'asdasdasdsa', 8, 1),
+(61, 12, '2022-06-02 11:01:09', 'asd', 1, 0),
+(64, 12, '2022-06-02 11:02:25', 'asdasd', 1, 0),
+(69, 22, '2022-06-02 12:26:22', 'asdasd', 1, 0),
+(71, 22, '2022-06-02 12:39:29', 'k', 3, 0);
 
 -- --------------------------------------------------------
 
@@ -66,8 +72,23 @@ CREATE TABLE `Etiquetas` (
 --
 
 INSERT INTO `Etiquetas` (`ID_Producto`, `Nombre`) VALUES
-(1, 'GPU'),
-(1, 'NVIDIA');
+(1, 'GPUA'),
+(1, 'NVIDIA'),
+(9, '12'),
+(9, '12th'),
+(9, 'boxed'),
+(9, 'cpu'),
+(9, 'gen'),
+(9, 'generacion'),
+(9, 'intel'),
+(9, 'overclock'),
+(9, 'pc'),
+(9, 'procesador'),
+(9, 'top'),
+(120, '123'),
+(120, '321'),
+(120, '333'),
+(120, 'prueba');
 
 -- --------------------------------------------------------
 
@@ -89,6 +110,7 @@ CREATE TABLE `Fabricante` (
 
 INSERT INTO `Fabricante` (`Nombre`, `Facebook`, `Twitter`, `YouTube`, `Pagina oficial`) VALUES
 ('AMD', 'AMD', 'amd', 'amd', 'https://www.amd.com'),
+('asd', 'asd', 'asd', 'asd', 'asd'),
 ('Intel', 'Intel', 'intel', 'channelintel', 'https://www.intel.com'),
 ('Nintendo', 'Nintendo', 'nintendoeurope', 'Nintendo', 'https://www.nintendo.com/'),
 ('NVIDIA', 'NVIDIA', 'nvidia', 'NVIDIA', 'https://www.nvidia.com/es-es/geforce/graphics-cards/30-series/rtx-3090/'),
@@ -165,7 +187,8 @@ INSERT INTO `Imagenes` (`ID_Imagen`, `ID_Producto`, `Ruta Imagen`, `Descripcion`
 (49, 18, 'static/images/elite3.png', 'Caja del mando'),
 (50, 19, 'static/images/5900x_1.png', 'Caja del microprocesador.'),
 (51, 19, 'static/images/5900x_2.png', 'IHS del microprocesador.'),
-(53, 1, 'static/images/3090_2.png', 'Vista general');
+(53, 1, 'static/images/3090_2.png', 'Vista general'),
+(106, 120, 'static/images/default_user_idUser120.png', 'usuario');
 
 -- --------------------------------------------------------
 
@@ -460,6 +483,7 @@ INSERT INTO `Palabrota` (`palabra`) VALUES
 ('mierda'),
 ('payasa'),
 ('payaso'),
+('puta'),
 ('subnormal');
 
 -- --------------------------------------------------------
@@ -500,7 +524,8 @@ INSERT INTO `Productos` (`ID`, `Precio`, `Nombre`, `Descripción`, `Titulo pagin
 (16, 64.95, 'Mando DualSense PlayStation 5', '<p>\r\nSi necesitas un buen mando que te acompañe en tus sesiones de juego con tus amigos, el mando Sony PS5 DualSense™ es tu aliado.\r\n</p>\r\n\r\n<p>\r\n<strong>Multiplicará tus sensaciones</strong>\r\nEl nuevo DualSense, el mando que multiplicará tus sensaciones ofreciéndote un nuevo concepto de inmersión. Haz que los mundos de juego cobren vida y empieza a crear nuevos y épicos recuerdos. Siente la respuesta táctil capaz de transmitir las acciones del juego con dos activadores que sustituyen a los motores de vibración tradicionales. Cuando lo tienes en las manos, estas vibraciones dinámicas son capaces de simular todo tipo de sensaciones, como los elementos del entorno o el retroceso de diferentes armas.\r\n</p>', 'Mando PS5', 'Sony Computer Entertainment'),
 (17, 45.41, 'Mando DualShock 4 PlayStation 4', '<p>\r\nToma el control de una nueva generación de videojuegos con un mando inalámbrico DualShock 4 Black rediseñado que pone en tus manos la mayor precisión en tus juegos de PlayStation 4. Con un panel táctil nuevo que revela desde arriba la barra luminosa y un elegante acabado mate, es la forma más ergonómicas e intuitiva de jugar que haya habido nunca.\r\n</p>\r\n\r\n<p>\r\n<strong>DISEÑO ERGONÓMICO.</strong>\r\nUn diseño elegante y súper confortable unido a los botones y sticks analógicos altamente sensibles aportan una mayor precisión durante el juego.\r\n</p>\r\n\r\n<p>\r\n<strong>Botón SHARE.</strong>\r\nUtiliza el botón SHARE para compartir tus hazañas en las redes sociales. Sube tu partida en streaming a Twitch, YouTube o Dailymotion o edita las grabaciones y compártelas en Facebook y Twitter. Además, podrás invitar a tus amigos que se encuentren online para jugar a tus juegos contigo -incluso si no disponen del juego- con Share Play.\r\n</p>\r\n<p>\r\n<strong>TOUCH PAD.</strong>\r\nControla y dibuja mediante el touchpad de alta respuesta, ahora rediseñada para que puedas ver la barra de luz desde la parte superior mientras juegas.\r\n</p>\r\n<p>\r\n<strong>BARRA DE LUZ.</strong>\r\nLa barra de luz integrada puede emitir varios colores para personalizar tu experiencia y añadir una nueva dimensión a los juegos. Además, ayuda a la PlayStation Camera a trackear la posición del mando para mejorar la interacción virtual mientras utilizas PlayStation VR.\r\n\r\n<p>\r\n<strong>ALTAVOZ INTEGRADO Y CONECTOR DE AURICULARES ESTÉREO.</strong> Disfruta de los efectos extra de sonido -emitidos directamente desde el mando- y chatea con tus amigos online a través de auriculares con micrófono incorporado. Auriculares estéreo incluidos con la PS4.\r\n</p>\r\n<p>\r\n<strong>VIBRACIÓN.</strong>\r\nSiente las vibraciones emitidas por  el mando mediante unos motores de vibración más intuitivos y precisos.\r\n</p>\r\n<p>\r\n<strong>REMOTE PLAY.</strong>\r\nJuega a tus juegos de PS4 en streaming en Windows PC or Mac para poder seguir jugando si te encuentras lejos de tu televisor. El adaptador inalámbrico DualShock 4 USB mejora la experiencia Remote Play permitiéndote jugar de manera inalámbrica.\r\n</p>\r\n<p>\r\n<strong>CONTROL CUSTOMIZADO.</strong>\r\nConfigura tu mando DualShock 4 de la manera que quieras: elige el volumen de los altavoces, deshabilita la vibración, ajusta el brillo de la barra de luz para incrementar la vida útil de tu batería cuando ya no la necesites. Puedes elegir si compartir los datos vías Bluetooth o utilizando un cable USB para conectarlo a la PS4.\r\n</p>', 'Mando PS4', 'Sony Computer Entertainment'),
 (18, 120.65, 'Mando Xbox Elite (Serie 1)', '<p>\r\nEl mando Xbox Elite se adapta al tamaño de tu mano y a tu estilo de juego con configuraciones que pueden mejorar la precisión, la velocidad y el alcance mediante gatillos de distintas formas y tamaños. Puedes intercambiar los joysticks de metal y crucetas para lograr un control y ergonomía personalizados. Incorpora cuatro ranuras para palancas intercambiables que puedes conectar o quitar sin ninguna herramienta. Si accionas el bloqueo de gatillos de alta sensibilidad, podrás disparar más rápido y ahorrar tu valioso tiempo en cada toque de gatillo. Todas las superficies y detalles están diseñados para satisfacer las demandas de los jugadores más competitivos: los anillos reforzados de bajo rozamiento alrededor de cada joystick minimizan el desgaste y aportan suavidad de movimiento. Por otro lado, los agarres de goma con relieve confieren al mando una apariencia sólida y proporcionan más estabilidad.\r\n</p>', 'Mando XBOX Elite 1', 'XBOX'),
-(19, 450.93, 'AMD Ryzen 9 5900X', '<p>\r\nEl procesador que ofrece la mejor experiencia de juego del mundo. 12 núcleos para potenciar la experiencia de juego, la transmisión en vivo y mucho más.\r\n</p>\r\n\r\n<p>\r\n<strong>\r\nTecnología AMD StoreMI:\r\n</strong>\r\nSoftware que combina la velocidad de SSD con la capacidad de disco duro en una sola unidad rápida y fácil de administrar, gratuita con la placa madre AMD Serie 400.\r\n</p>\r\n\r\n<p>\r\n<strong>Utilidad AMD Ryzen™ Master:</strong>\r\nLa utilidad de overclocking sencilla y a la vez potente para los procesadores AMD Ryzen™\r\n</p>\r\n\r\n<p>\r\n<strong>AMD Ryzen™ VR-Ready Premium:</strong>\r\nPara los usuarios que exigen una experiencia premium de realidad virtual, AMD ofrece procesadores especiales Ryzen™ VR-Ready Premium de alto rendimiento.\r\n</p>\r\n\r\n\r\n<table>\r\n<tr>\r\n<td>Frecuencia</td>\r\n<td>3,7 GHz</td>\r\n</tr>\r\n\r\n<tr>\r\n<td>Número de núcleos</td>\r\n<td>12</td>\r\n</tr>\r\n\r\n<tr>\r\n<td>Socket</td>\r\n<td>AM4</td>\r\n</tr>\r\n\r\n<tr>\r\n<td>Caché del procesador</td>\r\n<td>64 MB</td>\r\n</tr>\r\n\r\n</table>', 'AMD R9 5900X', 'AMD');
+(19, 450.93, 'AMD Ryzen 9 5900X', '<p>\r\nEl procesador que ofrece la mejor experiencia de juego del mundo. 12 núcleos para potenciar la experiencia de juego, la transmisión en vivo y mucho más.\r\n</p>\r\n\r\n<p>\r\n<strong>\r\nTecnología AMD StoreMI:\r\n</strong>\r\nSoftware que combina la velocidad de SSD con la capacidad de disco duro en una sola unidad rápida y fácil de administrar, gratuita con la placa madre AMD Serie 400.\r\n</p>\r\n\r\n<p>\r\n<strong>Utilidad AMD Ryzen™ Master:</strong>\r\nLa utilidad de overclocking sencilla y a la vez potente para los procesadores AMD Ryzen™\r\n</p>\r\n\r\n<p>\r\n<strong>AMD Ryzen™ VR-Ready Premium:</strong>\r\nPara los usuarios que exigen una experiencia premium de realidad virtual, AMD ofrece procesadores especiales Ryzen™ VR-Ready Premium de alto rendimiento.\r\n</p>\r\n\r\n\r\n<table>\r\n<tr>\r\n<td>Frecuencia</td>\r\n<td>3,7 GHz</td>\r\n</tr>\r\n\r\n<tr>\r\n<td>Número de núcleos</td>\r\n<td>12</td>\r\n</tr>\r\n\r\n<tr>\r\n<td>Socket</td>\r\n<td>AM4</td>\r\n</tr>\r\n\r\n<tr>\r\n<td>Caché del procesador</td>\r\n<td>64 MB</td>\r\n</tr>\r\n\r\n</table>', 'AMD R9 5900X', 'AMD'),
+(120, 57, 'Producto de prueba ', '<p>prueba</p>\r\n<p><strong>strong</strong></p>', 'strong', 'asd');
 
 -- --------------------------------------------------------
 
@@ -513,7 +538,6 @@ CREATE TABLE `Usuarios` (
   `Nombre` varchar(150) NOT NULL,
   `Correo` varchar(150) NOT NULL,
   `Password` varchar(150) NOT NULL,
-  `esNormal` tinyint(1) NOT NULL,
   `esModerador` tinyint(1) NOT NULL,
   `esGestor` tinyint(1) NOT NULL,
   `esSuperusuario` tinyint(1) NOT NULL,
@@ -527,10 +551,11 @@ CREATE TABLE `Usuarios` (
 -- Dumping data for table `Usuarios`
 --
 
-INSERT INTO `Usuarios` (`ID`, `Nombre`, `Correo`, `Password`, `esNormal`, `esModerador`, `esGestor`, `esSuperusuario`, `Genero`, `Foto`, `Direccion`, `CountryCode`) VALUES
-(1, 'Andrés', 'a.merlo.truji10@gmail.com', 'asd', 1, 1, 1, 1, 'Hombre', 'static/images/ZDVORKB2B4GUPIPWBC3SN5IJXI_1.jpg', 'Mi casa', 'ARG'),
-(6, 'trollface meme', 'trollface', 'asd', 1, 1, 1, 1, 'Hombre', 'static/images/trollface_idUser6.jpg', 'asd', 'YEM'),
-(7, 'ddd', 'ddd', 'asd', 1, 1, 1, 1, 'Prefiero no decirlo', 'static/images/trollface_idUser7.jpg', 'asd', 'YEM');
+INSERT INTO `Usuarios` (`ID`, `Nombre`, `Correo`, `Password`, `esModerador`, `esGestor`, `esSuperusuario`, `Genero`, `Foto`, `Direccion`, `CountryCode`) VALUES
+(12, 'Andres', 'example@example.com', '$2y$10$JWJrTYaMBQUBJuBwKJkCw.VGlSgxU1V88UnbihZClPSRvbHA1QTMO', 1, 1, 1, 'Hombre', 'static/images/ZDVORKB2B4GUPIPWBC3SN5IJXI_idUser12.jpg', 'asd', 'ESP'),
+(21, 'asd', 'asd@asd.asd', '$2y$10$11PhWBIwb0r7ifuJt4XlQeEfVlWTN3bwgEHUU7IC58upQHfqME/96', 1, 1, 1, 'Hombre', NULL, 'asd', 'AGO'),
+(22, 'asd', 'dsa@dsa.dsa', '$2y$10$jeCXE5MfHQ7t98S79ca2mOarTaw8o4FO1p3XKLWQyfcZkAYUxpIAG', 1, 0, 0, 'Prefiero no decirlo', 'static/images/default_user_idUser22.png', 'Urb.', 'ALB'),
+(24, 'asdasd', 'asdasd@asdasd.asd', '$2y$10$8pU6sdOnBo9TWshwmM5c2efWCny9539y9K.OxbpVe/owEgdoHdD0W', 0, 0, 0, 'Hombre', NULL, 'asd', 'AFG');
 
 --
 -- Indexes for dumped tables
@@ -604,25 +629,25 @@ ALTER TABLE `Usuarios`
 -- AUTO_INCREMENT for table `Comentario`
 --
 ALTER TABLE `Comentario`
-  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- AUTO_INCREMENT for table `Imagenes`
 --
 ALTER TABLE `Imagenes`
-  MODIFY `ID_Imagen` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `ID_Imagen` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
 
 --
 -- AUTO_INCREMENT for table `Productos`
 --
 ALTER TABLE `Productos`
-  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
+  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
 
 --
 -- AUTO_INCREMENT for table `Usuarios`
 --
 ALTER TABLE `Usuarios`
-  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- Constraints for dumped tables
@@ -633,7 +658,7 @@ ALTER TABLE `Usuarios`
 --
 ALTER TABLE `Comentario`
   ADD CONSTRAINT `Comentario_ibfk_1` FOREIGN KEY (`ID_Producto`) REFERENCES `Productos` (`ID`) ON DELETE CASCADE ON UPDATE RESTRICT,
-  ADD CONSTRAINT `Comentario_ibfk_2` FOREIGN KEY (`ID_Usuario`) REFERENCES `Usuarios` (`ID`);
+  ADD CONSTRAINT `Comentario_ibfk_2` FOREIGN KEY (`ID_Usuario`) REFERENCES `Usuarios` (`ID`) ON DELETE CASCADE ON UPDATE RESTRICT;
 
 --
 -- Constraints for table `Etiquetas`

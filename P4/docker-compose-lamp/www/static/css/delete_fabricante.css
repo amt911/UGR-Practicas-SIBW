@@ -1,13 +1,12 @@
 .fixed-width-container{
     width: 100%;
-    border: solid 2px green;
     display: flex;
     justify-content: center;
+    margin-bottom: 12px;
 }
 
 .fixed-width{
     width: fit-content;
-    border: 1px solid #000;
     text-align: start;
 }
 
