@@ -419,11 +419,19 @@ tr.dark{
 .mod-etiq-container > div{
     background-color: white;
     border-radius: 0.5vh;
+    border: solid 1px black;
 }
 
+.mod-etiq-container > div:last-child,
+.mod-comentario-container > div:last-child{
+    background-color: red;
+}
+
+/*
 body div{
     border: solid 1px red;
 }
+*/
 
 #etiquetas-container{
     margin-top: 12px;

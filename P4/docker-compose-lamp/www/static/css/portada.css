@@ -380,14 +380,14 @@ a.dark{
 }
 
 #perfil-superior{
-    border: solid 1px red;
-    background-color: beige;
+    /*border: solid 1px red;*/
+    /*background-color: beige;*/
     margin: 12px;
 }
 
 
 #titulo-img-div{
-    border: solid 2px blue;
+    /*border: solid 2px blue;*/
     display: grid;
     grid-template-columns: 80% minmax(0, 1fr);
     /*grid-template-columns: minmax(0, 1fr) 170px;*/
@@ -424,8 +424,14 @@ a.dark{
 .mod-container > div{
     background-color: white;
     border-radius: 0.5vh;
+    border: solid 1px black;
 }
 
+.mod-container > div:last-child{
+    background-color: red;
+}
+
+/*
 body div{
     border: solid 1px red;
-}
+}*/
