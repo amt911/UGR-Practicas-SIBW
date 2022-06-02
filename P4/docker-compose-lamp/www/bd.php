@@ -899,6 +899,7 @@ class GestorBD{
         return $res;
     }
 
+    
     function existeUsuarioCorreo($correo){
         $prepare=$this->mysqli->prepare("SELECT COUNT(*) FROM Usuarios WHERE Correo=?");
         $prepare->bind_param("s", $correo);
