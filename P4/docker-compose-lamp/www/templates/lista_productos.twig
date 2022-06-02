@@ -18,7 +18,7 @@
 {% for aux in Comentarios %}
     <div class="img-text-container">{#Separacion en dos columnas, imagen texto#}
         <div>
-            <img src="{{ aux["Imagen"] }}"/>
+            <a href="producto.php?p={{ aux["ID"] }}"><img src="{{ aux["Imagen"] }}"/></a>
         </div>
         <div class="info-container">
             <div><h2>{{ aux["Nombre"] }}</h2></div>
