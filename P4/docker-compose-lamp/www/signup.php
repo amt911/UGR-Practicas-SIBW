@@ -12,6 +12,12 @@
     if(isset($_GET["back"]) and !empty($_GET["back"]))
         $back=$_GET["back"];
 
+    $sesionIniciada=false;
+    if(isset($_SESSION["usuario"]) and !empty($_SESSION["usuario"])){
+        $sesionIniciada=true;
+        $errores[]="El usuario ya ha iniciado sesión";
+    }
+
     function comprobarCorreo($correo){
         if(preg_match("/^([0-9a-z\.\_]+)+@{1}([0-9a-z]+\.)+[0-9a-z]+$/i",$correo)===1)
             return true;
@@ -74,5 +80,6 @@
         "Titulo" => "Registro",
         "Header" => "Registro",
         "Paises" => $con->getAllPaises(),
+        "SesionIniciada" => $sesionIniciada
     ]);  
 ?>

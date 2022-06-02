@@ -8,10 +8,7 @@
 {% block main %}
 {{ parent() }}
 
-{% if Errores == -1 %}
-<h1 class="rojo">No estás registrado</h1>
-
-{% else %}
+{% if Error == 0 %}
 <div id="div-info-perfil">
     <div id="foto-perfil-div">
     {% if Credenciales["Foto"]!="" %}
@@ -77,15 +74,6 @@
 
             <div class="centrado">
                 <a href="edit_perfil.php?campo=6">Cambiar</a>
-            </div>            
-        </div>
-
-        <div>
-            <div>
-                <strong>Tipo de cuenta:</strong> {{ Tipo }}
-            </div>
-
-            <div class="centrado">
             </div>            
         </div>
     </div>

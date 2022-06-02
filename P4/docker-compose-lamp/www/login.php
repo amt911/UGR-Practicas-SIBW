@@ -12,6 +12,12 @@
     if(isset($_GET["back"]) and !empty($_GET["back"]))
         $back=$_GET["back"]; 
 
+    $sesionIniciada=false;
+    if(isset($_SESSION["usuario"]) and !empty($_SESSION["usuario"])){
+        $sesionIniciada=true;
+        $errores[]="El usuario ya ha iniciado sesión";
+    }
+
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         $correo=$_POST["correo"];
         $contra=$_POST["contra"];
@@ -33,5 +39,6 @@ echo $twig->render('login.twig', [
     "Back" => $back,
     "Titulo" => "Iniciar sesión",
     "Header" => "Iniciar sesión",
+    "SesionIniciada" => $sesionIniciada,
 ]);
 ?>

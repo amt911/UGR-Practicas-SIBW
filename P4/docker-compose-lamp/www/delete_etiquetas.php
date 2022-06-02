@@ -4,7 +4,7 @@
     
     session_start();
 
-    $con=new GestorBD("root", "tiger");
+    $con=new GestorBD("super", "super");
     
     $menu=array("Inicio"=>"index.php");
     $error=array();

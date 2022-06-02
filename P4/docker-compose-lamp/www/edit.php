@@ -4,7 +4,7 @@
 
     session_start();
 
-    $con=new GestorBD("root", "tiger");
+    $con=new GestorBD("super", "super");
 
     $backID="index.php";      //Fallback
     if(isset($_GET["back"]) and !empty($_GET["back"]))

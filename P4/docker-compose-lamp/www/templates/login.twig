@@ -1,6 +1,7 @@
 {% extends "plantilla_login.twig" %}
 
 {% block Formulario %}
+{% if SesionIniciada == false %}
 <form action="login.php" method="post">
 
     <label>Correo electrónico</label><br/>
@@ -8,9 +9,9 @@
 
     <br/><br/>
     <label>Contraseña</label><br/>
-    <input class="maximizado" type="password" name="contra"/><br/>
+    <input id="contra-input" class="maximizado" type="password" name="contra"/><br/>
 
-    <input type="checkbox"/>Mostrar contraseña<br/>
+    <input id="toggle-contra" type="checkbox"/>Mostrar contraseña<br/>
 
     <br/><br/>
     <button>Iniciar sesión</button>
@@ -21,4 +22,10 @@
 <div>
 ¿No eres usuario? <a href="signup.php">Regístrate</a> 
 </div>
+{% endif %}
+
+{% endblock %}
+
+{% block archivosJS %}
+<script src="static/js/login.js"></script>
 {% endblock %}

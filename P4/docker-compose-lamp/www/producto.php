@@ -17,9 +17,17 @@
     $error=0;
     if($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST["comentario"]) and !empty($_SESSION["usuario"])){
         $prodID=$_POST["actual"];
+        $palabrotas=$con->getPalabrotas();
+
+        $comentario=$_POST["comentario"];
+
+        //Por si acaso no funciona javascript, sustituyo las palabrotas tambien en el servidor
+        foreach($palabrotas as $palabra){
+            $comentario=str_replace($palabra, str_repeat("*", strlen($palabra)), $comentario);
+        }
 
         if($_POST["comentario"] !== ""){
-            $con->insertarComentario($_SESSION["usuario"]["ID"], $_POST["comentario"], $prodID);
+            $con->insertarComentario($_SESSION["usuario"]["ID"], $comentario, $prodID);
 
             header("Location: producto.php?p=$prodID");     //Redirijo para evitar que salga una ventana emergente de confirmar subida de nuevo
             exit();
@@ -34,7 +42,6 @@
     $res=$con->getProducto($id);
     $fabricanteRes=$con->getFabricante($res["Nombre_Fabricante"]);
     $comentarios=$con->getAllComments($id);
-    $palabrotas=$con->getPalabrotas();
     $imagenes=$con->getImagenes($id);
     $etiquetas=$con->getEtiquetas($id);
 

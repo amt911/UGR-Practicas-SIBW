@@ -3,7 +3,7 @@
     include("bd.php");
 
     session_start();
-    $con=new GestorBD("root", "tiger");
+    $con=new GestorBD("super", "super");
 
     $errores=array();
     $menu=array("Inicio"=>"index.php");

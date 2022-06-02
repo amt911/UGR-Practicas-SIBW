@@ -23,7 +23,7 @@ class GestorBD{
         }
     }
 
-    //GETTERS ESPECIFICOS
+
     function getProducto($id){
         $row=false;
 
@@ -38,6 +38,7 @@ class GestorBD{
     
         return $row;
     }
+
 
     function getFabricante($id){
         $row=false;
@@ -56,7 +57,6 @@ class GestorBD{
     }
 
 
-    //GETTERS PARA TODAS LAS FILAS
     function getAllFabricantes(){
         $row=false;
 
@@ -75,6 +75,7 @@ class GestorBD{
         return $salida;        
     }
 
+
     private function getAllProducts(){
         $row=false;
         
@@ -87,6 +88,7 @@ class GestorBD{
         return $row;    
     }
     
+
     function getAllComments($idProducto){
         $res=false;
 
@@ -102,6 +104,7 @@ class GestorBD{
 
         return $res;
     }
+
 
     //Obtiene todos los productos y sus comentarios
     function getAllCommentsTodosProductos(){
@@ -131,6 +134,7 @@ class GestorBD{
         return $paises;
     }
 
+
     function getPais($idPais){
         $pais=false;
         
@@ -159,18 +163,12 @@ class GestorBD{
 
         return $res;
     }
-
-
   
 
     //Obtiene los comentarios que encajen con las palabras pasadas como parametro
     private function searchComentariosIDProducto($idProducto, $texto){
         $res=false;
 
-//SELECT * FROM (SELECT Texto,Nombre,Correo,Fecha FROM Comentario,Usuarios WHERE Usuarios.ID=ID_Usuario AND ID_Producto=1) AS A WHERE A.Nombre LIKE '%as%';
-//SELECT * FROM (SELECT Texto,Nombre,Correo,Fecha FROM Comentario,Usuarios WHERE Usuarios.ID=ID_Usuario AND ID_Producto=1) AS A WHERE A.Nombre LIKE '%as%' OR A.Correo LIKE '%as%' OR A.Texto LIKE '%as%' OR A.Fecha LIKE '%as%';
-
-        //$prepare=$this->mysqli->prepare("SELECT * FROM Comentario WHERE ID_Producto=? AND Texto LIKE ?");
         $prepare=$this->mysqli->prepare("SELECT * FROM (SELECT Texto,Nombre,Correo,Fecha FROM Comentario,Usuarios WHERE Usuarios.ID=ID_Usuario AND ID_Producto=?) AS A WHERE A.Nombre LIKE ? OR A.Correo LIKE ? OR A.Texto LIKE ? OR A.Fecha LIKE ?");
         $keywordSQL="%".$texto."%";
         $prepare->bind_param("issss", $idProducto, $keywordSQL, $keywordSQL, $keywordSQL, $keywordSQL);
@@ -183,6 +181,7 @@ class GestorBD{
 
         return $res;
     }
+
 
     //Busca los comentarios que contengan las palabras pasadas como parametro
     function searchComentarios($texto){
@@ -213,6 +212,7 @@ class GestorBD{
     
         return $res;
     }
+
 
     function getPalabrotas(){
         $salida=false;
@@ -250,6 +250,7 @@ class GestorBD{
         return $res;        
     }
 
+
     //Obtiene el numero de imagenes que tiene un producto
     function getImageCount($idProducto){
         $prepare=$this->mysqli->prepare("SELECT COUNT(*) FROM Imagenes WHERE ID_Producto=?");
@@ -265,6 +266,7 @@ class GestorBD{
 
         return $res;        
     }
+
 
     function getImagenIDImg($idImg){
         $res=false;
@@ -349,13 +351,13 @@ class GestorBD{
         return password_verify($pass, $res);
     }
 
+
     function getUsuario2($id, $campo){
         $validos=array("ID", "Correo");
         $res=[
             "ID" => -1,
             "Nombre" => "Anónimo",
             "Correo" => null,
-            "esNormal" => 0,
             "esModerador" => 0,
             "esGestor" => 0 ,
             "esSuperusuario" => 0       
@@ -383,6 +385,7 @@ class GestorBD{
         return $res;        
     }  
 
+
     function insertarComentario($id, $comentario, $producto){
         $usuario=$this->getUsuario2($id, "ID");
         $pCheck=$this->existeProducto($producto);
@@ -396,6 +399,7 @@ class GestorBD{
             $prepare->execute();
         }
     }
+
 
     function existeComentario($idComment){
         $prepare=$this->mysqli->prepare("SELECT COUNT(*) FROM Comentario WHERE ID=?");
@@ -414,6 +418,7 @@ class GestorBD{
         return $res;
     }
 
+
     function deleteComment($idComment, $id){        
         $usuario=$this->getUsuario2($id, "ID");
         $existeComment=$this->existeComentario($idComment);
@@ -424,6 +429,7 @@ class GestorBD{
             $prepare->execute();
         }
     }
+
 
     function getComentario($idComentario){
         $res="";
@@ -440,6 +446,7 @@ class GestorBD{
         return $res;         
     }
 
+
     function changeComentario($idUsuario, $id, $comentario){
         $usuario=$this->getUsuario2($idUsuario, "ID");
         $existeComment=$this->existeComentario($id);
@@ -450,6 +457,7 @@ class GestorBD{
             $prepare->execute();
         }
     }
+
 
     function cambiarDatosUsuario($id, $nuevoNombre, $campo){
         $lista=["Foto", "Nombre", "Correo", "CountryCode", "Genero", "Direccion", "Password"];
@@ -480,6 +488,7 @@ class GestorBD{
         }
     }
 
+
     function cambiarDatosProducto($idUsuario, $idProducto, $precio, $nombre, $descripcion, $tituloTop, $fabricante, $foto){
         $usuario=$this->getUsuario2($idUsuario, "ID");
         $existeProd=$this->existeProducto($idProducto);
@@ -501,11 +510,17 @@ class GestorBD{
         }
     }
 
+
     private function insertImagen($idProducto, $directorio){
-        $prepare=$this->mysqli->prepare("INSERT INTO Imagenes (ID_Producto, `Ruta Imagen`) VALUES (?,?)");
-        $prepare->bind_param("is", $idProducto, $directorio);
-        $prepare->execute();
+        $existe=$this->existeImagenProducto($idProducto, $directorio);
+
+        if(!$existe){
+            $prepare=$this->mysqli->prepare("INSERT INTO Imagenes (ID_Producto, `Ruta Imagen`) VALUES (?,?)");
+            $prepare->bind_param("is", $idProducto, $directorio);
+            $prepare->execute();
+        }
     }
+
 
     function deleteProducto($idUsuario, $id){
         $usuario=$this->getUsuario2($idUsuario ,"ID");
@@ -527,6 +542,7 @@ class GestorBD{
         }        
     }
 
+
     function estaRegistrado($correo){
         $prepare=$this->mysqli->prepare("SELECT COUNT(*) FROM Usuarios WHERE Correo=?");
         $prepare->bind_param("s", $correo);
@@ -543,6 +559,7 @@ class GestorBD{
 
         return $res;
     }
+
 
     function registrarUsuario($correo, $password, $nombre, $direccion, $genero, $foto, $pais){
         $password=password_hash($password, PASSWORD_DEFAULT);
@@ -563,6 +580,7 @@ class GestorBD{
         }
     }
 
+
     private function subirImagen($foto, $id, $esUsuario){
         $extension=end(explode(".", $foto["name"]));
         $nombre=explode(".", $foto["name"])[0];
@@ -580,6 +598,7 @@ class GestorBD{
         return $directorioNuevaFoto;
     }
 
+
     function addFabricante($idUsuario, $nombre, $face, $tw, $yt, $web){
         $usuario=$this->getUsuario2($idUsuario, "ID");
 
@@ -590,6 +609,7 @@ class GestorBD{
             $prepare->execute();
         }
     }
+
 
     function existeFabricante($nombre){
         $prepare=$this->mysqli->prepare("SELECT COUNT(*) FROM Fabricante WHERE Nombre=?");
@@ -608,6 +628,7 @@ class GestorBD{
         return $res;
     }    
 
+
     function deleteFabricante($idUsuario, $nombre){
         $usuario=$this->getUsuario2($idUsuario, "ID");
 
@@ -617,6 +638,7 @@ class GestorBD{
             $prepare->execute();     
         }         
     }
+
 
     function insertProducto($idUsuario, $nombre, $precio, $descripcion, $tituloTop, $idFabricante, $foto){
         $res=-1;
@@ -650,6 +672,7 @@ class GestorBD{
         return $res;
     }
 
+
     function getAllUsuarios(){
         $row=false;
         
@@ -662,6 +685,7 @@ class GestorBD{
         return $row;    
     }    
 
+
     function cambiarPermisosUsuario($idSuperusuario, $idUsuario, $gestor, $moderador, $superusuario){
         $super=$this->getUsuario2($idSuperusuario, "ID");
         $usuario=$this->getUsuario2($idUsuario, "ID");
@@ -673,7 +697,7 @@ class GestorBD{
         }        
     }
 
-    //ARREGLAR PARA QUE SE PILLE POR EL ID DE LA IMAGEN
+    //ARREGLAR PARA QUE SEA POR ID IMAGEN
     function insertarComentarioImagen($idUsuario, $idProducto, $ruta, $comentario){
         $usuario=$this->getUsuario2($idUsuario, "ID");
 
@@ -683,6 +707,7 @@ class GestorBD{
             $prepare->execute();
         }
     }
+
 
     function existeProductoNombre($nombre){
         $prepare=$this->mysqli->prepare("SELECT COUNT(*) FROM Productos WHERE Nombre=?");
@@ -701,6 +726,7 @@ class GestorBD{
         return $res;
     }  
     
+
     function getAllProductsWithImage(){
         $productos=$this->getAllProducts();
 
@@ -719,6 +745,7 @@ class GestorBD{
         return $productos;
     }
 
+
     function insertEtiquetas($idUsuario, $idProducto, $etiquetas){
         $usuario=$this->getUsuario2($idUsuario, "ID");
     
@@ -735,6 +762,7 @@ class GestorBD{
         }
     }
     
+
     function getEtiquetas($idProducto){
         $etiquetas=false;
     
@@ -751,6 +779,7 @@ class GestorBD{
         return $etiquetas;
     } 
     
+
     function deleteEtiqueta($idUsuario, $idProducto, $etiqueta){
         $usuario=$this->getUsuario2($idUsuario, "ID");
     
@@ -760,6 +789,7 @@ class GestorBD{
             $prepare->execute();
         }
     }
+
 
     function existeImagen($idImagen){
         $prepare=$this->mysqli->prepare("SELECT COUNT(*) FROM Imagenes WHERE ID_Imagen=?");
@@ -779,14 +809,28 @@ class GestorBD{
         return $res;
     }
 
+    function existeImagenProducto($idProducto, $rutaImagen){
+        $prepare=$this->mysqli->prepare("SELECT COUNT(*) FROM Imagenes WHERE ID_Producto=? AND `Ruta Imagen`=?");
+        $prepare->bind_param("is", $idProducto, $rutaImagen);
+        $prepare->execute();
+
+        $query=$prepare->get_result();
+    
+        if($query->num_rows > 0){
+            $res=$query->fetch_assoc();
+            $res=$res["COUNT(*)"];
+        }
+
+        $res=($res<=0)?false:true;
+        
+        return $res;
+    }
+
+
     function searchProductos($nombre){
         $IDs=array();
-//SELECT * FROM Productos WHERE Nombre_Fabricante LIKE '%Western%';
-
-        //SELECT * FROM (SELECT Precio,Descripción,`Titulo pagina`,Nombre_Fabricante,Productos.Nombre AS Nombre_Producto,Etiquetas.Nombre AS Nombre_Etiq FROM Productos,Etiquetas WHERE ID=ID_Producto) AS A WHERE Nombre_Producto LIKE '%a%' OR Precio LIKE '%a%' OR Descripción LIKE '%a%' OR `Titulo pagina` LIKE '%a%' OR Nombre_Fabricante LIKE '%a%' OR Nombre_Etiq LIKE '%a%';
-//SELECT * FROM (SELECT Productos.ID,Precio,Descripción,`Titulo pagina`,Nombre_Fabricante,Productos.Nombre AS Nombre_Producto,Etiquetas.Nombre AS Nombre_Etiq FROM Productos,Etiquetas WHERE ID=ID_Producto) AS A WHERE Nombre_Producto LIKE '%a%' OR Precio LIKE '%a%' OR Descripción LIKE '%a%' OR `Titulo pagina` LIKE '%a%' OR Nombre_Fabricante LIKE '%a%' OR Nombre_Etiq LIKE '%a%';
         $nombre="%".$nombre."%";
-        //var_dump($nombre);
+
         $prepare=$this->mysqli->prepare("SELECT * FROM Productos WHERE Nombre LIKE ? OR Precio LIKE ? OR Descripción LIKE ? OR `Titulo pagina` LIKE ? OR Nombre_Fabricante LIKE ?");
         $prepare->bind_param("sssss", $nombre, $nombre, $nombre, $nombre, $nombre);
         $prepare->execute();        
@@ -806,9 +850,6 @@ class GestorBD{
             }
         }
 
-
-
-       // $prepare=$this->mysqli->prepare("SELECT * FROM (SELECT Productos.ID,Precio,Descripción,`Titulo pagina`,Nombre_Fabricante,Productos.Nombre AS Nombre_Producto,Etiquetas.Nombre AS Nombre_Etiq FROM Productos,Etiquetas WHERE ID=ID_Producto) AS A WHERE Nombre_Producto LIKE ? OR Precio LIKE ? OR Descripción LIKE ? OR `Titulo pagina` LIKE ? OR Nombre_Fabricante LIKE ? OR Nombre_Etiq LIKE ?");
         $prepare=$this->mysqli->prepare("SELECT * FROM Etiquetas WHERE Nombre LIKE ?");
         $prepare->bind_param("s", $nombre);
         $prepare->execute();
@@ -853,7 +894,4 @@ class GestorBD{
         return $res;
     }
 }
-
-//ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION
-//sql_mode
 ?>
