@@ -233,6 +233,8 @@ table, td, tr{
 }
 
 
-#producto-social{
+#producto-social,
+.editar, .borrar,
+#perfil-superior{
     display: none;
 }
