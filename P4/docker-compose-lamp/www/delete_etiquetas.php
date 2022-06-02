@@ -4,7 +4,7 @@
     
     session_start();
 
-    $con=new GestorBD("super", "super");
+    $con=new GestorBD(true);
     
     $menu=array("Inicio"=>"index.php");
     $error=array();

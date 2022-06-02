@@ -3,9 +3,9 @@ class GestorBD{
     private $mysqli;
     private $MAX_PAGE;
 
-    function __construct($user="usuario", $pass="usuario"){
+    function __construct($super=false){
         $this->MAX_PAGE=9;
-        $this->conectarDB($user, $pass);
+        $this->conectarDB($super);
     }
 
 
@@ -14,8 +14,13 @@ class GestorBD{
     }
 
 
-    private function conectarDB($user, $pass){
-        $this->mysqli=new mysqli("mysql", $user, $pass, "SIBW");
+    private function conectarDB($super){
+        if($super){
+            $this->mysqli=new mysqli("mysql", "super", "super", "SIBW");
+        }
+        else{
+            $this->mysqli=new mysqli("mysql", "usuario", "usuario", "SIBW");
+        }
     
         if($this->mysqli->connect_errno){
             echo("Fallo al conectar: ". $this->mysqli->connect_error);
@@ -564,7 +569,7 @@ class GestorBD{
     function registrarUsuario($correo, $password, $nombre, $direccion, $genero, $foto, $pais){
         $password=password_hash($password, PASSWORD_DEFAULT);
 
-        $prepare=$this->mysqli->prepare("INSERT INTO Usuarios (Nombre, Correo, CountryCode, Genero, Direccion, Password, esNormal, esModerador, esGestor, esSuperusuario) VALUES (?,?,?,?,?,?,1,0,0,0)");
+        $prepare=$this->mysqli->prepare("INSERT INTO Usuarios (Nombre, Correo, CountryCode, Genero, Direccion, Password, esModerador, esGestor, esSuperusuario) VALUES (?,?,?,?,?,?,0,0,0)");
         $prepare->bind_param("ssssss", $nombre, $correo, $pais, $genero, $direccion, $password);
         $prepare->execute();
 

@@ -8,13 +8,7 @@
 {% block main %}
 {{ parent() }}
 
-{% if ErrorStatus == -1 %}
-    <h1 class="rojo">Error, el comentario no existe</h1>
-
-{% elseif ErrorStatus == -2 %}
-    <h1 class="rojo">No tiene permisos para realizar esto</h1>
-
-{% else %}
+{% if ErrorStatus == 0 %}
     <form action="edit.php" method="post">
         <label>Comentario</label><br/>
         <textarea id="caja-comentario" name="comentario">{{ Comentario }}</textarea><br/><br/>

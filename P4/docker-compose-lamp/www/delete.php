@@ -3,7 +3,7 @@ include("bd.php");
 
 session_start();
 
-$con=new GestorBD("super", "super");
+$con=new GestorBD(true);
 
 $back="index.php";      //Fallback
 if(isset($_GET["back"]) and !empty($_GET["back"])){

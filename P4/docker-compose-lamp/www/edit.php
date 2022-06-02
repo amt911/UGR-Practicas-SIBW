@@ -4,8 +4,9 @@
 
     session_start();
 
-    $con=new GestorBD("super", "super");
-
+    $con=new GestorBD(true);
+    $errores=array();
+    
     $backID="index.php";      //Fallback
     if(isset($_GET["back"]) and !empty($_GET["back"]))
         $backID=$_GET["back"];
@@ -15,6 +16,10 @@
     if(isset($_GET["id"]) and !empty($_GET["id"]) and is_numeric($_GET["id"]) and $con->existeComentario($_GET["id"])){
         $idComentario=$_GET["id"];
         $error=0;
+    }
+    else{
+        $errores[]="No existe el comentario";
+        $error=-1;
     }
 
 
@@ -27,6 +32,7 @@
     }
     else{
         $error=-2;
+        $errores[]="No tiene permisos para editar el comentario";
     }
 
     //Parte de post
@@ -50,6 +56,7 @@
         "ErrorStatus" => $error,
         "idComentario" => $idComentario,
         "Titulo" => "Editar comentario",
+        "Errores" => $errores
     ]);
 
 ?>
