@@ -94,13 +94,11 @@
                         {% endif %}
                         
                         {% if User["esModerador"]==1 %}
-                        <a href="login.php">Modificar comentarios</a><br/>
                         <a href="lista_comentarios.php">Listado comentarios</a><br/>
                         {% endif %}
                         
                         {% if User["esGestor"]==1 %}
                         <a href="new_producto.php?back={{ URL }}{{ Back }}">Añadir producto</a><br/>
-                        <a href="login.php">Modificar producto</a><br/>
                         <a href="new_fabricante.php?back={{ URL }}{{ Back }}">Añadir fabricante</a><br/>
                         <a href="delete_fabricante.php?back={{ URL }}{{ Back }}">Eliminar fabricante</a><br/>
                         <a href="lista_productos.php">Listado productos</a><br/>

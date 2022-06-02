@@ -38,7 +38,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST" and isset($_SESSION["usuario"])){
         7 => "Password"
     ];
 
-    if($_POST["tipo"]>=2 and $_POST["tipo"]<=6){
+    if($_POST["tipo"]>=2 and $_POST["tipo"]<=6 and $_POST["tipo"]!=3){
         if(!empty($_POST[$operacion[$_POST["tipo"]]]) and !empty($_POST[$operacion[$_POST["tipo"]]])){
             $con->cambiarDatosUsuario($_SESSION["usuario"]["ID"], $_POST[$operacion[$_POST["tipo"]]], $operacion[$_POST["tipo"]]);
             $_SESSION["usuario"]=$con->getUsuario2($_SESSION["usuario"]["ID"], "ID");
@@ -60,6 +60,28 @@ if($_SERVER["REQUEST_METHOD"]=="POST" and isset($_SESSION["usuario"])){
         }
         elseif(isset($_POST["Password"]) and isset($_POST["Password-confirm"]) and !empty($_POST["Password"]) and !empty($_POST["Password-confirm"]) and $_POST["Password"]!==$_POST["Password-confirm"]){
             $error[]="Las contraseñas no coinciden";
+        }
+        else{
+            $error[]="Los campos no pueden estar vacíos";
+        }                
+    }
+    else if($_POST["tipo"]==3){
+        if(!empty($_POST[$operacion[$_POST["tipo"]]]) and !empty($_POST[$operacion[$_POST["tipo"]]])){
+            if(!$con->existeUsuarioCorreo($_POST[$operacion[$_POST["tipo"]]])){
+                $con->cambiarDatosUsuario($_SESSION["usuario"]["ID"], $_POST[$operacion[$_POST["tipo"]]], $operacion[$_POST["tipo"]]);
+                $_SESSION["usuario"]=$con->getUsuario2($_SESSION["usuario"]["ID"], "ID");
+
+                header("Location: perfil.php");
+                exit();            
+            }
+            else{
+                if($_SESSION["usuario"]["Correo"]===$_POST[$operacion[$_POST["tipo"]]]){
+                    $error[]="El correo es el mismo";
+                }
+                else{
+                    $error[]="El correo ya está en uso";
+                }
+            }
         }
         else{
             $error[]="Los campos no pueden estar vacíos";

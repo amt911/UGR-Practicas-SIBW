@@ -898,5 +898,22 @@ class GestorBD{
 
         return $res;
     }
+
+    function existeUsuarioCorreo($correo){
+        $prepare=$this->mysqli->prepare("SELECT COUNT(*) FROM Usuarios WHERE Correo=?");
+        $prepare->bind_param("s", $correo);
+        $prepare->execute();
+
+        $query=$prepare->get_result();
+    
+        if($query->num_rows > 0){
+            $res=$query->fetch_assoc();
+            $res=$res["COUNT(*)"];
+        }
+
+        $res=($res<=0)?false:true;
+        
+        return $res;
+    }
 }
 ?>
