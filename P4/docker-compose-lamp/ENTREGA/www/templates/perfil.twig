@@ -1,0 +1,89 @@
+{% extends "formulario_plantilla.twig" %}
+
+{% block archivosAdicionales %}
+{{ parent() }}
+<link rel="stylesheet" href="static/css/perfil.css">
+{% endblock %}
+
+{% block main %}
+{{ parent() }}
+
+{% if Error == 0 %}
+<div id="div-info-perfil">
+    <div id="foto-perfil-div">
+    {% if Credenciales["Foto"]!="" %}
+        <img src="{{ Credenciales["Foto"] }}"/>
+    {% else %}
+        <img src="static/images/default_user.png"/>
+    {% endif %}
+    
+    </div>
+        <a href="edit_perfil.php?campo=1">Cambiar foto</a>
+
+    <div id="info-texto">
+        <div>
+            <div>
+                <strong>Nombre:</strong> {{ Credenciales["Nombre"] }}
+            </div>
+
+            <div class="centrado">
+                <a href="edit_perfil.php?campo=2">Cambiar</a>
+            </div>
+        </div>
+
+        <div>
+            <div>
+                <strong>Correo:</strong> {{ Credenciales["Correo"] }}
+            </div>
+
+            <div class="centrado">
+                <a href="edit_perfil.php?campo=3">Cambiar</a>
+            </div>
+        </div>
+
+        <div>
+            <div class="pais-foto-container">
+                <div><strong>Pais:</strong></div>
+                <div>
+                {{ Pais["CountryName"] }}
+                </div>
+                <div>
+                    <img src="static/images/flags/{{ Pais["Code"] }}.PNG"/>
+                </div>
+            </div>
+
+            <div class="centrado">
+                <a href="edit_perfil.php?campo=4">Cambiar</a>
+            </div>            
+        </div>
+
+        <div>
+            <div>
+                <strong>Género:</strong> {{ Credenciales["Genero"] }}
+            </div>
+
+            <div class="centrado">
+                <a href="edit_perfil.php?campo=5">Cambiar</a>
+            </div>            
+        </div>
+
+        <div>
+            <div>
+                <strong>Dirección de envío:</strong> {{ Credenciales["Direccion"] }}
+            </div>
+
+            <div class="centrado">
+                <a href="edit_perfil.php?campo=6">Cambiar</a>
+            </div>            
+        </div>
+    </div>
+        <div class="centrado">
+            <a href="edit_perfil.php?campo=7">Cambiar contraseña</a>
+        </div>
+
+        <div id="logout-div" class="centrado">
+            <a href="destruir_cookies.php?back=index.php">Cerrar sesión</a>
+        </div>
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "formulario_plantilla.twig" %}
+
+{% block archivosAdicionales %}
+{{ parent() }}
+<link rel="stylesheet" href="static/css/edit_product.css">
+{% endblock %}
+
+{% block main %}
+{{ parent() }}
+
+{% if ShowForm == true %}
+<form action="new_etiquetas.php" method="post">
+    <label>Etiquetas (separadas por coma y sin espacio)</label><br/>
+    <input type="text" name="etiquetas"/>
+    <br/><br/>
+
+    <button>Enviar</button>
+
+    <input type="hidden" name="back" value="{{ Back }}"/>
+    <input type="hidden" name="id" value="{{ ProductID }}"/>
+</form>
+{% endif %}
+{% endblock %}
