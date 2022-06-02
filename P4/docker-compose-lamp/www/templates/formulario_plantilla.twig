@@ -10,7 +10,7 @@
 
 {% block main %}
 
-<h2 class="negro">{{ NombreForm }}</h2>
+<h2>{{ NombreForm }}</h2>
 
 <div class="rojo">
     {% for aux in Errores %}
@@ -18,4 +18,8 @@
     {% endfor %}
 </div>
 
+{% endblock %}
+{% block archivosJS %}
+    <script src="static/js/modoOscuro.js"></script>
+    <script src="static/js/formulario_plantilla.js"></script>
 {% endblock %}

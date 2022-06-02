@@ -44,10 +44,6 @@
     grid-template-columns: 3fr 1fr;
 }
 
-.boton{
-    text-align: center;
-}
-
 .pais-foto-container{
     display: grid;
     /*grid-template-columns: repeat(3, max-content);*/

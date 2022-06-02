@@ -48,7 +48,7 @@ echo $twig->render("edit_image.twig", [
     "Errores" => $errores,
     "ShowForm" => $showForm,
     "Back" => $back,
-    "Fabricantes" => $fabricantes,
+    //"Fabricantes" => $fabricantes,
     "Imagen" => $imagen,
     "idImagen" => $id,
     "Titulo" => "Editar comentario imagen",

@@ -52,7 +52,7 @@ echo $twig->render("comentarios_imagen_form.twig", [
     "Errores" => $errores,
     "ShowForm" => $showForm,
     "Back" => $back,
-    "Fabricantes" => $fabricantes,
+    //"Fabricantes" => $fabricantes,
     "Imagenes" => $imagenes,
     "idProducto" => $id,
     "Titulo" => "Comentarios imagen",

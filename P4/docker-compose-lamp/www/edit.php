@@ -6,7 +6,7 @@
 
     $con=new GestorBD("root", "tiger");
 
-    $backID=1;
+    $backID="index.php";      //Fallback
     if(isset($_GET["back"]) and !empty($_GET["back"]))
         $backID=$_GET["back"];
     
@@ -34,7 +34,7 @@
         $con->changeComentario($_SESSION["usuario"]["ID"], $_POST["idComentario"], $_POST["comentario"]);
 
         $backProduct=$_POST["back"];
-        header("Location: producto.php?p=$backProduct");
+        header("Location: $backProduct");
         exit();
     }
 
