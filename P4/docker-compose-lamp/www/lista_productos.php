@@ -11,14 +11,14 @@
     $errores=array();
 
     $showForm=false;
-    if(isset($_SESSION["usuario"]) and $_SESSION["usuario"]["esModerador"]==1){
+    if(isset($_SESSION["usuario"]) and $_SESSION["usuario"]["esGestor"]==1){
         $showForm=true;
 
-        //if($_SERVER["REQUEST_METHOD"]=="POST"){
-        //    $res=$con->searchComentarios($_POST["keyword"]);
-        //}
-
-        $res=$con->getAllProductsWithImage();
+        if($_SERVER["REQUEST_METHOD"]=="POST"){
+            $res=$con->searchProductos($_POST["keyword"]);
+        }
+        else
+            $res=$con->getAllProductsWithImage();
     }
     else{
         $errores[]="No tienes permisos para ver esta página";

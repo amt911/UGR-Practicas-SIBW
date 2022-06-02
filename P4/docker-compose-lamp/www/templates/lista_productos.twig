@@ -13,30 +13,6 @@
     <input type="text" name="keyword" placeholder="Buscar..."/>
     <button>Enviar</button>
 </form>
-{#
-<table>
-    <tr>
-        <td>ID</td>
-        <td>Nombre</td>
-        <td>Fabricante</td>
-        <td>Precio</td>
-    </tr>
-    {% for aux in Comentarios %}
-        <tr>
-            <td>{{ aux.ID }}</td>
-            <td>{{ aux.Nombre }}</td>
-            <td>{{ aux.Nombre_Fabricante }}</td>
-            <td>{{ aux.Precio }}</td>
-            <td>
-                <a href="edit_product.php?back=lista_comentarios.php&id={{ aux.ID }}">Editar</a>
-            </td>            
-            <td>
-                <a href="delete_product.php?back=lista_comentarios.php&id={{ aux.ID }}">Borrar</a>
-            </td>
-        </tr>
-    {% endfor %}
-</table>
-#}
 
 <div class="grid">
 {% for aux in Comentarios %}

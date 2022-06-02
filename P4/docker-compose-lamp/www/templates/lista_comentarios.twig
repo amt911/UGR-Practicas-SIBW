@@ -13,18 +13,6 @@
     <input type="text" name="keyword" placeholder="Buscar..."/>
     <button>Enviar</button>
 </form>
-
-{#
-<table>
-    <tr>
-        <td>ID</td>
-        <td>Nombre</td>
-        <td>Email</td>
-        <td>Comentario</td>
-        <td>Fecha</td>
-    </tr>
-    #}
-
     
     <div id="comentarios-submit-container">
     {% for aux in Productos %}
@@ -56,7 +44,7 @@
                     {{ j["Correo"] }}
                 </div>
                 <div class="fecha">
-                    {{ j["Fecha"] }}<!--12 de mayo del 2021, 13:37-->
+                    {{ j["Fecha"] }}
                 </div>
                 <div class="contenido-comentario">
                     {{ j["Texto"] }}
@@ -67,7 +55,6 @@
         </div>
     {% endfor %}
     </div>
-{#</table>#}
 {% endif %}
 
 

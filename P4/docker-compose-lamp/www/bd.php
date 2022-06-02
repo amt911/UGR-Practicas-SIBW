@@ -167,9 +167,13 @@ class GestorBD{
     private function searchComentariosIDProducto($idProducto, $texto){
         $res=false;
 
-        $prepare=$this->mysqli->prepare("SELECT * FROM Comentario WHERE ID_Producto=? AND Texto LIKE ?");
+//SELECT * FROM (SELECT Texto,Nombre,Correo,Fecha FROM Comentario,Usuarios WHERE Usuarios.ID=ID_Usuario AND ID_Producto=1) AS A WHERE A.Nombre LIKE '%as%';
+//SELECT * FROM (SELECT Texto,Nombre,Correo,Fecha FROM Comentario,Usuarios WHERE Usuarios.ID=ID_Usuario AND ID_Producto=1) AS A WHERE A.Nombre LIKE '%as%' OR A.Correo LIKE '%as%' OR A.Texto LIKE '%as%' OR A.Fecha LIKE '%as%';
+
+        //$prepare=$this->mysqli->prepare("SELECT * FROM Comentario WHERE ID_Producto=? AND Texto LIKE ?");
+        $prepare=$this->mysqli->prepare("SELECT * FROM (SELECT Texto,Nombre,Correo,Fecha FROM Comentario,Usuarios WHERE Usuarios.ID=ID_Usuario AND ID_Producto=?) AS A WHERE A.Nombre LIKE ? OR A.Correo LIKE ? OR A.Texto LIKE ? OR A.Fecha LIKE ?");
         $keywordSQL="%".$texto."%";
-        $prepare->bind_param("is", $idProducto, $keywordSQL);
+        $prepare->bind_param("issss", $idProducto, $keywordSQL, $keywordSQL, $keywordSQL, $keywordSQL);
         $prepare->execute();
 
         $query=$prepare->get_result(); 
@@ -774,5 +778,82 @@ class GestorBD{
 
         return $res;
     }
+
+    function searchProductos($nombre){
+        $IDs=array();
+//SELECT * FROM Productos WHERE Nombre_Fabricante LIKE '%Western%';
+
+        //SELECT * FROM (SELECT Precio,Descripción,`Titulo pagina`,Nombre_Fabricante,Productos.Nombre AS Nombre_Producto,Etiquetas.Nombre AS Nombre_Etiq FROM Productos,Etiquetas WHERE ID=ID_Producto) AS A WHERE Nombre_Producto LIKE '%a%' OR Precio LIKE '%a%' OR Descripción LIKE '%a%' OR `Titulo pagina` LIKE '%a%' OR Nombre_Fabricante LIKE '%a%' OR Nombre_Etiq LIKE '%a%';
+//SELECT * FROM (SELECT Productos.ID,Precio,Descripción,`Titulo pagina`,Nombre_Fabricante,Productos.Nombre AS Nombre_Producto,Etiquetas.Nombre AS Nombre_Etiq FROM Productos,Etiquetas WHERE ID=ID_Producto) AS A WHERE Nombre_Producto LIKE '%a%' OR Precio LIKE '%a%' OR Descripción LIKE '%a%' OR `Titulo pagina` LIKE '%a%' OR Nombre_Fabricante LIKE '%a%' OR Nombre_Etiq LIKE '%a%';
+        $nombre="%".$nombre."%";
+        //var_dump($nombre);
+        $prepare=$this->mysqli->prepare("SELECT * FROM Productos WHERE Nombre LIKE ? OR Precio LIKE ? OR Descripción LIKE ? OR `Titulo pagina` LIKE ? OR Nombre_Fabricante LIKE ?");
+        $prepare->bind_param("sssss", $nombre, $nombre, $nombre, $nombre, $nombre);
+        $prepare->execute();        
+
+        $query=$prepare->get_result();
+
+        $res=false;
+        if($query->num_rows > 0){
+            $res=$query->fetch_all(MYSQLI_ASSOC);
+        }
+
+        //Se obtiene de la tabla Productos, pero puede haber etiquetas que hagan match
+        //Almacenar las ID de res
+        if($res!=false){
+            for($i=0; $i<count($res); $i++){
+                $IDs[]=$res[$i]["ID"];
+            }
+        }
+
+
+
+       // $prepare=$this->mysqli->prepare("SELECT * FROM (SELECT Productos.ID,Precio,Descripción,`Titulo pagina`,Nombre_Fabricante,Productos.Nombre AS Nombre_Producto,Etiquetas.Nombre AS Nombre_Etiq FROM Productos,Etiquetas WHERE ID=ID_Producto) AS A WHERE Nombre_Producto LIKE ? OR Precio LIKE ? OR Descripción LIKE ? OR `Titulo pagina` LIKE ? OR Nombre_Fabricante LIKE ? OR Nombre_Etiq LIKE ?");
+        $prepare=$this->mysqli->prepare("SELECT * FROM Etiquetas WHERE Nombre LIKE ?");
+        $prepare->bind_param("s", $nombre);
+        $prepare->execute();
+
+        $query=$prepare->get_result();
+
+        $res=false;
+        if($query->num_rows > 0){
+            $res=$query->fetch_all(MYSQLI_ASSOC);
+        }
+
+        //Se almacena en el array de IDs, solo si no esta repetido el ID
+        if($res!=false){
+            for($i=0; $i<count($res); $i++){
+                $aux=$res[$i]["ID_Producto"];
+                if(!in_array($aux, $IDs)){
+                    $IDs[]=$aux;
+                }
+            }
+        }
+
+
+        $res=array();
+        //Se obtienen los productos de la tabla Productos
+        for($i=0; $i<count($IDs); $i++){
+            $aux=$this->getProducto($IDs[$i]);
+            if($aux!=false){
+                $img=$this->getImagenes($aux["ID"]);
+    
+                if($img!=false)
+                    $aux["Imagen"]=$img[0]["Ruta Imagen"];
+                else
+                    $aux["Imagen"]="static/images/placeholder.png";
+    
+                //Se insertan todas sus etiquetas
+                $aux["Etiquetas"]=$this->getEtiquetas($aux["ID"]);
+
+                $res[]=$aux;
+            }
+        }
+
+        return $res;
+    }
 }
+
+//ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION
+//sql_mode
 ?>
