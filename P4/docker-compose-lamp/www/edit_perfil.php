@@ -2,6 +2,13 @@
 require_once "/usr/local/lib/php/vendor/autoload.php";
 include("bd.php");
 
+function comprobarCorreo($correo){
+    if(preg_match("/^([0-9a-z\.\_]+)+@{1}([0-9a-z]+\.)+[0-9a-z]+$/i",$correo)===1)
+        return true;
+    else
+        return false;
+}
+
 session_start();
 
 $con=new GestorBD();
@@ -68,11 +75,16 @@ if($_SERVER["REQUEST_METHOD"]=="POST" and isset($_SESSION["usuario"])){
     else if($_POST["tipo"]==3){
         if(!empty($_POST[$operacion[$_POST["tipo"]]]) and !empty($_POST[$operacion[$_POST["tipo"]]])){
             if(!$con->existeUsuarioCorreo($_POST[$operacion[$_POST["tipo"]]])){
-                $con->cambiarDatosUsuario($_SESSION["usuario"]["ID"], $_POST[$operacion[$_POST["tipo"]]], $operacion[$_POST["tipo"]]);
-                $_SESSION["usuario"]=$con->getUsuario2($_SESSION["usuario"]["ID"], "ID");
-
-                header("Location: perfil.php");
-                exit();            
+                if(comprobarCorreo($_POST[$operacion[$_POST["tipo"]]])){
+                    $con->cambiarDatosUsuario($_SESSION["usuario"]["ID"], $_POST[$operacion[$_POST["tipo"]]], $operacion[$_POST["tipo"]]);
+                    $_SESSION["usuario"]=$con->getUsuario2($_SESSION["usuario"]["ID"], "ID");
+    
+                    header("Location: perfil.php");
+                    exit();            
+                }
+                else{
+                    $error[]="El correo no tiene un formato válido";
+                }
             }
             else{
                 if($_SESSION["usuario"]["Correo"]===$_POST[$operacion[$_POST["tipo"]]]){
