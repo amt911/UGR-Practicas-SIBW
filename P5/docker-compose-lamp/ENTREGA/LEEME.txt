@@ -1,0 +1,12 @@
+En la raíz del comprimido se encuentran dos archivos:
+1) SIBW.sql -> Copia de seguridad de la base de datos junto con el usuario usado.
+2) docker-compose.yml -> Modificación del archivo original de la pila LAMP que se indica en la prácticas. Permite mostrar una ventana de login.
+
+Pasos para importar la base de datos:
+1) Ejecutar la pila LAMP con el docker-compose.yml modificado.
+2) Ir a: http://localhost:8080. (usuario: root | contraseña: tiger)
+3) Crear una base de datos denominada "SIBW" (sin las comillas).
+4) Importar el archivo a esa base de datos. Ya debería funcionar la página.
+
+
+Todos estos pasos creo que se pueden realizar también desde la terminal con el comando "mysql", incluida la importación del archivo .sql

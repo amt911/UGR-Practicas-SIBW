@@ -1,0 +1,15 @@
+#contenido,
+main{
+    display: inline-block;
+    width: 100%;
+}
+
+.no-resize{
+    resize: none;
+    width: 500px;
+    height: 500px;
+}
+
+h2.dark{
+    color: white;
+}

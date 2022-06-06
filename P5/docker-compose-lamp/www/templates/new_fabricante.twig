@@ -1,0 +1,33 @@
+{% extends "formulario_plantilla.twig" %}
+
+{% block main %}
+{{ parent()}}
+
+{% if ShowForm == true %}
+<form action="new_fabricante.php" method="post">
+    <label>Nombre</label><br/>
+    <input type="text" name="nombre"/>
+    <br/><br/>
+
+    <label>ID Facebook</label><br/>
+    <input type="text" name="facebook"/>
+    <br/><br/>
+
+    <label>ID Twitter</label><br/>
+    <input type="text" name="twitter"/>
+    <br/><br/>
+
+    <label>ID Youtube</label><br/>
+    <input type="text" name="youtube"/>
+    <br/><br/>
+
+    <label>URL Página oficial</label><br/>
+    <input type="text" name="oficial"/>
+    <br/><br/>
+
+    <button>Enviar</button>
+
+    <input type="hidden" name="back" value="{{ Back }}"/>
+</form>
+{% endif %}
+{% endblock %}

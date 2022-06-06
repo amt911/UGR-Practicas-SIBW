@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            {{ Titulo }}
+        </title> <!--Título que aparece en la pestaña de la página-->
+
+        {% block archivosAdicionales %}
+        <link rel="stylesheet" href="static/css/portada.css"> <!--Se enlaza al directorio css-->
+        {% endblock %}
+        
+        <link rel="shortcut icon" href="static/images/patata_logo.png"> <!--Logotipo que aparece en la pestaña-->
+
+        <!--Uso las fuentes de Google-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">
+    </head>
+
+    <body>
+        {% block desplegables %}
+        {% endblock %}
+        <header id="cabecera">  <!--Cabecera de la página donde se encuentra el logo, nombre y menú-->
+            <div>
+                <a href="index.php"> <!--Logotipo que si se pulsa enlaza al inicio-->
+                    <img src="static/images/patata_logo.png" alt="Logo"/>  <!--Logotipo-->
+                </a>
+            </div>
+        
+            <div id="div-titulo-menu">  <!--Seccion que contiene el titulo de la pagina y el menu-->
+                <div id="titulo-img-div">
+                    <div>
+                        <h1>e-tienda</h1>   <!--Titulo de la pagina-->
+                    </div>
+
+                    {% if User["Correo"] is not null %}
+                    <div id="perfil-superior">
+                        <a href="perfil.php">
+                        {% if User["Foto"] != "" %}
+                            <img src="{{ User["Foto"] }}" alt="Perfil foto"/>
+                        {% else %}
+                            <img src="static/images/default_user.png" alt="Perfil foto"/>
+                        {% endif %}
+                        </a>
+                    </div>                    
+                    {% endif %}
+                </div>
+
+                <nav id="navegacion">   <!--Seccion de navegacion con los menus-->
+                    {% if Menu is not null %}
+                        {% for titulo,link in Menu %}
+                            <div class="menu"><a class="zona-click no-underline" href="{{ link }}">{{ titulo }}</a></div>
+                        {% endfor %}
+                    {% endif %}
+                    <div class="menu" id="modo-oscuro">Modo oscuro</div>
+                </nav>
+            </div>
+        </header>
+
+        <div id="contenido">    <!--Seccion que incluye el main (objetos) y el aside (auxiliar)-->
+            <main>
+                {% block main %}
+                {% endblock %}
+            </main>
+
+        {% block aside %}
+            <aside> <!--Seccion auxiliar con diverso contenido-->
+                <section class="nota-container">
+                    <div class="nota-titulo">
+                        {% if User["Correo"] is not null %}
+                            <div class="perfil">
+                                {% if User["Foto"] != "" %}
+                                    <img src="{{ User["Foto"] }}" alt="Perfil foto"/>
+                                {% else %}
+                                    <img src="static/images/default_user.png" alt="Perfil foto"/>
+                                {% endif %}                        
+                            </div>
+                        {% endif %}
+                        
+                        <div>
+                        {{ User["Nombre"] }}
+                        </div>
+                    </div>
+
+                    <div class="nota-contenido">
+                    <!-- Quizas mejor una lista -->
+                        {% if User["Correo"] is not null %}
+                            <a href="perfil.php">Mi perfil</a><br/>
+                        {% endif %}
+
+                        {% if User["Correo"] is null %}
+                        <a href="login.php?back={{ URL }}{{ Back }}">Iniciar sesión</a><br/>
+                        <a href="signup.php">Registrarse</a><br/>
+                        {% endif %}
+                        
+                        {% if User["esModerador"]==1 %}
+                        <a href="lista_comentarios.php">Listado comentarios</a><br/>
+                        {% endif %}
+                        
+                        {% if User["esGestor"]==1 %}
+                        <a href="new_producto.php?back={{ URL }}{{ Back }}">Añadir producto</a><br/>
+                        <a href="new_fabricante.php?back={{ URL }}{{ Back }}">Añadir fabricante</a><br/>
+                        <a href="delete_fabricante.php?back={{ URL }}{{ Back }}">Eliminar fabricante</a><br/>
+                        <a href="lista_productos.php">Listado productos</a><br/>
+                        {% endif %}
+
+                        {% if User["esSuperusuario"] == 1 %}
+                        <a href="permisos.php">Cambiar permisos usuario</a><br/>
+                        {% endif %}
+                        
+
+                        {% if User["Correo"] is not null %}
+                            <a href="destruir_cookies.php?back={{ URL }}{{ Back }}">Cerrar sesión</a><br/>
+                        {% endif %}                        
+                    </div>
+                </section>
+
+                <!--Cada seccion se considera una nota con un titulo y un contenido-->
+                <section class="nota-container">
+                    <!--Titulo-->
+                    <div class="nota-titulo">
+                        Nuestras redes sociales:
+                    </div>
+
+                    <!--Contenido, este contiene enlaces y fotos a redes sociales-->
+                    <div id="div-social" class="nota-contenido">
+                        <div>
+                            <a href="https://www.reddit.com/">
+                                <img src="static/images/reddit.png" alt="Reddit Logo"/>
+                            </a>
+                        </div>
+
+                        <div>
+                            <a href="https://es-es.facebook.com/">
+                                <img src="static/images/facebook.png" alt="FaceBook Logo"/>
+                            </a>
+                        </div>
+
+                        <div>
+                            <a href="https://twitter.com/">
+                                <img src="static/images/twitter.png" alt="Twitter Logo"/>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <!--Otra nota-->
+                <section class="nota-container">
+                    <div class="nota-titulo">
+                        Enlaces de interés
+                    </div>
+
+                    <!--Esta nota contiene enlaces a distintos sitios-->
+                    <div class="nota-contenido">
+                        <a href="https://www.nvidia.com/">Página oficial de NVIDIA</a><br /><br />
+                        <a href="https://www.nintendo.es/">Página oficial de Nintendo</a><br /><br />
+                        <a href="https://www.xbox.com/">Página oficial de XBOX</a><br /><br />
+                        <a href="https://www.amd.com/">Página oficial de AMD</a><br /><br />
+                        <a href="https://www.intel.es/">Página oficial de Intel</a>
+                    </div>
+                </section>
+
+                <!--Otra nota-->
+                <section class="nota-container">
+                    <div class="nota-titulo">
+                        Foro
+                    </div>
+
+                    <!--Esta nota contiene entradas de un foro-->
+                    <div class="nota-contenido">
+                        <ul class="nota-ul">
+                            <li class="nota-li">¿Debería esperar a que las GPUs bajen de precio?</li>
+                            <li class="nota-li">¿Es mejor Linux o Windows?</li>
+                            <li class="nota-li">¿Esta página es fiable para comprar?</li>
+                            <li class="nota-li">¿La fabricación de CPUs mediante chiplets es el futuro?</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!--Esta nota contiene la ubicacion (ficticia) de la tienda-->
+                <section class="nota-container">
+                    <div class="nota-titulo">
+                        Dónde estamos:
+                    </div>
+
+                    <div class="nota-contenido">
+                        <img src="static/images/ubi.png" alt="Ubicacion tienda"/>
+                    </div>
+                </section>
+            </aside>
+        {% endblock %}
+        </div>
+
+        <footer>    <!--Esta seccion contiene el pie de pagina-->
+            <div id="div-pie">
+                <div><a class="no-underline" href="index.php">Contacto</a></div>
+                <div><a class="no-underline" href="index.php">Privacidad</a></div>
+                <div><a class="no-underline" href="index.php">Términos</a></div>
+                <div><a class="no-underline" href="index.php">Sugerencias</a></div>
+                <div><a class="no-underline" href="index.php">Política de cookies</a></div>
+            </div>
+            <div id="div-copyright">
+                <address>© 2022 - Andrés Merlo Trujillo</address>
+            </div>
+        </footer>
+    </body>
+</html>
+<script src="static/js/jquery-3.6.0.min.js"></script>
+{% block archivosJS %}
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends "plantilla.twig" %}
+
+{% block main %}
+    <div class="main-portada">
+        {% for aux in Productos %}
+            <article class="box">
+                {% if User["esGestor"] == 1 %}
+                    <div class="mod-container">
+                        <div>
+                            <a href="edit_product.php?back=index.php?pagina={{ Actual }}&id={{ aux["ID"] }}">
+                                <img src="static/images/edit.png" alt="Editar producto"/>
+                            </a>
+                        </div>
+
+                        <div>
+                            <a href="delete_product.php?back=index.php?pagina={{ Actual }}&id={{ aux["ID"] }}">
+                                <img src="static/images/delete.png" alt="Borrar producto"/>
+                            </a>
+                        </div>
+                    </div>
+                {% endif %}
+                <section>
+                    <a href="producto.php?p={{ aux["ID"] }}">
+                        <img src="{{ aux["Imagenes"] }}"/>
+                    </a>
+                </section>
+
+                <section class="fondo-azul-claro">
+                    <a class="no-underline zona-click" href="producto.php?p={{ aux["ID"] }}">                                        
+                        {{ aux["Nombre"] }}
+                    </a>
+                </section>
+
+                <section class="div-precio fondo-azul-claro">
+                    <a class="no-underline zona-click" href="producto.php?p={{ aux["ID"] }}">
+                        {{ aux["Precio"]|number_format(2, ",", "") }}€
+                    </a>                    
+                </section>
+            </article>        
+        {% endfor %}
+    </div>
+
+    <div id="indice-paginas">
+        <div class="botones-pagina">
+            <a class="no-underline click-entero" href="index.php?pagina={{Anterior}}">&#10096</a>
+        </div>
+        <div id="indice-paginas-numeros">
+            {% for i in MinPagina..MaxPagina %}
+                {% if i == Actual %}
+                    <div class="amarillo"><a class="no-underline click-entero" href="index.php?pagina={{ i }}">{{ i }}</a></div>
+
+                {% else %}
+                    <div><a class="no-underline click-entero" href="index.php?pagina={{ i }}">{{ i }}</a></div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="botones-pagina">
+            <a class="no-underline click-entero" href="index.php?pagina={{Siguiente}}">&#10097</a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block archivosJS %}
+    <script src="static/js/portada.js"></script>
+    <script src="static/js/modoOscuro.js"></script>
+{% endblock %}

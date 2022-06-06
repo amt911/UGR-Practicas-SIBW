@@ -1,0 +1,16 @@
+.fixed-width-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 12px;
+}
+
+.fixed-width{
+    width: fit-content;
+    text-align: start;
+}
+
+.center-content{
+    display: flex;
+    justify-content: center;
+}

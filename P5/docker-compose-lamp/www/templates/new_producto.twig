@@ -1,0 +1,46 @@
+{% extends "formulario_plantilla.twig" %}
+
+{% block main %}
+{{ parent()}}
+
+{% if ShowForm == true %}
+<form action="new_producto.php" method="post" enctype="multipart/form-data">
+    <label>Nombre</label><br/>
+    <input type="text" name="nombre" />
+    <br/><br/>
+
+    <label>Precio</label><br/>
+    <input type="text" name="precio" />
+    <br/><br/>
+
+    <label>Descripcion</label><br/>
+    <textarea name="descripcion" class="no-resize"></textarea>
+    <br/><br/>
+
+    <label>Título de la pestaña</label><br/>
+    <input type="text" name="titulo-tab" />
+    <br/><br/>
+
+    <label>Nombre del fabricante</label><br/>
+    <select name="fabricante">
+    {% for aux in Fabricantes %}
+        <option>{{ aux }}</option>
+    {% endfor %}
+    </select>
+    <br/><br/>
+
+    <label>Etiquetas (separadas por coma y sin espacio)</label><br/>
+    <input type="text" name="etiquetas"/>
+    <br/><br/>
+
+    <label>Imágenes</label><br/>
+    <input type="file" name="imagenes[]" multiple/>
+    <br/><br/>
+
+
+    <button>Enviar</button>
+
+    <input type="hidden" name="back" value="{{ Back }}"/>
+</form>
+{% endif %}
+{% endblock %}

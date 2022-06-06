@@ -1,0 +1,75 @@
+{% extends "formulario_plantilla.twig" %}
+
+{% block archivosAdicionales %}
+{{ parent() }}
+<link rel="stylesheet" href="static/css/lista_comentarios.css">
+{% endblock %}
+
+{% block main %}
+{{ parent() }}
+
+{% if ShowForm == true %}
+<form action="lista_comentarios.php" method="POST">
+    <input type="text" name="keyword" placeholder="Buscar..."/>
+    <button>Enviar</button>
+</form>
+    
+    <div id="comentarios-submit-container">
+        {% for aux in Productos %}
+            <div class="producto-comentarios-container">
+                <div>
+                    <h2>{{ aux["Nombre"] }}</h2>
+                </div>
+                
+                <div>
+                    {% for j in aux["Comentarios"] %}
+                        <div class="comentario-container">
+                            <div class="mod-comentario-container">
+                                <div class="editar">
+                                    <a href="edit.php?back=lista_comentarios.php&id={{ j["ID"] }}">
+                                        <img class="imagen ref-editar" src="static/images/edit.png" alt="editar"/>
+                                    </a>
+                                </div>
+                                <div class="borrar">
+                                    <a href="delete.php?back=lista_comentarios.php&id={{ j["ID"] }}">
+                                        <img class="imagen ref-borrar" src="static/images/delete.png" alt="borrar" onclick="return confirmacion();"/>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="img-datos-container">
+                                <div class="perfil-img">
+                                {% if j["Foto"] != "" %}
+                                    <img src="{{ j["Foto"] }}" alt="usuario"/>
+                                {% else %}
+                                    <img src="static/images/default_user.png" alt="usuario"/>
+                                {% endif %}
+                                
+                                </div>
+                                <div>                        
+                                    <div class="nombre-comentario">
+                                        <h4>{{ j["Nombre"] }}</h4>
+                                    </div>
+                                    <div class="comentario-email">
+                                        {{ j["Correo"] }}
+                                    </div>
+                                    <div class="fecha">
+                                        {{ j["Fecha"] }}
+                                    </div>
+                                    {% if j["Editado"] == 1 %}
+                                        <div class="centrado"><strong>"Comentario editado por el moderador"</strong></div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="contenido-comentario">
+                                {{ j["Texto"] }}
+                            </div>
+                        </div>    
+                    {% endfor %}
+                </div>
+            </div>        
+        {% endfor %}
+    </div>
+{% endif %}
+
+
+{% endblock %}
