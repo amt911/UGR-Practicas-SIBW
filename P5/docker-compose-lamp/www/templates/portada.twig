@@ -1,6 +1,11 @@
 {% extends "plantilla.twig" %}
 
 {% block main %}
+    <div id="div-texto">
+        <input type="text" id="buscar" placeholder="Buscar...">
+        <div id="resultados">
+        </div>
+    </div>
     <div class="main-portada">
         {% for aux in Productos %}
             <article class="box">
@@ -61,6 +66,8 @@
 {% endblock %}
 
 {% block archivosJS %}
+    <script src="static/js/jquery-3.6.0.min.js"></script>
+    <script src="static/js/busqueda.js"></script>
     <script src="static/js/portada.js"></script>
     <script src="static/js/modoOscuro.js"></script>
 {% endblock %}

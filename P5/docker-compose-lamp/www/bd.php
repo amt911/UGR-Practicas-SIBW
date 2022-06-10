@@ -916,5 +916,27 @@ class GestorBD{
         
         return $res;
     }
+
+    //Esta version es mas eficiente ya que se me quedaba colgado el navegador
+    function searchProductosAJAX($nombre){
+        $res=array();
+        //Solo si la longitud de la cadena es mayor que 0
+        if(strlen($nombre)>0){
+            $nombre="%".$nombre."%";
+            //SELECT * FROM Productos WHERE Nombre LIKE '%nv' OR Descripción LIKE '%nv%';
+            $prepare=$this->mysqli->prepare("SELECT * FROM Productos WHERE Nombre LIKE ? OR Descripción LIKE ?");
+            $prepare->bind_param("ss", $nombre, $nombre);
+            $prepare->execute();        
+            
+            $query=$prepare->get_result();
+            
+            $res=$query->fetch_all(MYSQLI_ASSOC);
+
+            //Campo debug, eliminar
+            //$res["debug"]=$nombre;
+        }
+
+        return $res;
+    }
 }
 ?>
