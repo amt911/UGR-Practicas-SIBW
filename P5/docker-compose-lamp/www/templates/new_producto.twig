@@ -24,7 +24,7 @@
     <label>Nombre del fabricante</label><br/>
     <select name="fabricante">
     {% for aux in Fabricantes %}
-        <option>{{ aux }}</option>
+        <option>{{ aux|raw }}</option>
     {% endfor %}
     </select>
     <br/><br/>

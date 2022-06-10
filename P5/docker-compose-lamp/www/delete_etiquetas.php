@@ -34,7 +34,7 @@
 
             for($i=0; $i<count($etiquetas); $i++){
                 if(isset($_POST["etiqueta_".$etiquetas[$i]["Nombre"]]) and !empty($_POST["etiqueta_".$etiquetas[$i]["Nombre"]]) and $_POST["etiqueta_".$etiquetas[$i]["Nombre"]]=="on"){
-                    $con->deleteEtiqueta($_SESSION["usuario"]["ID"], $id, $etiquetas[$i]["Nombre"]);
+                    $con->deleteEtiqueta($id, $etiquetas[$i]["Nombre"]);
                 }       
             }
 

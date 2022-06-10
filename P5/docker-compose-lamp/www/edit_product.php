@@ -67,7 +67,7 @@
             if($etiquetasAntiguas!=false){
                 for($i=0; $i<count($etiquetasAntiguas); $i++){
                     if(isset($_POST["eliminar-etiqueta_".$etiquetasAntiguas[$i]["Nombre"]]) and !empty($_POST["eliminar-etiqueta_".$etiquetasAntiguas[$i]["Nombre"]]) and $_POST["eliminar-etiqueta_".$etiquetasAntiguas[$i]["Nombre"]]=="on"){
-                        $con->deleteEtiqueta($_SESSION["usuario"]["ID"], $_POST["product-id"], $etiquetasAntiguas[$i]["Nombre"]);
+                        $con->deleteEtiqueta($_POST["product-id"], $etiquetasAntiguas[$i]["Nombre"]);
                     }
                 }
             }
@@ -79,7 +79,7 @@
 
                 //separar por comas y obtener un array
                 $etiquetas=explode(",", $etiquetas);
-                $con->insertEtiquetas($_SESSION["usuario"]["ID"], $id, $etiquetas);
+                $con->insertEtiquetas($id, $etiquetas);
             }            
 
             $checkbox=(isset($_POST["publicar"]) and !empty($_POST["publicar"]))?1:0;

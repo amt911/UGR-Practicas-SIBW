@@ -27,6 +27,11 @@ else
 //Obtener todos los fabricantes
 $fabricantes=$con->getAllFabricantes();
 
+//Remplazar en fabricantes los espacios
+for($i=0;$i<count($fabricantes);$i++){
+    $fabricantes[$i]=str_replace(" ", "&nbsp;", $fabricantes[$i]);
+}
+
 if($_SERVER["REQUEST_METHOD"]=="POST" and isset($_SESSION["usuario"]) and $_SESSION["usuario"]["esGestor"]==1){
     $back=$_POST["back"];
     $nombre=$_POST["nombre"];
@@ -40,7 +45,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST" and isset($_SESSION["usuario"]) and $_SESS
         if(is_numeric($precio)){
             //var_dump($con->existeProductoNombre($nombre));
             if(!$con->existeProductoNombre($nombre)){
-            $id=$con->insertProducto($_SESSION["usuario"]["ID"], $nombre, $precio, $descripcion, $tituloTab, $fabricante, $_FILES["imagenes"], $publicar);
+            $id=$con->insertProducto($nombre, $precio, $descripcion, $tituloTab, $fabricante, $_FILES["imagenes"], $publicar);
 
             if(!empty($_POST["etiquetas"]) and isset($_POST["etiquetas"])){
                 $etiquetas=$_POST["etiquetas"];
@@ -51,7 +56,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST" and isset($_SESSION["usuario"]) and $_SESS
                 $etiquetas=explode(",", $etiquetas);
 
                 //var_dump($etiquetas);
-                $con->insertEtiquetas($_SESSION["usuario"]["ID"], $id, $etiquetas);
+                $con->insertEtiquetas($id, $etiquetas);
             }
 
             if(empty($_FILES["imagenes"]["name"][0]) and count($_FILES["imagenes"]["name"])==1){

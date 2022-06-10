@@ -34,7 +34,7 @@ $imagen=$con->getImagenIDImg($id);
 if($_SERVER["REQUEST_METHOD"]=="POST" and isset($_SESSION["usuario"]) and $_SESSION["usuario"]["esGestor"]==1){
     $back=$_POST["back"];
     $imagen=$con->getImagenIDImg($_POST["id"]);
-    $con->insertarComentarioImagen($_SESSION["usuario"]["ID"], $imagen["ID_Producto"], $imagen["Ruta Imagen"], $_POST[$imagen["ID_Imagen"]]);
+    $con->insertarComentarioImagen($imagen["ID_Producto"], $imagen["Ruta Imagen"], $_POST[$imagen["ID_Imagen"]]);
 
     header("Location: $back");
     exit();

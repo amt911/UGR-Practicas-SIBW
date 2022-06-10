@@ -43,7 +43,7 @@
 
             //separar por comas y obtener un array
             $etiquetas=explode(",", $etiquetas);
-            $con->insertEtiquetas($_SESSION["usuario"]["ID"], $id, $etiquetas);
+            $con->insertEtiquetas($id, $etiquetas);
 
     
             header("Location: $back");
