@@ -36,41 +36,16 @@
             $error=-1;
         }
     }
-    
 
-    //Parte de hacer las queries
-    $res=$con->getProducto($id);
-    $fabricanteRes=$con->getFabricante($res["Nombre_Fabricante"]);
-    $comentarios=$con->getAllComments($id);
-    $imagenes=$con->getImagenes($id);
-    $etiquetas=$con->getEtiquetas($id);
-
-    //Si no ha encontrado ninguna imagen se pone un placeholder
-    if($imagenes==false){
-        $imagenes=array(array("Ruta Imagen"=>"static/images/placeholder.png", "Descripcion"=>"placeholder"));
-    }
-
-    //Para lanzar la version imprimible o no
-    if(isset($_GET["imprimir"]) and !empty($_GET["imprimir"]) and is_numeric($_GET["imprimir"]) and $_GET["imprimir"]==1){
-        $pagina="producto_imprimir.twig";
-        
-        $imagenes=array_slice($imagenes, 0, 2); //Solo se ponen las dos primeras imagenes
-    }
-    else
-        $pagina="producto.twig";
-    
-    
     //Los botones del menu con sus respectivas paginas
     $menu=array("Inicio"=>"index.php",
                 "Imprimir"=>"producto.php?p=$id&imprimir=1");
 
-    
     //Parte de sesiones
     $usuario=$con->getUsuario2(-1, "ID");
 
     //Parte de sesiones
     if(isset($_SESSION["usuario"])){
-        //Arreglar esto, hace falta tener una opcion fallback
         $usuario=$_SESSION["usuario"];   
 
         if($usuario["esGestor"]==1){
@@ -82,6 +57,39 @@
         $menu["Login"]="login.php?back=producto.php";     
     }
 
+    $res=$con->getProducto($id);
+    $fabricanteRes=-1;      //Fallback
+    $comentarios=-1;        //Fallback
+    $imagenes=-1;       //Fallback
+    $etiquetas=-1;      //Fallback
+    $error=0;
+
+    //Solo se muestra si tiene permisos, en otro caso error
+    if(isset($_SESSION["usuario"]) and !empty($_SESSION["usuario"]) and $_SESSION["usuario"]["esGestor"]==1 or $res["Publicado"]==1){
+        
+        //Parte de hacer las queries    
+        $fabricanteRes=$con->getFabricante($res["Nombre_Fabricante"]);
+        $comentarios=$con->getAllComments($id);
+        $imagenes=$con->getImagenes($id);
+        $etiquetas=$con->getEtiquetas($id);
+
+        //Si no ha encontrado ninguna imagen se pone un placeholder
+        if($imagenes==false){
+            $imagenes=array(array("Ruta Imagen"=>"static/images/placeholder.png", "Descripcion"=>"placeholder"));
+        }
+    }
+    else{
+        $error=-1;
+    }
+
+    //Para lanzar la version imprimible o no, solo en caso de que no haya error
+    if(isset($_GET["imprimir"]) and !empty($_GET["imprimir"]) and is_numeric($_GET["imprimir"]) and $_GET["imprimir"]==1 and $error==0){
+        $pagina="producto_imprimir.twig";
+        
+        $imagenes=array_slice($imagenes, 0, 2); //Solo se ponen las dos primeras imagenes
+    }
+    else
+        $pagina="producto.twig";
 
     $loader = new \Twig\Loader\FilesystemLoader('templates');
     $twig = new \Twig\Environment($loader);
@@ -108,5 +116,6 @@
         "Back" => $id,
         "Error" => $error,
         "Etiquetas" => $etiquetas,
+        "Error" => $error,
     ]);
 ?>
