@@ -3,6 +3,8 @@
     require_once "/usr/local/lib/php/vendor/autoload.php";
     include("bd.php");
 
+    session_start();
+
     $con=new GestorBD();
 
     //El numero total de paginas que tiene la portada
@@ -55,9 +57,6 @@
     if($maxPagina>$totalPaginas)
         $maxPagina=$totalPaginas;
 
-
-    //HACER QUE ESTA PARTE SE EJECUTE EN UN MODULO APARTE
-    session_start();
 
     //Botones de navegacion
     $menu=array("Inicio"=>"index.php",

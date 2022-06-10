@@ -8,7 +8,8 @@
     </div>
     <div class="main-portada">
         {% for aux in Productos %}
-            <article class="box">
+            {% if User["esGestor"] == 1 and aux["Publicado"] == 0 %}
+            <article class="box color-alt">
                 {% if User["esGestor"] == 1 %}
                     <div class="mod-container">
                         <div>
@@ -30,18 +31,54 @@
                     </a>
                 </section>
 
-                <section class="fondo-azul-claro">
+                <section class="fondo-alt">
                     <a class="no-underline zona-click" href="producto.php?p={{ aux["ID"] }}">                                        
                         {{ aux["Nombre"] }}
                     </a>
                 </section>
 
-                <section class="div-precio fondo-azul-claro">
+                <section class="div-precio fondo-alt">
+                    <a class="no-underline zona-click" href="producto.php?p={{ aux["ID"] }}">
+                        {{ aux["Precio"]|number_format(2, ",", "") }}€
+                    </a>                    
+                </section>
+            </article>                        
+            {% elseif aux["Publicado"] == 1 %}
+            <article class="box color-normal">
+                {% if User["esGestor"] == 1 %}
+                    <div class="mod-container">
+                        <div>
+                            <a href="edit_product.php?back=index.php?pagina={{ Actual }}&id={{ aux["ID"] }}">
+                                <img src="static/images/edit.png" alt="Editar producto"/>
+                            </a>
+                        </div>
+
+                        <div>
+                            <a href="delete_product.php?back=index.php?pagina={{ Actual }}&id={{ aux["ID"] }}">
+                                <img src="static/images/delete.png" alt="Borrar producto"/>
+                            </a>
+                        </div>
+                    </div>
+                {% endif %}
+                <section>
+                    <a href="producto.php?p={{ aux["ID"] }}">
+                        <img src="{{ aux["Imagenes"] }}"/>
+                    </a>
+                </section>
+
+                <section class="fondo-normal">
+                    <a class="no-underline zona-click" href="producto.php?p={{ aux["ID"] }}">                                        
+                        {{ aux["Nombre"] }}
+                    </a>
+                </section>
+
+                <section class="div-precio fondo-normal">
                     <a class="no-underline zona-click" href="producto.php?p={{ aux["ID"] }}">
                         {{ aux["Precio"]|number_format(2, ",", "") }}€
                     </a>                    
                 </section>
             </article>        
+            {% endif %}
         {% endfor %}
     </div>
 

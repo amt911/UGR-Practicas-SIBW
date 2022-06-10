@@ -1,7 +1,7 @@
 let esOscuro=false;
 function toggleDarkMode(){
     let boxes=document.getElementsByClassName("box");
-    let tags=document.getElementsByClassName("fondo-azul-claro");
+    let tags=document.getElementsByClassName("fondo-normal");
     let botonesPagina=document.getElementsByClassName("botones-pagina");
     let numeros=document.getElementById("indice-paginas-numeros").getElementsByTagName("div");
 

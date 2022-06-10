@@ -34,12 +34,13 @@ if($_SERVER["REQUEST_METHOD"]=="POST" and isset($_SESSION["usuario"]) and $_SESS
     $descripcion=$_POST["descripcion"];
     $tituloTab=$_POST["titulo-tab"];
     $fabricante=$_POST["fabricante"];
+    $publicar=(isset($_POST["publicar"]) and !empty($_POST["publicar"]))?true:false;
 
     if(!empty($descripcion) and !empty($nombre) and !empty($fabricante) and !empty($tituloTab) and !empty($precio)){
         if(is_numeric($precio)){
             //var_dump($con->existeProductoNombre($nombre));
             if(!$con->existeProductoNombre($nombre)){
-            $id=$con->insertProducto($_SESSION["usuario"]["ID"], $nombre, $precio, $descripcion, $tituloTab, $fabricante, $_FILES["imagenes"]);
+            $id=$con->insertProducto($_SESSION["usuario"]["ID"], $nombre, $precio, $descripcion, $tituloTab, $fabricante, $_FILES["imagenes"], $publicar);
 
             if(!empty($_POST["etiquetas"]) and isset($_POST["etiquetas"])){
                 $etiquetas=$_POST["etiquetas"];

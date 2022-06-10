@@ -110,7 +110,7 @@ h1 {
 
 main{
     display: grid;
-    grid-template-rows: 1fr auto;
+    grid-template-rows: auto 1fr auto;
     text-align: center; /*Para alinear el texto horizontalmente*/
     background-color: beige;
     border-radius: 0.5vh;
@@ -130,13 +130,20 @@ main{
 /*Reglas para los contenedores de los propios articulos*/
 .box {
     border-radius: 0.5vh;
-    background-color: #03A9F4;
     display: grid;
     grid-template-rows: 65% 20% 15%;
     grid-auto-columns: 100%;
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
     transition: all 0.3s; /*Animacion del articulo*/
     position: relative;
+}
+
+.color-normal{
+    background-color: #03A9F4;
+}
+
+.color-alt{
+    background-color: #848484;
 }
 
 /*Reglas que se activan cuando se pasa el cursor por encima*/
@@ -148,9 +155,14 @@ main{
 
 
 /*Reglas que se usan para la parte de texto de los articulos*/
-.fondo-azul-claro {
+.fondo-normal {
     display: flex;
     background-color: #64b5f6;  /*Color de fondo*/
+}
+
+.fondo-alt {
+    display: flex;
+    background-color: #a3a3a3;  /*Color de fondo*/
 }
 
 /*Regla para el div del precio de los articulos*/
@@ -355,11 +367,11 @@ a.dark{
     color: white;
 }
 
-.box.dark{
+.color-normal.dark{
     background-color:#007ac1;
 }
 
-.fondo-azul-claro.dark,
+.fondo-normal.dark,
 #indice-paginas-numeros > div.dark{
     background-color: #002f6c;
 }

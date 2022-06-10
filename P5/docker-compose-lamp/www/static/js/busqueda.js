@@ -10,11 +10,9 @@ $(document).ready(function () {
                 $("#resultados").html("");
             },
             success: function (data) {
-                console.log($("#buscar").val())
-                //if($("#buscar").val() != ""){
-                    data = JSON.parse(data)
-                    console.log(data)
-                //console.log(data.length)
+                data = JSON.parse(data)
+                console.log(data)
+
                 for (let i = 0; i < data.length; i++) {
                     $("#resultados").append(
                         "<div><a href=\"producto.php?p=" + data[i].ID + "\">" + ponerNegrita($("#buscar").val(), data[i].Nombre) + "</a></div>"
@@ -25,8 +23,8 @@ $(document).ready(function () {
     });
 });
 
-function ponerNegrita(usuarioBusqueda, textoOficial){
-    let res=textoOficial.slice();
+function ponerNegrita(usuarioBusqueda, textoOficial) {
+    let res = textoOficial.slice();
 
     return res.replace(new RegExp(usuarioBusqueda, "ig"), (match) => {
         return "<strong>" + match + "</strong>";

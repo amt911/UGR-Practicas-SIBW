@@ -33,6 +33,7 @@
         $fabricantes=$con->getAllFabricantes();
         $imagenes=$con->getImagenes($id);
         $etiquetas=$con->getEtiquetas($id);
+        //Aqui debe ir el estado de la publicacion
     }
     else{
         $error[]="El producto no existe";
@@ -77,7 +78,9 @@
                 $con->insertEtiquetas($_SESSION["usuario"]["ID"], $id, $etiquetas);
             }            
 
-            $con->cambiarDatosProducto($_SESSION["usuario"]["ID"], $_POST["product-id"], $_POST["precio"], $_POST["nombre"], $_POST["descripcion"], $_POST["titulo-top"], $_POST["fabricante"], $_FILES["imagenes"]);
+            $checkbox=(isset($_POST["publicar"]) and !empty($_POST["publicar"]))?1:0;
+
+            $con->cambiarDatosProducto($_SESSION["usuario"]["ID"], $_POST["product-id"], $_POST["precio"], $_POST["nombre"], $_POST["descripcion"], $_POST["titulo-top"], $_POST["fabricante"], $_FILES["imagenes"], $checkbox);
             $nroImg=$con->getImageCount($id);
 
             $back=$_POST["back"];
