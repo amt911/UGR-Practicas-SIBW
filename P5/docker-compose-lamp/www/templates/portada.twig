@@ -103,7 +103,7 @@
 {% endblock %}
 
 {% block archivosJS %}
-    <script src="static/js/jquery-3.6.0.min.js"></script>
+    {{ parent() }}
     <script src="static/js/busqueda.js"></script>
     <script src="static/js/portada.js"></script>
     <script src="static/js/modoOscuro.js"></script>

@@ -969,5 +969,13 @@ class GestorBD{
 
         return $res;
     }
+
+    function cambiarEstadoPublicacion($idProducto, $estado){
+        if($this->existeProducto($idProducto)){
+            $prepare=$this->mysqli->prepare("UPDATE Productos SET Publicado=? WHERE ID=?");
+            $prepare->bind_param("ii", $estado, $idProducto);
+            $prepare->execute();
+        }
+    }
 }
 ?>

@@ -42,11 +42,25 @@
                 <div class="editar-prod"><a href="edit_product.php?back=lista_productos.php&id={{ aux["ID"] }}">EDITAR PRODUCTO</a></div>
                 <div class="delete-prod"><a href="delete_product.php?back=lista_productos.php&id={{ aux["ID"] }}">ELIMINAR PRODUCTO</a></div>
             </div>
+            
+            <div id="botones-publicar-container">
+                {% if aux["Publicado"] == 0 %}
+                    <div class="editar-prod borrador-boton">PUBLICAR PRODUCTO</div>
+                    <input class="set" type="hidden" value="1"/>
+                {% else %}
+                    <div class="delete-prod borrador-boton">DESCATALOGAR PRODUCTO</div>
+                    <input class="set" type="hidden" value="0"/>
+                {% endif %}
+                    <input class="id-prod" type="hidden" value="{{ aux["ID"] }}"/>
+            </div>
         </div>
     </div>
 {% endfor %}
 </div>
 {% endif %}
+{% endblock %}
 
-
+{% block archivosJS %}
+{{ parent() }}
+<script src="static/js/lista_productos.js"></script>
 {% endblock %}

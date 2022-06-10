@@ -68,3 +68,16 @@
     border-radius: 0.5vh;
     background-color: #8bc34a;
 }
+
+#botones-publicar-container{
+    padding: 12px;
+}
+
+.borrador-boton{
+    border: solid 1px black;
+    border-radius: 0.5vh;
+}
+
+.none{
+    display: none;
+}
