@@ -27,7 +27,7 @@
         }
 
         if($_POST["comentario"] !== ""){
-            $con->insertarComentario($_SESSION["usuario"]["ID"], $comentario, $prodID);
+            $con->insertarComentario($comentario, $prodID);
 
             header("Location: producto.php?p=$prodID");     //Redirijo para evitar que salga una ventana emergente de confirmar subida de nuevo
             exit();

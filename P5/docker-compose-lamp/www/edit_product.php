@@ -80,7 +80,7 @@
 
             $checkbox=(isset($_POST["publicar"]) and !empty($_POST["publicar"]))?1:0;
 
-            $con->cambiarDatosProducto($_SESSION["usuario"]["ID"], $_POST["product-id"], $_POST["precio"], $_POST["nombre"], $_POST["descripcion"], $_POST["titulo-top"], $_POST["fabricante"], $_FILES["imagenes"], $checkbox);
+            $con->cambiarDatosProducto($_POST["product-id"], $_POST["precio"], $_POST["nombre"], $_POST["descripcion"], $_POST["titulo-top"], $_POST["fabricante"], $_FILES["imagenes"], $checkbox);
             $nroImg=$con->getImageCount($id);
 
             $back=$_POST["back"];

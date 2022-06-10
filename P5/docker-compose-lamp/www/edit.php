@@ -37,7 +37,7 @@
 
     //Parte de post
     if($_SERVER["REQUEST_METHOD"] == "POST" and isset($_SESSION["usuario"]) and $_SESSION["usuario"]["esModerador"]==1){
-        $con->changeComentario($_SESSION["usuario"]["ID"], $_POST["idComentario"], $_POST["comentario"]);
+        $con->changeComentario($_POST["idComentario"], $_POST["comentario"]);
 
         $backProduct=$_POST["back"];
         header("Location: $backProduct");

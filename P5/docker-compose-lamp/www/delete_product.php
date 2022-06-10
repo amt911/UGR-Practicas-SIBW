@@ -14,7 +14,7 @@
         
 
     if(isset($_SESSION["usuario"]) and $_SESSION["usuario"]["esGestor"]==1){
-        $con->deleteProducto($_SESSION["usuario"]["ID"], $id);
+        $con->deleteProducto($id);
     }
 
     header("Location: $back");

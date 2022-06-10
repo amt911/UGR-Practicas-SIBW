@@ -13,7 +13,7 @@
     <div class="fixed-width">
         <form action="delete_fabricante.php" method="post">
             {% for aux in Fabricantes %}
-                <input type="checkbox" name="{{ aux }}"/>{{ aux }}<br/>
+                <input type="checkbox" name="fabs[{{ aux }}]"/>{{ aux }}<br/>   {# Lo pongo como un array para retener los espacios en los nombres #}
             {% endfor %}
 
             <br/>

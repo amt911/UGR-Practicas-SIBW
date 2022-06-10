@@ -33,7 +33,7 @@
 
         if(!empty($nombre)){
             if(!$con->existeFabricante($nombre)){
-                $con->addFabricante($_SESSION["usuario"]["ID"], $nombre, $facebook, $twitter, $youtube, $oficial);
+                $con->addFabricante($nombre, $facebook, $twitter, $youtube, $oficial);
 
                 header("Location: $back");
                 exit();

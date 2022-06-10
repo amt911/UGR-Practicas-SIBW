@@ -47,7 +47,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST" and isset($_SESSION["usuario"])){
 
     if($_POST["tipo"]>=2 and $_POST["tipo"]<=6 and $_POST["tipo"]!=3){
         if(!empty($_POST[$operacion[$_POST["tipo"]]]) and !empty($_POST[$operacion[$_POST["tipo"]]])){
-            $con->cambiarDatosUsuario($_SESSION["usuario"]["ID"], $_POST[$operacion[$_POST["tipo"]]], $operacion[$_POST["tipo"]]);
+            $con->cambiarDatosUsuario($_POST[$operacion[$_POST["tipo"]]], $operacion[$_POST["tipo"]]);
             $_SESSION["usuario"]=$con->getUsuario2($_SESSION["usuario"]["ID"], "ID");
 
             header("Location: perfil.php");
@@ -60,7 +60,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST" and isset($_SESSION["usuario"])){
     
     else if($_POST["tipo"]==7){
         if(isset($_POST["Password"]) and isset($_POST["Password-confirm"]) and !empty($_POST["Password"]) and !empty($_POST["Password-confirm"]) and $_POST["Password"]===$_POST["Password-confirm"]){
-            $con->cambiarDatosUsuario($_SESSION["usuario"]["ID"], $_POST["Password"], "Password");
+            $con->cambiarDatosUsuario($_POST["Password"], "Password");
 
             header("Location: destruir_cookies.php");
             exit();            
@@ -76,7 +76,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST" and isset($_SESSION["usuario"])){
         if(!empty($_POST[$operacion[$_POST["tipo"]]]) and !empty($_POST[$operacion[$_POST["tipo"]]])){
             if(!$con->existeUsuarioCorreo($_POST[$operacion[$_POST["tipo"]]])){
                 if(comprobarCorreo($_POST[$operacion[$_POST["tipo"]]])){
-                    $con->cambiarDatosUsuario($_SESSION["usuario"]["ID"], $_POST[$operacion[$_POST["tipo"]]], $operacion[$_POST["tipo"]]);
+                    $con->cambiarDatosUsuario($_POST[$operacion[$_POST["tipo"]]], $operacion[$_POST["tipo"]]);
                     $_SESSION["usuario"]=$con->getUsuario2($_SESSION["usuario"]["ID"], "ID");
     
                     header("Location: perfil.php");
@@ -116,7 +116,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST" and isset($_SESSION["usuario"])){
             }
 
             if(!$hayError){
-                $con->actualizarFotoPerfil($_SESSION["usuario"]["ID"], $_FILES["Foto"]);
+                $con->actualizarFotoPerfil($_FILES["Foto"]);
                 $_SESSION["usuario"]=$con->getUsuario2($_SESSION["usuario"]["ID"], "ID");
                 
                 header("Location: perfil.php");

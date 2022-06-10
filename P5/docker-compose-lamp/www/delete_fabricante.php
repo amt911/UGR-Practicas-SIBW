@@ -22,17 +22,16 @@
         $errores[]="El usuario no es un gestor o no está registrado";
 
     $fabricantes=$con->getAllFabricantes();
-
     
+
     if($_SERVER["REQUEST_METHOD"]=="POST" and isset($_SESSION["usuario"]) and $_SESSION["usuario"]["esGestor"]==1){
         $back=$_POST["back"];
 
-        foreach($_POST as $key => $valor){
+        foreach($_POST["fabs"] as $key => $valor){
             if($key!="back" and $valor=="on"){
-                $con->deleteFabricante($_SESSION["usuario"]["ID"], $key);
+                $con->deleteFabricante($key);
             }
         }
-
         header("Location: $back");
         exit();
     }
