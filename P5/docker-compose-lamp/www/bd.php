@@ -315,16 +315,13 @@ class GestorBD{
 
         $min=($a-1)*9;
         
-        if(isset($_SESSION["usuario"]) and !empty($_SESSION["usuario"] and $_SESSION["usuario"]["esGestor"] == 1)){
-            //$query=$this->mysqli->query("SELECT * FROM Productos ORDER BY ID DESC LIMIT $min,9");
-        
+        if(isset($_SESSION["usuario"]) and !empty($_SESSION["usuario"] and $_SESSION["usuario"]["esGestor"] == 1)){        
             $prepare=$this->mysqli->prepare("SELECT * FROM Productos ORDER BY ID LIMIT ?, ?");
-
         }
         else{
             $prepare=$this->mysqli->prepare("SELECT * FROM Productos WHERE Publicado=1 ORDER BY ID LIMIT ?, ?");
         }
-        //$prepare=$this->mysqli->prepare("SELECT * FROM Productos ORDER BY ID LIMIT ?, ?");
+
         $prepare->bind_param("ii", $min, $this->MAX_PAGE);
         $prepare->execute();
 
@@ -407,7 +404,7 @@ class GestorBD{
 
 
     function insertarComentario($id, $comentario, $producto){
-        $usuario=$this->getUsuario2($id, "ID");
+        //$usuario=$this->getUsuario2($id, "ID");
         $pCheck=$this->existeProducto($producto);
 
         //if($usuario["ID"]!=-1 and $pCheck){
@@ -415,7 +412,8 @@ class GestorBD{
             $this->mysqli->query("SET time_zone='Europe/Madrid'");
             $prepare=$this->mysqli->prepare("INSERT INTO Comentario (ID_Usuario, Fecha, Texto, ID_Producto) VALUES(?, NOW(), ?, ?)");
 
-            $prepare->bind_param("isi", $usuario["ID"], $comentario, $producto);
+            //$prepare->bind_param("isi", $usuario["ID"], $comentario, $producto);
+            $prepare->bind_param("isi", $_SESSION["usuario"]["ID"], $comentario, $producto);
 
             $prepare->execute();
         }
@@ -441,11 +439,11 @@ class GestorBD{
 
 
     function deleteComment($idComment, $id){        
-        $usuario=$this->getUsuario2($id, "ID");
+        //$usuario=$this->getUsuario2($id, "ID");
         $existeComment=$this->existeComentario($idComment);
 
         //if($usuario["ID"]!=-1 and $usuario["esModerador"]==1 and $existeComment){
-        if(isset($_SESSION["usuario"]) and !empty($_SESSION["usuario"]) and $usuario["esModerador"]==1 and $existeComment){
+        if(isset($_SESSION["usuario"]) and !empty($_SESSION["usuario"]) and $_SESSION["usuario"]["esModerador"]==1 and $existeComment){
             $prepare=$this->mysqli->prepare("DELETE FROM Comentario WHERE ID=?");
             $prepare->bind_param("i", $idComment);
             $prepare->execute();
@@ -470,11 +468,11 @@ class GestorBD{
 
 
     function changeComentario($idUsuario, $id, $comentario){
-        $usuario=$this->getUsuario2($idUsuario, "ID");
+        //$usuario=$this->getUsuario2($idUsuario, "ID");
         $existeComment=$this->existeComentario($id);
 
         //if($usuario["ID"]!=-1 and $usuario["esModerador"]==1 and $existeComment){
-        if(isset($_SESSION["usuario"]) and !empty($_SESSION["usuario"]) and $usuario["esModerador"]==1 and $existeComment){
+        if(isset($_SESSION["usuario"]) and !empty($_SESSION["usuario"]) and $_SESSION["usuario"]["esModerador"]==1 and $existeComment){
             $prepare=$this->mysqli->prepare("UPDATE Comentario SET Texto=?,Editado=1 WHERE ID=?");
             $prepare->bind_param("si", $comentario, $id);
             $prepare->execute();
@@ -485,7 +483,7 @@ class GestorBD{
     function cambiarDatosUsuario($id, $nuevoNombre, $campo){
         $lista=["Foto", "Nombre", "Correo", "CountryCode", "Genero", "Direccion", "Password"];
 
-        $usuario=$this->getUsuario2($id, "ID");
+        //$usuario=$this->getUsuario2($id, "ID");
 
         //if($usuario["ID"]!=-1 and in_array($campo, $lista, true)){
         if(isset($_SESSION["usuario"]) and !empty($_SESSION["usuario"]) and in_array($campo, $lista, true)){
@@ -500,13 +498,16 @@ class GestorBD{
 
 
     function actualizarFotoPerfil($idUsuario, $foto){
-        $user=$this->getUsuario2($idUsuario, "ID");
+        //$user=$this->getUsuario2($idUsuario, "ID");
 
         //if($user["ID"]!=-1){
         if(isset($_SESSION["usuario"]) and !empty($_SESSION["usuario"])){
-            if(!empty($user["Foto"]))
-                unlink($user["Foto"]);
+            //if(!empty($user["Foto"]))
+            //    unlink($user["Foto"]);
     
+            if(!empty($_SESSION["usuario"]["Foto"]))
+                unlink($_SESSION["usuario"]["Foto"]);
+
             //Se separa de la foto la extension y el nombre
             $directorioNuevaFoto=$this->subirImagen($foto, $idUsuario, true);
             $this->cambiarDatosUsuario($idUsuario, $directorioNuevaFoto, "Foto");
@@ -515,11 +516,11 @@ class GestorBD{
 
 
     function cambiarDatosProducto($idUsuario, $idProducto, $precio, $nombre, $descripcion, $tituloTop, $fabricante, $foto, $checkbox){
-        $usuario=$this->getUsuario2($idUsuario, "ID");
+        //$usuario=$this->getUsuario2($idUsuario, "ID");
         $existeProd=$this->existeProducto($idProducto);
 
         //if($usuario["ID"]!=-1 and $usuario["esGestor"]==1 and $existeProd){
-        if(isset($_SESSION["usuario"]) and !empty($_SESSION["usuario"]) and $usuario["esGestor"]==1 and $existeProd){
+        if(isset($_SESSION["usuario"]) and !empty($_SESSION["usuario"]) and $_SESSION["usuario"]["esGestor"]==1 and $existeProd){
             $prepare=$this->mysqli->prepare("UPDATE Productos SET  Precio=?,Nombre=?,Descripción=?,`Titulo pagina`=?,Nombre_Fabricante=?,Publicado=? WHERE ID=?");
             $prepare->bind_param("dssssii", $precio, $nombre, $descripcion, $tituloTop, $fabricante, $checkbox, $idProducto);
             $prepare->execute();  
@@ -549,11 +550,11 @@ class GestorBD{
 
 
     function deleteProducto($idUsuario, $id){
-        $usuario=$this->getUsuario2($idUsuario ,"ID");
+        //$usuario=$this->getUsuario2($idUsuario ,"ID");
         $existeProd=$this->existeProducto($id);
 
         //if($usuario["ID"]!=-1 and $usuario["esGestor"]==1 and $existeProd){   
-        if(isset($_SESSION["usuario"]) and !empty($_SESSION["usuario"]) and $usuario["esGestor"]==1 and $existeProd){
+        if(isset($_SESSION["usuario"]) and !empty($_SESSION["usuario"]) and $_SESSION["usuario"]["esGestor"]==1 and $existeProd){
             $prepare=$this->mysqli->prepare("SELECT `Ruta Imagen` FROM Imagenes WHERE ID_Producto=?");
             $prepare->bind_param("i", $id);
             $prepare->execute();                 
@@ -627,10 +628,10 @@ class GestorBD{
 
 
     function addFabricante($idUsuario, $nombre, $face, $tw, $yt, $web){
-        $usuario=$this->getUsuario2($idUsuario, "ID");
+        //$usuario=$this->getUsuario2($idUsuario, "ID");
 
         //if($usuario["ID"]!=-1 and $usuario["esGestor"]==1){
-        if(isset($_SESSION["usuario"]) and !empty($_SESSION["usuario"]) and $usuario["esGestor"]==1){
+        if(isset($_SESSION["usuario"]) and !empty($_SESSION["usuario"]) and $_SESSION["usuario"]["esGestor"]==1){
 
             $prepare=$this->mysqli->prepare("INSERT INTO Fabricante (Nombre, Facebook, Twitter, Youtube, `Pagina oficial`) VALUES (?,?,?,?,?)");
             $prepare->bind_param("sssss", $nombre, $face, $tw, $yt, $web);
@@ -658,10 +659,10 @@ class GestorBD{
 
 
     function deleteFabricante($idUsuario, $nombre){
-        $usuario=$this->getUsuario2($idUsuario, "ID");
+        //$usuario=$this->getUsuario2($idUsuario, "ID");
 
         //if($usuario["ID"]!=-1 and $usuario["esGestor"]==1){
-        if(isset($_SESSION["usuario"]) and !empty($_SESSION["usuario"]) and $usuario["esGestor"]==1){
+        if(isset($_SESSION["usuario"]) and !empty($_SESSION["usuario"]) and $_SESSION["usuario"]["esGestor"]==1){
             $prepare=$this->mysqli->prepare("DELETE FROM Fabricante WHERE Nombre=?");
             $prepare->bind_param("s", $nombre);
             $prepare->execute();     
@@ -671,11 +672,11 @@ class GestorBD{
 
     function insertProducto($idUsuario, $nombre, $precio, $descripcion, $tituloTop, $idFabricante, $foto, $publicar){
         $res=-1;
-        $usuario=$this->getUsuario2($idUsuario, "ID");
+        //$usuario=$this->getUsuario2($idUsuario, "ID");
         $publicar=($publicar)?1:0;
 
         //if($usuario["ID"]!=-1 and $usuario["esGestor"]==1){
-        if(isset($_SESSION["usuario"]) and !empty($_SESSION["usuario"]) and $usuario["esGestor"]==1){
+        if(isset($_SESSION["usuario"]) and !empty($_SESSION["usuario"]) and $_SESSION["usuario"]["esGestor"]==1){
             $prepare=$this->mysqli->prepare("INSERT INTO Productos (Nombre, Precio, Descripción, `Titulo pagina`, Nombre_Fabricante, Publicado) VALUES (?,?,?,?,?,?)");
             $prepare->bind_param("sdsssi", $nombre, $precio, $descripcion, $tituloTop, $idFabricante, $publicar);
             $prepare->execute();
@@ -730,10 +731,10 @@ class GestorBD{
 
     //ARREGLAR PARA QUE SEA POR ID IMAGEN
     function insertarComentarioImagen($idUsuario, $idProducto, $ruta, $comentario){
-        $usuario=$this->getUsuario2($idUsuario, "ID");
+        //$usuario=$this->getUsuario2($idUsuario, "ID");
 
         //if($usuario["ID"]!=-1 and $usuario["esGestor"]==1){
-        if(isset($_SESSION["usuario"]) and !empty($_SESSION["usuario"]) and $usuario["esGestor"]==1){
+        if(isset($_SESSION["usuario"]) and !empty($_SESSION["usuario"]) and $_SESSION["usuario"]["esGestor"]==1){
             $prepare=$this->mysqli->prepare("UPDATE Imagenes SET Descripcion=? WHERE ID_Producto=? AND `Ruta Imagen`=?");
             $prepare->bind_param("sis", $comentario, $idProducto, $ruta);
             $prepare->execute();
@@ -779,10 +780,10 @@ class GestorBD{
 
 
     function insertEtiquetas($idUsuario, $idProducto, $etiquetas){
-        $usuario=$this->getUsuario2($idUsuario, "ID");
+        //$usuario=$this->getUsuario2($idUsuario, "ID");
     
         //if($usuario["ID"]!=-1 and $usuario["esGestor"]==1){
-        if(isset($_SESSION["usuario"]) and !empty($_SESSION["usuario"]) and $usuario["esGestor"]==1){
+        if(isset($_SESSION["usuario"]) and !empty($_SESSION["usuario"]) and $_SESSION["usuario"]["esGestor"]==1){
             for($i=0; $i<count($etiquetas); $i++){
                 $etiqueta=trim($etiquetas[$i]);
     
@@ -814,10 +815,10 @@ class GestorBD{
     
 
     function deleteEtiqueta($idUsuario, $idProducto, $etiqueta){
-        $usuario=$this->getUsuario2($idUsuario, "ID");
+        //$usuario=$this->getUsuario2($idUsuario, "ID");
     
         //if($usuario["ID"]!=-1 and $usuario["esGestor"]==1){
-        if(isset($_SESSION["usuario"]) and !empty($_SESSION["usuario"]) and $usuario["esGestor"]==1){
+        if(isset($_SESSION["usuario"]) and !empty($_SESSION["usuario"]) and $_SESSION["usuario"]["esGestor"]==1){
             $prepare=$this->mysqli->prepare("DELETE FROM Etiquetas WHERE ID_Producto=? AND Nombre=?");
             $prepare->bind_param("is", $idProducto, $etiqueta);
             $prepare->execute();
