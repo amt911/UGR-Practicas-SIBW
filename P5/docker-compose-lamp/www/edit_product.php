@@ -33,7 +33,11 @@
         $fabricantes=$con->getAllFabricantes();
         $imagenes=$con->getImagenes($id);
         $etiquetas=$con->getEtiquetas($id);
-        //Aqui debe ir el estado de la publicacion
+        
+        //Remplazar en fabricantes los espacios
+        for($i=0;$i<count($fabricantes);$i++){
+            $fabricantes[$i]=str_replace(" ", "&nbsp;", $fabricantes[$i]);
+        }
     }
     else{
         $error[]="El producto no existe";

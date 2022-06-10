@@ -30,10 +30,10 @@
     <select name="fabricante">
         {% for aux in Fabricantes %}
             {% if aux == Producto["Nombre_Fabricante"] %}
-                <option selected>{{ aux }}</option>
+                <option selected>{{ aux|raw }}</option>
 
             {% else %}
-                <option>{{ aux }}</option>
+                <option>{{ aux|raw }}</option>
             {% endif %}
             
         {% endfor %}

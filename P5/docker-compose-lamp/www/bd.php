@@ -501,9 +501,8 @@ class GestorBD{
 
     function cambiarDatosProducto($idProducto, $precio, $nombre, $descripcion, $tituloTop, $fabricante, $foto, $checkbox){
         $existeProd=$this->existeProducto($idProducto);
-
         if(isset($_SESSION["usuario"]) and !empty($_SESSION["usuario"]) and $_SESSION["usuario"]["esGestor"]==1 and $existeProd){
-            $prepare=$this->mysqli->prepare("UPDATE Productos SET  Precio=?,Nombre=?,Descripción=?,`Titulo pagina`=?,Nombre_Fabricante=?,Publicado=? WHERE ID=?");
+            $prepare=$this->mysqli->prepare("UPDATE Productos SET Precio=?,Nombre=?,Descripción=?,`Titulo pagina`=?,Nombre_Fabricante=?,Publicado=? WHERE ID=?");
             $prepare->bind_param("dssssii", $precio, $nombre, $descripcion, $tituloTop, $fabricante, $checkbox, $idProducto);
             $prepare->execute();  
             
