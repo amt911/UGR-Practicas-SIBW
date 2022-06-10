@@ -77,6 +77,13 @@
         if($imagenes==false){
             $imagenes=array(array("Ruta Imagen"=>"static/images/placeholder.png", "Descripcion"=>"placeholder"));
         }
+
+        if(isset($_GET["query"]) and !empty($_GET["query"])){
+            $query=$_GET["query"];
+            $res["Nombre"]=preg_replace("/($query)/i", '<strong class="rojo"><em>$1</em></strong>', $res["Nombre"]);
+
+            $res["Descripción"]=preg_replace("/($query)/i", '<strong class="rojo"><em>$1</em></strong>', $res["Descripción"]);            
+        }
     }
     else{
         $error=-1;

@@ -15,7 +15,7 @@ $(document).ready(function () {
 
                 for (let i = 0; i < data.length; i++) {
                     $("#resultados").append(
-                        "<div><a href=\"producto.php?p=" + data[i].ID + "\">" + ponerNegrita($("#buscar").val(), data[i].Nombre) + "</a></div>"
+                        "<div><a href=\"producto.php?p=" + data[i].ID + "&query="+$("#buscar").val()+"\">" + ponerNegrita($("#buscar").val(), data[i].Nombre) + "</a></div>"
                     );
                 }
             }
