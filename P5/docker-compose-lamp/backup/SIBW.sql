@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql:3306
--- Generation Time: Jun 11, 2022 at 05:21 PM
+-- Generation Time: Jun 11, 2022 at 05:26 PM
 -- Server version: 8.0.29
 -- PHP Version: 8.0.15
 
@@ -56,8 +56,6 @@ INSERT INTO `Comentario` (`ID`, `ID_Usuario`, `Fecha`, `Texto`, `ID_Producto`, `
 (69, 22, '2022-06-02 12:26:22', 'asdasd', 1, 0),
 (71, 22, '2022-06-02 12:39:29', 'k', 3, 0),
 (72, 12, '2022-06-10 23:32:20', 'una pena', 1, 1),
-(78, 12, '2022-06-11 10:23:17', 'asddasd', 2, 0),
-(79, 21, '2022-06-11 10:24:02', 'si no', 2, 1),
 (85, 12, '2022-06-11 10:29:04', 'a que si?\r\n', 1, 0),
 (88, 12, '2022-06-11 10:39:57', 'jaja sio', 7, 0),
 (89, 12, '2022-06-11 19:00:01', 'esta perfecto', 7, 0);
@@ -91,15 +89,6 @@ INSERT INTO `Etiquetas` (`ID_Producto`, `Nombre`) VALUES
 (9, 'pc'),
 (9, 'procesador'),
 (9, 'top'),
-(131, '123'),
-(131, '321'),
-(131, '333'),
-(131, 'aquaman'),
-(131, 'auqa'),
-(131, 'si'),
-(131, 'to'),
-(131, 'tres'),
-(131, 'whe'),
 (132, 'aqua'),
 (132, 'asd'),
 (132, 'dsa'),
@@ -202,9 +191,7 @@ INSERT INTO `Imagenes` (`ID_Imagen`, `ID_Producto`, `Ruta Imagen`, `Descripcion`
 (49, 18, 'static/images/elite3.png', 'Caja del mando'),
 (50, 19, 'static/images/5900x_1.png', 'Caja del microprocesador.'),
 (51, 19, 'static/images/5900x_2.png', 'IHS del microprocesador.'),
-(53, 1, 'static/images/3090_2.png', 'Vista general'),
-(136, 131, 'static/images/icono_idProduct131.png', 'h'),
-(137, 131, 'static/images/Screenshot_from_2022-06-09_13-37-28_idProduct131.png', 'ttt');
+(53, 1, 'static/images/3090_2.png', 'Vista general');
 
 -- --------------------------------------------------------
 
@@ -542,7 +529,6 @@ INSERT INTO `Productos` (`ID`, `Precio`, `Nombre`, `Descripción`, `Titulo pagin
 (17, 45.41, 'Mando DualShock 4 PlayStation 4', '<p>\r\nToma el control de una nueva generación de videojuegos con un mando inalámbrico DualShock 4 Black rediseñado que pone en tus manos la mayor precisión en tus juegos de PlayStation 4. Con un panel táctil nuevo que revela desde arriba la barra luminosa y un elegante acabado mate, es la forma más ergonómicas e intuitiva de jugar que haya habido nunca.\r\n</p>\r\n\r\n<p>\r\n<strong>DISEÑO ERGONÓMICO.</strong>\r\nUn diseño elegante y súper confortable unido a los botones y sticks analógicos altamente sensibles aportan una mayor precisión durante el juego.\r\n</p>\r\n\r\n<p>\r\n<strong>Botón SHARE.</strong>\r\nUtiliza el botón SHARE para compartir tus hazañas en las redes sociales. Sube tu partida en streaming a Twitch, YouTube o Dailymotion o edita las grabaciones y compártelas en Facebook y Twitter. Además, podrás invitar a tus amigos que se encuentren online para jugar a tus juegos contigo -incluso si no disponen del juego- con Share Play.\r\n</p>\r\n<p>\r\n<strong>TOUCH PAD.</strong>\r\nControla y dibuja mediante el touchpad de alta respuesta, ahora rediseñada para que puedas ver la barra de luz desde la parte superior mientras juegas.\r\n</p>\r\n<p>\r\n<strong>BARRA DE LUZ.</strong>\r\nLa barra de luz integrada puede emitir varios colores para personalizar tu experiencia y añadir una nueva dimensión a los juegos. Además, ayuda a la PlayStation Camera a trackear la posición del mando para mejorar la interacción virtual mientras utilizas PlayStation VR.\r\n\r\n<p>\r\n<strong>ALTAVOZ INTEGRADO Y CONECTOR DE AURICULARES ESTÉREO.</strong> Disfruta de los efectos extra de sonido -emitidos directamente desde el mando- y chatea con tus amigos online a través de auriculares con micrófono incorporado. Auriculares estéreo incluidos con la PS4.\r\n</p>\r\n<p>\r\n<strong>VIBRACIÓN.</strong>\r\nSiente las vibraciones emitidas por  el mando mediante unos motores de vibración más intuitivos y precisos.\r\n</p>\r\n<p>\r\n<strong>REMOTE PLAY.</strong>\r\nJuega a tus juegos de PS4 en streaming en Windows PC or Mac para poder seguir jugando si te encuentras lejos de tu televisor. El adaptador inalámbrico DualShock 4 USB mejora la experiencia Remote Play permitiéndote jugar de manera inalámbrica.\r\n</p>\r\n<p>\r\n<strong>CONTROL CUSTOMIZADO.</strong>\r\nConfigura tu mando DualShock 4 de la manera que quieras: elige el volumen de los altavoces, deshabilita la vibración, ajusta el brillo de la barra de luz para incrementar la vida útil de tu batería cuando ya no la necesites. Puedes elegir si compartir los datos vías Bluetooth o utilizando un cable USB para conectarlo a la PS4.\r\n</p>', 'Mando PS4', 'Sony Computer Entertainment', 0),
 (18, 120.65, 'Mando Xbox Elite (Serie 1)', '<p>\r\nEl mando Xbox Elite se adapta al tamaño de tu mano y a tu estilo de juego con configuraciones que pueden mejorar la precisión, la velocidad y el alcance mediante gatillos de distintas formas y tamaños. Puedes intercambiar los joysticks de metal y crucetas para lograr un control y ergonomía personalizados. Incorpora cuatro ranuras para palancas intercambiables que puedes conectar o quitar sin ninguna herramienta. Si accionas el bloqueo de gatillos de alta sensibilidad, podrás disparar más rápido y ahorrar tu valioso tiempo en cada toque de gatillo. Todas las superficies y detalles están diseñados para satisfacer las demandas de los jugadores más competitivos: los anillos reforzados de bajo rozamiento alrededor de cada joystick minimizan el desgaste y aportan suavidad de movimiento. Por otro lado, los agarres de goma con relieve confieren al mando una apariencia sólida y proporcionan más estabilidad.\r\n</p>', 'Mando XBOX Elite 1', 'XBOX', 0),
 (19, 450.93, 'AMD Ryzen 9 5900X', '<p>\r\nEl procesador que ofrece la mejor experiencia de juego del mundo. 12 núcleos para potenciar la experiencia de juego, la transmisión en vivo y mucho más.\r\n</p>\r\n\r\n<p>\r\n<strong>\r\nTecnología AMD StoreMI:\r\n</strong>\r\nSoftware que combina la velocidad de SSD con la capacidad de disco duro en una sola unidad rápida y fácil de administrar, gratuita con la placa madre AMD Serie 400.\r\n</p>\r\n\r\n<p>\r\n<strong>Utilidad AMD Ryzen™ Master:</strong>\r\nLa utilidad de overclocking sencilla y a la vez potente para los procesadores AMD Ryzen™\r\n</p>\r\n\r\n<p>\r\n<strong>AMD Ryzen™ VR-Ready Premium:</strong>\r\nPara los usuarios que exigen una experiencia premium de realidad virtual, AMD ofrece procesadores especiales Ryzen™ VR-Ready Premium de alto rendimiento.\r\n</p>\r\n\r\n\r\n<table>\r\n<tr>\r\n<td>Frecuencia</td>\r\n<td>3,7 GHz</td>\r\n</tr>\r\n\r\n<tr>\r\n<td>Número de núcleos</td>\r\n<td>12</td>\r\n</tr>\r\n\r\n<tr>\r\n<td>Socket</td>\r\n<td>AM4</td>\r\n</tr>\r\n\r\n<tr>\r\n<td>Caché del procesador</td>\r\n<td>64 MB</td>\r\n</tr>\r\n\r\n</table>', 'AMD R9 5900X', 'AMD', 0),
-(131, 123, 'asd', '123', '123', 'AMD', 0),
 (132, 321, 'dsa', '321', '123', 'AMD', 0);
 
 -- --------------------------------------------------------
@@ -570,7 +556,7 @@ CREATE TABLE `Usuarios` (
 --
 
 INSERT INTO `Usuarios` (`ID`, `Nombre`, `Correo`, `Password`, `esModerador`, `esGestor`, `esSuperusuario`, `Genero`, `Foto`, `Direccion`, `CountryCode`) VALUES
-(12, 'Andrés', 'example@example.com', '$2y$10$JWJrTYaMBQUBJuBwKJkCw.VGlSgxU1V88UnbihZClPSRvbHA1QTMO', 1, 1, 1, 'Hombre', 'static/images/trollface_idUser12.jpg', 'Urb.', 'ESP'),
+(12, 'Andrés', 'example@example.com', '$2y$10$JWJrTYaMBQUBJuBwKJkCw.VGlSgxU1V88UnbihZClPSRvbHA1QTMO', 1, 1, 1, 'Hombre', 'static/images/ZDVORKB2B4GUPIPWBC3SN5IJXI_idUser12.jpg', 'Urb.', 'ESP'),
 (21, 'asd', 'asd@asd.asd', '$2y$10$11PhWBIwb0r7ifuJt4XlQeEfVlWTN3bwgEHUU7IC58upQHfqME/96', 1, 0, 0, 'Hombre', NULL, 'asd', 'AGO'),
 (22, 'asd', 'dsa@dsa.dsa', '$2y$10$jeCXE5MfHQ7t98S79ca2mOarTaw8o4FO1p3XKLWQyfcZkAYUxpIAG', 0, 0, 0, 'Prefiero no decirlo', 'static/images/default_user_idUser22.png', 'Urb.', 'ALB'),
 (24, 'asdasd', 'asdasd@asdasd.asd', '$2y$10$8pU6sdOnBo9TWshwmM5c2efWCny9539y9K.OxbpVe/owEgdoHdD0W', 0, 1, 0, 'Hombre', NULL, 'asd', 'AFG');
