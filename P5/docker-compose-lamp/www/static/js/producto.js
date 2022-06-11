@@ -344,7 +344,7 @@ cargarPalabrotas();
 botonDark.addEventListener("click", toggleDarkMode);
 
 if(botonSubmit!=null)
-    botonSubmit.addEventListener("click", subirComentario);
+    botonSubmit.addEventListener("click", /*subirComentario*/comprobarPalabrotas);
 
 botonComentarios.addEventListener("click", expandirComentarios);
 
