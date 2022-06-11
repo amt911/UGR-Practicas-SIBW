@@ -29,8 +29,21 @@ $(document).ready(function () {
 document.getElementById("buscar").addEventListener("keyup", function () {
     fetch("busqueda.php?busqueda="+document.getElementById("buscar").value, {
         method: "GET"
-    }).then(res => res.json())
-    .catch(err => console.log(err))
+    }).then(function(res){
+        if(res.ok){
+            res.json().then(function(data){
+                document.getElementById("resultados").innerHTML = "";
+                for (let i = 0; i < data.length; i++) {
+                    document.getElementById("resultados").innerHTML +=
+                        "<div><a href=\"producto.php?p=" + data[i].ID + "&query="+document.getElementById("buscar").value+"\">" + ponerNegrita(document.getElementById("buscar").value, data[i].Nombre) + "</a></div>";
+                }                
+            });
+        }
+        else{
+            console.log("Error");
+        }
+    }).catch(err => console.log(err))
+    /*
     .then(res => {
         document.getElementById("resultados").innerHTML = "";
         for (let i = 0; i < res.length; i++) {
@@ -38,6 +51,7 @@ document.getElementById("buscar").addEventListener("keyup", function () {
                 "<div><a href=\"producto.php?p=" + res[i].ID + "&query="+document.getElementById("buscar").value+"\">" + ponerNegrita(document.getElementById("buscar").value, res[i].Nombre) + "</a></div>";
         }
     });
+    */
 });
 
 
