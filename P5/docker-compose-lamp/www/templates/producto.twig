@@ -13,9 +13,9 @@
                     <div id="submit-comentario">
                         <h4>Escribir comentario</h4>
 
-                        {% if Error == -1 %}
-                            <div class="rojo"><strong>Comentario vacío</strong></div>
-                        {% endif %}
+                        {% for aux in Errores %}
+                            <div class="rojo"><strong>{{ aux }}</strong></div>
+                        {% endfor %}
                         
                         <form action="producto.php" method="post">
                             <label>Comentario: </label>

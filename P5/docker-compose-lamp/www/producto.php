@@ -15,11 +15,12 @@
     session_start();
 
     $error=0;
+    $errores=array();
     if($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST["comentario"]) and !empty($_SESSION["usuario"])){
         $producto=$con->getProducto($_POST["actual"]);
 
         if($_SESSION["usuario"]["esGestor"]==1 or $producto["Publicado"]==1){
-            $prodID=$_POST["actual"];
+            $prodID=$id=$_POST["actual"];
             $palabrotas=$con->getPalabrotas();
 
             $comentario=$_POST["comentario"];
@@ -36,7 +37,7 @@
                 exit();
             }
             else{
-                $error=-1;
+                $errores[]="El comentario no puede estar vacío";
             }
         }
     }
@@ -128,5 +129,6 @@
         "Error" => $error,
         "Etiquetas" => $etiquetas,
         "Error" => $error,
+        "Errores" => $errores,
     ]);
 ?>
