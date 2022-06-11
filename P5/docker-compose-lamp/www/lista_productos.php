@@ -15,10 +15,15 @@
         $showForm=true;
 
         if($_SERVER["REQUEST_METHOD"]=="POST"){
-            $res=$con->searchProductos($_POST["keyword"]);
+            header("Location: lista_productos.php?query=".$_POST["keyword"]);
+            exit();
         }
-        else
-            $res=$con->getAllProductsWithImage();
+        else{
+            if(isset($_GET["query"]) and !empty($_GET["query"]))
+                $res=$con->searchProductos($_GET["query"]);
+            else
+                $res=$con->getAllProductsWithImage();
+        }
     }
     else{
         $errores[]="No tienes permisos para ver esta página";

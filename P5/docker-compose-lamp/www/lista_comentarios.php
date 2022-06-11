@@ -15,9 +15,13 @@
         $showForm=true;
 
         if($_SERVER["REQUEST_METHOD"]=="POST"){
-            $res=$con->searchComentarios($_POST["keyword"]);
+            header("Location: lista_comentarios.php?query=".$_POST["keyword"]);
+            exit();
         }
         else{
+            if(isset($_GET["query"]) and !empty($_GET["query"]))
+            $res=$con->searchComentarios($_GET["query"]);
+            else
             $res=$con->getAllCommentsTodosProductos();
         }
     }

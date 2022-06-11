@@ -110,10 +110,8 @@ class GestorBD{
 
     function getAllComments($idProducto){
         $res=false;
-//SELECT Comentario.ID,Nombre,Correo,DATE_FORMAT(Fecha, '%e de %M del %Y, %H:%i'),Texto,Comentario.Editado,Usuarios.Foto FROM Comentario,Usuarios WHERE Comentario.ID_Usuario=Usuarios.ID AND Comentario.ID_Producto=1 ORDER BY Comentario.ID DESC;
 
         $this->mysqli->query("SET lc_time_names='es_ES';");
-        //$prepare=$this->mysqli->prepare("SELECT Comentario.ID,Nombre,Correo,Fecha,Texto,Comentario.Editado,Usuarios.Foto FROM Comentario,Usuarios WHERE Comentario.ID_Usuario=Usuarios.ID AND Comentario.ID_Producto=? ORDER BY Comentario.ID DESC");
         $prepare=$this->mysqli->prepare("SELECT Comentario.ID,Nombre,Correo,DATE_FORMAT(Fecha, '%e de %M del %Y, %H:%i') AS Fecha,Texto,Comentario.Editado,Usuarios.Foto FROM Comentario,Usuarios WHERE Comentario.ID_Usuario=Usuarios.ID AND Comentario.ID_Producto=? ORDER BY Comentario.ID DESC");
         $prepare->bind_param("i", $idProducto);
         $prepare->execute();
@@ -129,17 +127,24 @@ class GestorBD{
 
     //Obtiene todos los productos y sus comentarios
     function getAllCommentsTodosProductos(){
-        $productos=$this->getAllProductsPublicados();
+        $productos=false;
 
-        $count=count($productos);
-        for($i=0; $i<$count; $i++){
-            $productos[$i]["Comentarios"]=$this->getAllComments($productos[$i]["ID"]);
+        if(isset($_SESSION["usuario"]) and !empty($_SESSION["usuario"]) and ($_SESSION["usuario"]["esModerador"] == 1 or $_SESSION["usuario"]["esSuperusuario"] == 1)){        
+            if($_SESSION["usuario"]["esSuperusuario"] == 1)
+                $productos=$this->getAllProducts();
 
-            if(!isset($productos[$i]["Comentarios"]) or empty($productos[$i]["Comentarios"])){
-                unset($productos[$i]);
+            else if($_SESSION["usuario"]["esModerador"] == 1)
+                $productos=$this->getAllProductsPublicados();
+
+            $count=count($productos);
+            for($i=0; $i<$count; $i++){
+                $productos[$i]["Comentarios"]=$this->getAllComments($productos[$i]["ID"]);
+
+                if(!isset($productos[$i]["Comentarios"]) or empty($productos[$i]["Comentarios"])){
+                    unset($productos[$i]);
+                }
             }
         }
-
         return $productos;
     }  
 
@@ -190,7 +195,7 @@ class GestorBD{
     private function searchComentariosIDProducto($idProducto, $texto){
         $res=false;
 
-        $prepare=$this->mysqli->prepare("SELECT * FROM (SELECT Texto,Nombre,Correo,Fecha FROM Comentario,Usuarios WHERE Usuarios.ID=ID_Usuario AND ID_Producto=?) AS A WHERE A.Nombre LIKE ? OR A.Correo LIKE ? OR A.Texto LIKE ? OR A.Fecha LIKE ?");
+        $prepare=$this->mysqli->prepare("SELECT * FROM (SELECT Texto,Nombre,Correo,Fecha,Foto FROM Comentario,Usuarios WHERE Usuarios.ID=ID_Usuario AND ID_Producto=?) AS A WHERE A.Nombre LIKE ? OR A.Correo LIKE ? OR A.Texto LIKE ? OR A.Fecha LIKE ?");
         $keywordSQL="%".$texto."%";
         $prepare->bind_param("issss", $idProducto, $keywordSQL, $keywordSQL, $keywordSQL, $keywordSQL);
         $prepare->execute();
@@ -206,17 +211,22 @@ class GestorBD{
 
     //Busca los comentarios que contengan las palabras pasadas como parametro
     function searchComentarios($texto){
-        $productos=$this->getAllProductsPublicados();
+        $productos=false;
+        if(isset($_SESSION["usuario"]) and !empty($_SESSION["usuario"]) and ($_SESSION["usuario"]["esModerador"] == 1 or $_SESSION["usuario"]["esSuperusuario"] == 1)){
+            if($_SESSION["usuario"]["esSuperusuario"] == 1)
+                $productos=$this->getAllProducts();
+            else if($_SESSION["usuario"]["esModerador"] == 1)
+                $productos=$this->getAllProductsPublicados();
 
-        $count=count($productos);
-        for($i=0; $i<$count; $i++){
-            $productos[$i]["Comentarios"]=$this->searchComentariosIDProducto($productos[$i]["ID"], $texto);
+            $count=count($productos);
+            for($i=0; $i<$count; $i++){
+                $productos[$i]["Comentarios"]=$this->searchComentariosIDProducto($productos[$i]["ID"], $texto);
 
-            if(!isset($productos[$i]["Comentarios"]) or empty($productos[$i]["Comentarios"])){
-                unset($productos[$i]);
-            }            
+                if(!isset($productos[$i]["Comentarios"]) or empty($productos[$i]["Comentarios"])){
+                    unset($productos[$i]);
+                }            
+            }
         }
-
         return $productos;
     }
 
