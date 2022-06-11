@@ -110,9 +110,11 @@ class GestorBD{
 
     function getAllComments($idProducto){
         $res=false;
+//SELECT Comentario.ID,Nombre,Correo,DATE_FORMAT(Fecha, '%e de %M del %Y, %H:%i'),Texto,Comentario.Editado,Usuarios.Foto FROM Comentario,Usuarios WHERE Comentario.ID_Usuario=Usuarios.ID AND Comentario.ID_Producto=1 ORDER BY Comentario.ID DESC;
 
         $this->mysqli->query("SET lc_time_names='es_ES';");
-        $prepare=$this->mysqli->prepare("SELECT Comentario.ID,Nombre,Correo,Fecha,Texto,Comentario.Editado,Usuarios.Foto FROM Comentario,Usuarios WHERE Comentario.ID_Usuario=Usuarios.ID AND Comentario.ID_Producto=? ORDER BY Comentario.ID DESC");
+        //$prepare=$this->mysqli->prepare("SELECT Comentario.ID,Nombre,Correo,Fecha,Texto,Comentario.Editado,Usuarios.Foto FROM Comentario,Usuarios WHERE Comentario.ID_Usuario=Usuarios.ID AND Comentario.ID_Producto=? ORDER BY Comentario.ID DESC");
+        $prepare=$this->mysqli->prepare("SELECT Comentario.ID,Nombre,Correo,DATE_FORMAT(Fecha, '%e de %M del %Y, %H:%i') AS Fecha,Texto,Comentario.Editado,Usuarios.Foto FROM Comentario,Usuarios WHERE Comentario.ID_Usuario=Usuarios.ID AND Comentario.ID_Producto=? ORDER BY Comentario.ID DESC");
         $prepare->bind_param("i", $idProducto);
         $prepare->execute();
 
