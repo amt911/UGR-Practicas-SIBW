@@ -55,107 +55,6 @@ function toggleDarkMode(){
     toggleDarkModePlantilla(esDark);
 }
 
-
-//Funcion que comprueba mediante expresiones regulares si el formato del email es correcto y si no esta vacio
-function comprobarEmail(email){
-    if(email!="" && email.search(/^([0-9a-z\.\_]+)+@{1}([0-9a-z]+\.)+[0-9a-z]+$/i)!=-1)
-        return true
-
-    else
-        return false
-}
-
-
-//Funcion que devuelve la fecha actual en formato mas bonito
-function obtenerFechaActual(){
-    let fecha=new Date()
-    let mesString;
-
-    //pasar a un map si da tiempo
-    switch(fecha.getMonth()){
-        case 0:
-            mesString="enero"
-            break;
-
-        case 1:
-            mesString="febrero"
-            break;
-
-        case 2:
-            mesString="marzo"
-            break;
-
-        case 3:
-            mesString="abril"
-            break;          
-            
-        case 4:
-            mesString="mayo"
-            break;
-
-        case 5:
-            mesString="junio"
-            break;
-
-        case 6:
-            mesString="julio"
-            break;
-
-        case 7:
-            mesString="agosto"
-            break;          
-            
-        case 8:
-            mesString="septiembre"
-            break;
-
-        case 9:
-            mesString="octubre"
-            break;
-
-        case 10:
-            mesString="noviembre"
-            break;
-
-        case 11:
-            mesString="diciembre"
-            break;                          
-    }
-
-    let dia=(fecha.getDate()<10)?"0"+fecha.getDate(): fecha.getDate();
-    let minutos=(fecha.getMinutes()<10)?"0"+fecha.getMinutes(): fecha.getMinutes();
-    let horas=(fecha.getHours()<10)?"0"+fecha.getHours():fecha.getHours();
-
-    return dia+" de "+mesString+" del "+fecha.getFullYear()+", "+horas+":"+minutos
-}
-
-
-function subirOpacidad(elemento){
-    let contador=0
-    let incremento=0.02;
-    let contadorTam=0.8;
-    let incrementoTam=0.005;
-
-    let interval=setInterval(()=>{
-        if(contador<1 || contadorTam<1){
-            if(contador<1){
-                contador+=incremento
-                elemento.style.opacity=contador
-            }
-            
-            if(contadorTam<1){
-                contadorTam+=incrementoTam
-                elemento.style.transform="scale("+contadorTam+")"
-            }
-        }
-        else{
-            clearInterval(interval)
-        }
-
-    }, 24)
-}
-
-
 //Funcion que se llama desde un evento para expandir la seccion de comentarios
 function expandirComentarios(){
     let desplegableComentarios=document.getElementById("comentarios-submit-container");
@@ -173,67 +72,6 @@ function expandirComentarios(){
         abrir=true;
     }
 }
-
-//Funcion que sirve para añadir un nuevo comentario
-function subirComentario(){
-    //let nombre=document.getElementById("nombre")
-    //let email=document.getElementById("email")
-    let comentarioNuevo=document.getElementById("comentario-nuevo")
-    let comentarios=document.getElementsByClassName("comentario-container")
-    let submit=document.getElementById("submit-comentario");
-
-    //if(/*nombre.value!="" &&*/ comprobarEmail(email.value) /*&& comentarioNuevo.value!=""*/){
-        /*
-        if(comentarios.length==0){
-            document.getElementById("sin-comentarios").remove();
-        }
-
-        let nombre={value: "prueba"};
-        let email={value: "otro"};
-*/
-        //let template=document.createElement("div");
-        //template.setAttribute("class", "comentario-container");
-        //Se inserta el nuevo comentario justo debajo del final de la caja para crear uno.
-        //Aunque tambien se puede hacer cogiendo todos los comentarios y poniendolo antes de todos en el array
-        comprobarPalabrotas();
-        //IMPORTANTE: InnerHTML sirve para modificar solo lo de dentro del div en este caso, outerHTML es para todo el DOM
-        /*template.innerHTML="<div class=\"nombre-comentario\">"+
-                                "<h4>"+nombre.value+"</h4>"+
-                            "</div>"+
-                            "<div class=\"comentario-email\">"+
-                                email.value+
-                            "</div>"+
-                            "<div class=\"fecha\">"+
-                                obtenerFechaActual()+
-                            "</div>"+
-                            "<div class=\"contenido-comentario\">"+
-                                comentarioNuevo.value+
-                            "</div>";
-
-        template.style.transform="scale(0.8)"
-        template.style.opacity="0"
-
-        if(esDark){
-            template.classList.toggle("dark");
-
-            let contenidoComentario=template.getElementsByClassName("contenido-comentario");
-
-            Array.from(contenidoComentario).forEach((aux)=>{
-                aux.classList.toggle("dark");
-            })               
-        }
-
-        document.getElementById("comentarios-submit-container").insertBefore(template, submit.nextSibling)
-        subirOpacidad(template)
-
-        nombre.value=email.value=comentarioNuevo.value=""*/
-
-    /*}
-    else{
-        alert("Uno o varios campos están vacíos o son inválidos")
-    }*/
-}
-
 
 
 let intervaloImagen;
@@ -344,7 +182,7 @@ cargarPalabrotas();
 botonDark.addEventListener("click", toggleDarkMode);
 
 if(botonSubmit!=null)
-    botonSubmit.addEventListener("click", /*subirComentario*/comprobarPalabrotas);
+    botonSubmit.addEventListener("click", comprobarPalabrotas);
 
 botonComentarios.addEventListener("click", expandirComentarios);
 
@@ -375,17 +213,6 @@ for(let i=0; i<vistasPrevias.length; i++){
 
 botonComprar.addEventListener("click", ()=>alert("Gracias por su compra"));
 
-//let botonesBorrar=document.getElementsByClassName("ref-borrar");
-
-//mejorable
 function confirmacion(){
     return confirm("¿Está seguro que desea eliminar el contenido? Esta acción no se puede deshacer."); 
 }
-/*
-for(let i=0; i<botonesBorrar.length; i++){
-    botonesBorrar[i].addEventListener("click", ()=>{
-        return confirm("¿Está seguro que desea eliminar el comentario? Esta acción no se puede deshacer."); 
-    });
-
-}
-*/
