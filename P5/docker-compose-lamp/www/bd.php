@@ -96,6 +96,18 @@ class GestorBD{
     }
     
 
+    private function getAllProductsPublicados(){
+        $row=false;
+        
+        $res=$this->mysqli->query("SELECT * FROM Productos WHERE Publicado=1");
+        
+        if($res->num_rows > 0){
+            $row=$res->fetch_all(MYSQLI_ASSOC);
+        }
+
+        return $row;            
+    }
+
     function getAllComments($idProducto){
         $res=false;
 
@@ -115,7 +127,7 @@ class GestorBD{
 
     //Obtiene todos los productos y sus comentarios
     function getAllCommentsTodosProductos(){
-        $productos=$this->getAllProducts();
+        $productos=$this->getAllProductsPublicados();
 
         $count=count($productos);
         for($i=0; $i<$count; $i++){
@@ -192,7 +204,7 @@ class GestorBD{
 
     //Busca los comentarios que contengan las palabras pasadas como parametro
     function searchComentarios($texto){
-        $productos=$this->getAllProducts();
+        $productos=$this->getAllProductsPublicados();
 
         $count=count($productos);
         for($i=0; $i<$count; $i++){

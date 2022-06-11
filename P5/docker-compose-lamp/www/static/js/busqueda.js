@@ -43,15 +43,6 @@ document.getElementById("buscar").addEventListener("keyup", function () {
             console.log("Error");
         }
     }).catch(err => console.log(err))
-    /*
-    .then(res => {
-        document.getElementById("resultados").innerHTML = "";
-        for (let i = 0; i < res.length; i++) {
-            document.getElementById("resultados").innerHTML +=
-                "<div><a href=\"producto.php?p=" + res[i].ID + "&query="+document.getElementById("buscar").value+"\">" + ponerNegrita(document.getElementById("buscar").value, res[i].Nombre) + "</a></div>";
-        }
-    });
-    */
 });
 
 

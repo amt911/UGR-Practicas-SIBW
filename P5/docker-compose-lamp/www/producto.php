@@ -16,24 +16,28 @@
 
     $error=0;
     if($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST["comentario"]) and !empty($_SESSION["usuario"])){
-        $prodID=$_POST["actual"];
-        $palabrotas=$con->getPalabrotas();
+        $producto=$con->getProducto($_POST["actual"]);
 
-        $comentario=$_POST["comentario"];
+        if($_SESSION["usuario"]["esGestor"]==1 or $producto["Publicado"]==1){
+            $prodID=$_POST["actual"];
+            $palabrotas=$con->getPalabrotas();
 
-        //Por si acaso no funciona javascript, sustituyo las palabrotas tambien en el servidor
-        foreach($palabrotas as $palabra){
-            $comentario=str_replace($palabra, str_repeat("*", strlen($palabra)), $comentario);
-        }
+            $comentario=$_POST["comentario"];
 
-        if($_POST["comentario"] !== ""){
-            $con->insertarComentario($comentario, $prodID);
+            //Por si acaso no funciona javascript, sustituyo las palabrotas tambien en el servidor
+            foreach($palabrotas as $palabra){
+                $comentario=str_replace($palabra, str_repeat("*", strlen($palabra)), $comentario);
+            }
 
-            header("Location: producto.php?p=$prodID");     //Redirijo para evitar que salga una ventana emergente de confirmar subida de nuevo
-            exit();
-        }
-        else{
-            $error=-1;
+            if($_POST["comentario"] !== ""){
+                $con->insertarComentario($comentario, $prodID);
+
+                header("Location: producto.php?p=$prodID");     //Redirijo para evitar que salga una ventana emergente de confirmar subida de nuevo
+                exit();
+            }
+            else{
+                $error=-1;
+            }
         }
     }
 

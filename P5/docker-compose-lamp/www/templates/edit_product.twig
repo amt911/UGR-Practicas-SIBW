@@ -79,7 +79,12 @@
         </div>
     {% endif %}
 
-    <input type="checkbox" name="publicar"/>
+    {% if Producto["Publicado"] == 1 %}
+        <input type="checkbox" name="publicar" checked/>
+    {% else %}
+        <input type="checkbox" name="publicar"/>
+    {% endif %}
+    
     <label>Publicar</label>
     <br/><br/>
 

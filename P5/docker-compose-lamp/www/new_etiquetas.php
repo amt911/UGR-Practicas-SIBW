@@ -26,9 +26,10 @@
         $showForm=false;        
     }
 
-    //Parte de rellenar los campos IMPORTANTE JUNTARLO TODO
+    //Parte de rellenar los campos
     if(!$con->existeProducto($id)){
         $error[]="El producto no existe";
+        $showForm=false;
     }
 
     //Parte de POST
