@@ -52,50 +52,61 @@
             $back=$_POST["back"];
         }
         else{
-            $imagenesAntiguas=$con->getImagenes($id);
-
-            if($imagenesAntiguas!=false){
-                for($i=0; $i<count($imagenesAntiguas); $i++){
-                    if(isset($_POST["imagen-eliminar_".$imagenesAntiguas[$i]["ID_Imagen"]]) and !empty($_POST["imagen-eliminar_".$imagenesAntiguas[$i]["ID_Imagen"]]) and $_POST["imagen-eliminar_".$imagenesAntiguas[$i]["ID_Imagen"]]=="on"){
-                        $con->deleteImage($imagenesAntiguas[$i]["ID_Imagen"]);
-                    }
+            $hayError=false;
+            for($i=0; $i<count($_FILES["imagenes"]["name"]) and !$hayError; $i++){
+                if($_FILES["imagenes"]["error"][$i]==1 or $_FILES["imagenes"]["size"][$i]>2097152){
+                    $hayError=true;
                 }
             }
+            
+            if(!$hayError){
+                $imagenesAntiguas=$con->getImagenes($id);
 
-            $etiquetasAntiguas=$con->getEtiquetas($id);
-
-            if($etiquetasAntiguas!=false){
-                for($i=0; $i<count($etiquetasAntiguas); $i++){
-                    if(isset($_POST["eliminar-etiqueta_".$etiquetasAntiguas[$i]["Nombre"]]) and !empty($_POST["eliminar-etiqueta_".$etiquetasAntiguas[$i]["Nombre"]]) and $_POST["eliminar-etiqueta_".$etiquetasAntiguas[$i]["Nombre"]]=="on"){
-                        $con->deleteEtiqueta($_POST["product-id"], $etiquetasAntiguas[$i]["Nombre"]);
+                if($imagenesAntiguas!=false){
+                    for($i=0; $i<count($imagenesAntiguas); $i++){
+                        if(isset($_POST["imagen-eliminar_".$imagenesAntiguas[$i]["ID_Imagen"]]) and !empty($_POST["imagen-eliminar_".$imagenesAntiguas[$i]["ID_Imagen"]]) and $_POST["imagen-eliminar_".$imagenesAntiguas[$i]["ID_Imagen"]]=="on"){
+                            $con->deleteImage($imagenesAntiguas[$i]["ID_Imagen"]);
+                        }
                     }
                 }
+
+                $etiquetasAntiguas=$con->getEtiquetas($id);
+
+                if($etiquetasAntiguas!=false){
+                    for($i=0; $i<count($etiquetasAntiguas); $i++){
+                        if(isset($_POST["eliminar-etiqueta_".$etiquetasAntiguas[$i]["Nombre"]]) and !empty($_POST["eliminar-etiqueta_".$etiquetasAntiguas[$i]["Nombre"]]) and $_POST["eliminar-etiqueta_".$etiquetasAntiguas[$i]["Nombre"]]=="on"){
+                            $con->deleteEtiqueta($_POST["product-id"], $etiquetasAntiguas[$i]["Nombre"]);
+                        }
+                    }
+                }
+
+                if(!empty($_POST["etiquetas"]) and isset($_POST["etiquetas"])){
+                    $etiquetas=$_POST["etiquetas"];
+                    //eliminar espacios
+                    $etiquetas=str_replace(" ", "", $etiquetas);
+
+                    //separar por comas y obtener un array
+                    $etiquetas=explode(",", $etiquetas);
+                    $con->insertEtiquetas($id, $etiquetas);
+                }            
+
+                $checkbox=(isset($_POST["publicar"]) and !empty($_POST["publicar"]))?1:0;
+
+                $con->cambiarDatosProducto($_POST["product-id"], $_POST["precio"], $_POST["nombre"], $_POST["descripcion"], $_POST["titulo-top"], $_POST["fabricante"], $_FILES["imagenes"], $checkbox);
+                $nroImg=$con->getImageCount($id);
+
+                $back=$_POST["back"];
+
+                if($nroImg>0){
+                    header("Location: comentarios_imagen_form.php?id=".$id."&back=".$back);
+                    exit();                
+                }
+
+                header("Location: $back");
+                exit();
             }
-
-            if(!empty($_POST["etiquetas"]) and isset($_POST["etiquetas"])){
-                $etiquetas=$_POST["etiquetas"];
-                //eliminar espacios
-                $etiquetas=str_replace(" ", "", $etiquetas);
-
-                //separar por comas y obtener un array
-                $etiquetas=explode(",", $etiquetas);
-                $con->insertEtiquetas($id, $etiquetas);
-            }            
-
-            $checkbox=(isset($_POST["publicar"]) and !empty($_POST["publicar"]))?1:0;
-
-            $con->cambiarDatosProducto($_POST["product-id"], $_POST["precio"], $_POST["nombre"], $_POST["descripcion"], $_POST["titulo-top"], $_POST["fabricante"], $_FILES["imagenes"], $checkbox);
-            $nroImg=$con->getImageCount($id);
-
-            $back=$_POST["back"];
-
-            if($nroImg>0){
-                header("Location: comentarios_imagen_form.php?id=".$id."&back=".$back);
-                exit();                
-            }
-
-            header("Location: $back");
-            exit();
+            else
+                $error[]="Las imágenes son demasiado grandes";
         }
     }
 

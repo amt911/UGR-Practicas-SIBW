@@ -45,28 +45,39 @@ if($_SERVER["REQUEST_METHOD"]=="POST" and isset($_SESSION["usuario"]) and $_SESS
         if(is_numeric($precio)){
             //var_dump($con->existeProductoNombre($nombre));
             if(!$con->existeProductoNombre($nombre)){
-            $id=$con->insertProducto($nombre, $precio, $descripcion, $tituloTab, $fabricante, $_FILES["imagenes"], $publicar);
+                $hayError=false;
+                for($i=0; $i<count($_FILES["imagenes"]["name"]) and !$hayError; $i++){
+                    if($_FILES["imagenes"]["size"][$i]>2097152 or $_FILES["imagenes"]["error"][$i]==1)
+                        $hayError=true;
+                }
 
-            if(!empty($_POST["etiquetas"]) and isset($_POST["etiquetas"])){
-                $etiquetas=$_POST["etiquetas"];
-                //eliminar espacios
-                $etiquetas=str_replace(" ", "", $etiquetas);
+                if(!$hayError){
+                    $id=$con->insertProducto($nombre, $precio, $descripcion, $tituloTab, $fabricante, $_FILES["imagenes"], $publicar);
 
-                //separar por comas y obtener un array
-                $etiquetas=explode(",", $etiquetas);
+                    if(!empty($_POST["etiquetas"]) and isset($_POST["etiquetas"])){
+                        $etiquetas=$_POST["etiquetas"];
+                        //eliminar espacios
+                        $etiquetas=str_replace(" ", "", $etiquetas);
 
-                //var_dump($etiquetas);
-                $con->insertEtiquetas($id, $etiquetas);
+                        //separar por comas y obtener un array
+                        $etiquetas=explode(",", $etiquetas);
+
+                        //var_dump($etiquetas);
+                        $con->insertEtiquetas($id, $etiquetas);
+                    }
+
+                    if(empty($_FILES["imagenes"]["name"][0]) and count($_FILES["imagenes"]["name"])==1){
+                        header("Location: $back");
+                        exit();
+                    }
+                    header("Location: comentarios_imagen_form.php?back=$back&id=$id");
+                    exit(); 
+                }
+                else
+                    $errores[]="Las imágenes son demasiado grandes";
             }
-
-            if(empty($_FILES["imagenes"]["name"][0]) and count($_FILES["imagenes"]["name"])==1){
-                header("Location: $back");
-                exit();
-            }
-            header("Location: comentarios_imagen_form.php?back=$back&id=$id");
-            exit();            
-            }
-            $errores[]="Ya existe el producto";
+            else
+                $errores[]="Ya existe el producto";
 
         }
         else

@@ -110,7 +110,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST" and isset($_SESSION["usuario"])){
                 $hayError=true;
             }
 
-            if($_FILES["Foto"]["size"] > 2097152){
+            if($_FILES["Foto"]["size"] > 2097152 or $_FILES["Foto"]["error"]==1){
                 $error[]="La imagen es demasiado grande";
                 $hayError=true;
             }

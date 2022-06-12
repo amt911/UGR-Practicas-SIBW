@@ -533,7 +533,7 @@ class GestorBD{
             //Comprobar si se ha mandado alguna imagen
             //Ahora se envian las imagenes al servidor y se insertan en la base de datos
             for($i=0; $i<count($foto["name"]); $i++){
-                if($foto["error"][$i]!=4){
+                if($foto["error"][$i]!=4 and $foot["error"][$i]!=1 and $foto["size"][$i]<=2097152){
                     $fotoActual=["name"=>$foto["name"][$i], "tmp_name"=>$foto["tmp_name"][$i], "error"=>$foto["error"][$i]];
                     $directorioNuevaFoto=$this->subirImagen($fotoActual, $idProducto, false);
                     $this->insertImagen($idProducto, $directorioNuevaFoto);
@@ -688,7 +688,7 @@ class GestorBD{
             //Comprobar si se ha mandado alguna imagen
             //Ahora se envian las imagenes al servidor y se insertan en la base de datos
             for($i=0; $i<count($foto["name"]); $i++){
-                if($foto["error"][$i]!=4){
+                if($foto["error"][$i]!=4 and $foto["error"][$i]!=1 and $foto["size"][$i]<=2097152){
                     $fotoActual=["name"=>$foto["name"][$i], "tmp_name"=>$foto["tmp_name"][$i], "error"=>$foto["error"][$i]];
                     $directorioNuevaFoto=$this->subirImagen($fotoActual, $idProducto, false);
                     $this->insertImagen($idProducto, $directorioNuevaFoto);
