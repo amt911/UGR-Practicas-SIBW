@@ -195,7 +195,7 @@ class GestorBD{
     private function searchComentariosIDProducto($idProducto, $texto){
         $res=false;
 
-        $prepare=$this->mysqli->prepare("SELECT * FROM (SELECT Texto,Nombre,Correo,Fecha,Foto FROM Comentario,Usuarios WHERE Usuarios.ID=ID_Usuario AND ID_Producto=?) AS A WHERE A.Nombre LIKE ? OR A.Correo LIKE ? OR A.Texto LIKE ? OR A.Fecha LIKE ?");
+        $prepare=$this->mysqli->prepare("SELECT * FROM (SELECT Comentario.ID,Texto,Nombre,Correo,Fecha,Foto FROM Comentario,Usuarios WHERE Usuarios.ID=ID_Usuario AND ID_Producto=?) AS A WHERE A.Nombre LIKE ? OR A.Correo LIKE ? OR A.Texto LIKE ? OR A.Fecha LIKE ?");
         $keywordSQL="%".$texto."%";
         $prepare->bind_param("issss", $idProducto, $keywordSQL, $keywordSQL, $keywordSQL, $keywordSQL);
         $prepare->execute();
