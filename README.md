@@ -1,6 +1,6 @@
 # UGR-Practicas-SIBW
 
-Prácticas de la asignatura "Sistemas de Información Basados en Web" del tercer curso de Ingerniería Informática de la especialidad "Ingeniería del Software".
+Prácticas de la asignatura "Sistemas de Información Basados en Web" del tercer curso de Ingeniería Informática de la especialidad "Ingeniería del Software".
 
 Las practicas están repartidas en carpetas con el siguiente contenido (aproximado):
 
